@@ -82,9 +82,11 @@ class Reception(models.Model):
 
 class Patient(models.Model):
     facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL)
+    facilities = models.ManyToManyField(Facility, blank=True, null=True, related_name='facilities')
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     blood_group = models.CharField(max_length=5)
     dob = models.DateField()
+    make_account_sharable = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)

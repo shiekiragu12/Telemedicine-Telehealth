@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+# Colors - Cyan blue, 
+
 
 # Create your views here.
 def index(request):
