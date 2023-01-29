@@ -18,6 +18,10 @@ class Profile(models.Model):
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
+    
+    
+    def __str__(self):
+        return self.user.username.title() + "'s profile"
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
