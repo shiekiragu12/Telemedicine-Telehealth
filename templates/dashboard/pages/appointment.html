@@ -1,0 +1,582 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-body">
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="text-end mb-3">
+			<a href="javascript:void(0);" class="btn btn-primary btn-rounded add-appointment">+ Book Appointment</a>
+			<a href="{% url 'doctors' facility_id=1 %}" class="btn btn-primary btn-rounded">Doctor Schedule</a>
+		</div>
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example5" class="table table-striped patient-list mb-4 dataTablesCard fs-14">
+								<thead>
+									<tr>
+										<th>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="checkAll"
+														required="">
+													<label class="form-check-label" for="checkAll"></label>
+												</div>
+											</div>
+										</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Date Of Appointment</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Mobile</th>
+										<th>Consulting Doctor</th>
+										<th>Injury/Condition</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox1"
+														required="">
+													<label class="form-check-label" for="customCheckBox1"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/1.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">Matthew</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox2"
+														required="">
+													<label class="form-check-label" for="customCheckBox2"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/2.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">JOHN D RANDOLPH</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox3"
+														required="">
+													<label class="form-check-label" for="customCheckBox3"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/3.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">JOHN D RANDOLPH</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox4"
+														required="">
+													<label class="form-check-label" for="customCheckBox4"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/4.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">Asher Anthony</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox8"
+														required="">
+													<label class="form-check-label" for="customCheckBox8"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/6.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">Carter Anthony</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox7"
+														required="">
+													<label class="form-check-label" for="customCheckBox7"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/4.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">David Anthony</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="checkbox text-end align-self-center">
+												<div class="form-check custom-checkbox ">
+													<input type="checkbox" class="form-check-input" id="customCheckBox6"
+														required="">
+													<label class="form-check-label" for="customCheckBox6"></label>
+												</div>
+											</div>
+										</td>
+										<td class="patient-info ps-0">
+											<span>
+												<img src="images/avatar/6.jpg" alt="">
+											</span>
+											<span class="text-nowrap ms-2">Anthony David</span>
+										</td>
+										<td class="text-primary">gabriel@gmail.com</td>
+										<td>8 Aug 2021</td>
+										<td>12:00</td>
+										<td>13:00</td>
+										<td class="text-primary">9876512345</td>
+										<td>Dr. HANI B BARADI</td>
+										<td>Fever</td>
+										<td>
+											<span class="me-3">
+												<a href="javascript:void(0);" class="edit-appointment"><i
+														class="fa fa-pencil fs-18 " aria-hidden="true"></i></a>
+											</span>
+											<span>
+												<i class="fa fa-trash fs-18" aria-hidden="true"></i>
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="modal fade edit-appointment" id="appointment-edit-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Job</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+					<div class="mb-4">
+						<label  class="form-label">Position</label>
+						<input type="text"  class="form-control" placeholder="Name" aria-label="name">
+					</div>
+					<div class="mb-4">
+						<label class="form-label">Job Type</label>
+						<select id="inputState" class="form-select form-control">
+						  <option selected>Choose...</option>
+						  <option>Part-Time</option>
+						   <option>Full-Time</option>
+							<option>Freelancer</option>
+						</select>
+					</div>
+					<div class="mb-4">
+						<label class="form-label">Description:</label>
+						<textarea class="form-control" aria-label="With textarea"></textarea>
+					</div>
+					<div class="mb-4">
+						<label  class="form-label">Posted Date</label>
+						<div class="input-group">
+							 <div class="input-group-text"><i class="far fa-clock"></i></div>
+							<input size="16" type="text" value="2012-06-15" readonly class="form-control form_datetime">
+						</div>
+					</div>	
+					<div class="mb-4">
+						<label  class="form-label">Last Date To Apply</label>
+						<div class="input-group">
+							 <div class="input-group-text"><i class="far fa-clock"></i></div>
+							<input size="16" type="text" value="2012-06-15" readonly class="form-control form_datetime">
+						</div>
+					</div>
+					<div class="mb-4">
+						<label  class="form-label">Close Date</label>
+						<div class="input-group">
+							 <div class="input-group-text"><i class="far fa-clock"></i></div>
+							<input size="16" type="text" value="2012-06-15" readonly class="form-control form_datetime">
+						</div>
+					</div>	
+					<div class="mb-4">
+						<span>Status:<label class="radio-inline mx-3"><input type="radio" name="optradio"> Active</label></span>
+						<span><label class="radio-inline me-3"><input type="radio" name="optradio"> In Active</label></span>
+					</div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>	 -->
+
+	<div class="modal fade" id="appointment-edit-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Appointment</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Title:</label>
+									<select class="form-control">
+										<option>Miss</option>
+										<option>Mr.</option>
+										<option>Mrs.</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Name:</label>
+									<input type="text" class="form-control" id="" placeholder="Name">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Last Name:</label>
+									<input type="text" class="form-control" id="" placeholder="Last Name">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Date Of Appointment:</label>
+									<input size="16" type="date" value="13-9-2021" class="form-control">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">From:</label>
+									<input size="16" type="time" value="12:00" class="form-control">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">To:</label>
+									<input size="16" type="time" value="12:00" class="form-control">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Address :</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Mobile No:</label>
+									<input type="text" class="form-control" id="" placeholder="Mobile">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Email Id:</label>
+									<input type="email" class="form-control" id="" placeholder="Email">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Consulting Doctor:</label>
+									<select class="form-control">
+										<option>Dr.HANI B BARADI</option>
+										<option>Dr.NAJJIA N MAHMOUD</option>
+										<option>Dr. SANKAR NAIDU ADUSUMILLI</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Injury/Condition:</label>
+									<input type="text" class="form-control" id="" placeholder="fever">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Note:</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+							</div>
+						</div>
+
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="appointment-add-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Book Appointment</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Title:</label>
+									<select class="form-control">
+										<option>Miss</option>
+										<option>Mr.</option>
+										<option>Mrs.</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Name:</label>
+									<input type="text" class="form-control" id="" placeholder="Name">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Last Name:</label>
+									<input type="text" class="form-control" id="" placeholder="Last Name">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Date Of Appointment:</label>
+									<input size="16" type="date" value="13-9-2021" class="form-control">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label class="col-form-label">From:</label>
+									<input size="16" value="12:00" class="form-control datetimepicker2">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label class="col-form-label">To:</label>
+									<input size="16" type="time" value="12:00" class="form-control">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Address :</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Mobile No:</label>
+									<input type="text" class="form-control" id="" placeholder="Mobile">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Email Id:</label>
+									<input type="email" class="form-control" id="" placeholder="Email">
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Consulting Doctor:</label>
+									<select class="form-control">
+										<option>Dr.HANI B BARADI</option>
+										<option>Dr.NAJJIA N MAHMOUD</option>
+										<option>Dr. SANKAR NAIDU ADUSUMILLI</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Injury/Condition:</label>
+									<input type="text" class="form-control" id="" placeholder="fever">
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Note:</label>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+							</div>
+						</div>
+
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+		
+	$(document).on('click', '.edit-appointment', function(){
+		$('#appointment-edit-form').modal('show');
+	});
+	$(document).on('click', '.add-appointment', function(){
+		$('#appointment-add-form').modal('show');
+	});
+	(function($) {
+	 
+		var table = $('#example5').DataTable({
+			searching: false,
+			paging:true,
+			select: false,
+			//info: false,         
+			lengthChange:false 
+			
+		});
+		$('#example tbody').on('click', 'tr', function () {
+			var data = table.row( this ).data();
+			
+		});
+	   
+	})(jQuery);
+	
+	jQuery('#datetimepicker2').datetimepicker({
+		datepicker:false,
+		format:'H:i'
+	});
+</script>
+{% endblock %}
