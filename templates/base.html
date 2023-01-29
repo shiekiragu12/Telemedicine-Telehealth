@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %} {% endblock title %}</title>
+        {% block meta %}{% endblock meta %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css'%}">
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css'%}">
+       <!-- Flaticon CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/flaticon.css'%}">
+       <!-- Nice Select CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/nice-select.min.css'%}">
+       <!-- Odometer CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/odometer.min.css'%}">
+       <!-- Magnific CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css'%}">
+       <!-- Carousel CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+       <!-- Carousel Default CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+       <!-- Style CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+       <!-- Dark CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/dark.css' %}">
+       <!-- Responsive CSS -->
+       <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+        <!-- RTL CSS -->
+        <title>Tinzer - Telemedicine & Telehealth Services Template</title>
+        <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png'%}">
+    </head>
+<body>
+  {% include './components/navbar.html' %}
+  {% block navbar %} {% endblock %}
+  {% block content %} {% endblock %}
+
+  {% include './components/footer.html' %}
+  </body>
+</html>
+
+
+
+
+
+
