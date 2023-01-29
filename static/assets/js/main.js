@@ -350,7 +350,8 @@ jQuery(function ($) {
 		}
 	});
 
-	
+	// Buy Now Btn
+    $('body').append("<a href='https://themeforest.net/checkout/84124835/create_account?_ga=2.59727661.1430237439.1644119533-1297998632.1635997908' class='buy-now-btn' target='_blank'>Buy Now</a>");
 
 }(jQuery));
 
