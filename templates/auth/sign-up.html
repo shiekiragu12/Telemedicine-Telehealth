@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 <!-- End Page Title Area -->
 
@@ -27,42 +27,70 @@
     <div class="container">
         <div class="signup-form">
             <h3>Create your Account</h3>
-            <form>
+            {% for msg in messages %}
+            {% if msg.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+            {% else %}
+            <div class="alert alert-{{msg.tags}}">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username">
+                            <label for="" class="form-label">First Name</label>
+                            <input required type="text" class="form-control" placeholder="First Name" name="fname"
+                                value="{{user.first_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Last Name</label>
+                            <input required type="text" class="form-control" placeholder="Last Name" name="lname" value="{{user.last_name}}">
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <label for="" class="form-label">Username</label>
+                            <input required type="text" class="form-control" placeholder="Username" name="username" value="{{user.username}}">
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <label for="" class="form-label">Email</label>
+                            <input required type="email" class="form-control" placeholder="Email" name="email" value="{{user.email}}">
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkme">
-                            <label class="form-check-label" for="checkme">Keep Me Sign Up</label>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Password</label>
+                            <input required type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="form-label">Confirm Password</label>
+                            <input required type="password" class="form-control" placeholder="Confirm Password"
+                                name="password1">
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <div class="send-btn">
-                            <a href="#" class="default-btn">
-                                Sign Up Now
-                                <span></span>
-                            </a>
+                            <button class="default-btn">Sign Up Now</button>
                         </div>
                         <br>
-                        <span>Already a registered user? <a href="sign-in.html">Login!</a></span>
+                        <span>Already a registered user? <a href="{% url 'signin' %}">Login!</a></span>
                     </div>
                 </div>
             </form>

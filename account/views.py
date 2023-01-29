@@ -20,14 +20,15 @@ def account_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'You have successfully logged In!')
-            return redirect('home')
+            return redirect('index')
         else:
             messages.error(request, 'Login failed! Check your username and password.')
-            return render(request, template_name='auth/login.html', context={})
+            return render(request, template_name='auth/signin.html', context={})
 
     return render(request, template_name='auth/signin.html', context={})
 
 
+@unauthenticated_user
 def account_signup(request):
     if request.method == 'POST':
 
@@ -53,14 +54,14 @@ def account_signup(request):
             user.save()
             user.set_password(password)
             user.save()
-            return redirect('login')
+            return redirect('signin')
 
     return render(request, template_name='auth/sign-up.html', context={})
 
 
 def account_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('index')
 
 
 @login_required(login_url='login')

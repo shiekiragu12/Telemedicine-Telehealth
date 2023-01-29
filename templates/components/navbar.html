@@ -50,6 +50,14 @@
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white">
+                                Logged In!
+                            </a>
+                            
+                        </li>
+                        {% else %}
                         <li>
                             <a href="{% url 'signin' %}" class="log-in">
                                 Sign In
@@ -60,6 +68,7 @@
                                 Sign Up
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -275,6 +284,27 @@
                                     Contact
                                 </a>
                             </li>
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="solution" class="nav-link">
+                                    Account
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="solution.html" class="nav-link">
+                                            Profile
+                                        </a>
+                                    </li>
+    
+                                    <li class="nav-item">
+                                        <a href="{% url 'logout' %}" class="nav-link">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% endif %}
                         </ul>
 
                         <div class="others-options">
