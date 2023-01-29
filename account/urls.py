@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('register/', account_signup, name="signup"),
-    path('login/', account_login, name="login"),
+    path('login/', account_login, name="signin"),
     path('logout/', account_logout, name="logout"),
 
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='user/account/password_reset.html'),

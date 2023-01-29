@@ -25,7 +25,7 @@ def account_login(request):
             messages.error(request, 'Login failed! Check your username and password.')
             return render(request, template_name='auth/login.html', context={})
 
-    return render(request, template_name='auth/login.html', context={})
+    return render(request, template_name='auth/signin.html', context={})
 
 
 def account_signup(request):
@@ -43,11 +43,11 @@ def account_signup(request):
 
         if password != password1:
             messages.error(request, 'Passwords do not match')
-            return render(request, template_name='auth/register.html', context={"user": user})
+            return render(request, template_name='auth/sign-up.html', context={"user": user})
 
         elif existinguser is not None:
             messages.error(request, 'User with similar credentials already exists. Check your username')
-            return render(request, template_name='auth/register.html', context={"user": user})
+            return render(request, template_name='auth/sign-up.html', context={"user": user})
 
         else:
             user.save()
@@ -55,7 +55,7 @@ def account_signup(request):
             user.save()
             return redirect('login')
 
-    return render(request, template_name='auth/register.html', context={})
+    return render(request, template_name='auth/sign-up.html', context={})
 
 
 def account_logout(request):

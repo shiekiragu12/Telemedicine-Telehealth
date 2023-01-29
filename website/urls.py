@@ -3,12 +3,12 @@ from . import views
 
 urlpatterns = [
     path('', views.index,  name="index"),
-    path('sign-in', views.signin, name="signin"),
-    path('sign-up', views.signup, name="signup"),
+    # path('sign-in', views.signin, name="signin"),
+    # path('sign-up', views.signup, name="signup"),
     
     # services paths
-    path('service', views.service, name="service"),
-    path('emergencies', views.emergencies, name="emergencies"),
+    path('services', views.service, name="service"),
+    path('services/emergencies', views.emergencies, name="emergencies"),
     path('birthing-care', views.birthingcare, name="birthing-care"),
     path('cancer-care', views.cancercare, name="cancer-care"),
     path('family-medicine', views.familymedicine, name="family-medicine"), 
