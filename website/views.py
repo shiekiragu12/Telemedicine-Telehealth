@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Colors - Cyan blue, 
+# Colors - Cyan blue,
 
 
 # Create your views here.

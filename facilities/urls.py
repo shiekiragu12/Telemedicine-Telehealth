@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path('', create_facility, name="create_facility"),
     path('<str:facility_id>/', dashboard, name='dashboard'),
     # path('login/', dashboard, name='login'),
     # path('register/', dashboard, name='register'),

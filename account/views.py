@@ -8,6 +8,7 @@ from django.db.models import Q
 
 from .decorators import unauthenticated_user
 from django.contrib import messages
+from facilities.models import County, FacilitySpeciality, Facility
 
 
 @unauthenticated_user
@@ -15,6 +16,7 @@ def account_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        next_url = request.GET.get('next', None)
 
         user = authenticate(username=username, password=password)
         if user is not None:
@@ -54,17 +56,19 @@ def account_signup(request):
             user.save()
             user.set_password(password)
             user.save()
+            messages.success(request, 'Account created successfully')
             return redirect('signin')
 
     return render(request, template_name='auth/sign-up.html', context={})
 
 
 def account_logout(request):
+    messages.success(request, 'You have successfully logged out!')
     logout(request)
     return redirect('index')
 
 
-@login_required(login_url='login')
+@login_required(login_url='signin')
 def account_change_profile_pic(request):
     if request.method == 'POST':
         userp = request.user.profile
@@ -72,82 +76,93 @@ def account_change_profile_pic(request):
         userp.profile_photo = pic
         userp.save()
         messages.success(request, 'You have successfully changed your profile picture')
-        return redirect('profile')
+        return redirect('account_profile')
 
 
-@login_required(login_url='login')
+@login_required(login_url='signin')
 def account_change_password(request):
     if request.method == 'POST':
         user = request.user
         old_pass = request.POST.get('old_password')
-        new_pass = request.POST.get('new_password')
-        new_pass_repeat = request.POST.get('new_password_repeat')
+        new_pass = request.POST.get('password')
+        new_pass_repeat = request.POST.get('password1')
         if user.check_password(old_pass):
             if new_pass == new_pass_repeat:
                 try:
                     pass_validate = validate_password(new_pass, user=None, password_validators=None)
                     if pass_validate is None:
                         user.set_password(new_pass)
+                        user.save()
                         messages.success(request, 'Password change was successful')
-                        return redirect('profile')
+                        return redirect('account_profile')
                 except ValidationError:
                     messages.error(request,
                                    'The new password you entered does not meet the minimum requirements(8 characters '
                                    'minimum, should contain numbers, and characters)')
-                    return redirect('profile')
+                    return redirect('account_profile')
             else:
                 messages.error(request, 'Passwords do not match')
-                return redirect('profile')
+                return redirect('account_profile')
         else:
             messages.error(request, 'The old password you gave is incorrect')
-            return redirect('profile')
+            return redirect('account_profile')
 
 
-@login_required(login_url='login')
+@login_required(login_url='signin')
 def account_profile(request):
-    skills = request.user.userprofile.skills or 'no skills'
-    specialities = request.user.userprofile.specialities or 'no specialities'
-    skills_array = []
-    specialities_array = []
-
-    for skill in skills.split(','):
-        skills_array.append(skill)
-
-    for speciality in specialities.split(','):
-        specialities_array.append(speciality)
 
     context = {
-        'page': 'profile',
-        'skills': skills_array,
-        'specialities': specialities_array
+        'my_facilities': Facility.objects.filter(owner=request.user),
+        'counties': County.objects.all(),
+        'specialities': FacilitySpeciality.objects.all(),
     }
+    return render(request, template_name='account/profile.html', context=context)
 
-    return render(request, template_name='user/account/profile.html', context=context)
 
-
-@login_required(login_url='login')
-def account_edit_profile(request):
+@login_required(login_url='signin')
+def account_edit(request):
     if request.method == 'POST':
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
+        fname = request.POST.get('first_name')
+        lname = request.POST.get('last_name')
         email = request.POST.get('email')
-        username = request.POST.get('username')
-
-        phone_number = request.POST.get('phone_number')
+        # username = request.POST.get('username')
 
         user = request.user
+        user.first_name = fname
+        user.last_name = lname
+        user.email = email
+        # user.username = username
+        user.save()
 
-        if user:
-            user.first_name = fname
-            user.last_name = lname
-            user.email = email
-            user.username = username
-            user.save()
+        messages.success(request, 'Account information updated successfully')
 
-            user.profile.phone_number = phone_number
+        return redirect('account_profile')
 
-            user.profile.save()
+    return redirect('account_profile')
 
-        return redirect('profile')
 
-    return render(request, template_name='user/account/editprofile.html', context={})
+@login_required(login_url='signin')
+def account_profile_edit(request):
+    if request.method == 'POST':
+        pnumber = request.POST.get('phone_number')
+        address = request.POST.get('address')
+        country = request.POST.get('country')
+        gender = request.POST.get('gender')
+        city = request.POST.get('city')
+        postal_code = request.POST.get('postal_code')
+
+        user = request.user
+        user.profile.phone_number = pnumber
+        user.profile.address = address
+        user.profile.country = country
+        user.profile.gender = gender
+        user.profile.city = city
+        user.profile.postal_code = postal_code
+
+        user.profile.save()
+
+        messages.success(request, 'Account Profile information updated successfully')
+
+        return redirect('account_profile')
+
+    return redirect('account_profile')

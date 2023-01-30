@@ -1,198 +1,239 @@
 {% load static %}
+
+<style>
+    .errorlist{
+        list-style: auto;
+    }
+</style>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    {% for msg in messages %}
+    {% if msg.tags == "error" %}
+    <div id="liveToast" class="toast show bg-danger text-white mb-2 border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="toast-header">
+            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+            <i class="fa fa-bell me-2"></i>
+            <strong class="me-auto">Alert</strong>
+            <!-- <small>11 mins ago</small> -->
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{msg | safe}}
+        </div>
+    </div>
+    {% else %}
+    <div id="liveToast" class="toast show bg-{{msg.tags}} text-white border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="toast-header">
+            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+            <i class="fa fa-bell me-2"></i>
+            <strong class="me-auto">Alert</strong>
+            <!-- <small>11 mins ago</small> -->
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body form-errors">
+            {{msg | safe}}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
 <!-- Start Footer Area -->
-        <section class="footer-area pt-100 pb-70">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h3>Resq247</h3>
+<section class="footer-area pt-100 pb-70">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Resq247</h3>
 
-                            <p></p>                             
-                              <ul class="footer-social">
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
+                    <p></p>
+                    <ul class="footer-social">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-pinterest-p"></i>
-                                    </a>
-                                </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h3>Instagram</h3>
-
-                            <ul class="instagram">
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/3.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/4.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget pl-5">
-                            <h3>Useful Links</h3>
-
-                            <ul class="footer-quick-links">
-                                <li>
-                                    <a href="index.html">Services</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="solution.html">Health in Hand</a>
-                                </li>
-                                <li>
-                                    <a href="services.html">Solution</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">Shop</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h3>Contact</h3>
-
-                            <div class="footer-info-contact">
-                                <i class="flaticon-call"></i>
-                                <h3>Phone</h3>
-                                <span><a href="tel:0722865048">0722865048</a></span>
-                                <span><a href="tel: 0738247247"> 0738247247</a></span>
-                            </div>
-
-                            <div class="footer-info-contact">
-                                <i class="flaticon-email"></i>
-                                <h3>Email</h3>
-                                <span><a href="mailto:info@resq247.life">info@resq247.life </a></span>
-                            </div>
-
-                            <div class="footer-info-contact">
-                                <i class="flaticon-pin"></i>
-                                <h3>Address</h3>
-                                <span>Delta corner, Chiromo rd ,Nairobi</span>
-                            </div>
-                        </div>
-                    </div>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Instagram</h3>
+
+                    <ul class="instagram">
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/3.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/4.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </section>
-        <!-- End Footer Area -->
 
-        <!-- Start Copy Right Section -->
-        <div class="copyright-area">
-            <div class="container">
-                <p>
-                    Copyright © <script>document.write(new Date().getFullYear())</script> Tinzer. All Rights Reserved by
-                    <a href="https://envytheme.com/" target="_blank">
-                        EnvyTheme
-                    </a>
-                </p>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer-widget pl-5">
+                    <h3>Useful Links</h3>
+
+                    <ul class="footer-quick-links">
+                        <li>
+                            <a href="index.html">Services</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="solution.html">Health in Hand</a>
+                        </li>
+                        <li>
+                            <a href="services.html">Solution</a>
+                        </li>
+                        <li>
+                            <a href="blog.html">Shop</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer-widget">
+                    <h3>Contact</h3>
+
+                    <div class="footer-info-contact">
+                        <i class="flaticon-call"></i>
+                        <h3>Phone</h3>
+                        <span><a href="tel:0722865048">0722865048</a></span>
+                        <span><a href="tel: 0738247247"> 0738247247</a></span>
+                    </div>
+
+                    <div class="footer-info-contact">
+                        <i class="flaticon-email"></i>
+                        <h3>Email</h3>
+                        <span><a href="mailto:info@resq247.life">info@resq247.life </a></span>
+                    </div>
+
+                    <div class="footer-info-contact">
+                        <i class="flaticon-pin"></i>
+                        <h3>Address</h3>
+                        <span>Delta corner, Chiromo rd ,Nairobi</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- End Copy Right Section -->
+    </div>
 
-        <!-- Start Go Top Area -->
-        <div class="go-top">
-            <i class="fa fa-chevron-up"></i>
-            <i class="fa fa-chevron-up"></i>
-        </div>
-        <!-- End Go Top Area -->
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</section>
+<!-- End Footer Area -->
 
-        <!-- dark version -->
-        <div class="dark-version">
-            <label id="switch" class="switch">
-                <input type="checkbox" onchange="toggleTheme()" id="slider">
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <!-- dark version -->
+<!-- Start Copy Right Section -->
+<div class="copyright-area">
+    <div class="container">
+        <p>
+            Copyright ©
+            <script>document.write(new Date().getFullYear())</script> RESQ. All Rights Reserved. Developed by
+            <a href="https://livesoftwaredeveloper.com/" target="_blank">
+                Live Software Developer
+            </a>
+        </p>
+    </div>
+</div>
+<!-- End Copy Right Section -->
 
-        <!-- Jquery Slim JS -->
-        <script src="{% static 'assets/js/jquery.min.js'%}"></script>
-        <!-- Bootstrap JS -->
-        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-        <!-- Meanmenu JS -->
-        <script src="{% static 'assets/js/jquery.meanmenu.js' %}"></script>
-        <!-- Nice Select JS -->
-        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
-        <!-- Odometer JS -->
-        <script src="{% static 'assets/js/odometer.min.js'%}"></script>
-        <!-- Appear JS -->
-        <script src="{% static 'assets/js/jquery.appear.js' %}"></script>
-        <!-- Datepicker JS -->
-        <script src="{% static 'assets/js/datepicker.min.js' %}"></script>
-        <!-- Magnific JS -->
-        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
-        <!-- Carousel JS -->
-        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
-        <!-- Form Ajaxchimp JS -->
-		<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
-		<!-- Form Validator JS -->
-		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
-		<!-- Contact JS -->
-		<script src="{% static 'assets/js/contact-form-script.js' %}"></script>
-        <!-- Custom JS -->
-        <script src="{% static 'assets/js/main.js' %}"></script>
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="fa fa-chevron-up"></i>
+    <i class="fa fa-chevron-up"></i>
+</div>
+<!-- End Go Top Area -->
+
+<!-- dark version -->
+<div class="dark-version">
+    <label id="switch" class="switch">
+        <input type="checkbox" onchange="toggleTheme()" id="slider">
+        <span class="slider round"></span>
+    </label>
+</div>
+<!-- dark version -->
+
+<!-- Jquery Slim JS -->
+<script src="{% static 'assets/js/jquery.min.js'%}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Meanmenu JS -->
+<script src="{% static 'assets/js/jquery.meanmenu.js' %}"></script>
+<!-- Nice Select JS -->
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<!-- Odometer JS -->
+<script src="{% static 'assets/js/odometer.min.js'%}"></script>
+<!-- Appear JS -->
+<script src="{% static 'assets/js/jquery.appear.js' %}"></script>
+<!-- Datepicker JS -->
+<script src="{% static 'assets/js/datepicker.min.js' %}"></script>
+<!-- Magnific JS -->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<!-- Carousel JS -->
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<!-- Form Ajaxchimp JS -->
+<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+<!-- Form Validator JS -->
+<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+<!-- Contact JS -->
+<script src="{% static 'assets/js/contact-form-script.js' %}"></script>
+<!-- Custom JS -->
+<script src="{% static 'assets/js/main.js' %}"></script>

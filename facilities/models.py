@@ -5,7 +5,17 @@ from django.db import models
 # Create your models here.
 
 
-class Disease(models.Model):
+class County(models.Model):
+    name = models.CharField(max_length=200, blank=False, null=False)
+
+    created = models.DateTimeField(auto_now=True, auto_created=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Condition(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField()
 
@@ -28,15 +38,29 @@ class FacilitySpeciality(models.Model):
 
 class Facility(models.Model):
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+
     name = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField()
-    location = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    county = models.CharField(max_length=100)
+
+    location = models.CharField(max_length=100, blank=False, null=False, default="")
+    city = models.CharField(max_length=100, blank=False, null=False, default="")
+    county = models.ForeignKey(County, on_delete=models.SET_NULL, null=True, blank=False)
+
+    latitude = models.CharField(max_length=100, blank=False, null=False, default="")
+    longitude = models.CharField(max_length=100, blank=False, null=False, default="")
+
     status = models.BooleanField(default=False)
-    email = models.CharField(max_length=100)
-    contact_no = models.CharField(max_length=100)
+
+    email = models.CharField(max_length=100, blank=False, null=False, default="")
+    contact_no = models.CharField(max_length=100, blank=False, null=False, default="")
+    address = models.CharField(max_length=300, blank=False, null=False, default="")
+
     specialities = models.ManyToManyField(FacilitySpeciality, blank=True)
+
+    authorized = models.BooleanField(default=False)
+
+    logo = models.FileField(upload_to='facilities/files/logo/', null=True, blank=True)
+    cover_image = models.FileField(upload_to='facilities/files/covers/', null=True, blank=True)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -68,7 +92,7 @@ class Qualification(models.Model):
     updated = models.DateTimeField(auto_now_add=True)
 
 
-class Reception(models.Model):
+class Receptionist(models.Model):
     facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
@@ -81,8 +105,8 @@ class Reception(models.Model):
 
 
 class Patient(models.Model):
-    facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL)
-    facilities = models.ManyToManyField(Facility, blank=True, null=True, related_name='facilities')
+    facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL, related_name='patients')
+    facilities = models.ManyToManyField(Facility, blank=True, related_name='facilities')
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     blood_group = models.CharField(max_length=5)
     dob = models.DateField()
@@ -140,7 +164,7 @@ class Appointment(models.Model):
 
 class MedicalFile(models.Model):
     appointment = models.ForeignKey(Appointment, blank=False, null=True, on_delete=models.SET_NULL)
-    file = models.FileField(upload_to='medical/files/')
+    file = models.FileField(upload_to='facilities/files/medical/')
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
