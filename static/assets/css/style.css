@@ -1082,6 +1082,8 @@ Main Banner Area CSS
   border-radius: 0;
   margin-top: 0;
   width: 200px;
+  overflow-y: scroll;
+  height:100%;
   padding-top: 10px;
   padding-bottom: 10px;
 }

@@ -28,11 +28,9 @@
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="form-group">
-                                                        <select>
+                                                        <select  style="overflow-y:scroll; height:100%;">
                                                             <option>Category</option>
-                                                            <option value="">Cardiologists</option>
-                                                            <option value="">Dermatologists</option>
-                                                            <option value="">Endocrinologists</option>
+                                                            {% include "components/category-list.html" %}
                                                         </select>	
                                                     </div>
                                                 </div>
