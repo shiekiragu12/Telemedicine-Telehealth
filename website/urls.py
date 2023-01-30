@@ -26,7 +26,14 @@ urlpatterns = [
     path('health-topic', views.healthtopic, name="health-topic"),
     path('healthy-living', views.healthyliving, name="healthy-living"),
     path('location', views.location, name="location"),
-    
+    path('teams', views.teams, name="teams"),
+    path('project', views.project, name="project"),
+    path('project-details', views.projectdetails, name="project-details"),
+    path('faq', views.faq, name="faq"),
+    path('appointment', views.appointment, name="appointment"),
+    path('testimonials', views.testimonials, name="testimonials"),
+    path('how-it-works', views.howitworks, name="how-it-works"),
+        
     # solution
     path('solution', views.solution, name="solution"),
     

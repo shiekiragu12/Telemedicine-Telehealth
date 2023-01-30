@@ -1,9 +1,5 @@
 {%load static%}
-<!-- Start Preloader Area -->
-<div class="preloade">
-    <div class="spinner"></div>
-</div>
-<!-- End Preloader Area -->
+
 
 <!-- Start Header Area -->
 <header class="header-area">
@@ -93,10 +89,7 @@
         <div class="main-navbar">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="{% url 'index' %}">
-                        <img src="{% static 'assets/img/logo.png' %}" class="black-logo" alt="image">
-                        <img src="{% static 'assets/img/logo-2.png' %}" class="white-logo" alt="image">
-                    </a>
+                    
 
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav">
@@ -113,13 +106,15 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="birthing-care" class="nav-link">
+                                        
+                                        <a href="{% url 'birthing-care' %}" class="nav-link">
                                             Birthing Care
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="cancer-care" class="nav-link">
+                                        
+                                        <a href="{% url 'cancer-care' %}" class="nav-link">
                                             Cancer Care
                                         </a>
                                     </li>
@@ -213,39 +208,33 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="index.html#" class="nav-link">
+                                <a href="{% url 'health' %}" class="nav-link">
                                     Health in Hand
                                     <i class="fa fa-angle-down"></i>
                                 </a>
 
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a href="about.html" class="nav-link">
-                                            About
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="team.html" class="nav-link">
+                                        <a href="{% url 'teams' %}" class="nav-link">
                                             Team
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="index.html#" class="nav-link">
+                                        <a href="{% url 'project' %}" class="nav-link">
                                             Projects
                                             <i class="fa fa-angle-down"></i>
                                         </a>
 
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a href="projects.html" class="nav-link">
+                                                <a href="{% url 'project' %}" class="nav-link">
                                                     Projects
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="single-projects.html" class="nav-link">
+                                                <a href="{% url 'project-details' %}" class="nav-link">
                                                     Projects details
                                                 </a>
                                             </li>
@@ -253,70 +242,70 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="faq.html" class="nav-link">
+                                        <a href="{% url 'faq' %}" class="nav-link">
                                             FAQ
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="appointment.html" class="nav-link">
+                                        <a href="{% url 'appointment' %}" class="nav-link">
                                             Appointment
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="testimonials.html" class="nav-link">
+                                        <a href="{% url 'testimonials' %}" class="nav-link">
                                             Testimonials
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="how-it-works.html" class="nav-link">
+                                        <a href="{% url 'how-it-works' %}" class="nav-link">
                                             How It Works
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="index.html#" class="nav-link">
+                                        <a href="{% url 'shop' %}" class="nav-link">
                                             Shop
                                             <i class="fa fa-angle-down"></i>
                                         </a>
 
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a href="shop.html" class="nav-link">
+                                                <a href="{% url 'shop' %}" class="nav-link">
                                                     Shop
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <li class="nav-item">
-                                                        <a href="refill-prescription" class="nav-link">
+                                                        <a href="{% url 'refill-prescription' %}" class="nav-link">
                                                             Refill prescription
                                                         </a>
                                                     </li>
 
                                                     <li class="nav-item">
-                                                        <a href="allergy-medicine" class="nav-link">
+                                                        <a href="{% url 'allergy-medicine' %}" class="nav-link">
                                                             Allergy medicine
                                                         </a>
                                                     </li>
 
                                                     <li class="nav-item">
-                                                        <a href="mobile-aid" class="nav-link">
+                                                        <a href="{% url 'mobile-aid' %}" class="nav-link">
                                                             Mobility aid
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="medical-devices" class="nav-link">
+                                                        <a href="{% url 'medical-devices' %}" class="nav-link">
                                                             Medical devices
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="prescription-medication" class="nav-link">
+                                                        <a href="{% url 'prescription-medication' %}" class="nav-link">
                                                             Prescription medication
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="nutraceuticals" class="nav-link">
+                                                        <a href="{% url 'nutraceuticals' %}" class="nav-link">
                                                             Nutraceuticals
                                                         </a>
                                                     </li>
@@ -324,66 +313,46 @@
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="cart.html" class="nav-link">
+                                                <a href="{% url 'mobile-aid' %}" class="nav-link">
                                                     Cart
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="checkout.html" class="nav-link">
+                                                <a href="{% url 'mobile-aid' %}" class="nav-link">
                                                     Checkout
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a href="single-product.html" class="nav-link">
+                                                <a href="{% url 'mobile-aid' %}" class="nav-link">
                                                     Products Details
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
 
+                                    
                                     <li class="nav-item">
-                                        <a href="index.html#" class="nav-link">
-                                            User
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="sign-in.html" class="nav-link">
-                                                    Sign In
-                                                </a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a href="sign-up.html" class="nav-link">
-                                                    Sign Up
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="terms-condition.html" class="nav-link">
+                                        <a href="{% url 'mobile-aid' %}" class="nav-link">
                                             Terms & Conditions
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="privacy-policy.html" class="nav-link">
+                                        <a href="{% url 'mobile-aid' %}" class="nav-link">
                                             Privacy Policy
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="error-404.html" class="nav-link">
+                                        <a href="{% url 'mobile-aid' %}" class="nav-link">
                                             404 Error
                                         </a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="contact.html" class="nav-link">
+                                        <a href="{% url 'mobile-aid' %}" class="nav-link">
                                             Contact
                                         </a>
                                     </li>
@@ -391,7 +360,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="about" class="nav-link">
+                                <a href="{% url 'mobile-aid' %}" class="nav-link">
                                     Blogs
                                 </a>
                             </li>

@@ -62,6 +62,26 @@ def healthyliving(request):
 def location(request):
     return render(request, 'health/medical-facilities.html', {})
 
+def teams(request):
+    return render(request, 'teams.html', {})
+
+def project(request):
+    return render(request, 'health/project.html', {})
+
+def projectdetails(request):
+    return render(request, 'health/project-details.html', {})
+
+def faq(request):
+    return render(request, 'health/faq.html', {})
+
+def appointment(request):
+    return render(request, 'health/appointment.html', {})
+
+def testimonials(request):
+    return render(request, 'health/testimonials.html', {})
+
+def howitworks(request):
+    return render(request, 'health/how-it-works.html', {})
 # solution
 def solution(request):
     return render(request, 'solution.html', {})
