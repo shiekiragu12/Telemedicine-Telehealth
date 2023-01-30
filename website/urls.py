@@ -33,7 +33,9 @@ urlpatterns = [
     path('appointment', views.appointment, name="appointment"),
     path('testimonials', views.testimonials, name="testimonials"),
     path('how-it-works', views.howitworks, name="how-it-works"),
-        
+    path('terms-conditions', views.termsconditions, name="terms-conditions"),
+    path('privacy-policy', views.privacypolicy, name="privacy-policy"),
+
     # solution
     path('solution', views.solution, name="solution"),
     

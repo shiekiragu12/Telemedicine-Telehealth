@@ -82,6 +82,13 @@ def testimonials(request):
 
 def howitworks(request):
     return render(request, 'health/how-it-works.html', {})
+
+def termsconditions(request):
+    return render(request, 'health/terms-conditions.html', {})
+
+def privacypolicy(request):
+    return render(request, 'health/privacy-policy.html', {})
+
 # solution
 def solution(request):
     return render(request, 'solution.html', {})
