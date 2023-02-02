@@ -1,0 +1,24 @@
+{% extends './../base.html' %}
+{% load static %}
+
+{% block title %}{{request.facility.name}} - Online Services{% endblock title %}
+
+{% block meta %}
+<meta name="description" content="{{request.facility.description}}">
+{% endblock %}
+
+{% block content %}
+
+{% include './components/header.html' %}
+
+<div class="sign-in-are ptb-40 pb-70">
+
+    {% include './components/innernav.html' %}
+    
+    <div class="container  my-5" style="min-height: 500px;">
+        {{request.facility.online_page_content|safe}}
+    </div>
+
+</div>
+
+{% endblock %}

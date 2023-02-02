@@ -25,7 +25,12 @@
     <!-- Style Css -->
 
     <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
-
+    {% block styles %}{% endblock %}
+    <style>
+        .c-header{
+            min-width: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,16 +61,56 @@
     <script src="{% static 'dashboard/vendor/owl-carousel/owl.carousel.js' %}"></script>
 
     <!-- Apex Chart -->
-    <script src="{% static 'dashboard/vendor/apexchart/apexchart.js' %}"></script>
+    <!-- <script src="{% static 'dashboard/vendor/apexchart/apexchart.js' %}"></script> -->
 
-    <!-- Dashboard 1 -->
-    <script src="{% static 'dashboard/js/dashboard/dashboard-1.js' %}"></script>
+     <!-- Dashboard 1 -->
+    <!-- <script src="{% static 'dashboard/js/dashboard/dashboard-1.js' %}"></script> -->
     <script src="{% static 'dashboard/js/custom.min.js' %}"></script>
     <script src="{% static 'dashboard/js/deznav-init.js' %}"></script>
     <script src="{% static 'dashboard/js/demo.js' %}"></script>
     <script src="{% static 'dashboard/js/styleSwitcher.js' %}"></script>
 
     {% block scripts %} {% endblock %}
+
+    <style>
+        .errorlist {
+            list-style: auto;
+        }
+    </style>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        {% for msg in messages %}
+        {% if msg.tags == "error" %}
+        <div id="liveToast" class="toast show bg-danger text-white mb-2 border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+                <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                <i class="fa fa-bell me-2"></i>
+                <strong class="me-auto">Alert</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{msg | safe}}
+            </div>
+        </div>
+        {% else %}
+        <div id="liveToast" class="toast show bg-{{msg.tags}} text-white border-0 mb-2" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+                <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                <i class="fa fa-bell me-2"></i>
+                <strong class="me-auto">Alert</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body form-errors">
+                {{msg | safe}}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
 
 </body>
 

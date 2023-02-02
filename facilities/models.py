@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -40,6 +41,7 @@ class Facility(models.Model):
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
 
     name = models.CharField(max_length=200, blank=False, null=False)
+    slug = models.SlugField(max_length=100, blank=True, null=True)
     description = models.TextField()
 
     location = models.CharField(max_length=100, blank=False, null=False, default="")
@@ -62,11 +64,19 @@ class Facility(models.Model):
     logo = models.FileField(upload_to='facilities/files/logo/', null=True, blank=True)
     cover_image = models.FileField(upload_to='facilities/files/covers/', null=True, blank=True)
 
+    home_page_content = models.TextField(blank=True)
+    about_page_content = models.TextField(blank=True)
+    online_page_content = models.TextField(blank=True)
+
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super(Facility, self).save(*args, **kwargs)
 
 
 class Doctor(models.Model):
@@ -74,6 +84,7 @@ class Doctor(models.Model):
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
     description = models.TextField()
+    speciality = models.ForeignKey(FacilitySpeciality, blank=True, null=True, on_delete=models.SET_NULL)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -92,10 +103,12 @@ class Qualification(models.Model):
     updated = models.DateTimeField(auto_now_add=True)
 
 
-class Receptionist(models.Model):
+class Staff(models.Model):
     facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
+    designation = models.TextField()
+    education = models.TextField()
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -151,9 +164,12 @@ class Appointment(models.Model):
     facility = models.ForeignKey(Facility, blank=True, null=True, on_delete=models.SET_NULL)
     doctor = models.ForeignKey(Doctor, blank=False, null=True, on_delete=models.SET_NULL)
     patient = models.ForeignKey(Patient, blank=False, null=True, on_delete=models.SET_NULL)
-    description = models.TextField()
-    status = models.BooleanField()
-    available_slot = models.DateTimeField()
+    note = models.TextField()
+    status = models.BooleanField(default=True)
+    date = models.DateTimeField()
+    start_time = models.CharField(max_length=10, blank=False, null=False, default="")
+    end_time = models.CharField(max_length=10, blank=False, null=False, default="")
+    condition = models.ForeignKey(Condition, blank=False, null=True, on_delete=models.CASCADE)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)

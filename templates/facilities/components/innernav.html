@@ -1,0 +1,46 @@
+<style>
+    .c-item a {
+        color: white;
+    }
+
+    .c-item:hover {
+        color: blue;
+        background-color: white;
+    }
+
+    .c-item .active {
+        color: blue !important;
+        background-color: white !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav justify-content-center text-white bg-primary">
+                {% url 'facility' request.facility.id request.facility.slug as url_1 %}
+                {% url 'facility_about' request.facility.id request.facility.slug as url_2 %}
+                {% url 'facility_online_services' request.facility.id request.facility.slug as url_3 %}
+                {% url 'facility_services_treatments' request.facility.id request.facility.slug as url_4 %}
+                <li class="nav-item c-item">
+                    <a class="nav-link {% if request.path == url_1 %} active {% endif %}" aria-current="page"
+                        href="{{url_1}}">Home</a>
+                </li>
+                <li class="nav-item c-item">
+                    <a class="nav-link {% if request.path == url_2 %} active {% endif %}" href="{{url_2}}">About Us</a>
+                </li>
+                <li class="nav-item c-item">
+                    <a class="nav-link {% if request.path == url_3 %} active {% endif %}" href="{{url_3}}">Online Services</a>
+                </li>
+                <li class="nav-item c-item">
+                    <a class="nav-link {% if request.path == url_4 %} active {% endif %}" href="{{url_4}}">Services & Treatments</a>
+                </li>
+                {% if request.facility.owner == request.user %}
+                <li class="nav-item c-item">
+                    <a class="nav-link" href="{% url 'dashboard' request.facility.id %}">Go To Admin</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

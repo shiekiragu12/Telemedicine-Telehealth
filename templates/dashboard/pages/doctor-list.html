@@ -7,7 +7,8 @@
 	<div class="container-fluid">
 		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
 			<div class="me-auto d-lg-block">
-				<a href="doctor-detail.html" class="btn btn-primary btn-rounded">+ Add New</a>
+				<button class="btn btn-primary btn-rounded shadow-none" data-bs-target="#add-doctor-modal"
+					data-bs-toggle="modal">+ Add New</button>
 			</div>
 			<div class="input-group search-area ms-auto d-inline-flex me-2">
 				<input type="text" class="form-control" placeholder="Search here">
@@ -31,16 +32,17 @@
 										</div>
 									</div>
 								</th>
-								<th>ID</th>
-								<th>Date Join</th>
-								<th>Doctor Name</th>
-								<th>Specialist</th>
-								<th>Schedule</th>
-								<th>Contact</th>
-								<th>Status</th>
+								<th style="min-width: 100px;">ID</th>
+								<th class="c-header">Date Join</th>
+								<th class="c-header">Doctor Name</th>
+								<th class="c-header">Specialist</th>
+								<th class="c-header">Schedule</th>
+								<th class="c-header">Contact</th>
+								<th class="c-header">Status</th>
 							</tr>
 						</thead>
 						<tbody>
+							{% for doctor in doctors %}
 							<tr>
 								<td>
 									<div class="d-flex align-items-center">
@@ -51,22 +53,34 @@
 												<label class="form-check-label" for="customCheckBox2"></label>
 											</div>
 										</div>
-										<img alt="" src="images/doctors/9.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
+										<img alt="" src="{% if doctor.user.profile.profile_photo %}{{doctor.user.profile.profile_photo.url}}{% endif %}" height="43"
+											width="43" class="rounded-circle ms-4">
 									</div>
 								</td>
-								<td>#P-00012</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Samantha</td>
-								<td>Dentist</td>
+								<td>#D-{{doctor.id}}</td>
+								<td>Dr {{doctor.created}}</td>
+								<td>{{doctor.user.first_name}} {{doctor.user.last_name}}</td>
+								<td>{{doctor.speciality.name}}</td>
 								<td>
 									<a href="javascript:void(0);"
-										class="btn btn-primary light btn-rounded btn-sm text-nowrap">5 Appointment</a>
+										class="btn btn-primary light btn-rounded btn-sm text-nowrap">0 Appointment</a>
 								</td>
-								<td><span class="font-w500">+12 4124 5125</span></td>
+								<td>
+									<span class="font-w500">
+										{{doctor.user.profile.phone_number}}
+									</span>
+								</td>
 								<td>
 									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
+										{% if doctor.status %}
+										<span class="text-success font-w600">
+											Available
+										</span>
+										{% else %}
+										<span class="text-light font-w600">
+											Unavailable
+										</span>
+										{% endif %}
 										<div class="dropdown ms-auto text-end">
 											<div class="btn-link" data-bs-toggle="dropdown">
 												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -94,486 +108,117 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox21"
-													required="">
-												<label class="form-check-label" for="customCheckBox21"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/10.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00016</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Cindy Anderson</td>
-								<td>Physical Therapy</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">2
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 4124 1556</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox22"
-													required="">
-												<label class="form-check-label" for="customCheckBox22"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/11.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00015</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Olivia Jean</td>
-								<td>Dentist</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-outline-light btn-rounded btn-sm">No
-										Schedule</a>
-								</td>
-								<td><span class="font-w500">+12 4156 6675</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox24"
-													required="">
-												<label class="form-check-label" for="customCheckBox24"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/12.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00014</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. David Lee</td>
-								<td>Nursing</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">2
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 4155 7623</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-primary font-w600">Available</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox25"
-													required="">
-												<label class="form-check-label" for="customCheckBox25"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/13.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00013</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Marcus Jr</td>
-								<td>Physical Therapy</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">2
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 4124 5156</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox26"
-													required="">
-												<label class="form-check-label" for="customCheckBox26"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/14.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00017</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Kevin Zidan</td>
-								<td>Nursing</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-outline-light btn-rounded btn-sm">No
-										Schedule</a>
-								</td>
-								<td><span class="font-w500">+12 4122 4556</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox27"
-													required="">
-												<label class="form-check-label" for="customCheckBox27"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/15.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00018</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Gustauv Loi</td>
-								<td>Dentist</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">2
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 2567 8654</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-primary font-w600">Available</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox28"
-													required="">
-												<label class="form-check-label" for="customCheckBox28"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/16.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00019</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Samantha</td>
-								<td>Nursing</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-outline-light btn-rounded btn-sm">No
-										Schedule</a>
-								</td>
-								<td><span class="font-w500">+12 4125 6211</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox29"
-													required="">
-												<label class="form-check-label" for="customCheckBox29"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/10.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-000110</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. David Lee</td>
-								<td>Physical Therapy</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">2
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 6567 1245</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-primary font-w600">Available</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center">
-										<div class="checkbox text-end align-self-center">
-											<div class="form-check custom-checkbox ">
-												<input type="checkbox" class="form-check-input" id="customCheckBox200"
-													required="">
-												<label class="form-check-label" for="customCheckBox200"></label>
-											</div>
-										</div>
-										<img alt="" src="images/doctors/1.jpg" height="43" width="43"
-											class="rounded-circle ms-4">
-									</div>
-								</td>
-								<td>#P-00012</td>
-								<td>26/02/2020, 12:42 AM</td>
-								<td>Dr. Samantha</td>
-								<td>Dentist</td>
-								<td>
-									<a href="javascript:void(0);" class="btn btn-primary light btn-rounded btn-sm">5
-										Appointment</a>
-								</td>
-								<td><span class="font-w500">+12 4124 5125</span></td>
-								<td>
-									<div class="d-flex align-items-center">
-										<span class="text-light font-w600">Unavailable</span>
-										<div class="dropdown ms-auto text-end">
-											<div class="btn-link" data-bs-toggle="dropdown">
-												<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path
-														d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z"
-														stroke="#3E4954" stroke-width="2" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">View Detail</a>
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="add-doctor-modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add doctor</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="doctor-form" action="{% url 'doctors_create' request.facility.id %}" method="post"
+					enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">First Name</label>
+								<input type="text" class="form-control" id="" placeholder="First Name"
+									name="first_name">
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Last Name</label>
+								<input type="text" class="form-control" id="" placeholder="Last Name" name="last_name">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Email</label>
+								<input type="email" class="form-control" id="" placeholder="Last Name" name="email">
+							</div>
+						</div>
+
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Postal Code</label>
+								<input size="16" type="text" name="postal_code" class="form-control">
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Address</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+									name="address"></textarea>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Mobile No</label>
+								<input type="text" class="form-control" id="" placeholder="Mobile" name="phone_number">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Gender</label>
+								<select class="form-control" name="gender">
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">City</label>
+								<input type="text" class="form-control" id="" placeholder="City" name="city">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Profile Photo</label>
+								<input type="file" class="form-control" id="" placeholder="Profile Photo"
+									name="profile_photo">
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Speciality</label>
+								<select class="form-control" name="speciality">
+									<option value="">Select</option>
+									{% for spec in specialities %}
+									<option value="{{spec.id}}">{{spec.name}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Description</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+									name="description"></textarea>
+							</div>
+						</div>
+
+					</div>
+
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" form="doctor-form">Save</button>
 			</div>
 		</div>
 	</div>

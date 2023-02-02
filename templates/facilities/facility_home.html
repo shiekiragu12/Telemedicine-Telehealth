@@ -1,0 +1,36 @@
+{% extends './../base.html' %}
+{% load static %}
+
+{% block title %}{{request.facility.name}} - Home{% endblock title %}
+
+{% block meta %}
+<meta name="description" content="{{request.facility.description}}">
+{% endblock %}
+
+{% block content %}
+
+{% include './components/header.html' %}
+
+<div class="sign-in-are ptb-40 pb-70">
+
+    {% include './components/innernav.html' %}
+
+    <div class="container my-5" style="min-height: 500px;">
+        <div class="row">
+            <div class="col-md-8">
+                {{request.facility.home_page_content|safe}}
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow rounded border-0 p-3">
+                    <h2 class="text-center mb-3">Ready for an appointment?</h2>
+                    <div class="d-flex align-items-center mb-3">
+                        <button class="btn btn-primary btn-xl rounded-pill py-3 px-5 mx-auto">Make Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

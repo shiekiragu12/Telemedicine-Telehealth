@@ -7,6 +7,12 @@
                     <span class="nav-text">Home</span>
                 </a>
             </li>
+            <li><a href="{% url 'facility' request.facility.id request.facility.slug %}" class="ai-icon"
+                    aria-expanded="false">
+                    <i class="flaticon-381-view-2"></i>
+                    <span class="nav-text">Preview Facility <small>(Public view)</small> </span>
+                </a>
+            </li>
             <li>
                 <a href="{% url 'dashboard' facility_id=request.facility.id %}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
@@ -31,19 +37,26 @@
                     <span class="nav-text">Staff</span>
                 </a>
             </li>
-            <li><a href="{% url 'appointments' facility_id=request.facility.id %}" class="ai-icon" aria-expanded="false">
+            <li><a href="{% url 'appointments' facility_id=request.facility.id %}" class="ai-icon"
+                    aria-expanded="false">
                     <i class="flaticon-381-note"></i>
                     <span class="nav-text">Appointments</span>
                 </a>
             </li>
-            <li><a href="{% url 'services' facility_id=request.facility.id %}" class="ai-icon" aria-expanded="false">
+            <li><a href="#" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-layer-1"></i>
                     <span class="nav-text">Services</span>
                 </a>
             </li>
-            <li><a href="{% url 'encounters' facility_id=request.facility.id %}" class="ai-icon" aria-expanded="false">
+            <li><a href="#" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-list"></i>
                     <span class="nav-text">Encounters</span>
+                </a>
+            </li>
+            <li><a href="{% url 'edit_facility' facility_id=request.facility.id %}" class="ai-icon"
+                    aria-expanded="false">
+                    <i class="flaticon-381-edit"></i>
+                    <span class="nav-text">Edit facility</span>
                 </a>
             </li>
             <!-- <li>

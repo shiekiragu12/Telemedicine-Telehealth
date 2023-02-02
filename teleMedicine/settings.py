@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account',
     'facilities',
     'shop',
+    'mailer',
 ]
 
 MIDDLEWARE = [

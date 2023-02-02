@@ -15,6 +15,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     postal_code = models.CharField(max_length=30, blank=True, null=True)
     profile_photo = models.ImageField(upload_to='profile/photos/')
+    dob = models.DateField(blank=True, null=True)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)

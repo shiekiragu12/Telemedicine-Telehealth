@@ -1,0 +1,105 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block styles %}
+<!-- CkEditor -->
+<link href="{% static 'dashboard/vendor/ckeditor/ckeditor.css' %}" rel="stylesheet">
+
+<!-- Custom Stylesheet -->
+<link href="{% static 'dashboard/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+<link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Facility</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{request.facility.name}}</a></li>
+            </ol>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Facility Homepage</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <textarea rows="20" id="ckeditor" name="home_page_content">
+                                {{request.facility.home_page_content}}
+                            </textarea>
+                        </div>
+                        <div class="my-2 ps-4" >
+                            <button class="btn btn-primary rounded pill" style="width: 200px;">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Facility About Page</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <textarea id="editor" name="about_page_content">
+                                {{request.facility.about_page_content}}
+                            </textarea>
+                        </div>
+                        <div class="my-2 ps-4" >
+                            <button class="btn btn-primary rounded pill" style="width: 200px;">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Facility About Page</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <textarea id="editor2" name="online_page_content">
+                                {{request.facility.online_page_content}}
+                            </textarea>
+                        </div>
+                        <div class="my-2 ps-4" >
+                            <button class="btn btn-primary rounded pill" style="width: 200px;">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'dashboard/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'dashboard/vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+
+<!-- CkEditor -->
+<script src="{% static 'dashboard/vendor/ckeditor/ckeditor.js' %}"></script>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+        ClassicEditor
+        .create(document.querySelector('#editor2'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+{% endblock %}
