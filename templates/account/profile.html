@@ -1,5 +1,11 @@
 {% extends './../base.html' %}
 {% load static %}
+{% block title %}Account - {{request.user.first_name}} {{request.user.last_name}} {% endblock %}
+
+{% block styles %}
+<link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet">
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
@@ -43,16 +49,19 @@
                                         Linked Facilities
                                     </a>
                                 </li>
+                                {% if request.user.doctor.is_verified %}
                                 <li>
                                     <a href="#" class="rounded-pill">
                                         <div class="dot"></div>
                                         List a Facility
                                     </a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="tab_content">
+
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
                                         <form action="{% url 'account_edit' %}" method="post"
@@ -111,10 +120,11 @@
                                                     <select type="text" id="gender" class="w-100 shadow-none"
                                                         name="gender" placeholder="Gender"
                                                         value="{{request.user.profile.gender}}">
+                                                        {% with request.user.profile.gender as gender %}
                                                         <option value="">Select Gender</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="prefer_not_to_say">Prefer not to say</option>
+                                                        <option value="male" {% if gender == 'male' %} selected {% endif %} >Male</option>
+                                                        <option value="female" {% if gender == 'female' %} selected {% endif %} >Female</option>
+                                                        {% endwith %}
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4 input-group-lg mb-2">
@@ -132,8 +142,8 @@
                                                 <div class="col-md-4 input-group-lg mb-2">
                                                     <label for="postal_code" class="form-label">Postal Code</label>
                                                     <input type="text" id="postal_code" class="form-control shadow-none"
-                                                        name="postal_code" placeholder="Postal Code"
-                                                        value="{{request.user.profile.postal_code}}">
+                                                        name="address" placeholder="Postal Code"
+                                                        value="{{request.user.profile.address}}">
                                                 </div>
                                                 <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
                                                     <button class="btn btn-primary rounded-pill px-5">
@@ -207,41 +217,70 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
                                         <div class="row">
-                                            <div class="col-12 mb-3">
-                                                <h2>Listed by you</h2>
+                                            {% if my_facilities|length > 0 %}
+                                            <div class="col-12 py-4">
+                                                <h2 class="pb-3">Listed by you</h2>
+
+                                                <div class="row py-2">
+                                                    {% for facility in my_facilities %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {% include './components/facility_card.html' with facility=facility has_admin_buttons=True %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                {% if my_facilities|length == 0 %}
+                                                <p>You have not listed any facilities yet!</p>
+                                                {% endif %}
                                             </div>
-                                            {% for facility in my_facilities %}
-                                            {% include './../components/facilitycard.html' with facility=facility %}
-                                            {% endfor %}
-                                            {% if my_facilities|length == 0 %}
-                                            <p>You have not listed any facilities yet!</p>
                                             {% endif %}
-                                            <div class="col-12 mb-3">
-                                                <h2>As a patient</h2>
-                                            </div>
+
                                             {% if request.user.patient %}
-                                            {% include './../components/facilitycard.html' with facility=request.user.patient.facility hide_more_info=True %}
-                                            {% for facility in request.user.patient.facilities.all %}
-                                            {% include './../components/facilitycard.html' with facility=facility hide_more_info=True %}
-                                            {% endfor %}
-                                            {% else %}
-                                            <p>You are not a patient!</p>
-                                            {% endif %}
-                                            <div class="col-12 mb-3">
-                                                <h2>As a doctor</h2>
+                                            <div class="col-12 py-4">
+                                                <h2 class="pb-3">As a patient</h2>
+                                                <div class="row py-2">
+                                                    {% if request.user.patient.facility %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {% include './components/facility_card.html' with facility=request.user.patient.facility has_admin_buttons=False
+                                                        %}
+                                                    </div>
+                                                    {% endif %}
+
+                                                    {% for facility in request.user.patient.facilities.all %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {% include './components/facility_card.html' with facility=request.user.patient.facility has_admin_buttons=False
+                                                        %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
                                             </div>
-                                            {% if request.user.doctor %}
-                                            {% include './../components/facilitycard.html' with facility=request.user.doctor.facility %}
-                                            {% else %}
-                                            <p>You are not a doctor!</p>
                                             {% endif %}
+
+                                            {% if request.user.doctor %}
+                                            <div class="col-12 py-2">
+                                                <h2 class="pb-3">As a doctor</h2>
+                                                <div class="row py-2">
+                                                    {% if request.user.doctor.facility %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {% include './components/facility_card.html' with facility=request.user.doctor.facility has_admin_buttons=True %}
+                                                    </div>
+                                                    {% endif %}
+                                                    {% for facility in request.user.doctor.facilities.all %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {% include './components/facility_card.html' with facility=facility has_admin_buttons=True %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
                                         </div>
                                     </div>
                                 </div>
-
+                                {% if request.user.doctor.is_verified %}
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
                                         <form action="{% url 'create_facility' %}" method="POST"
@@ -252,19 +291,60 @@
                                                 <div class="col-12 mb-2">
                                                     <h3>Basic facility information</h3>
                                                 </div>
-                                                <div class="col-md-12 input-group-lg mb-2">
+                                                <div class="col-md-6 input-group-lg mb-2">
                                                     <label for="name" class="form-label">Name</label>
                                                     <input type="text" required class="form-control shadow-none"
                                                         name="name" id="name" placeholder="Facility Name"
                                                         value="{{facility.name}}">
+                                                </div>
+                                                <div class="col-md-6 input-group-lg mb-2">
+                                                    <label for="facility_code" class="form-label">Facility Code</label>
+                                                    <input type="text" required class="form-control shadow-none"
+                                                        name="facility_code" id="facility_code" placeholder="Facility Code"
+                                                        value="{{facility.facility_code}}">
                                                 </div>
                                                 <div class="col-md-12 input-group-lg mb-2">
                                                     <label for="description" class="form-label">Description</label>
                                                     <textarea type="text" required id="description"
                                                         class="form-control shadow-none" name="description"
                                                         placeholder="Describe the facility"
-                                                        value="{{facility.description}}">
-                                                    </textarea>
+                                                        value="{{facility.description}}"></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 input-group-lg mb-2">
+                                                    <label for="" class="form-label">Facility Kind</label>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="form-check ms-3 mb-3">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="facility_kind" value="clinic" id="clinic">
+                                                            <label class="form-check-label" for="clinic">
+                                                                Clinic
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 mb-3">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="facility_kind" value="hospital"
+                                                                id="hospital">
+                                                            <label class="form-check-label" for="hospital">
+                                                                Hospital
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 mb-3">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="facility_kind" value="pharmacy" id="pharmacy">
+                                                            <label class="form-check-label" for="pharmacy">
+                                                                Pharmacy
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 mb-3">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="facility_kind" value="nutraceutical"
+                                                                id="nutraceutical">
+                                                            <label class="form-check-label" for="nutraceutical">
+                                                                Nutraceutical
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-12 mb-2">
@@ -294,12 +374,12 @@
                                                     <h3>Location Details</h3>
                                                 </div>
                                                 <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="county" class="form-label">County</label>
-                                                    <select type="text" required id="county" class="w-100" name="county"
+                                                    <label for="county" class="form-label w-100">County</label>
+                                                    <select type="text" required id="county" class="w-100 shadow-none" name="county"
                                                         placeholder="County" value="{{facility.county}}">
                                                         <option value="">Select county</option>
                                                         {% for county in counties %}
-                                                        <option value="{{county.id}}">{{county.name}}</option>
+                                                        <option value="{{county.id}}" class="text-capitalize">{{county.name}}</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
@@ -386,11 +466,14 @@
                                         </form>
                                     </div>
                                 </div>
+                                {% endif %}
+
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
                                         content 4
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -401,4 +484,14 @@
 
 </div>
 
+{% endblock %} 
+
+{% block scripts %}
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+    })
+</script>
 {% endblock %}

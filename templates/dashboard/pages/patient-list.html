@@ -24,7 +24,7 @@
 							<table id="example5" class="table table-striped patient-list mb-4 dataTablesCard fs-14">
 								<thead>
 									<tr>
-										<th>
+										<!-- <th>
 											<div class="checkbox text-end align-self-center">
 												<div class="form-check custom-checkbox ">
 													<input type="checkbox" class="form-check-input" id="checkAll"
@@ -32,8 +32,7 @@
 													<label class="form-check-label" for="checkAll"></label>
 												</div>
 											</div>
-										</th>
-										<th style="min-width: 150px;">Patient ID</th>
+										</th> -->
 										<th class="c-header">Patient Name</th>
 										<th class="c-header">Blood Group</th>
 										<th class="c-header">Date of Birth</th>
@@ -43,7 +42,7 @@
 								<tbody>
 									{% for patient in patients %}
 									<tr>
-										<td>
+										<!-- <td>
 											<div class="checkbox text-end align-self-center">
 												<div class="form-check custom-checkbox ">
 													<input type="checkbox" class="form-check-input" id="customCheckBox1"
@@ -51,16 +50,25 @@
 													<label class="form-check-label" for="customCheckBox1"></label>
 												</div>
 											</div>
-										</td>
-										<td>
-											{{patient.id}}
-										</td>
+										</td> -->
 										<td class="patient-info ps-0">
-											<span>
-												<img src="{{patient.user.profile.profile_photo.url}}" alt="">
-											</span>
-											<span class="text-nowrap ms-2">{{patient.user.first_name}}
-												{{patient.user.last_name}}</span>
+											<a href="{% url 'patient_details' request.facility.id patient.id %}">
+												<div>
+													<span>
+														{% if patient.user.profile.profile_photo %}
+														<img src="{{patient.user.profile.profile_photo.url}}" alt="">
+														{% else %}
+														<div class="avatar avatar sm">
+															P
+														</div>
+														{% endif %}
+													</span>
+													<span class="text-nowrap ms-2">
+														{{patient.user.first_name}}
+														{{patient.user.last_name}}
+													</span>
+												</div>
+											</a>
 										</td>
 										<td class="text-primary">
 											{{patient.blood_group}}
@@ -69,7 +77,8 @@
 											{{patient.dob}}
 										</td>
 										<td>
-											<span class="me-3">
+											{{patient.created_on}}
+											<!-- <span class="me-3">
 												<a href="javascript:void(0);" class="edit-appointment">
 													<i class="fa fa-pencil fs-18 " aria-hidden="true"></i>
 												</a>
@@ -78,7 +87,7 @@
 												<a href="javascript:void(0);" class="edit-appointment">
 													<i class="fa fa-trash fs-18 " aria-hidden="true"></i>
 												</a>
-											</span>
+											</span> -->
 										</td>
 									</tr>
 									{% endfor %}
@@ -91,6 +100,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="add-patient-modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -104,51 +114,53 @@
 				<form id="patient-form" action="{% url 'patients_create' request.facility.id %}" method="post"
 					enctype="multipart/form-data">
 					{% csrf_token %}
+					<input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+						placeholder="Facility Id" name="facility">
 					<div class="row">
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">First Name</label>
 								<input type="text" class="form-control" id="" placeholder="First Name"
-									name="first_name">
+									name="user.first_name">
 							</div>
 						</div>
 
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Last Name</label>
-								<input type="text" class="form-control" id="" placeholder="Last Name" name="last_name">
+								<input type="text" class="form-control" id="" placeholder="Last Name" name="user.last_name">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Username</label>
+								<input type="text" class="form-control" id="" placeholder="Patient's Username" name="user.username">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Email</label>
-								<input type="email" class="form-control" id="" placeholder="Last Name" name="email">
-							</div>
-						</div>
-
-						<div class="col-xl-12">
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Postal Code</label>
-								<input size="16" type="text" name="postal_code" class="form-control">
-							</div>
-						</div>
-						<div class="col-xl-12">
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Address</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-									name="address"></textarea>
+								<input type="email" class="form-control" id="" placeholder="Patient's Email" name="user.email">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Mobile No</label>
-								<input type="text" class="form-control" id="" placeholder="Mobile" name="phone_number">
+								<input type="text" class="form-control" id="" placeholder="Mobile" name="user.profile.phone_number">
+							</div>
+						</div>
+
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Address</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+									name="user.profile.address"></textarea>
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Gender</label>
-								<select class="form-control" name="gender">
+								<select class="form-control" name="user.profile.gender">
 									<option value="male">Male</option>
 									<option value="female">Female</option>
 								</select>
@@ -156,15 +168,21 @@
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
+								<label for="message-text" class="col-form-label">Country</label>
+								<input type="text" class="form-control" id="" placeholder="Country" name="user.profile.country">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
 								<label for="message-text" class="col-form-label">City</label>
-								<input type="text" class="form-control" id="" placeholder="City" name="city">
+								<input type="text" class="form-control" id="" placeholder="City" name="user.profile.city">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Profile Photo</label>
 								<input type="file" class="form-control" id="" placeholder="Profile Photo"
-									name="profile_photo">
+									name="user.profile.profile_photo">
 							</div>
 						</div>
 						<div class="col-xl-6">
@@ -177,11 +195,15 @@
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Date of Birth</label>
-								<input type="date" class="form-control" id="" placeholder="Date of Birth" name="dob">
+								<input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="user.profile.dob">
 							</div>
 						</div>
 					</div>
 
+					<div class="row col-md-8 offset-md-2">
+						<div id="msgSubmit" class="py-2 text-center"></div>
+						<div id="msgSubmitErrors" class="py-2"></div>
+					</div>
 
 				</form>
 			</div>
@@ -192,4 +214,64 @@
 		</div>
 	</div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	$("#patient-form").on("submit", e => {
+		e.preventDefault()
+		postDoctor()
+	})
+
+	const postDoctor = () => {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/patients/`
+
+		const formdata = new FormData(document.getElementById("patient-form"))
+		formdata.append('facilities', [$("#patient-form #facility_id").val()])
+		formdata.append('dob', $("#patient-form #dob").val())
+		// formdata.append('facility', $("#patient-form #facility_id").val())
+
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$("#msgSubmitErrors").html("")
+		$("#msgSubmit").html(spinner)
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+			console.log(data)
+			toastr.info('Doctor Created Successfully')
+			$("#msgSubmit").html(`<div class="alert alert-success">Doctor Created Successfully. On the next page refresh you can be able to see the newly created doctor.</div>`)
+		}).catch((error) => {
+			console.log(error.response.data)
+			toastr.error(`Error - ${error.message}`)
+			$("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, {language: 'json'}).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+	};
+
+</script>
+
 {% endblock %}

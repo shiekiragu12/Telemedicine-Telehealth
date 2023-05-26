@@ -8,9 +8,9 @@ class Email(models.Model):
     subject = models.CharField(max_length=200)
     description = models.TextField()
     body = models.TextField()
-    color = models.CharField(max_length=30)
+    color = models.CharField(max_length=30, blank=True, null=True)
 
-    identifier = models.CharField(max_length=30, blank=False, null=False, default="")
+    identifier = models.CharField(max_length=30, blank=True, null=True, default="")
     created_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -21,13 +21,26 @@ class EmailConfiguration(models.Model):
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
-    email = models.TextField()
-    host = models.TextField()
-    port = models.IntegerField()
+    email = models.CharField(max_length=100, blank=False, null=False, default="")
+    host = models.CharField(max_length=100, blank=False, null=False, default="")
+    port = models.CharField(max_length=100, blank=False, null=False, default="")
     use_tls = models.BooleanField(default=True)
-    password = models.TextField()
-    color = models.CharField(max_length=30)
+    password = models.CharField(max_length=100, blank=False, null=False, default="")
+    color = models.CharField(max_length=30, blank=True, null=True)
     created_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.email} - {self.title}"
+
+
+class SentEmail(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    receiver = models.EmailField(blank=True, null=True)
+    subject = models.CharField(max_length=255, blank=True, null=True)
+    body = models.TextField()
+
+    created_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name} - {self.subject}"
+

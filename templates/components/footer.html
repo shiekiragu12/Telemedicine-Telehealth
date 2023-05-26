@@ -1,8 +1,22 @@
 {% load static %}
 
 <style>
-    .errorlist{
+    .errorlist {
         list-style: auto;
+    } 
+
+    .after-border {
+        position: relative;
+    }
+
+    .after-border::after {
+        content: "";
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: rgb(222, 225, 255);
     }
 </style>
 
@@ -41,22 +55,22 @@
 </div>
 <!-- Start Footer Area -->
 <section class="footer-area pt-100 pb-70">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6 after-borde">
                 <div class="single-footer-widget">
                     <h3>Resq247</h3>
-
+                    <img src="{% static 'assets/img/logo.png' %}" class="black-logo rounded" alt="image">
                     <p></p>
                     <ul class="footer-social">
                         <li>
-                            <a href="#">
+                            <a href="https://www.facebook.com/rescue247">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="https://twitter.com/RQ247">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
@@ -76,77 +90,42 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="single-footer-widget">
-                    <h3>Instagram</h3>
-
-                    <ul class="instagram">
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/3.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/4.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/1.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{% static 'assets/img/instagram/2.jpg' %}" alt="image">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="single-footer-widget pl-5">
                     <h3>Useful Links</h3>
 
                     <ul class="footer-quick-links">
                         <li>
-                            <a href="index.html">Services</a>
+                            <a href="{% url 'emergencies' %}">Services</a>
                         </li>
                         <li>
-                            <a href="about.html">About</a>
+                            <a href="{% url 'about' %}">About Us</a>
                         </li>
                         <li>
-                            <a href="solution.html">Health in Hand</a>
+                            <a href="{% url 'health-topic' %}">Health in Hand</a>
                         </li>
                         <li>
-                            <a href="services.html">Solution</a>
+                            <a href="{% url 'shop' %}">Solution</a>
                         </li>
                         <li>
-                            <a href="blog.html">Shop</a>
+                            <a href="{% url 'shop' %}">Health & Wellness</a>
                         </li>
                         <li>
-                            <a href="contact.html">Blog</a>
+                            <a href="{% url 'blogs' %}">Blogs</a>
                         </li>
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="{% url 'contact' %}">Contact Us</a>
                         </li>
+                        <li>
+                            <a href="javascript:void(0)" data-bs-target="#request_demo_form-modal" data-bs-toggle="modal">Request Demo</a>
+                        </li>
+                        
 
                     </ul>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="single-footer-widget">
                     <h3>Contact</h3>
 
@@ -162,7 +141,15 @@
                         <h3>Email</h3>
                         <span><a href="mailto:info@resq247.life">info@resq247.life </a></span>
                     </div>
-
+                    <div class="footer-info-contact">
+                        <i class="flaticon-email"></i>
+                        <h3>Available</h3>
+                        <span>Mon-Fri 09-18.00</span>
+                    </div>
+ <!--<li>-->
+ <!--                           <i class='flaticon-clock'></i>-->
+ <!--                           Mon-Fri 09-18.00-->
+ <!--                       </li>-->
                     <div class="footer-info-contact">
                         <i class="flaticon-pin"></i>
                         <h3>Address</h3>
@@ -173,12 +160,12 @@
         </div>
     </div>
 
-    <div class="lines">
+    <!-- <div class="lines">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
-    </div>
-</section>
+    </div> -->
+</section> 
 <!-- End Footer Area -->
 
 <!-- Start Copy Right Section -->
@@ -186,7 +173,7 @@
     <div class="container">
         <p>
             Copyright ©
-            <script>document.write(new Date().getFullYear())</script> RESQ. All Rights Reserved. Developed by
+            <script>document.write(new Date().getFullYear())</script> Resq247. All Rights Reserved. Developed by
             <a href="https://livesoftwaredeveloper.com/" target="_blank">
                 Live Software Developer
             </a>
@@ -203,20 +190,20 @@
 <!-- End Go Top Area -->
 
 <!-- dark version -->
-<div class="dark-version">
+<!-- <div class="dark-version">
     <label id="switch" class="switch">
         <input type="checkbox" onchange="toggleTheme()" id="slider">
         <span class="slider round"></span>
     </label>
-</div>
+</div> -->
 <!-- dark version -->
-
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 <!-- Jquery Slim JS -->
 <script src="{% static 'assets/js/jquery.min.js'%}"></script>
 <!-- Bootstrap JS -->
 <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-<!-- Meanmenu JS -->
-<script src="{% static 'assets/js/jquery.meanmenu.js' %}"></script>
+<!-- Jquery Mean Menu JS -->
+<script src="{% static 'assets/js/jquery.meanmenu.js'%}"></script>
 <!-- Nice Select JS -->
 <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
 <!-- Odometer JS -->
@@ -229,11 +216,35 @@
 <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
 <!-- Carousel JS -->
 <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
-<!-- Form Ajaxchimp JS -->
-<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
-<!-- Form Validator JS -->
-<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
-<!-- Contact JS -->
-<script src="{% static 'assets/js/contact-form-script.js' %}"></script>
+
+<!-- Toastr JS -->
+<script src="{% static 'dashboard/vendor/toastr/js/toastr.min.js' %}"></script>
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- Custom JS -->
 <script src="{% static 'assets/js/main.js' %}"></script>
+<!-- Cart JS -->
+<script src="{% static 'assets/js/cart.js' %}"></script>
+
+<!-- Hightlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/63f732724247f20fefe22cfd/1gpupq55n';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

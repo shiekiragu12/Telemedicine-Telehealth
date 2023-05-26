@@ -1,0 +1,223 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block title %} Shared Prescriptions {% endblock %}
+
+{% block styles %}
+<link href="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.css' %}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="content-body">
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="page-titles">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Shared Prescriptions</a></li>
+			</ol>
+		</div>
+
+		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+			<div class="me-auto d-none d-lg-block">
+				<h3 class="text-black font-w600">Shared Prescriptions</h3>
+				<p class="mb-0 fs-18">All Prescriptions Shared by patients to this facility.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example5" class="table table-striped patient-list mb-4 dataTablesCard fs-14">
+								<thead>
+									<tr>
+										<th style="min-width: 150px;">Patient</th>
+										<th class="c-header">Prescription</th>
+										<th class="c-header">Created On</th>
+										<th class="c-header">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for prescription in prescriptions %}
+									<tr>
+										<td>
+											{{prescription.prescription.patient.user.first_name}}
+											{{prescription.prescription.patient.user.last_name}}
+										</td>
+										<td>
+											<button class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#info-modal"
+												data-bs-title="{{prescription.prescription.patient.user.first_name}}"
+												data-bs-content="{{prescription.prescription.prescription}}">
+												Read
+											</button>
+										</td>
+										<td>
+											{{prescription.created_on}}
+										</td>
+										<td>
+											<button class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#quote-modal"
+												data-bs-patient_name="{{prescription.prescription.patient.user.first_name}} {{prescription.prescription.patient.user.last_name}}"
+												data-bs-prescription_id="{{prescription.prescription.id}}"
+												data-bs-patient_id="{{prescription.prescription.patient.id}}"
+												data-bs-facility_id="{{prescription.facility.id}}"
+												data-bs-prescription_content="{{prescription.prescription.prescription}}">
+												Make Quote
+											</button>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Quote modal -->
+<div class="modal fade" id="quote-modal" tabindex="-1" aria-labelledby="info-modal-title" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="info-modal-title">
+					<!-- Title goes here -->
+				</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<h5>Prescription details.</h5>
+				<div class="py-3" id="prescription-content">
+
+				</div>
+				<form id="quote-form">
+					<input type="text" id="patient" name="patient" class="d-none">
+					<input type="text" id="facility" name="facility" class="d-none">
+					<input type="text" id="prescription" name="prescription" class="d-none">
+					<div class="form-group my-3">
+						<label for="amount" class="form-label">Total Amount</label>
+						<input type="number" step="0.01" class="form-control" name="amount">
+					</div>
+					<div class="form-group my-3">
+						<label for="notes" class="form-label">Give more notes about the quote</label>
+						<textarea name="notes" class="form-control" id="notes_"></textarea>
+					</div>
+					<div class="row col-md-8 offset-md-2">
+						<div id="msgSubmit"></div>
+						<div id="msgSubmitErrors"></div>
+					</div>
+					<div class="my-2 ps-4">
+						<button class="btn btn-primary rounded" style="width: 200px;">
+							Post Quote
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.js' %}"></script>
+<script>
+	$(document).ready(function () {
+		$('#notes_').summernote({
+			height: 300,
+		});
+	});
+
+</script>
+
+<script>
+	const quoteModal = document.getElementById('quote-modal')
+	quoteModal.addEventListener('show.bs.modal', event => {
+		// Button that triggered the modal
+		const button = event.relatedTarget
+		// Extract info from data-bs-* attributes
+		const patient_name = button.getAttribute('data-bs-patient_name')
+		const prescription_id = button.getAttribute('data-bs-prescription_id')
+		const patient_id = button.getAttribute('data-bs-patient_id')
+		const facility_id = button.getAttribute('data-bs-facility_id')
+		const prescription_content = button.getAttribute('data-bs-prescription_content')
+
+		// Update the modal's content
+		quoteModal.querySelector('.modal-title').textContent = `Creating Prescription order quote for ${patient_name}`
+		quoteModal.querySelector('#patient').value = patient_id
+		quoteModal.querySelector('#facility').value = facility_id
+		quoteModal.querySelector('#prescription').value = prescription_id
+		quoteModal.querySelector('#prescription-content').innerHTML = prescription_content
+
+		$('#quote-form').on('submit', e => {
+			e.preventDefault()
+			postQuote('quote-form')
+		})
+
+	})
+
+	const getFormErrorHolders = (form_id, target) => {
+		if (target === 0) {
+			return `#${form_id} #msgSubmit`
+		}
+		return `#${form_id} #msgSubmitErrors`
+	}
+
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column py-2">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	function postQuote(form_id) {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/prescription-orders/`
+
+		const formdata = new FormData(document.getElementById(form_id))
+
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$(getFormErrorHolders(form_id, 0)).html(spinner)  // msgSubmit holder
+		$(getFormErrorHolders(form_id, 1)).html("") // msgError holder
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+			console.log(response)
+			toastr.info('Quote Posted Successfully')
+			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Quote for the prescription posted successfully. The patient will be notified of the quote.</div>`)
+		}).catch((error) => {
+			toastr.error(`Error - ${error.message}`)
+			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+	};
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Nyeri Medical Facilites {% endblock title %}
+
+{% block content %}
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Nyeri Medical Facilities</h2>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li>Nyeri Medical Facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+        
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<form style="display:none; float:right;" class="mb-3">
+
+   <input type="text" id="search-input" placeholder="Search..." style="margin-right:1.5rem">
+    <button id="search-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Search</button>
+  </form>
+  
+  <table id="my-table" class="table-bordered w-100" style="margin:1.5rem">
+    <thead style="">
+      <tr>
+        <th>NAME</th>
+            <th>TYPE</th>
+            <th>CONSTITUENCY</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th> 
+      </tr>
+    </thead>
+    <tbody style="" id="table-body">
+      
+        <tr style="">
+          <td>Ebenezer Medical Clinic (Nyeri South)</td>
+          <td>Medical Clinic</td>
+          <td>Nyeri Town Constituency</td>
+          <td></td>
+          <td></td>
+                   
+        </tr>
+
+        <tr>
+            <td>Gakawa Dispensary</td>
+            <td>Dispensary</td>
+            <td>Kieni Constituency</td>
+            <td></td>
+            <td>0792469986</td>
+           
+        </tr>
+
+        <tr>
+            <td> Gichira Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Tetu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        
+        <tr>
+            <td> Gumba Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Mukurweini Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Ihururu Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Tetu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        <tr>
+            <td> Island Farms Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Kieni Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        <tr>
+            <td>Kiaruhiu (PCEA) Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Tetu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        <tr>
+            <td> Kiganjo Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        <tr>
+            <td>Kaheti Dispensary & Maternity</td>
+            <td>Dispensary</td>
+            <td>Mukurweini Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+      
+        <tr>
+            <td>Kinunga Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Mariine Maternity Home</td>
+            <td>Basic Health Centre</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td>0722-310472</td>
+           
+        </tr>
+
+        <tr>
+            <td> Mt Kenya Sub-County Hospital</td>
+            <td>Primary care hospitals</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Muthuthiini Dispensary</td>
+            <td>Dispensary</td>
+            <td>Mukurweini Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Nanyuki Cottage</td>
+            <td>Medical Clinic</td>
+            <td>Kieni Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Naromoru Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Kieni Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Nelion Doctors Plaza</td>
+            <td>Medical Clinic</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Rhodes Medical Center</td>
+            <td>Medical Center</td>
+            <td>Nyeri South Constituency</td>
+            <td></td>
+            <td>0781995525</td>
+           
+        </tr>
+
+        <tr>
+            <td> Springcrest Medical Center</td>
+            <td>Medical Centere</td>
+            <td>Nyeri South Constituency</td>
+            <td></td>
+            <td>0727718210</td>
+           
+        </tr>
+
+        <tr>
+            <td> Tumutumu (PCEA) Hospital</td>
+            <td>Primary care hospitals</td>
+            <td>Mathira Constituency</td>
+            <td></td>
+            <td> 020-3562503</td>
+           
+        </tr>
+
+        <tr>
+            <td> Unjiru Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Tetu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Waka Maternity Home</td>
+            <td>Basic Health Centre</td>
+            <td>Nyeri Town Constituency</td>
+            <td></td>
+            <td> 0722-963213</td>
+           
+        </tr>
+
+        <tr>
+            <td> Warazo Rural Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Kieni Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        
+    </tbody>
+  </table>
+  
+  <div id="pagination" class="mb-3 mx-2">
+    <button id="prev-button" class="default-btn" style="background:gray; border-radius:0px; padding-top:0px; padding-bottom:0px;">Previous</button>
+    <span id="page-number"></span>
+    <button id="next-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Next</button>
+  </div>
+
+  <script>
+    
+    let rowsPerPage = 10;
+    let currentPage = 0;
+    let rows = Array.from(document.querySelectorAll('#my-table tbody tr'));
+    let numPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function showPage(page) {
+      currentPage = page;
+      let startIndex = currentPage * rowsPerPage;
+      let endIndex = startIndex + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+      });
+    }
+    
+    function showPrevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+    
+    function showNextPage() {
+      if (currentPage < numPages - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+    
+    document.querySelector('#search-button').addEventListener('click', function() {
+        let searchInput = document.querySelector('#search-input').value;
+        let tableRows = document.querySelectorAll('#table-body tr');
+      
+        tableRows.forEach(function(row) {
+          let name = row.children[0].textContent;
+          if (name.toLowerCase().indexOf(searchInput.toLowerCase()) === -1) {
+            row.style.display = "none";
+          } else {
+            row.style.display = "table-row";
+          }
+        });
+      });
+      
+    
+    document.querySelector('#prev-button').addEventListener('click', showPrevPage);
+    document.querySelector('#next-button').addEventListener('click', showNextPage);
+    
+    showPage(0);
+  </script>
+  
+  
+  
+  
+  {% endblock %} 

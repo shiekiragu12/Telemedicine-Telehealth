@@ -1,812 +1,329 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Team {% endblock title %}
+
 {% block content %}
 
-        <!-- Start Main Banner Area -->
-        <div class="main-banner">
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
             <div class="d-table">
                 <div class="d-table-cell">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7">
-                                <div class="main-banner-content">
-                                    <h1>TeleHealth Services Rapid Response to Coronavirus Pandemic</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
-                                    <div class="banner-form">
-                                        <form>
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="form-group">
-                                                        <select>
-                                                            <option>Specialist</option>
-                                                            <option value="">Dr. James Adult</option>
-                                                            <option value="">Dr. James Alison</option>
-                                                            <option value="">Dr. Peter Adlock</option>
-                                                        </select>	
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="form-group">
-                                                        <select  style="overflow-y:scroll; height:100%;">
-                                                            <option>Category</option>
-                                                            {% include "components/category-list.html" %}
-                                                        </select>	
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="form-group">
-                                                        <select>
-                                                            <option>Condition</option>
-                                                            <option>Fever</option>
-                                                            <option>Allergies</option>
-                                                            <option>Morbidity</option>
-                                                        </select>	
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="banner-form-btn">
-                                                            Search
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-    
-                                    <div class="banner-btn">
-                                        <a href="appointment.html" class="default-btn">
-                                            Make An Appointment
-                                            <span></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-5">
-                                <div class="banner-image">
-                                    <img src="{% static 'assets/img/doctor.png' %}" alt="image">
-                                </div>
-                            </div>
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Our Team</h2>
+                            <ul>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li>Our Team</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="default-shape">
-                <div class="shape-1">
-                    <img src="{% static 'assets/img/shape/shape-1.png' %}" alt="image">
-                </div>
-
-                <div class="shape-2 rotateme">
-                    <img src="{% static 'assets/img/shape/shape-3.png' %}" alt="image">
-                </div>
-
-                <div class="shape-3">
-                    <img src="{% static 'assets/img/shape/shape-3.png' %}" alt="image">
-                </div>
-
-                <div class="shape-4">
-                    <img src="{% static 'assets/img/shape/1.png' %}" alt="image">
-                </div>
-
-                <div class="shape-5">
-                    <img src="{% static 'assets/img/shape/shape-2.png' %}" alt="image">
-                </div>
-
-                <div class="shape-6">
-                    <img src="{% static 'assets/img/shape/shape-5.png' %}" alt="image">
-                </div>
-
-                <div class="shape-10">
-                    <img src="{% static 'assets/img/shape/shape-7.png' %}" alt="image">
                 </div>
             </div>
         </div>
-        <!-- End Main Banner Area -->
-
-        <!-- Start Top Services Area -->
-        <section class="top-services-area pt-100 pb-70">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="top-services-content two">
-                            <div class="icon">
-                                <i class="flaticon-relationship"></i>
-                            </div>
-                            <h3>Reduce Helth Care Cost</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="top-services-content">
-                            <div class="icon">
-                                <i class="flaticon-insurance"></i>
-                            </div>
-                            <h3>Reduce Pressure on Medical Staff</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="top-services-content">
-                            <div class="icon">
-                                <i class="flaticon-clinic"></i>
-                            </div>
-                            <h3>Continuum Of Care</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- End Page Title Area -->
+<!-- Start Doctor Area -->
+<section class="doctor-area pt-100 pb-70">
+    <div class="container-fluid">
+        <div class="section-title">
+            <div class="section-title">
+                <span>Our Doctors</span>
+                <h2>Specialized Doctors</h2>
+                <p>
+                    Meet our staff who provide the best care. 
+                    They are at the top of the game and always make your families and you feel safe and at ease in every way.
+                 </p>
             </div>
-        </section>
-        <!-- End Top Services Area -->
+        </div>
 
-        <!-- Start About Area -->
-        <section class="about-area pb-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="about-image">
-                            <img src="{% static 'assets/img/about.png' %}" alt="image">
-                        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="{% static 'assets/img/image1.jpg' %}" alt="image">
                     </div>
+                    <div class="content">
+                        <h3>Dr. James Adult</h3>
+                        <span>Cardiologist</span>
 
-                    <div class="col-lg-6">
-                        <div class="about-content">
-                            <span>About Us</span>
-                            <h3>Connect to Call a Doctor by Video or Audio During the COVID-19 Pandemic</h3>
-                            <p>Many healthcare systems around the world together with government agencies and startup companies are building and delivering Telehealth solutions  the future of non-emergency and routine healthcare delivery</p>
-
-                            <ul class="about-features">
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Cold, Cough, Flu
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Chronic Disease
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Allergies
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Pain
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Women's Health issues
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <i class='flaticon-check'></i>
-                                        Medication Questions
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End About Area -->
-
-        <!-- Start Services Area -->
-        <section class="services-area pt-100 pb-70">
-            <div class="container">
-                <div class="section-title">
-                    <span>Our Services</span>
-                    <h2>Our Healthcare Services</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-bacteria"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>COVID-19 Consulting</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-shield"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>Special Follow Up</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-beauty-treatment"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>Dermatology</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-mental-health"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>Mental Health</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-crutches"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>Orthopedics</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services-item bg-1">
-                            <div class="icon">
-                                <i class="flaticon-pregnancy"></i>
-                            </div>
-                            <a href="single-services.html">
-                                <h3>Gynecological</h3>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
-                            <a href="single-services.html" class="read-btn">Read More +</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Services Area -->
-
-        <!-- Start App Area -->
-        <section class="app-area ptb-100">
-            <div class="container-fluid pl-0">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="app-image">
-                            <img src="{% static 'assets/img/app.png' %}" alt="image">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="app-content">
-                            <span>Appointment</span>
-                            <h3>How To Get Started by Using  Our App</h3>
-                            <p> Many healthcare systems around the world together with government agencies and startup companies are building and delivering Telehealth solutions</p>
-
-                            <div class="app-text">
-                                <div class="icon">
-                                    <i class="flaticon-calendar"></i>
-                                </div>
-                                <h4>Pick Your Package</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-
-                            <div class="app-text">
-                                <div class="icon">
-                                    <i class="flaticon-mobile-app"></i>
-                                </div>
-                                <h4>Tinzer App  Setup</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-
-                            <div class="app-text">
-                                <div class="icon">
-                                    <i class="flaticon-patient"></i>
-                                </div>
-                                <h4>Patient Onboarding</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-
-                            <div class="app-text">
-                                <div class="icon">
-                                    <i class="flaticon-broadcasting"></i>
-                                </div>
-                                <h4>Going Live</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End App Area -->
-
-        <!-- Start Solutions Area -->
-        <section class="solutions-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="solutions-content">
-                            <span>Solutions</span>
-                            <h3>Telehealth Virtual Health Care Solutions</h3>
-                            <p>Many healthcare systems around the world together with government agencies and startup companies are building and delivering Telehealth solutions.</p>
-
-                            <ul class="solutions-features">
-                                <li>
-                                    <span>
-                                        Tinger eConsult Program
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Provide More Potential Video
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Remote Monitoring
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Mental Health Solutions
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Surgical Transition Solutions
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="solutions-image">
-                            <img src="{% static 'assets/img/solutions.png' %}" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Solutions Area -->
-
-        <!-- Start Doctor Area -->
-        <section class="doctor-area pt-100 pb-70">
-            <div class="container-fluid">
-                <div class="section-title">
-                    <div class="section-title">
-                        <span>Our Doctors</span>
-                        <h2>Specialized Doctors</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="doctor-item">
-                            <div class="image">
-                                <img src="assets/img/team/image1.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <h3>Dr. James Adult</h3>
-                                <span>Cardiologist</span>
-
-                                <ul class="social">
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="doctor-item">
-                            <div class="image">
-                                <img src="assets/img/team/image2.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <h3>Dr. James Alison</h3>
-                                <span>Medicine</span>
-
-                                <ul class="social">
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="doctor-item">
-                            <div class="image">
-                                <img src="assets/img/team/image3.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <h3>Dr. Peter Adlock</h3>
-                                <span>Neurologiest</span>
-
-                                <ul class="social">
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="doctor-item">
-                            <div class="image">
-                                <img src="assets/img/team/image4.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <h3>Dr. Jelin Alis</h3>
-                                <span>Medicine</span>
-
-                                <ul class="social">
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Doctor Area -->
-
-        <!-- Start Appointment Area -->
-        <section class="appointment-area ptb-100">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-fun-fact">
-                                    <h3>
-                                        <span class="odometer" data-count="2700">00</span>
-                                        <span class="sign-icon">+</span>
-                                    </h3>
-                                    <p>Care Locations</p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-fun-fact">
-                                    <h3>
-                                        <span class="odometer" data-count="2.7">00</span>
-                                        <span class="sign-icon">K</span>
-                                    </h3>
-                                    <p>Virtual Care Solutions</p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-fun-fact">
-                                    <h3>
-                                        <span class="odometer" data-count="99.60">00</span>
-                                        <span class="sign-icon">%</span>
-                                    </h3>
-                                    <p>Connections Success Rate</p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-fun-fact">
-                                    <h3>
-                                        <span class="odometer" data-count="30">00</span>
-                                        <span class="sign-icon">+</span>
-                                    </h3>
-                                    <p>Award Winning</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="appointment-form">
-                            <div class="content">
-                                <span>Call to Action</span>
-                                <h3>Make An Appointment</h3>
-                            </div>
-                            <form>
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="Name" placeholder="Enter Your Name">
-                                            <i class="flaticon-user"></i>
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="Email" placeholder="Enter Email">
-                                            <i class="flaticon-email"></i>
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="Phone" placeholder="Enter Phone Number">
-                                            <i class="flaticon-call"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <select>
-                                                <option value="">Select Category</option>
-                                                <option value="">Cardiologists</option>
-                                                <option value="">Dermatologists</option>
-                                                <option value="">Endocrinologists</option>
-                                                <option value="">Gastroenterologists</option>
-                                                <option value="">Allergists</option>
-                                                <option value="">Immunologists</option>
-                                            </select>	
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <select>
-                                                <option value="">Select Doctor</option>
-                                                <option value="">Dr. James Adult</option>
-                                                <option value="">Dr. James Alison</option>
-                                                <option value="">Dr. Peter Adlock</option>
-                                                <option value="">Dr. Jelin Alis</option>
-                                                <option value="">Dr. Josh Taylor</option>
-                                                <option value="">Dr. Steven Smith</option>
-                                            </select>	
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-sm-6">
-                                        <div class="form-group">
-                                            <div class="input-group date" id="datetimepicker">
-                                                <input type="text" class="form-control" placeholder="Date">
-                                                <span class="input-group-addon"></span>
-                                            </div>	
-                                            <i class="flaticon-calendar"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-12">
-                                        <div class="appointment-btn">
-                                            <button type="submit" class="default-btn">
-                                                Confirm Appointment
-                                                <span></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Appointment Area -->
-
-        <!-- Start Consult Area -->
-        <section class="consult-area ptb-100">
-            <div class="container-fluid pl-0">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <div class="consult-image">
-                            <img src="assets/img/consult.jpg" alt="image">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5">
-                        <div class="consult-content">
-                            <span>Online Consult</span>
-                            <h3>Get 24/7 Care Right From Your Phone</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-
-                            <ul class="list">
-                                <li>
-                                    <i class="flaticon-check-1"></i>
-                                    Get unlimited 24/7 Video Chat with a provider at no extra cost
-                                </li>
-                                <li>
-                                    <i class="flaticon-check-1"></i>
-                                    Easily book appointments and renew prescriptions
-                                </li>
-                                <li>
-                                    <i class="flaticon-check-1"></i>
-                                    Skip unnecessary trips to the ER or urgent care
-                                </li>
-                                <li>
-                                    <i class="flaticon-check-1"></i>
-                                    Have a Remote Visit with your primary care provider over video
-                                </li>
-                                <li>
-                                    <i class="flaticon-check-1"></i>
-                                    A message with your provider
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Consult Area -->
-
-        <!-- Start Blog Area -->
-        <section class="blog-area pb-70">
-            <div class="container-fluid">
-                <div class="section-title">
-                    <span>News</span>
-                    <h2>Our Latest News</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum su</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="image">
-                                <a href="single-blog.html">
-                                    <img src="assets/img/blog/image1.jpg" alt="image">
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
                                 </a>
-
-                                <a href="single-blog.html" class="date">20 April, 2022</a>
-                            </div>
-                        
-                            <div class="content">
-                                <h3>
-                                    <a href="single-blog.html">Telehealth Is Here To Stay. In Your Facility Ready?</a>
-                                </h3>
-                        
-                                <a href="single-blog.html" class="blog-btn">Read More +</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="image">
-                                <a href="single-blog.html">
-                                    <img src="assets/img/blog/image2.jpg" alt="image">
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
                                 </a>
-
-                                <a href="single-blog.html" class="date">20 April, 2022</a>
-                            </div>
-                        
-                            <div class="content">
-                                <h3>
-                                    <a href="single-blog.html">Coronavirus stimulus checks: What you need to know</a>
-                                </h3>
-                        
-                                <a href="single-blog.html" class="blog-btn">Read More +</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="image">
-                                <a href="single-blog.html">
-                                    <img src="assets/img/blog/image3.jpg" alt="image">
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
                                 </a>
-
-                                <a href="single-blog.html" class="date">20 April, 2022</a>
-                            </div>
-                        
-                            <div class="content">
-                                <h3>
-                                    <a href="single-blog.html">People worldwide adjust to new life amid COVID-19</a>
-                                </h3>
-                        
-                                <a href="single-blog.html" class="blog-btn">Read More +</a>
-                            </div>
-                        </div>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Blog Area -->
 
-{% endblock %}
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image2.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. James Alison</h3>
+                        <span>Medicine</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image3.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. Peter Adlock</h3>
+                        <span>Neurologiest</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image4.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. Jelin Alis</h3>
+                        <span>Medicine</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image5.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. James Adult</h3>
+                        <span>Cardiologist</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image6.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. James Alison</h3>
+                        <span>Medicine</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image7.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. Peter Adlock</h3>
+                        <span>Neurologiest</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="doctor-item">
+                    <div class="image">
+                        <img src="assets/img/team/image8.jpg" alt="image">
+                    </div>
+                    <div class="content">
+                        <h3>Dr. Jelin Alis</h3>
+                        <span>Medicine</span>
+
+                        <ul class="social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Doctor Area -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End Service details -->
+
+        {% endblock %}

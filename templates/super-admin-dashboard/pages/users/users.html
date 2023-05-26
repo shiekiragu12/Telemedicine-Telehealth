@@ -1,0 +1,1001 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Users {% endblock %}
+
+{% block styles %}
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-description">
+                <h1>Users</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-primary">
+                            <i class="material-icons-outlined">person</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Total Users</span>
+                            <span class="widget-stats-amount">{{total_users}}</span>
+                            <!-- <span class="widget-stats-info">471 Orders Total</span> -->
+                        </div>
+                        <!-- <div class="widget-stats-indicator widget-stats-indicator-negative align-self-start">
+                            <i class="material-icons">keyboard_arrow_down</i> 4%
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-warning">
+                            <i class="material-icons-outlined">person</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Active Users</span>
+                            <span class="widget-stats-amount">{{active_users}}</span>
+                            <!-- <span class="widget-stats-info">790 unique this month</span> -->
+                        </div>
+                        <!-- <div class="widget-stats-indicator widget-stats-indicator-positive align-self-start">
+                            <i class="material-icons">keyboard_arrow_up</i> 12%
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-success">
+                            <i class="material-icons-outlined">person</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Total Admins</span>
+                            <span class="widget-stats-amount">{{total_admins}}</span>
+                            <!-- <span class="widget-stats-info">87 items downloaded</span> -->
+                        </div>
+                        <!-- <div class="widget-stats-indicator widget-stats-indicator-positive align-self-start">
+                            <i class="material-icons">keyboard_arrow_up</i> 7%
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <form id="filter-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Filter</h5>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Gender</label>
+                                    <select name="gender" id="" class="form-select w-100">
+                                        <option value="">Select</option>
+                                        <option value="male" {% if request.GET.gender == 'male' %} selected {% endif %} >Male</option>
+                                        <option value="female" {% if request.GET.gender == 'female' %} selected {% endif %}>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Ordering</label>
+                                    <select name="ordering" id="" class="form-select w-100">
+                                        <option value="">Select</option>
+                                        <optgroup label="Ascending">
+                                            <option value="id" {% if request.GET.ordering == 'id' %} selected {% endif %} >ID</option>
+                                            <option value="name" {% if request.GET.ordering == 'name' %} selected {% endif %}>Name</option>
+                                        </optgroup>
+                                        <optgroup label="Descending">
+                                            <option value="-id" {% if request.GET.ordering == '-id' %} selected {% endif %} >ID</option>
+                                            <option value="-name" {% if request.GET.ordering == '-name' %} selected {% endif %}>Name</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label">Search</label>
+                                    <input name="search" type="search" value="{{request.GET.search}}" placeholder="Enter Search Text" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="form-group">
+                                    <label for="" class="form-label"> Limit</label>
+                                    <select name="limit" id="" class="form-select w-100">
+                                        <option value="">Select Limit</option>
+                                        <option value="10" {% if request.GET.limit == '10' %} selected {% endif %} >10</option>
+                                        <option value="25" {% if request.GET.limit == '25' %} selected {% endif %} >25</option>
+                                        <option value="50" {% if request.GET.limit == '50' %} selected {% endif %} >50</option>
+                                        <option value="75" {% if request.GET.limit == '75' %} selected {% endif %} >75</option>
+                                        <option value="100" {% if request.GET.limit == '100' %} selected {% endif %} >100</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="h-100 d-flex gap-3 align-items-end">
+                                    <button type="submit" class="btn btn-primary py-2 px-4">
+                                        Filter/Search
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="h-100 d-flex align-items-end">
+                                <p>Showing {{page_obj|length}} results of {{paginator_count}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="datatable4" class="display nowrap custom-table" style="width:auto">
+                    <thead>
+                        <tr>
+                            <th class="custom-th-text">Name</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Age</th>
+                            <th>Phone Number</th>
+                            <th>Country</th>
+                            <th>Address</th>
+                            <th>Last Login</th>
+                            <th>Registerd On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in page_obj %}
+                        <tr>
+                            <td class="w-custom">
+                                <a href="{% url 'super-admin-users-single' user.id %}" class="custom-name-holder" 
+                                    data-bs-target="#user-modal-for-js" data-bs-user_id="{{user.id}}">
+                                    <div
+                                        class="avatar rounded-circle avatar-sm me-2 d-flex align-items-center justify-content-center bg-light text-capitalize p-1">
+                                        {% if user.profile.profile_photo %}
+                                        <img src="{{user.profile.profile_photo.url}}" alt="">
+                                        {% else %}
+                                        {{user.username|get_first_letter}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <p class="m-0 p-0">{{user.first_name}} {{user.last_name}}</p>
+                                        <p class="m-0 p-0">
+                                            <small>{{user.email}}</small>
+                                        </p>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>{{user.username}}</td>
+                            <td>
+                                {% if user.is_active %}
+                                <div class="badge badge-success">
+                                    Active
+                                </div>
+                                {% else %}
+                                <div class="badge badge-danger">
+                                    In-Active
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>{{user.profile.gender}}</td>
+                            <td>{{user.profile.dob}}</td>
+                            <td>{{user.profile.dob|calculate_age}}</td>
+                            <td>{{user.profile.phone_number}}</td>
+                            <td>{{user.profile.country}}</td>
+                            <td>{{user.profile.address}}</td>
+                            <td>{{user.last_login}}</td>
+                            <td>{{user.date_joined}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="custom-th-text">Name</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Age</th>
+                            <th>Phone Number</th>
+                            <th>Country</th>
+                            <th>Address</th>
+                            <th>Last Login</th>
+                            <th>Registerd On</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="pagination-section">
+                    <div>
+                        {% if request.GET.page %}
+                        <p>Showing page {{request.GET.page}} of {{page_count}}</p>
+                        {% else %}
+                        <p>Showing page 1 of {{page_count}}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="border-0">
+                        <nav aria-label="Page navigation example py-2">
+                            <ul class="pagination flex-wrap">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request.build_absolute_uri|update_page_param:page_obj.previous_page_number }}">
+                                        Previous
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                                        Previous
+                                    </a>
+                                </li>
+                                {% endif %}
+    
+                                {% for page in pages %}
+                                {% if request.GET.page == page|stringformat:'i' %}
+                                <li class="page-item active">
+                                    <a class="page-link" aria-current="page" href="javascript:void(0)">
+                                        {{page}}
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ request.build_absolute_uri|update_page_param:page }}">
+                                        {{page}}
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+    
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request.build_absolute_uri|update_page_param:page_obj.next_page_number }}">
+                                        Next
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" href="javascript:void(0)" aria-disabled="true">
+                                        Next
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- User Modal -->
+<div class="modal fade" id="user-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="user-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="user-modal-title">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+                <!-- <button type="button" class="close btn btn-primary rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+                   <i class="material-icons">close</i>
+                </button> -->
+                <div class="close cursor-pointer avatar avatar-sm bg-light rounded-circle d-flex align-items-center justify-content-center"
+                    data-bs-dismiss="modal">
+                    <i class="material-icons fs-1">close</i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="container py-5 d-flex justify-content-center">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <h2 class="mb-3">Basic User Information</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card shadow p-2 h-100 bg-light" style="">
+                                <div class="d-flex justify-content-center flex-column">
+                                    <h4 class="text-center m-0 p-0">Profile Picture</h4>
+                                    <hr class="my-3">
+                                    <div class="avatar avatar-xxl mx-auto">
+                                        <!-- <div class="avatar-title">DB</div> -->
+                                        <img src="{{request.user.profile.profile_photo.url}}" style="width: 95%" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card p-2 h-100">
+                                <h4 class="m-0 p-0">Profile Details</h4>
+                                <hr class="my-3">
+                                <div class="v-stack">
+
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">First Name: </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-muted m-0 p-0">
+                                                {{request.user.first_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Last Name: </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-muted m-0 p-0">
+                                                {{request.user.last_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Username: </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-muted m-0 p-0">
+                                                {{request.user.username}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Email: </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-muted m-0 p-0">
+                                                {{request.user.email}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Account Status:
+                                            </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="badge badge-success">
+                                                Active
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Phone Number: </h5>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-muted m-0 p-0">
+                                                {{request.user.profile.phone_number}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-2 h-100 my-5">
+                    <h4 class="m-0 p-0">Advanced User Details</h4>
+                    <hr class="my-3">
+                    <div class="v-stack">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Date of Birth: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.profile.dob}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Age: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.profile.dob}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Gender: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0 text-capitalize">
+                                    {{request.user.profile.gender}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Address: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.profile.address}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Country: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0 text-capitalize">
+                                    {{request.user.profile.country}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">City: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0 text-capitalize">
+                                    {{request.user.profile.city}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card p-2 h-100 my-5">
+                    <h4 class="m-0 p-0">Doctor Details</h4>
+                    <hr class="my-3">
+                    <div class="v-stack">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Status: </h5>
+                            </div>
+                            <div class="col-8">
+                                <div class="badge badge-success">
+                                    Available
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Description </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.doctor.description}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Registerd on: </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.doctor.created}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="facilities my-3">
+                            <h4 class="m-0 p-0 py-3">Facilities</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card widget widget-popular-product shadow-sm">
+                                        <div class="card-body">
+                                            <div class="widget-popular-product-container">
+                                                <div class="widget-popular-product-image">
+                                                    <img src="http://polygons.space/neptune/source/assets/images/widgets/popular-product.jpeg"
+                                                        alt="">
+                                                </div>
+                                                <div class="widget-popular-product-tags">
+                                                    <span
+                                                        class="badge rounded-pill badge-secondary badge-style-light">Science</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-success badge-style-light">Lifestyle</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-danger badge-style-light">People</span>
+                                                </div>
+                                                <div class="widget-popular-product-content">
+                                                    <a href="widgets.html#" class="widget-popular-product-title">Banana
+                                                        Donut</a>
+                                                    <p class="widget-popular-product-text">Duis fringilla eget velit sit
+                                                        amet lobortis. Donec rutrum, arcu auctor varius cursus. mi nulla
+                                                        dapibus justo, at volutpat libero</p>
+                                                    <span class="widget-popular-product-rating">
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <span class="widget-popular-product-rating-num">4.4</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qualifications my-3">
+                            <h4 class="m-0 p-0 py-3">Proffessional Qualifications</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Degree</th>
+                                            <th>School/University</th>
+                                            <th>Year</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nursing</td>
+                                            <td>Nairobi University</td>
+                                            <td>2017</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="qualifications my-3">
+                            <h4 class="m-0 p-0 py-3">Appointments</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="custom-th">Patient</th>
+                                            <th class="custom-th">Facility</th>
+                                            <th class="custom-th">Condition</th>
+                                            <th class="custom-th-text">Notes</th>
+                                            <th class="custom-th">Status</th>
+                                            <th class="custom-th">Date</th>
+                                            <th class="custom-th">Start Time</th>
+                                            <th class="custom-th">End Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nursing</td>
+                                            <td>Nairobi University</td>
+                                            <td>2017</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card p-2 h-100 my-5">
+                    <h4 class="m-0 p-0">Patient Details</h4>
+                    <hr class="my-3">
+                    <div class="v-stack">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Blood Group: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.patient.blood_group}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Account Sharable: </h5>
+                            </div>
+                            <div class="col-8">
+                                <div class="badge badge-success">
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Registerd on: </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.patient.created}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="facilities my-3">
+                            <h4 class="m-0 p-0 py-3">Facilities</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card widget widget-popular-product shadow-sm">
+                                        <div class="card-body">
+                                            <div class="widget-popular-product-container">
+                                                <div class="widget-popular-product-image">
+                                                    <img src="http://polygons.space/neptune/source/assets/images/widgets/popular-product.jpeg"
+                                                        alt="">
+                                                </div>
+                                                <div class="widget-popular-product-tags">
+                                                    <span
+                                                        class="badge rounded-pill badge-secondary badge-style-light">Science</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-success badge-style-light">Lifestyle</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-danger badge-style-light">People</span>
+                                                </div>
+                                                <div class="widget-popular-product-content">
+                                                    <a href="widgets.html#" class="widget-popular-product-title">Banana
+                                                        Donut</a>
+                                                    <p class="widget-popular-product-text">Duis fringilla eget velit sit
+                                                        amet lobortis. Donec rutrum, arcu auctor varius cursus. mi nulla
+                                                        dapibus justo, at volutpat libero</p>
+                                                    <span class="widget-popular-product-rating">
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <span class="widget-popular-product-rating-num">4.4</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qualifications my-3">
+                            <h4 class="m-0 p-0 py-3">Appointments</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="custom-th">Facility</th>
+                                            <th class="custom-th">Condition</th>
+                                            <th class="custom-th-text">Notes</th>
+                                            <th class="custom-th">Status</th>
+                                            <th class="custom-th">Date</th>
+                                            <th class="custom-th">Start Time</th>
+                                            <th class="custom-th">End Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#appointment-details">
+                                                    Nursing
+                                                </button>
+                                            </td>
+                                            <td>Nairobi University</td>
+                                            <td>2017</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="qualifications my-3">
+                            <h4 class="m-0 p-0 py-3">Encounters</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="custom-th">Facility</th>
+                                            <th class="custom-th">Doctor</th>
+                                            <th class="custom-th-text">Notes</th>
+                                            <th class="custom-th">description</th>
+                                            <th class="custom-th">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#encounter-details">
+                                                    Nursing
+                                                </button>
+                                            </td>
+                                            <td>Nairobi University</td>
+                                            <td>2017</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card p-2 h-100 my-5">
+                    <h4 class="m-0 p-0">Staff Details</h4>
+                    <hr class="my-3">
+                    <div class="v-stack">
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Designation: </h5>
+                            </div>
+                            <div class="col-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.staff.designation}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Education: </h5>
+                            </div>
+                            <div class="col-8">
+                                <div class="badge badge-success">
+                                    {{request.user.staff.education}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <h5 class="fs-c m-0 p-0 me-2" style="font-weight: 500;">Registered on: </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="text-muted m-0 p-0">
+                                    {{request.user.patient.created}}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="facilities my-3">
+                            <h4 class="m-0 p-0 py-3">Facilities</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card widget widget-popular-product shadow-sm">
+                                        <div class="card-body">
+                                            <div class="widget-popular-product-container">
+                                                <div class="widget-popular-product-image">
+                                                    <img src="http://polygons.space/neptune/source/assets/images/widgets/popular-product.jpeg"
+                                                        alt="">
+                                                </div>
+                                                <div class="widget-popular-product-tags">
+                                                    <span
+                                                        class="badge rounded-pill badge-secondary badge-style-light">Science</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-success badge-style-light">Lifestyle</span>
+                                                    <span
+                                                        class="badge rounded-pill badge-danger badge-style-light">People</span>
+                                                </div>
+                                                <div class="widget-popular-product-content">
+                                                    <a href="widgets.html#" class="widget-popular-product-title">Banana
+                                                        Donut</a>
+                                                    <p class="widget-popular-product-text">Duis fringilla eget velit sit
+                                                        amet lobortis. Donec rutrum, arcu auctor varius cursus. mi nulla
+                                                        dapibus justo, at volutpat libero</p>
+                                                    <span class="widget-popular-product-rating">
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <span class="widget-popular-product-rating-num">4.4</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- User Modal copy minimal for js -->
+<div class="modal fade" id="user-modal-for-js" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    role="dialog" aria-labelledby="user-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header">
+                <h5 class="modal-title" id="user-modal-title">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h5>
+                <!-- <button type="button" class="close btn btn-primary rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+                   <i class="material-icons">close</i>
+                </button> -->
+                <div class="close cursor-pointer avatar avatar-sm bg-light rounded-circle d-flex align-items-center justify-content-center"
+                    data-bs-dismiss="modal">
+                    <i class="material-icons fs-1">close</i>
+                </div>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div class="container py-5 d-flex justify-content-center">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <!-- Basic user information -->
+                <!-- Advanced user information -->
+
+                <!-- Doctor details -->
+
+                <!-- Patient details -->
+
+                <!-- Staff details -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment modal -->
+<div class="modal fade" id="appointment-details" tabindex="-1" aria-labelledby="appointment-details-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="appointment-details-title">Appointment details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Encounter modal -->
+<div class="modal fade" id="encounter-details" tabindex="-1" aria-labelledby="encounter-details-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="encounter-details-title">Encounter details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        "use strict";
+        $('select').select2()
+
+        // DataTable
+        var table = $('#datatable4').DataTable({
+            scrollY: false,
+            scrollX: true,
+            pageLength: 50,
+
+            paging: false,
+            info: false,
+            searching: false,
+        });
+
+    })
+</script>
+
+<script>
+    $('#user-modal-for-js').on('show.bs.modal', function (event) {
+        let button = event.relatedTarget
+        let modal = $(this)
+
+        let user_id = button.getAttribute('data-bs-user_id')
+        fetchData(`users/${user_id}`, 'GET', null, function (response) {
+            console.log("Response: ", response)
+            modal.find('#modal-header').text(`${response.first_name} ${response?.last_name}`)
+            let other_content = basicUserInformation(response) + advancedUserInformation(response) + doctorDetails(response.doctor) + patientDetails(response.patient) + staffDetails(response.staff)
+                modal.find('#modal-body').html(other_content)
+        }, function (jqXHR, textStatus, errorThrown) {
+            console.error("Error: ", errorThrown)
+        });
+    })
+</script> 
+<script>
+
+    function fetchData(url, method, data, onSuccess, onError) {
+        const endpoint = `http://localhost:8000/api/${url}/`
+        $.ajax({
+            url: endpoint,
+            type: method,
+            data: data,
+            success: function (response) {
+                if (typeof onSuccess === 'function') {
+                    onSuccess(response);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (typeof onError === 'function') {
+                    onError(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+    }
+
+</script>
+{% endblock %}

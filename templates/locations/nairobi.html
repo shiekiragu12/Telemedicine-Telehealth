@@ -1,0 +1,383 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Nairobi Medical Facilites {% endblock title %}
+
+{% block content %}
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Nairobi Medical Facilities</h2>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li>Nairobi Medical Facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+        
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<form style="display:none; float:right;" class="mb-3">
+
+   <input type="text" id="search-input" placeholder="Search..." style="margin-right:1.5rem">
+    <button id="search-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Search</button>
+  </form>
+  
+  <table id="my-table" class="table-bordered w-100" style="margin:1.5rem">
+    <thead style="">
+      <tr>
+        <th>NAME</th>
+            <th>TYPE</th>
+            <th>CONSTITUENCY</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th> 
+      </tr>
+    </thead>
+    <tbody style="" id="table-body">
+      
+        <tr style="">
+          <td> AAR Donholm</td>
+          <td>Medical Clinic</td>
+          <td>Embakasi East Constituency</td>
+          <td></td>
+          <td>0733811420</td>
+                   
+        </tr>
+
+        <tr>
+            <td> AAR Health Care</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td>073388259</td>
+           
+        </tr>
+
+        <tr>
+            <td> Abra Health Services</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+      
+        <tr>
+            <td> Access Afya Baba dogo</td>
+            <td>Medical Clinic</td>
+            <td>Ruaraka Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Advanced Care Diagnostics and Renal Dialysis Centre</td>
+            <td>Medical Center</td>
+            <td>Dagoretti North Constituency</td>
+            <td></td>
+            <td>0733495397</td>
+           
+        </tr>
+
+        <tr>
+            <td> Afrismart Group of Hospitals LTD</td>
+            <td>Primary care hospitals</td>
+            <td>Embakasi South Constituency</td>
+            <td></td>
+            <td>0712388985</td>
+           
+        </tr>
+
+        <tr>
+            <td> Afya Bora Medical Clinic (Westlands)</td>
+            <td>Medical Clinic</td>
+            <td>Westlands Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Aga Khan Clinic (Eastleigh)</td>
+            <td>Medical Clinic</td>
+            <td>Kamukunji Constituency</td>
+            <td></td>
+            <td>0711092581</td>
+           
+        </tr>
+
+        <tr>
+            <td> Aga Khan Greenspam Medical Centre</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Aga Khan Roysambu Medical and Dialysis Centre</td>
+            <td>Medical Center</td>
+            <td>Roysambu Constituency</td>
+            <td></td>
+            <td>0711931429</td>
+           
+        </tr>
+
+        <tr>
+            <td> Agakhan University Clinic Embakasi(AUN)</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td> embakasi.reception@aku.edu</td>
+            <td>0738801588</td>
+           
+        </tr>
+
+        <tr>
+            <td> Agakhan University Hospital Valley Arcade Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Dagoretti North Constituency</td>
+            <td></td>
+            <td>0711092678</td>
+           
+        </tr>
+
+        <tr>
+            <td> AIC Kijabe Hospital Nairobi Medical Centre</td>
+            <td>Medical Clinic</td>
+            <td>Dagoretti North Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> APTC Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Arrow Web Maternity and Nursing Home</td>
+            <td>Nursing and Maternity Home</td>
+            <td>Embakasi Central Constituency</td>
+            <td>info@arrowwebhospital.org</td>
+            <td>0722521005</td>
+           
+        </tr>
+
+        <tr>
+            <td> Avenue Healthcare Greenspan</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td>0711060298</td>
+           
+        </tr>
+
+        <tr>
+            <td> Babadogo Medical Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Ruaraka Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Baldo Ippolita</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi South Constituency</td>
+            <td></td>
+            <td>0726717453</td>
+           
+        </tr>
+
+        <tr>
+            <td> Barika Medical Centre</td>
+            <td>Medical Center</td>
+            <td>Dagoretti North Constituency</td>
+            <td></td>
+            <td>0799490274</td>
+           
+        </tr>
+
+        <tr>
+            <td> Bizet Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi South Constituency</td>
+            <td></td>
+            <td>0718582015</td>
+           
+        </tr>
+
+        <tr>
+            <td> Blessed to Bless Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Embakasi East Constituency</td>
+            <td></td>
+            <td>0723698047</td>
+           
+        </tr>
+
+        <tr>
+            <td> Blue Ridge medical Centre</td>
+            <td>Medical Clinic</td>
+            <td>Dagoretti North Constituency</td>
+            <td></td>
+            <td>0700450450</td>
+           
+        </tr>
+
+        <tr>
+            <td> Brightside D.A.R.T Centre</td>
+            <td>Nursing Homes</td>
+            <td>Westlands Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Caremax Health LTD-Evergreen Branch</td>
+            <td>Medical Center</td>
+            <td>Westlands Constituency</td>
+            <td></td>
+            <td>020214770</td>
+           
+        </tr>
+
+    </tbody>
+  </table>
+  
+  <div id="pagination" class="mb-3 mx-2">
+    <button id="prev-button" class="default-btn" style="background:gray; border-radius:0px; padding-top:0px; padding-bottom:0px;">Previous</button>
+    <span id="page-number"></span>
+    <button id="next-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Next</button>
+  </div>
+
+  <script>
+    
+    let rowsPerPage = 10;
+    let currentPage = 0;
+    let rows = Array.from(document.querySelectorAll('#my-table tbody tr'));
+    let numPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function showPage(page) {
+      currentPage = page;
+      let startIndex = currentPage * rowsPerPage;
+      let endIndex = startIndex + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+      });
+    }
+    
+    function showPrevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+    
+    function showNextPage() {
+      if (currentPage < numPages - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+    
+    document.querySelector('#search-button').addEventListener('click', function() {
+        let searchInput = document.querySelector('#search-input').value;
+        let tableRows = document.querySelectorAll('#table-body tr');
+      
+        tableRows.forEach(function(row) {
+          let name = row.children[0].textContent;
+          if (name.toLowerCase().indexOf(searchInput.toLowerCase()) === -1) {
+            row.style.display = "none";
+          } else {
+            row.style.display = "table-row";
+          }
+        });
+      });
+      
+    
+    document.querySelector('#prev-button').addEventListener('click', showPrevPage);
+    document.querySelector('#next-button').addEventListener('click', showNextPage);
+    
+    showPage(0);
+  </script>
+  
+  
+  
+  
+  {% endblock %} 

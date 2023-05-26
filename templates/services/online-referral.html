@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Online Referrals  {% endblock title %}
+
 {% block content %}
 
         <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-5">
+        <div class="page-title-area item-bg-13">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="container">
                         <div class="page-title-content">
-                            <h2>Services Details</h2>
+                            <h2>ONLINE REFERRALS</h2>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li>Services Details</li>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li>ONLINE REFERRALS</li>
                             </ul>
                         </div>
                     </div>
@@ -24,70 +26,74 @@
         <!-- Service details -->
         <div class="service-details ptb-100">
             <div class="container">
-                <div class="service-details-image">
-                    <img src="assets/img/single-service.jpg" alt="image">
+                <div class="row">
+                    <div class="service-details-image col-lg-6">
+                    <img src="{% static 'assets/img/online.png'%}" alt="image">
                 </div>
+                <div class="col-lg-6">
 
+                    <p>
+                        Many are times we find themselves away from their primary physician but still need medical urgent
+                        allow a patient to receive specialized care from a specialist in a particular field from anywhere in the
+                        medical services. Medical referrals are an important aspect of healthcare in such scenarios, It will
+                        eliminating the need for in-person visits to the doctor. Patients’ medical history is an important
+                        world. Online medical referrals make it easier for patients to receive the care they need by
+                        aspect in healthcare.
+                    </p>
+                    
+                    <p>
+                        <b>What are Online Medical Referrals?</b></p>
+                    <p>
+                        Online medical referrals are a digital way for patients to receive a referral from their primary care
+                        physician to a specialist. Instead of making an appointment with their doctor and then scheduling an
+                        appointment with a specialist, patients can now receive a referral online from this platform. Sign up
+                        and access healthcare at the comfort of your home.
+                    </p>
+                </div>
+</div>
                 <div class="service-details-content">
-                    <h3>We care your health and checkup with best</h3>
-        
-                    <p></p>
-                    <h4>Our Services</h4>
-                    <p>No fake products and services. The customer is king, their lives and needs are the inspiration. But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-            
-                    <h4>Define Your Category</h4>
-<p></p>
-                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this.</p>
+       
+                    <h4>Benefits of Online Medical Referrals</h4>
+                    <ul>
+                        <li>Convenience: Online medical referrals are more convenient for patients, as they can receive
+                            a referral from their primary doctor without having to schedule an in-person appointment.
+                        </li>
+                        <li>Time-saving: Online referrals save time, as patients can receive their referral within minutes,
+                            instead of waiting days or even weeks to receive a referral from their doctor.
+                        </li>
+                        <li>Increased Accessibility: Online referrals provide increased accessibility for patients,
+                            especially those in rural or remote areas who may not have access to a specialist.
+                        </li>
+                        <li>Improved Coordination of Care: Online referrals improve coordination of care, as patients
+                            can receive a referral from their doctor and then schedule an appointment with a specialist,
+                            all in one place.
+                        </li>
+                    </ul>
+                    <h4>How Online Medical Referrals Work</h4>
+                    <ul>
+                        <li>Patients receive a referral request from their primary care physician through a patient
+                            portal.
+                        </li>
+                        <li>The patient then selects a specialist from a list of specialists who are able to treat their
+                            condition.
+                        </li>
+                        <li>The referral request is sent to the specialist, who then reviews the request and accepts or
+                            declines the referral.
+                        </li>
+                        <li>If the referral is accepted, the patient can schedule an appointment with the specialist
+                            online.
+                        </li>
+                    </ul>
+                    <p>Our online medical referrals will provide you a convenient and efficient way to receive the care you
+                        need. With increased accessibility, improved coordination of care, and time-saving benefits, online
+                        medical referrals are becoming an increasingly popular way for patients to receive care.
+                    </p>
 
-                    <div class="service-details-info">
-                        <div class="single-info-box">
-                            <h4>Client</h4>
-                            <span>James Anderson</span>
-                        </div>
+                    <p class="text-center text-primary fs-5 fw-bold">Sign up today and experience a whole new difference.
+                          <a  href="{% url 'register-as' %}" class="btn btn-primary text-white align-self-center">Click Here</a>  
+                       </p>
 
-                        <div class="single-info-box">
-                            <h4>Category</h4>
-                            <span>Fever, Allergies, Morbidity</span>
-                        </div>
 
-                        <div class="single-info-box">
-                            <h4>Date</h4>
-                            <span>February 28, 2022</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Share</h4>
-                            <ul class="social">
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-twitter'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-instagram'></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="single-info-box">
-                            <a class="default-btn" href="#">
-                                Live Preview
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

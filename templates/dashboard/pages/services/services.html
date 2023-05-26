@@ -1,0 +1,247 @@
+{% extends './../../components/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %} Services {% endblock %}
+
+{% block styles %}
+<link href="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.css' %}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="content-body">
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+			<div class="me-auto d-none d-lg-block">
+				<h3 class="text-black font-w600">Services</h3>
+				<p class="mb-0">To add services, click on the end plus icon.</p>
+			</div>
+
+			<div class="input-group search-area ms-auto d-inline-flex">
+				<input type="text" class="form-control" placeholder="Search here">
+				<div class="input-group-append">
+					<button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+				</div>
+			</div>
+			<a href="{% url 'create_services' request.facility.id %}" class="settings-icon  ms-3"><i
+					class="flaticon-381-plus me-0"></i></a>
+		</div>
+
+		<div class="row">
+			{% for service in services %}
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title">{{service.name}}</h5>
+					</div>
+					<div class="card-body">
+						<p class="card-text">
+							{{service.description|truncatewords:20}}
+						</p>
+					</div>
+					<div class="card-image" style="max-height: 250px; overflow: hidden;">
+						{% if service.image %}
+						<img class="card-img-bottom img-fluid" src="{{service.image.url}}" alt="{{service.name}}">
+						{% else %}
+						<img class="card-img-bottom img-fluid" src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="{{service.name}}">
+						{% endif %}
+					</div>
+					
+					<div class="card-footer d-flex align-items-center justify-content-center">
+						<button class="btn btn-sm btn-danger me-2">Delete</button>
+						<button class="btn btn-sm btn-primary">Update</button>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade" id="add-service-modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add a patient</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="service-form" action="{% url 'services' request.facility.id %}" method="post"
+					enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="text" name="facility" value="{{request.facility.id}}" class="d-none">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="form-group mb-3">
+								<label for="doctor" class="form-label">Doctor</label>
+								<select class="js-states form-control" name="doctor" id="doctor" tabindex="-1"
+									style="display: none; width: 100%" required>
+									<option>Select Doctor</option>
+									{% for doctor in doctors %}
+									<option value="{{doctor.id}}">{{doctor.user.first_name}} {{doctor.user.last_name}} -
+										{{doctor.user.profile.phone_number}}
+									</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Title</label>
+								<input type="text" class="form-control" id="" placeholder="Service Title" name="name">
+							</div>
+						</div>
+
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Display Description</label>
+								<textarea type="text" class="form-control" id="" rows="5" placeholder="Description"
+									name="description"></textarea>
+							</div>
+						</div>
+
+						<div class="col-xl-12">
+							<div class="form-group">
+								<label for="long_description" class="col-form-label">Complete Description</label>
+								<textarea type="text" class="form-control" id="long_description"
+									placeholder="Complete Description" name="long_description"></textarea>
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group mb-3">
+								<label for="tags" class="form-label">Tags</label>
+								<select class="js-states form-control form-select border border-primary" name="tags"
+									id="tags" tabindex="-1" style="display: none; width: 100%" required multiple>
+									<option>Select Tags</option>
+									{% for tag in tags %}
+									<option value="{{tag.id}}">{{tag.name}} </option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group mb-3">
+								<label for="category" class="form-label">Category</label>
+								<select class="js-states form-control" name="category" id="category" tabindex="-1"
+									style="display: none; width: 100%" required>
+									<option>Select Category</option>
+									{% for cat in categories %}
+									<option value="{{cat.id}}">{{cat.name}} </option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Service Cost</label>
+								<input type="number" class="form-control" placeholder="How much does it cost?"
+									name="charges">
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Service Image</label>
+								<input type="file" class="form-control" id="" required placeholder="Service Image"
+									name="image">
+							</div>
+						</div>
+
+					</div>
+
+					<div>
+						<div class="row col-md-8 offset-md-2 text-center">
+							<div id="msgSubmit" class="py-2"></div>
+							<div id="msgSubmitErrors" class="py-2"></div>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" form="service-form">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.js' %}"></script>
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+	$(document).ready(function () {
+		$('#doctor').select2();
+		$('#tags').select2();
+		$('#category').select2();
+		$('#long_description').summernote({
+			height: 300,
+		});
+	});
+</script>
+
+<script>
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	$("#service-form").on("submit", e => {
+		e.preventDefault()
+		postPrescription()
+	})
+
+	const postPrescription = () => {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/services/`
+
+		const formdata = new FormData(document.getElementById("service-form"))
+		// formdata.append('facility', $("#service-form #facility_id").val())
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$("#msgSubmitErrors").html("")
+		$("#msgSubmit").html(spinner)
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+			console.log(data)
+			toastr.info('Service Created Successfully')
+			$("#msgSubmit").html(`<div class="alert alert-success">Service Created Successfully. On the next page refresh you can be able to see the newly created service.</div>`)
+		}).catch((error) => {
+			toastr.error(`Error - ${error.message}`)
+			$("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+	};
+</script>
+
+
+{% endblock %}

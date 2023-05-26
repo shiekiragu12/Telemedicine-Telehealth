@@ -1,0 +1,25 @@
+<div class="posts-item card h-100 shadow border-0">
+    <div class="card-body">
+        <div class="image"
+            style="height: 200px; max-height: 200px; overflow: hidden; background: whitesmoke; border-radius: 10px;">
+            <a href="{% url 'single_blog' blog.id blog.slug %}"
+                class="d-flex align-items-center justify-content-center w-100 h-100">
+                <img src="{% if blog.image %}{{blog.image.url}}{% endif %}" style="border-radius: 10px;" alt="image">
+            </a>
+
+            <a href="{% url 'single_blog' blog.id blog.slug %}" class="date">{{blog.created_on}}</a>
+        </div>
+
+        <div class="content pt-4">
+            <h3>
+                <a href="{% url 'single_blog' blog.id blog.slug %}">{{blog.title}}</a>
+            </h3>
+            <p>
+                {{blog.body|striptags|truncatewords:20}}
+            </p>
+
+            <a href="{% url 'single_blog' blog.id blog.slug %}" class="posts-btn">Read
+                More +</a>
+        </div>
+    </div>
+</div>

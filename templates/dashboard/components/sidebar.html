@@ -7,7 +7,7 @@
                     <span class="nav-text">Home</span>
                 </a>
             </li>
-            <li><a href="{% url 'facility' request.facility.id request.facility.slug %}" class="ai-icon"
+            <li><a href="{% url 'facility' request.facility.id request.facility.slug %}" target="_blank" class="ai-icon"
                     aria-expanded="false">
                     <i class="flaticon-381-view-2"></i>
                     <span class="nav-text">Preview Facility <small>(Public view)</small> </span>
@@ -43,16 +43,28 @@
                     <span class="nav-text">Appointments</span>
                 </a>
             </li>
-            <li><a href="#" class="ai-icon" aria-expanded="false">
+
+            <li><a href="{% url 'create_prescription' request.facility.id %}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-note"></i>
+                    <span class="nav-text">Create Prescription</span>
+                </a>
+            </li>
+            <li><a href="{% url 'create_medical_report' request.facility.id %}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-note"></i>
+                    <span class="nav-text">Create Medical Report</span>
+                </a>
+            </li>
+
+            <li><a href="{% url 'services' facility_id=request.facility.id %}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-layer-1"></i>
                     <span class="nav-text">Services</span>
                 </a>
             </li>
-            <li><a href="#" class="ai-icon" aria-expanded="false">
+            <!-- <li><a href="#" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-list"></i>
                     <span class="nav-text">Encounters</span>
                 </a>
-            </li>
+            </li> -->
             <li><a href="{% url 'edit_facility' facility_id=request.facility.id %}" class="ai-icon"
                     aria-expanded="false">
                     <i class="flaticon-381-edit"></i>
@@ -81,10 +93,6 @@
             </li> -->
         </ul>
 
-        <div class="plus-box">
-            <p class="fs-16 font-w500 mb-1">Check your job schedule</p>
-            <a class="text-white fs-26" href="javascript:;"><i class="las la-long-arrow-alt-right"></i></a>
-        </div>
         <div class="copyright">
             <p class="fs-14 font-w200"><strong class="font-w400">Admin Dashboard</strong> © 2022
                 All Rights Reserved</p>

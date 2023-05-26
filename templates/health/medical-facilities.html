@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Medical Facilities & Locations  {% endblock title %}
+
 {% block content %}
 
         <!-- Start Page Title Area -->
@@ -9,10 +11,10 @@
                 <div class="d-table-cell">
                     <div class="container">
                         <div class="page-title-content">
-                            <h2>Services Details</h2>
+                            <h2>Medical Facilities and Locations</h2>
                             <ul>
                                 <li><a href="index.html">Home</a></li>
-                                <li>Services Details</li>
+                                <li>Medical Facilities and Locations</li>
                             </ul>
                         </div>
                     </div>
@@ -20,6 +22,69 @@
             </div>
         </div>
         <!-- End Page Title Area -->
+<!-- Navbar Details -->
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar Details-->
 
         <!-- Service details -->
         <div class="service-details ptb-100">

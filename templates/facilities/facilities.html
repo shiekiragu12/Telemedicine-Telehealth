@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Medical Facilities {% endblock title %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-5">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Medical Facilities</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Medical Facilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Body -->
+
+<div class="container-fluid pt-100 pb-70">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'facilities' %}" class="btn btn-default mb-3 py-3 border d-block w-100">
+                All Counties
+            </a>
+            {% for county in counties %}
+            <div class="accordion shadow-none" id="counties">
+                <div class="accordion-item shadow-one mb-3">
+                    <h2 class="accordion-header shadow-none" id="county-{{county.id}}">
+                        <button class="accordion-button shadow-none collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-county-{{county.id}}" aria-expanded="false"
+                            aria-controls="collapse-county-{{county.id}}">
+                            {{forloop.counter}}. {{county.name}}
+                        </button>
+                    </h2>
+                    <div id="collapse-county-{{county.id}}" class="accordion-collapse collapse"
+                        aria-labelledby="county-{{county.id}}" data-bs-parent="#counties">
+                        <div class="accordion-body">
+                            <ol class="pl-4">
+                                <a href="{% url 'facilities_per_location' 'county' county.id county.name|custom_slugify  %}" class="d-block mb-2">
+                                    <li class="w-100">
+                                        All Facilities
+                                    </li>
+                                </a>
+                                {% for constituency in county.constituency_set.all %}
+                                <a href="{% url 'facilities_per_location' 'constituency' constituency.id constituency.name|custom_slugify  %}" class="d-block mb-2">
+                                    <li class="w-100">
+                                        {{constituency.name}}
+                                    </li>
+                                </a>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-9">
+            <div class="card border-0 shadow p-2 mb-3">
+                <div>
+                    {% if request.GET.page %}
+                    <p>Showing page {{request.GET.page}} of {{page_count}}</p>
+                    {% else %}
+                    <p>Showing page 1 of {{page_count}}</p>
+                    {% endif %}
+                </div>
+                <div class="d-flex align-items-center">
+                    {% if page_obj.has_previous %}
+                    <a href="{% url 'facilities' %}?page={{page_obj.previous_page_number}}"
+                        class="btn btn-primary rounded-pill px-4 btn-sm me-2">
+                        Previous
+                    </a>
+                    {% else %}
+                    <button class="btn btn-primary rounded-pill me-2 px-4 btn-sm" disabled>
+                        Previous
+                    </button>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <a href="{% url 'facilities' %}?page={{page_obj.next_page_number}}"
+                        class="btn btn-primary rounded-pill px-4 btn-sm me-2">
+                        Next
+                    </a>
+                    {% else %}
+                    <button class="btn btn-primary rounded-pill me-2 px-4 btn-sm" disabled>
+                        Next
+                    </button>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="row">
+                {% for facility in page_obj %}
+                <div class="col-md-4 mb-3">
+                    {% include './components/facility_card.html' with facility=facility %}
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="card border-0 shadow px-2 mb-3">
+                <div class="pagination-area py-2">
+                    {% if page_obj.has_previous %}
+                    <a href="{% url 'facilities' %}?page={{page_obj.previous_page_number}}"
+                        class="next page-numbers rounded current">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    {% else %}
+                    <a href="javascript:void(0)" class="next page-numbers rounded" aria-disabled="true">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    {% endif %}
+
+                    {% for page in pages %}
+                    {% if request.GET.page == page|stringformat:'i' %}
+                    <span class="page-numbers current rounded" aria-current="page">{{page}}</span>
+                    {% else %}
+                    <a href="{% url 'facilities' %}?page={{page}}" class="page-numbers text-center mb-2 rounded"
+                        style="border-radius: 50% !important;">{{page}}</a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a href="{% url 'facilities' %}?page={{page_obj.next_page_number}}"
+                        class="next page-numbers rounded current">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    {% else %}
+                    <a href="javascript:void(0)" class="next page-numbers rounded" aria-disabled="true">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

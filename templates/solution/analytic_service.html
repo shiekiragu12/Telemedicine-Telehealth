@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-14">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="container">
+        <div class="page-title-content">
+          <h2>Analytic Solution</h2>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">
+            Schedule a call with us 
+
+         </button> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+  <div class="container">
+
+    <div class="service-details-image ">
+      <div class="row">
+        <div class="col-lg-5">
+          <img src="{% static 'assets/img/analytic_2.png'%}" alt="image">
+        </div>
+
+        <div class="service-details-content col-lg-7">
+
+          <p>With the exponential growth of data, organizations are faced with the challenge of effectively utilizing
+            this information to drive informed decision-making and gain a competitive edge. Turning data into actionable
+            insights can be a complex and time-consuming task, requiring specialized skills and technology. It's
+            essential for organizations to have a strategy in place to manage, analyze, and interpret the massive
+            amounts of data they collect, in order to extract meaningful insights and stay ahead of the competition.</p>
+          <p>This will help you identify patterns, trends, and relationships in the data, which can be used to inform
+            clinical decision making, improve patient outcomes, and optimize resource utilization. Data analytics
+            solutions play a crucial role in supporting the delivery of high-quality, cost-effective healthcare by
+            providing healthcare organizations with valuable insights into patient data</p>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="service-details-content">
+
+
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">
+        Schedule a call with us 
+
+     </button> 
+    </div>
+
+
+    <div class="modal fade" id="apply-modal" tabindex="-1" aria-labelledby="apply-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="apply-modal-title">Schedule a call with us</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="signup-form" style="box-shadow: none;max-width:100% !important;" method="post"
+              id="appointment-form" enctype="multipart/form-data" action="{% url 'analytic_action' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-6 form-group mb-3">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="col-lg-6 form-group mb-3">
+                  <label for="name">Email Address</label>
+                  <input type="email" id="name" name="email" class="form-control" required>
+                </div>
+                <div class="col-lg-6 form-group mb-3">
+                  <label for="name">Phone Number</label>
+                  <input type="number" id="phoneF" name="phone" class="form-control" required>
+                </div>
+                <div class="col-lg-6 form-group mb-3">
+                  <label for="name">Schedule Date</label>
+                  <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+
+                <div class="col-lg-6 form-group mb-3">
+                  <label for="name">Schedule time</label>
+                  <input type="time" id="time-input" name="time" class="form-control" required>
+                </div>
+        
+
+                <div class="col-lg-12 form-group mb-3">
+                  <label for="message">Which area or department would like us to assist with our analytic tools</label>
+                  <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+
+              </div>
+
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" form="appointment-form" class="btn btn-primary">SUBMIT</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+<!-- End Service details -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<script>
+  const phoneInputF = document.getElementById('phoneF');
+
+  phoneInputF.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 10);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+<script>
+  const input = document.querySelector("#phonecode");
+  const iti = window.intlTelInput(input, {
+    // preferredCountries: [], // set all countries as preferred
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.min.js" // set utils script
+  });
+</script>
+<script>
+  const phone = document.getElementById('code');
+
+  phone.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 3);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+<script>
+  const phoneInput = document.getElementById('phone');
+
+  phoneInput.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 9);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+
+<script>
+  const timeInput = document.getElementById('time-input');
+
+  timeInput.addEventListener('change', function () {
+    const selectedTime = this.value;
+    const split_time = selectedTime.split(':')
+    const selectedHour = parseInt(split_time[0]);
+
+    // Check if selected time is before 8 am or after 5 pm
+    if (selectedHour < 8 || selectedHour >= 12) {
+      alert('Please select a time strictly between 8 am and 12 pm.');
+      this.value = '';
+    }
+  });
+
+
+  const dateInput = document.getElementById('date');
+  const today = new Date();
+
+  dateInput.addEventListener('input', function () {
+    const selectedDate = new Date(this.value);
+
+    if (selectedDate < today) {
+      alert('Date cannot be in the past');
+      this.value = '';
+    } else if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
+      alert('Date cannot be on a weekend');
+      this.value = '';
+    }
+  });
+
+</script>
+{% endblock %}

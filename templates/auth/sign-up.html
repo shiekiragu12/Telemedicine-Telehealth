@@ -1,6 +1,6 @@
 {% extends './../base.html' %}
 {% load static %}
-
+{% block title %} Create New Account {% endblock title %}
 {% block content %}
 <!-- End Header Area -->
 
@@ -25,75 +25,10 @@
 <!-- Start Signup Area -->
 <div class="signup-area ptb-100">
     <div class="container">
-        <div class="signup-form">
-            <h3>Create your Account</h3>
-            {% for msg in messages %}
-            {% if msg.tags == 'error' %}
-            <div class="alert alert-danger">
-                {{msg}}
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                {% include './sign-up-component.html' %}
             </div>
-            {% else %}
-            <div class="alert alert-{{msg.tags}}">
-                {{msg}}
-            </div>
-            {% endif %}
-            {% endfor %}
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="" class="form-label">First Name</label>
-                            <input required type="text" class="form-control" placeholder="First Name" name="fname"
-                                value="{{user.first_name}}">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="" class="form-label">Last Name</label>
-                            <input required type="text" class="form-control" placeholder="Last Name" name="lname" value="{{user.last_name}}">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="" class="form-label">Username</label>
-                            <input required type="text" class="form-control" placeholder="Username" name="username" value="{{user.username}}">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="" class="form-label">Email</label>
-                            <input required type="email" class="form-control" placeholder="Email" name="email" value="{{user.email}}">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="" class="form-label">Password</label>
-                            <input required type="password" class="form-control" placeholder="Password" name="password">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="" class="form-label">Confirm Password</label>
-                            <input required type="password" class="form-control" placeholder="Confirm Password"
-                                name="password1">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="send-btn">
-                            <button class="default-btn">Sign Up Now</button>
-                        </div>
-                        <br>
-                        <span>Already a registered user? <a href="{% url 'signin' %}">Login!</a></span>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 </div>

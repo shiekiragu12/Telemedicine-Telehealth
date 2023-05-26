@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import redirect
-from .models import Facility, Doctor, Staff
+from .models import Facility, Doctor, Staff, Service
 
 
 def authorized_user(view_func):
@@ -16,7 +16,7 @@ def authorized_user(view_func):
             return view_func(request, facility_id, *args, **kwargs)
         else:
             messages.error(request, "You are not authorized to view this facility's admin")
-            return redirect('index')
+            return redirect(request.META['HTTP_REFERER'])
     return wrapper_func
 
 
@@ -25,8 +25,25 @@ def check_facility_and_attach_it_to_request(view_func):
         facility = Facility.objects.filter(id=facility_id).first()
         if facility is None:
             messages.error(request, 'Facility does not exist')
-            return redirect('index')
+            return redirect(request.META['HTTP_REFERER'])
+        elif not facility.authorized:
+            messages.info(request, 'Facility is not authorized. Kindly contact support for a follow up')
+            return redirect(request.META['HTTP_REFERER'])
         else:
             request.facility = facility
+            request.facility_services = Service.objects.filter(facility=facility)
+            return view_func(request, facility_id, *args, **kwargs)
+    return wrapper_func
+
+
+def check_facility_and_attach_it_to_request_2(view_func):
+    def wrapper_func(request, facility_id, *args, **kwargs):
+        facility = Facility.objects.filter(id=facility_id).first()
+        if facility is None:
+            messages.error(request, 'Facility does not exist')
+            return redirect(request.META['HTTP_REFERER'])
+        else:
+            request.facility = facility
+            request.facility_services = Service.objects.filter(facility=facility)
             return view_func(request, facility_id, *args, **kwargs)
     return wrapper_func

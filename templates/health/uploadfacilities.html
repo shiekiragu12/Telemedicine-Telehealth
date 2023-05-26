@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} Upload Facilities {% endblock %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-3">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Upload Facilities</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Upload</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Cart Area -->
+<section class="cart-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form action="" class="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group-lg">
+                        <label for="file" class="form-label">Select excel file</label>
+                        <input type="file" class="form-control shadow-none" name="file">
+                    </div>
+                    <div class="input-group-lg my-3">
+                        <button class="default-btn px-5" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Cart Area -->
+{% endblock %}

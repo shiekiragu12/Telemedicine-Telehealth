@@ -1,6 +1,16 @@
 {% extends './../components/base.html' %}
 {% load static %}
 
+{% block styles %}
+<!-- Pick date -->
+<link rel="stylesheet" href="{% static 'dashboard/vendor/pickadate/themes/default.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/vendor/pickadate/themes/default.date.css' %}">
+<!-- Clockpicker -->
+<link href="{% static 'dashboard/vendor/clockpicker/css/bootstrap-clockpicker.min.css' %}" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="content-body">
 	<!-- row -->
@@ -51,9 +61,11 @@
 										</td>
 										<td class="patient-info ps-0">
 											<span>
-												<img src="{% if app.patient.user.profile.profile_photo %}{{app.patient.user.profile.profile_photo.url}} {% endif %}" alt="">
+												<img src="{% if app.patient.user.profile.profile_photo %}{{app.patient.user.profile.profile_photo.url}} {% endif %}"
+													alt="">
 											</span>
-											<span class="text-nowrap ms-2">{{app.patient.user.first_name}} {{app.patient.user.last_name}}</span>
+											<span class="text-nowrap ms-2">{{app.patient.user.first_name}}
+												{{app.patient.user.last_name}}</span>
 										</td>
 										<td class="text-primary">{{app.patient.user.email}}</td>
 										<td>{{app.date}}</td>
@@ -61,7 +73,7 @@
 										<td>{{app.end_time}}</td>
 										<td class="text-primary">{{app.patient.user.profile.phone_number}}</td>
 										<td>Dr. {{app.doctor.user.first_name}} {{app.doctor.user.last_name}}</td>
-										<td>Fever</td>
+										<td>{{app.condition.name}}</td>
 										<td>
 											<span class="me-3">
 												<a href="javascript:void(0);" class="edit-appointment"><i
@@ -197,13 +209,16 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="appointment-form" action="{% url 'appointments_create' request.facility.id %}" method="post">
+					<form id="appointment-form" action="{% url 'appointments_create' request.facility.id %}"
+						method="post">
 						{% csrf_token %}
+						<input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+							placeholder="Facility Id">
 						<div class="row form-material">
 							<div class="col-xl-12">
 								<div class="form-group">
 									<label for="message-text" class="col-form-label">Patient</label>
-									<select class="form-control" name="patient" required>
+									<select class="form-control" name="patient" id="patient-select">
 										<option value="">Select patient</option>
 										{% for patient in patients %}
 										<option value="{{patient.id}}">
@@ -217,28 +232,27 @@
 							<div class="col-xl-12">
 								<div class="form-group">
 									<label for="message-text" class="col-form-label">Date of Appointment:</label>
-									<input type="date" class="form-control" id="mdate" name="date">
+									<input type="date" class="form-control" id="date" name="date">
 								</div>
 							</div>
 							<div class="col-xl-6">
 								<div class="form-group">
 									<label class="col-form-label">From</label>
-									<input size="16" class="form-control" name="start_time"
-										placeholder="Starting time, 24hrs eg 13:00">
+									<input type="text" class="form-control" id="start_time" name="start_time"
+										placeholder="Starting time">
 								</div>
 							</div>
 							<div class="col-xl-6">
 								<div class="form-group">
 									<label class="col-form-label">To</label>
-									<input size="16" class="form-control" name="end_time"
-										placeholder="End time, 24hrs eg 14:00">
+									<input type="text" class="form-control" id="end_time" name="end_time"
+										placeholder="End time">
 								</div>
 							</div>
 							<div class="col-xl-6">
 								<div class="form-group">
 									<label for="message-text" class="col-form-label">Consulting Doctor:</label>
 									<select class="form-control" name="doctor" required>
-										<option>Select doctor</option>
 										{% for doctor in doctors %}
 										<option value="{{doctor.id}}">
 											Dr. {{doctor.user.first_name}} {{doctor.user.last_name}}
@@ -250,8 +264,7 @@
 							<div class="col-xl-6">
 								<div class="form-group">
 									<label for="message-text" class="col-form-label">Injury/Condition</label>
-									<select class="form-control" name="condition">
-										<option value="">Select condition(injury)</option>
+									<select class="form-control" name="condition" required>
 										{% for cond in conditions %}
 										<option value="{{cond.id}}">{{cond.name}}</option>
 										{% endfor %}
@@ -267,6 +280,10 @@
 							</div>
 						</div>
 
+						<div class="row col-md-8 offset-md-2 text-center">
+							<div id="msgSubmit" class="py-2"></div>
+							<div id="msgSubmitErrors" class="py-2"></div>
+						</div>
 
 					</form>
 				</div>
@@ -281,7 +298,37 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- pickdate -->
+<script src="{% static 'dashboard/vendor/pickadate/picker.js' %}"></script>
+<script src="{% static 'dashboard/vendor/pickadate/picker.time.js' %}"></script>
+<script src="{% static 'dashboard/vendor/pickadate/picker.date.js' %}"></script>
+<!-- clockpicker -->
+<script src="{% static 'dashboard/vendor/clockpicker/js/bootstrap-clockpicker.min.js' %}"></script>
+
 <script>
+	// Date picker
+	// $('#date').pickadate({
+	// 	format:'y.m.d'
+	// });
+
+	// Time picker
+	$('#start_time').pickatime(
+		{
+			min: [8, 30],
+			max: [16, 0],
+			interval: 15,
+		}
+	)
+
+	$('#end_time').pickatime(
+		{
+			min: [8, 30],
+			max: [16, 0],
+			interval: 15,
+		}
+	)
+
+
 
 	$(document).on('click', '.edit-appointment', function () {
 		$('#appointment-edit-form').modal('show');
@@ -299,16 +346,67 @@
 			lengthChange: false
 
 		});
-		$('#example tbody').on('click', 'tr', function () {
-			var data = table.row(this).data();
+		// $('#example tbody').on('click', 'tr', function () {
+		// 	var data = table.row(this).data();
 
-		});
+		// });
 
 	})(jQuery);
 
-	jQuery('#datetimepicker2').datetimepicker({
-		datepicker: false,
-		format: 'H:i'
-	});
+	// jQuery('#mdate').datetimepicker({
+	// 	datepicker: true,
+	// 	// format: 'H:i'
+	// });
+</script>
+<script>
+
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	$("#appointment-form").on("submit", e => {
+		e.preventDefault()
+		postAppointment()
+	})
+
+	const postAppointment = () => {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/appointments/`
+
+		const formdata = new FormData(document.getElementById("appointment-form"))
+		formdata.append('facility', $("#appointment-form #facility_id").val())
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$("#msgSubmitErrors").html("")
+		$("#msgSubmit").html(spinner)
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+			toastr.info('Appointment Created Successfully')
+			$("#msgSubmit").html(`<div class="alert alert-success">Appointment Created Successfully. On the next page refresh you can be able to see the newly created doctor.</div>`)
+		}).catch((error) => {
+			console.log(error.response.data)
+			toastr.error(`Error - ${error.message}`)
+			$("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+	};
+
 </script>
 {% endblock %}

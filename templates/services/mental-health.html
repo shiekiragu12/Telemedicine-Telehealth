@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Mental Health {% endblock title %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-7" style="background-image: url(/static/new/depressed.jpg);">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Mental Health</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Mental Health</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+        <div class="service-details-image">
+            <img src="{% static 'new/depressed.jpg' %}" alt="image">
+        </div>
+        <p>
+            Welcome to our mental health telemedicine web platform. We understand that seeking help for
+            mental health can be difficult, and we aim to provide a safe, accessible, and compassionate space for
+            individuals to receive the care they need.
+        </p>
+        <p>
+            Our team of mental health professionals is committed to providing high-quality care through virtual
+            appointments. We offer a range of services including therapy sessions, medication management,
+            and assessments.
+        </p>
+        <p>
+            Our platform is designed to be easy to use, secure, and private. You can access it from the comfort
+            of your own home or wherever you feel most comfortable. Our platform uses HIPAA-compliant
+            encryption and secure video conferencing software to ensure your privacy is protected.
+        </p>
+        <p>
+            We believe that everyone deserves access to mental health care, regardless of their financial
+            situation. That&#39;s why we offer affordable rates and accept most insurance plans. We also have a
+            sliding scale fee option for those who need it.
+        </p>
+        <p>
+            Mental health is a complex issue that can affect every aspect of our lives. That&#39;s why we take a
+            holistic approach to care. We understand that mental health is not just about treating symptoms but
+            also about promoting overall well-being.
+        </p>
+        <p>
+            Our platform offers resources and tools to support your mental health journey. We have a library of
+            articles, videos, and podcasts covering a range of topics such as coping skills, self-care, and mental
+            health education.
+        </p>
+        <p>
+            We also offer support groups and workshops led by licensed mental health professionals. These
+            groups provide a safe and supportive environment to connect with others who are going through
+            similar experiences.
+        </p>
+        <p>
+            At our platform, we believe in the power of empathy and connection. Our mental health
+            professionals are here to listen, support, and guide you through your mental health journey. We
+            understand that seeking help can be challenging, but we are here to help you take the first step
+            towards healing.
+        </p>
+        <p>
+            If you&#39;re struggling with mental health issues or just need someone to talk to, we&#39;re here for you.
+            Take the first step towards a better life and schedule an appointment today.
+        </p>
+    </div>
+</div>
+<!-- End Service details -->
+
+{% endblock %}

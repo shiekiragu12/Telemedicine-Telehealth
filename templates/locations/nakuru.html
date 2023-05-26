@@ -1,0 +1,446 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Nakuru Medical Facilites {% endblock title %}
+
+{% block content %}
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Nakuru Medical Facilities </h2>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li>Nakuru Medical Facilities </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+        
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<form style="display:none; float:right;" class="mb-3">
+
+   <input type="text" id="search-input" placeholder="Search..." style="margin-right:1.5rem">
+    <button id="search-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Search</button>
+  </form>
+  
+  <table id="my-table" class="table-bordered w-100" style="margin:1.5rem">
+    <thead style="">
+      <tr>
+        <th>NAME</th>
+            <th>TYPE</th>
+            <th>CONSTITUENCY</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th> 
+      </tr>
+    </thead>
+    <tbody style="" id="table-body">
+      
+        <tr style="">
+          <td> Barut Medical clinic</td>
+          <td>Medical Clinic</td>
+          <td>Nakuru Town West Constituency</td>
+          <td></td>
+          <td>0724924073</td>
+        
+                   
+        </tr>
+
+        <tr>
+            <td> Bridgids Medical Services</td>
+            <td>Medical Clinic</td>
+            <td>Nakuru Town West Constituency</td>
+            <td></td>
+            <td>0726126394</td>
+           
+        </tr>
+
+        <tr>
+            <td> Charryl Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Njoro Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+      
+        <tr>
+            <td> Chebaraa Dispensary</td>
+            <td>Dispensary</td>
+            <td>Kuresoi South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Chemaner Dispensary (Kuresoi)</td>
+            <td>Dispensary</td>
+            <td>Kuresoi South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Dundori Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Eburru Dispensary</td>
+            <td>Dispensary</td>
+            <td>Gilgil Constituency</td>
+            <td>mohnaiva@yahoo.com</td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Emmaus Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Kuresoi South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Esther Memorial Nursing Home</td>
+            <td>Comprehensive Health Centre</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Family Focus Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Molo Constituency</td>
+            <td></td>
+            <td>0720516690</td>
+           
+        </tr>
+
+        <tr>
+            <td> Favoured Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td >Fountain Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Nakuru Town East Constituency</td>
+            <td></td>
+            <td>0725114492</td>
+           
+        </tr>
+
+        <tr>
+            <td> Gatamaiyo Dispensary</td>
+            <td>Dispensary</td>
+            <td>Gilgil Constituency</td>
+            <td></td>
+            <td>0705511042</td>
+           
+        </tr>
+
+        <tr>
+            <td> Gosheni Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Naivasha Constituency</td>
+            <td> mohnaiva@yahoo.com</td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Great Comm Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td>0721935553</td>
+           
+        </tr>
+
+        <tr>
+            <td> Green View Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Njoro Constituency</td>
+            <td></td>
+            <td>0722460681</td>
+           
+        </tr>
+
+        <tr>
+            <td> Heshima Dundori</td>
+            <td>Medical Clinic</td>
+            <td>Bahati Constituency</td>
+            <td>mohnaiva@yahoo.com</td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Holy Trinity Health Centre (Mai Mahiu)</td>
+            <td>Basic Health Centre</td>
+            <td>Naivasha Constituency</td>
+            <td></td>
+            <td>0712311208</td>
+           
+        </tr>
+
+        <tr>
+            <td> ITARC Kenya Limited(Naivasha)</td>
+            <td>Medical Clinic</td>
+            <td>Naivasha Constituency</td>
+            <td> patrickngch@gmail.com</td>
+            <td>0725807547</td>
+           
+        </tr>
+
+        <tr>
+            <td> JANCAM Medical Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bobasi Constituency</td>
+            <td></td>
+            <td>0722985046</td>
+           
+        </tr>
+
+        <tr>
+            <td> Jemron Medical clinic</td>
+            <td>Medical Clinic</td>
+            <td>Nakuru Town West Constituency</td>
+            <td></td>
+            <td>0722985046</td>
+           
+        </tr>
+
+        <tr>
+            <td> Kabatini Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Karati Dispensary</td>
+            <td>Dispensary</td>
+            <td>Gilgil Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Karunga Dispensary</td>
+            <td>Dispensary</td>
+            <td>Gilgil Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kenlands Health Services Maili Sita</td>
+            <td>Comprehensive Health Centre</td>
+            <td>Bahati Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kiambogo Dispensary (Gilgil)</td>
+            <td>Dispensary</td>
+            <td>Gilgil Constituency</td>
+            <td>mohnaiva@yahoo.com</td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kianjoya Dispensary</td>
+            <td>Dispensary</td>
+            <td>Njoro Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> kigonor Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nakuru Town West Constituency</td>
+            <td></td>
+            <td>0712464299</td>
+           
+        </tr>
+
+        <tr>
+            <td> Kipkonyo Dispensary</td>
+            <td>Dispensary</td>
+            <td>Naivasha Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kiptangwanyi H/C</td>
+            <td>Basic Health Centre</td>
+            <td>Gilgil Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> LakeSide Integrated Medical Services(Naivasha)</td>
+            <td>Medical Clinic</td>
+            <td>Naivasha Constituency</td>
+            <td></td>
+            <td>0724444921</td>
+           
+        </tr>
+    </tbody>
+  </table>
+  
+  <div id="pagination" class="mb-3 mx-2">
+    <button id="prev-button" class="default-btn" style="background:gray; border-radius:0px; padding-top:0px; padding-bottom:0px;">Previous</button>
+    <span id="page-number"></span>
+    <button id="next-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Next</button>
+  </div>
+
+  <script>
+    
+    let rowsPerPage = 10;
+    let currentPage = 0;
+    let rows = Array.from(document.querySelectorAll('#my-table tbody tr'));
+    let numPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function showPage(page) {
+      currentPage = page;
+      let startIndex = currentPage * rowsPerPage;
+      let endIndex = startIndex + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+      });
+    }
+    
+    function showPrevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+    
+    function showNextPage() {
+      if (currentPage < numPages - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+    
+    document.querySelector('#search-button').addEventListener('click', function() {
+        let searchInput = document.querySelector('#search-input').value;
+        let tableRows = document.querySelectorAll('#table-body tr');
+      
+        tableRows.forEach(function(row) {
+          let name = row.children[0].textContent;
+          if (name.toLowerCase().indexOf(searchInput.toLowerCase()) === -1) {
+            row.style.display = "none";
+          } else {
+            row.style.display = "table-row";
+          }
+        });
+      });
+      
+    
+    document.querySelector('#prev-button').addEventListener('click', showPrevPage);
+    document.querySelector('#next-button').addEventListener('click', showNextPage);
+    
+    showPage(0);
+  </script>
+  
+  
+  
+  
+  {% endblock %} 

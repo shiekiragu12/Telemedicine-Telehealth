@@ -3,11 +3,10 @@
 
 {% block styles %}
 <!-- CkEditor -->
-<link href="{% static 'dashboard/vendor/ckeditor/ckeditor.css' %}" rel="stylesheet">
-
-<!-- Custom Stylesheet -->
-<link href="{% static 'dashboard/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
-<link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
+<!-- <link href="{% static 'dashboard/vendor/ckeditor/ckeditor.css' %}" rel="stylesheet"> -->
+<link href="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.css' %}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -15,61 +14,445 @@
     <div class="container-fluid">
         <div class="page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Facility</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Edit Facility</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0)">{{request.facility.name}}</a></li>
             </ol>
         </div>
         <!-- row -->
         <div class="row">
             <div class="col-xl-12 col-xxl-12">
-                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+
+                <!-- Basic facility information form -->
+                <form id="basic-info-form" method="post">
                     {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Basic Facility Details</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Name</label>
+                                        <input type="text" class="form-control" id="" name="name"
+                                            value="{{request.facility.name}}" placeholder="Facility Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-2">
+                                    <label for="facility_code" class="form-label">Facility Code</label>
+                                    <input type="text" required class="form-control shadow-none"
+                                        name="facility_code" id="facility_code" placeholder="Facility Code"
+                                        value="{{request.facility.facility_code}}">
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Owner Name</label>
+                                        <input type="text" class="form-control" id="" name="owner_name"
+                                            value="{{request.facility.owner_name}}" placeholder="Private Company Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">City / Town</label>
+                                        <input type="text" class="form-control" id="" name="city"
+                                            value="{{request.facility.city}}" placeholder="City or Town">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Email</label>
+                                        <input type="text" class="form-control" id="" name="email"
+                                            value="{{request.facility.email}}" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Contact Number</label>
+                                        <input type="text" class="form-control" id="" name="contact_no"
+                                            value="{{request.facility.contact_no}}" placeholder="Contact Number">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Address</label>
+                                        <textarea class="form-control" rows="4" id="" name="address"
+                                            placeholder="Address">{{request.facility.address}}</textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Geolocation information -->
+                <form id="geolocation-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Geo Location Details</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Latitude - <small>Up to 6 decimal places</small></label>
+                                        <input type="number" class="form-control" id="" name="latitude"
+                                            value="{{request.facility.latitude}}" step="0.000001" min="-180" max="180" placeholder="Latitude">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Longitude - <small>Up to 6 decimal places</small></label>
+                                        <input type="number" class="form-control" id="" name="longitude"
+                                            value="{{request.facility.longitude}}"  step="0.000001" min="-180" max="180" placeholder="Longitude">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Logo and cover image -->
+                <form id="logo-cover-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Logo & Cover Image</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">
+                                            Logo
+                                            {% if request.facility.logo %}
+                                            <small>Current: <a href="{{request.facility.logo.url}}"></a></small>
+                                            {% endif %}
+                                        </label>
+                                        <input type="file" accept="image/*" class="form-control" id="" name="logo"
+                                            placeholder="Logo">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">
+                                            Cover Image
+                                            {% if request.facility.cover_image %}
+                                            <small>Current: <a href="{{request.facility.cover_image.url}}"></a></small>
+                                            {% endif %}
+                                        </label>
+                                        <input type="file" accept="image/*" class="form-control" id=""
+                                            name="cover_image" placeholder="Cover Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Facility Type and Kind -->
+                <form id="kind-type-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Facility Type & Facility Kind</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Facility Type: <small>Current:
+                                                {{request.facility.facility_type.name}}</small></label>
+                                        <select class="form-control form-select " id="" name="facility_type"
+                                            placeholder="What type of facility is this">
+                                            {% for type in facility_types %}
+                                            <option value="{{type.id}}" class="text-capitalize"
+                                                selected="{% if type.id == request.facility.facility_type.id %} selected {% endif %}">
+                                                {{type.name}}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Facility Kind <small>Current:
+                                                {{request.facility.facility_kind}}</small></label>
+                                        <select class="form-control select" disabled name="facility_kind"
+                                            placeholder="General Category of the facility">
+                                            {% for option in options %}
+                                            <option value="pharmacy">{{option.label}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Facility specialities -->
+                <form id="specialities-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">What Does the Facility Deal in?</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Specialities
+                                            <small>Current:
+                                                {% for spec in request.facility.specialities.all %}
+                                                {{spec.name}},
+                                                {% endfor %}
+                                            </small>
+                                        </label>
+                                        <select class="form-control select" name="specialities"
+                                            placeholder="Specialities" multiple>
+                                            {% for spec in specialities %}
+                                            <option value="{{spec.id}}">{{spec.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Description -->
+                <form id="description-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Describe the facility in few words</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Description</label>
+                                        <textarea type="text" class="form-control" id="" rows="5" name="description"
+                                            placeholder="Describe the facility">{{request.facility.description}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="pb-3 ps-4">
+                            <button type="submit" class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- Facility location More information -->
+                <form id="location-more-info-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Location More Information</h4>
+                        </div>
+                        <div class="card-body custom-ekeditor">
+                            <div class="row">
+
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">County
+                                            <small>(Current: {{request.facility.county.name}})</small>
+                                        </label>
+                                        <select class="form-control select" name="county" placeholder="County">
+                                            {% for county in counties %}
+                                            <option value="{{county.id}}">{{county.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+
+                        <div class="my-2 ps-4">
+                            <button class="btn btn-primary rounded pill" style="width: 200px;">
+                                Update
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-xl-12 col-xxl-12">
+                <!-- Home page content form -->
+                <form id="home-page-content-form" action="{% url 'edit_facility' request.facility.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Facility Homepage</h4>
                         </div>
                         <div class="card-body custom-ekeditor">
-                            <textarea rows="20" id="ckeditor" name="home_page_content">
+                            <textarea rows="20" id="editor" name="home_page_content">
                                 {{request.facility.home_page_content}}
                             </textarea>
                         </div>
-                        <div class="my-2 ps-4" >
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+                        <div class="my-2 ps-4">
                             <button class="btn btn-primary rounded pill" style="width: 200px;">
                                 Save
                             </button>
                         </div>
                     </div>
                 </form>
-                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+
+                <!-- About page content form -->
+                <form id="about-page-content-form" action="{% url 'edit_facility' request.facility.id %}" method="post">
                     {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Facility About Page</h4>
                         </div>
                         <div class="card-body custom-ekeditor">
-                            <textarea id="editor" name="about_page_content">
+                            <textarea id="editor2" name="about_page_content">
                                 {{request.facility.about_page_content}}
                             </textarea>
                         </div>
-                        <div class="my-2 ps-4" >
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+                        <div class="my-2 ps-4">
                             <button class="btn btn-primary rounded pill" style="width: 200px;">
                                 Save
                             </button>
                         </div>
                     </div>
                 </form>
-                <form action="{% url 'edit_facility' request.facility.id %}" method="post">
+
+                <!-- Online page content form -->
+                <form id="online-page-content-form" action="{% url 'edit_facility' request.facility.id %}"
+                    method="post">
                     {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+                        placeholder="Facility Id">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Edit Facility About Page</h4>
                         </div>
                         <div class="card-body custom-ekeditor">
-                            <textarea id="editor2" name="online_page_content">
+                            <textarea id="editor3" name="online_page_content">
                                 {{request.facility.online_page_content}}
                             </textarea>
                         </div>
-                        <div class="my-2 ps-4" >
+                        <div class="row col-md-8 offset-md-2">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+                        <div class="my-2 ps-4">
                             <button class="btn btn-primary rounded pill" style="width: 200px;">
                                 Save
                             </button>
@@ -84,22 +467,148 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'dashboard/vendor/global/global.min.js' %}"></script>
-<script src="{% static 'dashboard/vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
 
 <!-- CkEditor -->
-<script src="{% static 'dashboard/vendor/ckeditor/ckeditor.js' %}"></script>
+<!-- <script src="{% static 'dashboard/vendor/ckeditor/ckeditor.js' %}"></script> -->
+<script src="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.js' %}"></script>
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
 
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
-        ClassicEditor
-        .create(document.querySelector('#editor2'))
-        .catch(error => {
-            console.error(error);
-        });
+    // ClassicEditor
+    //     .create(document.querySelector('#editor'))
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // ClassicEditor
+    //     .create(document.querySelector('#editor2'))
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // ClassicEditor
+    //     .create(document.querySelector('#editor3'))
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
 </script>
+
+<script>
+	$(document).ready(function () {
+		$('select').select2();
+		$('#editor').summernote({
+			height: 300,
+		});
+        $('#editor2').summernote({
+			height: 300,
+		});
+        $('#editor3').summernote({
+			height: 300,
+		});
+	});
+</script>
+
+<script>
+    // Edit facility script
+
+    const getFormErrorHolders = (form_id, target) => {
+        if (target === 0) {
+            return `#${form_id} #msgSubmit`
+        }
+        return `#${form_id} #msgSubmitErrors`
+    }
+
+    const spinner = () => {
+        return `
+			<div class="d-flex align-items-center justify-content-center flex-column py-2">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+    }
+
+    $(`#basic-info-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('basic-info-form')
+    })
+
+    $(`#geolocation-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('geolocation-form')
+    })
+
+    $(`#logo-cover-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('logo-cover-form')
+    })
+
+    $(`#kind-type-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('kind-type-form')
+    })
+
+    $(`#specialities-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('specialities-form')
+    })
+
+    $(`#description-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('description-form')
+    })
+
+    $(`#location-more-info-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('location-more-info-form')
+    })
+
+    $(`#home-page-content-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('home-page-content-form')
+    })
+
+    $(`#about-page-content-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('about-page-content-form')
+    })
+
+    $(`#online-page-content-form`).on("submit", e => {
+        e.preventDefault()
+        updateFacility('online-page-content-form')
+    })
+
+    function updateFacility(form_id) {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/api/facilities/${$(`#${form_id} #facility_id`).val()}/`
+
+        const formdata = new FormData(document.getElementById(form_id))
+        // formdata.append('facility', $("#appointment-form #facility_id").val())
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        $(getFormErrorHolders(form_id, 0)).html(spinner)  // msgSubmit holder
+        $(getFormErrorHolders(form_id, 1)).html("") // msgError holder
+        axios.put(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            console.log(response)
+            toastr.info('Facility Updated Successfully')
+            $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Facility Updated Successfully. On the next page refresh you can be able to see the updates.</div>`)
+        }).catch((error) => {
+            toastr.error(`Error - ${error.message}`)
+            $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
+            if (typeof error?.response?.data === 'object') {
+                const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+            }
+        });
+    };
+
+</script>
+
 {% endblock %}

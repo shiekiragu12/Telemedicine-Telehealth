@@ -1,0 +1,986 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Application Settings {% endblock %}
+
+{% block styles %}
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-description">
+                <h1>Application Settings</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account creation email -->
+    <form id="account-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Account Creation</h2>
+                <p><small>Email Configuration used when a new account is created.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.account_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required
+                                name="account_creation_email" tabindex="-1" style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.account_creation_email.id %} selected
+                                    {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.account_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="account_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.account_creation_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Reset Password email -->
+    <form id="password-reset-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Password Reset</h2>
+                <p><small>Email Configuration used when reseting password</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.reset_password_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="reset_password_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.reset_password_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.reset_password_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="reset_password_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.reset_password_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Activate Account Email -->
+    <form id="activate-account-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Activate Account</h2>
+                <p><small>Email Configuration used when activating account</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.activate_account_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="activate_account_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.activate_account_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.activate_account_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="activate_account_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.activate_account_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Order placement email -->
+    <form id="order-placement-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Order placement</h2>
+                <p><small>Email Configuration used when a new order has been placed.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.order_placement_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="order_placement_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.order_placement_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.order_placement_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="order_placement_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.order_placement_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Payment made received or made email -->
+    <form id="payment-made-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Payment made/received</h2>
+                <p><small>Email Configuration used when payment for an order has been made.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.payment_made_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="payment_made_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.payment_made_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.payment_made_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="payment_made_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.payment_made_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+     <!-- Patient Account Creation Email -->
+     <form id="patient-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Patient Creation Email</h2>
+                <p><small>Email Configuration used when a new patient has been signed to the system.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.patient_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="patient_creation_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.patient_creation_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.patient_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="patient_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.patient_creation_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+     <!-- Doctor Creation Email -->
+     <form id="doctor-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Doctor Creation Email Settings</h2>
+                <p><small>Email settings used when a new doctor has signed up.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.doctor_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="doctor_creation_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.doctor_creation_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.doctor_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="doctor_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.doctor_creation_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Doctor Authorization Email -->
+    <form id="doctor-authorized-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Doctor Authorization Email Settings</h2>
+                <p><small>Email settings used when a doctor has been authorized</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.doctor_authorized_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="doctor_authorized_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.doctor_authorized_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.doctor_authorized_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="doctor_authorized_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.doctor_authorized_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Appointment creation email -->
+    <form id="appointment-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Appointment Creation</h2>
+                <p><small>Email Configuration used when a new appointment has been made.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.appointment_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required
+                                name="appointment_creation_email" tabindex="-1" style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.appointment_creation_email.id %} selected {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.appointment_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="appointment_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.appointment_creation_emailconfig.id %} selected {% endif %}>
+                                    {{config.title}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+     <!-- Prescription Creation Email -->
+     <form id="prescription-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Prescription Creation Email Settings</h2>
+                <p><small>Email Configuration used when a new prescription has been made.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.prescription_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="prescription_creation_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.prescription_creation_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.prescription_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="prescription_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.prescription_creation_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <!-- Facility Creation Email -->
+    <form id="facility-creation-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Facility Creation Email Settings</h2>
+                <p><small>Email Configuration used when a facility has been created.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.facility_creation_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="facility_creation_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.facility_creation_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.facility_creation_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="facility_creation_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.facility_creation_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Facility Authorized Email -->
+    <form id="facility-authorized-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Facility Authorized Email Settings</h2>
+                <p><small>Email Configuration used when a facility has been authorized to operate.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.facility_authorized_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="facility_authorized_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.facility_authorized_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.facility_authorized_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="facility_authorized_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.facility_authorized_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Contact form -->
+    <form id="contact-form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control d-none" id="app_id" name="appid" value="{{app.id}}" placeholder="App Id">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Contact Form Email Settings</h2>
+                <p><small>Email Configuration used when a new contact has been made.</small></p>
+            </div>
+            <div class="card-body custom-ekeditor">
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Template
+                                <small>(Current: {{app.contact_form_email.subject}})</small>
+                            </label>
+                            <select class="js-states form-control" required name="contact_form_email" tabindex="-1"
+                                style="display: none; width: 100%">
+                                <option>Select Value</option>
+                                {% for email in emails %}
+                                <option value="{{email.id}}" {% if email.id == app.contact_form_email.id %} selected
+                                {% endif %}>{{email.subject}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">
+                                Email Configuration
+                                <small>(Current: {{app.contact_form_emailconfig.title}})</small>
+                            </label>
+                            <select class="form-control select" required name="contact_form_emailconfig"
+                                placeholder="County">
+                                <option>Select Value</option>
+                                {% for config in emailconfigs %}
+                                <option value="{{config.id}}" {% if config.id == app.contact_form_emailconfig.id %} selected
+                                {% endif %}>{{config.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-md-2 text-center">
+                <div id="msgSubmit"></div>
+                <div id="msgSubmitErrors"></div>
+            </div>
+
+            <div class="my-2 ps-4">
+                <button class="btn btn-primary rounded pill" style="width: 200px;">
+                    Update
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
+<script>
+    $('select').select2();
+</script>
+
+<script>
+
+    const getFormErrorHolders = (form_id, target) => {
+        if (target === 0) {
+            return `#${form_id} #msgSubmit`
+        }
+        return `#${form_id} #msgSubmitErrors`
+    }
+
+    // Account creation email
+    $(`#account-creation-form`).on("submit", e => {
+        e.preventDefault()
+        console.log("Reached")
+        updateSettings('account-creation-form')
+    })
+
+    // Password reset
+    $(`#password-reset-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('password-reset-form')
+    })
+
+    // Activate Account Email
+    $(`#activate-account-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('activate-account-form')
+    })
+
+    // Order placement email
+    $(`#order-placement-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('order-placement-form')
+    })
+
+    // Payment made email
+    $(`#payment-made-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('payment-made-form')
+    })
+
+    // Patient Creation email
+    $(`#patient-creation-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('patient-creation-form')
+    })
+
+    // Doctor Creation email
+    $(`#doctor-creation-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('doctor-creation-form')
+    })
+
+    // Doctor Authorized email
+    $(`#doctor-authorized-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('doctor-authorized-form')
+    })
+
+    // Appointment creationg email
+    $(`#appointment-creation-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('appointment-creation-form')
+    })
+
+    // Prescription Creation email
+    $(`#prescription-creation-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('prescription-creation-form')
+    })
+
+    // Facility creation email
+    $(`#facility-creation-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('facility-creation-form')
+    })
+
+    // Facility authorized email
+    $(`#facility-authorized-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('facility-authorized-form')
+    })
+
+    // Contact form email
+    $(`#contact-form`).on("submit", e => {
+        e.preventDefault()
+        updateSettings('contact-form')
+    })
+
+    function updateSettings(form_id) {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/api/appconfigs/${$(`#${form_id} #app_id`).val()}/`
+
+        const formdata = new FormData(document.getElementById(form_id))
+
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        $(getFormErrorHolders(form_id, 0)).html(spinner())  // msgSubmit holder
+        $(getFormErrorHolders(form_id, 1)).html("") // msgError holder
+        axios.put(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            toastr.info('App Config Updated Successfully')
+            $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">App Settings updated successfully.</div>`)
+        }).catch((error) => {
+            toastr.error(`Error - ${error.message}`)
+            $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
+            if (typeof error?.response?.data === 'object') {
+                $(getFormErrorHolders(form_id, 1)).html(`<div class="alert alert-danger my-1">${JSON.stringify(error.response.data, null, 4)}</div>`)
+            }
+        });
+    };
+</script>
+
+{% endblock %}

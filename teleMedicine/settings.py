@@ -25,13 +25,14 @@ SECRET_KEY = 'django-insecure-31sh+@f*(uu#3n8+oxbk6=#@hrjlu(e*4exjc2a4z)_9*^g45@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'tracking',  # Tracking user visits and page views
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,20 +46,32 @@ INSTALLED_APPS = [
     'shop',
     'mailer',
     'mainapp',
+    'superadmin',
+    'api',  # Api app - handles all the api stuff
+    'pharmacetical',
+    'patient',
+    'doctor',
 
     # Third party
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
+    'django_filters',
+    'rest_framework_swagger',  # For making api documentation
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 ROOT_URLCONF = 'teleMedicine.urls'
 
@@ -83,23 +96,44 @@ WSGI_APPLICATION = 'teleMedicine.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'telemedicine',
-#         'USER': 'root',
-#         'PASSWORD':'' ,
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mysql.connector.django',
+            'NAME': 'resqhdub_djangolive',
+            'USER': 'resqhdub_djangolive',
+            'PASSWORD': '*MVqZCxjxaQG',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
+
+# Email settings
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'sheerohkiragu@gmail.com'
+# EMAIL_HOST_PASSWORD = 'rugnataqrwsxqiba'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'mail.resq247.life'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'no-reply@resq247.life'
+EMAIL_HOST_PASSWORD = 'G{(bYvnt$o&I'
+
+ADMIN_EMAILS = ['resq247@gmail.com']
+
+# CORS settings
+# CORS_ALLOWED_ORIGINS = []
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -130,6 +164,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Tracking settings
+TRACK_AJAX_REQUESTS = True
+TRACK_ANONYMOUS_USERS = True
+TRACK_SUPERUSERS = False
+TRACK_PAGEVIEWS = True
+TRACK_REFERER = True
+TRACK_QUERY_STRING = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -137,8 +179,14 @@ STATIC_URL = 'static/'
 STATIC_ROOT = 'staticfiles/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = 'media/'
+if DEBUG:
+    # Dev media storage
+    MEDIA_URL = 'media/'
+    MEDIA_ROOT = 'media/'
+else:
+    # Production media storage and routing
+    MEDIA_ROOT = "/home/resqhdub/media.resq247.life/"
+    MEDIA_URL = "http://media.resq247.life/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

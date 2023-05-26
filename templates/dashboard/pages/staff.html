@@ -48,10 +48,16 @@
 											</div>
 										</td>
 										<td class="patient-info ps-0">
-											<span>
-												<img src="{{staff.user.profile.profile_photo.url}}" alt="">
-											</span>
-											<span class="text-nowrap ms-2">{{staff.user.first_name}} {{staff.user.last_name}}</span>
+											<a href="{% url 'staff_details' request.facility.id staff.id %}">
+												<div>
+													<span>
+														<img src="{% if staff.user.profile.profile_photo %} {{staff.user.profile.profile_photo.url}} {% endif %}" alt="">
+													</span>
+													<span class="text-nowrap ms-2">{{staff.user.first_name}}
+														{{staff.user.last_name}}
+													</span>
+												</div>
+											</a>
 										</td>
 										<td>
 											<span>{{staff.user.designation}}</span>
@@ -190,76 +196,84 @@
 				<form id="add-staff-form" action="{% url 'staff_create' request.facility.id %}"
 					enctype="multipart/form-data" method="post">
 					{% csrf_token %}
+					<input type="text" class="form-control d-none" id="facility_id" value="{{request.facility.id}}"
+						placeholder="Facility Id" name="facility">
 					<div class="row">
 
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">First Name</label>
 								<input type="text" class="form-control" id="" placeholder="First Name"
-									name="first_name">
+									name="user.first_name">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Last Name</label>
-								<input type="text" class="form-control" id="" placeholder="Last Name" name="last_name">
+								<input type="text" class="form-control" id="" placeholder="Last Name"
+									name="user.last_name">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Username</label>
-								<input type="text" class="form-control" id="" placeholder="Username" name="username">
+								<input type="text" class="form-control" id="" placeholder="Username"
+									name="user.username">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Email</label>
+								<input type="email" class="form-control" id="" placeholder="Email" name="user.email">
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Mobile No</label>
+								<input type="number" class="form-control" id="" placeholder="Mobile"
+									name="user.profile.phone_number">
+							</div>
+						</div>
+
+						<div class="col-xl-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Country</label>
+								<input type="text" class="form-control" id="" placeholder="Country"
+									name="user.profile.country">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">City</label>
-								<input type="text" class="form-control" id="" placeholder="City" name="city">
+								<input type="text" class="form-control" id="" placeholder="City"
+									name="user.profile.city">
 							</div>
 						</div>
+
 						<div class="col-xl-12">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Date Of Birth:</label>
-								<input size="16" type="date" value="13-9-2021" class="form-control" name="dob">
+								<input size="16" type="date" value="13-9-2021" class="form-control"
+									name="user.profile.dob">
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Gender</label>
-								<select class="form-control" name="gender">
-									<option>Male</option>
-									<option>Female</option>
+								<select class="form-control" name="user.profile.gender">
+									<option value="male">Male</option>
+									<option value="female">Female</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-xl-6">
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">Designation:</label>
-								<input type="text" class="form-control" id="" placeholder="Nurse" name="designation">
+								<label for="exampleFormControlFile1">Profile Picture:</label>
+								<input type="file" class="form-control" id="exampleFormControlFile1"
+									name="user.profile.profile_photo">
 							</div>
 						</div>
 
-						<div class="col-xl-6">
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Mobile No</label>
-								<input type="number" class="form-control" id="" placeholder="Mobile"
-									name="phone_number">
-							</div>
-						</div>
-
-						<div class="col-xl-6">
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Email</label>
-								<input type="email" class="form-control" id="" placeholder="Email" name="email">
-							</div>
-						</div>
-						<div class="col-xl-12">
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Postal Code</label>
-								<input type="text" class="form-control" id="" placeholder="Postal Code"
-									name="postal_code">
-							</div>
-						</div>
 						<div class="col-xl-12">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Address</label>
@@ -267,11 +281,11 @@
 									name="address"></textarea>
 							</div>
 						</div>
-						<div class="col-xl-6">
+
+						<div class="col-xl-12">
 							<div class="form-group">
-								<label for="exampleFormControlFile1">Profile Picture:</label>
-								<input type="file" class="form-control-file" id="exampleFormControlFile1"
-									name="profile_photo">
+								<label for="message-text" class="col-form-label">Designation</label>
+								<input type="text" class="form-control" id="" placeholder="Nurse" name="designation">
 							</div>
 						</div>
 						<div class="col-xl-12">
@@ -284,6 +298,11 @@
 
 					</div>
 
+					<div class="row col-md-8 offset-md-2 text-center">
+						<div id="msgSubmit" class="py-2"></div>
+						<div id="msgSubmitErrors" class="py-2"></div>
+					</div>
+
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -293,4 +312,58 @@
 		</div>
 	</div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	$("#staff-add-form").on("submit", e => {
+		e.preventDefault()
+		postDoctor()
+	})
+
+	const postDoctor = () => {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/staff/`
+
+		const formdata = new FormData(document.getElementById("add-staff-form"))
+
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$("#msgSubmitErrors").html("")
+		$("#msgSubmit").html(spinner)
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+			console.log(data)
+			toastr.info('Staff Created Successfully')
+			$("#msgSubmit").html(`<div class="alert alert-success">Staff Created Successfully. On the next page refresh you can be able to see the newly created staff Member.</div>`)
+		}).catch((error) => {
+			console.log(error.response.data)
+			toastr.error(`Error - ${error.message}`)
+			$("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				$("#msgSubmitErrors").html(`<div class="alert alert-danger">${JSON.stringify(error.response.data, null, 4)}</div>`)
+			}
+		});
+	};
+
+</script>
+
 {% endblock %}

@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} {{doctor.user.get_full_name}} {% endblock title %}
+
+{% block styles %}
+<!-- Pick date -->
+<link rel="stylesheet" href="{% static 'dashboard/vendor/pickadate/themes/default.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/vendor/pickadate/themes/default.date.css' %}">
+<!-- Clockpicker -->
+<link href="{% static 'dashboard/vendor/clockpicker/css/bootstrap-clockpicker.min.css' %}" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet">
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<style>
+    .profile-photo {
+        width: 100%;
+        height: auto;
+    }
+
+    .profile-photo img {
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Dr. {{doctor.user.get_full_name}}</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Dr. {{doctor.user.get_full_name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<div class="container">
+    <div class="service-details ptb-100">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile-photo">
+                    {% if doctor.user.profile.profile_photo %}
+                    <img src="{{doctor.user.profile.profile_photo.url}}" alt="{{doctor.user.full_name}}">
+                    {% else %}
+                    <img src="{% static 'assets/img/team/image1.jpg' %}" alt="{{doctor.user.full_name}}">
+                    {% endif %}
+                </div>
+                <div class="my-3">
+                    <h4>Dr. {{doctor.user.get_full_name}}</h4>
+                    <div>
+                        <h5>SPecialities</h5>
+                        <ul class="list-group">
+                            {% for spec in doctor.specialities.all %}
+                            <li class="list-group-item">
+                                <p class="m-0 p-0">{{spec.name}}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h4 class="mb-3">About</h4>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    {% if doctor.is_verified %}
+                    <button class="btn text-dark btn-sm px-3"
+                        style="border-radius: 10px; background: rgba(39, 255, 39, 0.521);">
+                        <i class="fa fa-trophy"></i>
+                        Verified
+                    </button>
+                    {% else %}
+                    <button class="btn text-dark btn-sm px-3"
+                        style="border-radius: 10px; background: rgba(255, 39, 39, 0.521);">
+                        <i class="fa fa-trophy"></i>
+                        Not Verified
+                    </button>
+                    {% endif %}
+                    <div class="p- m-0">
+                        {{doctor.speciality_field.name}}
+                    </div>
+                </div>
+                <p class="mb-3">{{doctor.about}}</p>
+                <h4 class="mb-3">Academic Qualifications</h4>
+                <div>
+                    <div class="row">
+                        {% for edu in doctor.qualifications.all %}
+                        <div class="col-md-4">
+                            <div class="card shadow shadow border-0">
+                                <div class="card-body">
+                                    <h6 class="mb-2">{{edu.course.name}}</h6>
+                                    <p class="mb-2">Year: {{edu.year}}</p>
+                                    <p>{{edu.institution}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-primary" style="border-radius: 20px;">
+            <div class="col-md-10 offset-md-1 py-5">
+                <h4>Book Appointment</h4>
+                <p>Book an appointment with this doctor.</p>
+                {% include './../schedule/schedule-component.html' with doctor=doctor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- pickdate -->
+<script src="{% static 'dashboard/vendor/pickadate/picker.js' %}"></script>
+<script src="{% static 'dashboard/vendor/pickadate/picker.time.js' %}"></script>
+<script src="{% static 'dashboard/vendor/pickadate/picker.date.js' %}"></script>
+<!-- clockpicker -->
+<script src="{% static 'dashboard/vendor/clockpicker/js/bootstrap-clockpicker.min.js' %}"></script>
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+    })
+</script>
+
+<script>
+    // Date picker
+    // $('#date').pickadate({
+    // 	format:'y.m.d'
+    // });
+
+    // Time picker
+    $('#start_time').pickatime(
+        {
+            min: [8, 30],
+            max: [16, 0],
+            interval: 15,
+        }
+    )
+
+    $('#end_time').pickatime(
+        {
+            min: [8, 30],
+            max: [16, 0],
+            interval: 15,
+        }
+    )
+
+
+
+    $(document).on('click', '.edit-appointment', function () {
+        $('#appointment-edit-form').modal('show');
+    });
+    $(document).on('click', '.add-appointment', function () {
+        $('#appointment-add-form').modal('show');
+    });
+    (function ($) {
+
+        var table = $('#example5').DataTable({
+            searching: false,
+            paging: true,
+            select: false,
+            //info: false,         
+            lengthChange: false
+
+        });
+        // $('#example tbody').on('click', 'tr', function () {
+        // 	var data = table.row(this).data();
+
+        // });
+
+    })(jQuery);
+
+	// jQuery('#mdate').datetimepicker({
+	// 	datepicker: true,
+	// 	// format: 'H:i'
+	// });
+</script>
+<script>
+
+    const spinner = () => {
+        return `
+			<div class="d-flex align-items-center justify-content-center flex-column">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+    }
+
+    // $("#appointment-form").on("submit", e => {
+    //     e.preventDefault()
+    //     postAppointment()
+    // })
+
+    function makeToastrNotifications() {
+        toastr.options = {
+            positionClass: "toast-bottom-right",
+            progressBar: true,
+            timeOut: 60000
+        }
+        for (const field in errors) {
+            if (errors.hasOwnProperty(field)) {
+                const errorMessages = errors[field].join('<br>');
+                toastr.error(`${field}: ${errorMessages}`);
+            }
+        }
+    }
+
+    function displayToastrErrors(errors, parentKey = null) {
+        toastr.options = {
+            positionClass: "toast-bottom-right",
+            progressBar: true,
+            timeOut: 6000
+        }
+        for (const field in errors) {
+            if (errors.hasOwnProperty(field)) {
+                const key = parentKey ? `${parentKey}.${field}` : field;
+                const value = errors[field];
+
+                if (Array.isArray(value)) {
+                    const errorMessages = value.join('<br>');
+                    toastr.error(`${key}: ${errorMessages}`);
+                }
+                else {
+                    displayToastrErrors(value, key);
+                }
+            }
+        }
+    }
+
+
+</script>
+{% endblock %}

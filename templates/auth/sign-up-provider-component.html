@@ -1,0 +1,282 @@
+{% load customtags %}
+
+<div class="signup-form" style="max-width: 100%;">
+    <h3>Create your Provider Account</h3>
+    {% for msg in messages %}
+    {% if msg.tags == 'error' %}
+    <div class="alert alert-danger">
+        {{msg}}
+    </div>
+    {% else %}
+    <div class="alert alert-{{msg.tags}}">
+        {{msg}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <form method="post" id="doctor-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <h4>Basic Information</h4>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="" class="form-label">First Name*</label>
+                    <input required type="text" class="form-control" placeholder="First Name" name="user.first_name"
+                        value="{{user.first_name}}">
+                </div>
+            </div>  
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="" class="form-label">Last Name*</label>
+                    <input required type="text" class="form-control" placeholder="Last Name" name="user.last_name"
+                        value="{{user.last_name}}">
+                </div>
+            </div>
+
+            <!-- <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Username</label>
+                    <input required type="text" class="form-control" placeholder="Username" name="user.username"
+                        value="{{user.username}}">
+                </div>
+            </div> -->
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Email*</label>
+                    <input required type="email" id="user-email" class="form-control" placeholder="Email"
+                        name="user.email" value="{{user.email}}">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Password * <small>(8 characters minimum, include symbols, numbers & alphabets)</small> </label>
+                    <input required type="password" minlength="8" class="form-control pass1" placeholder="Password" name="user.password">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Confirm Password * <small>(8 characters minimum, include symbols, numbers & alphabets)</small></label>
+                    <input required type="password" minlength="8" class="form-control pass2" placeholder="Confirm Password"
+                        name="user.password1">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <h4>Profile Information</h4>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="" class="form-label">Country Code</label>
+                            <select required class="w-100 form-control" name="user.profile.country_code">
+                                <option value="">Code</option>
+                                {% for code in ''|country_codes %}
+                                <option value="{{code}}">{{code}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="" class="form-label">Phone Number*</label>
+                                <input required type="number" class="form-control phone" placeholder="700000000"
+                                    name="user.profile.phone_number" minlength="9" maxlength="9">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group overflow-hidden">
+                    <label for="" class="form-label">Gender*</label>
+                    <select required class="w-100 form-control" name="user.profile.gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="" class="form-label">Profile Photo*</label>
+                    <div class="input-group">
+                        <input required type="file" accept="image/png, image/jpg, image/jpeg" class="form-control"
+                            name="user.profile.profile_photo" maxlength="9">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="" class="form-label">Town/City</label>
+                    <input required type="text" class="form-control" placeholder="Town/City" name="user.profile.city">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Address*</label>
+                    <div class="input-group">
+                        <textarea required class="form-control" name="user.profile.address"
+                            placeholder="P.0 BOX 1212-00100 Nairobi"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <h4>Proffessional Information</h4>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+                <label for="" class="form-label">About</label>
+                <textarea required class="form-control" rows="4" placeholder="About You" name="about"></textarea>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">What are your Specialities</label>
+                    <select class="w-100 form-control" name="specialities">
+                        {% for speciality in specialities %}
+                        <option value="{{speciality.id}}">{{speciality.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">What are you Signing Up as</label>
+                    <select class="w-100 form-control" name="speciality_field">
+                        {% for field in specialityfields %}
+                        <option value="{{field.id}}">{{field.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="d-flex align-items-center justify-content-between">
+                    <label for="">Qualifications</label>
+                    <button
+                        class="btn btn-sm btn-primary d-flex gap-3 align-items-center justify-content-center rounded"
+                        data-bs-toggle="modal" data-bs-target="#qualification-modal" type="button">
+                        <span class="text-white">Add</span>
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Institution</th>
+                                <th>Year</th>
+                                <th>Notes</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody id="qualifications-holder">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <h4>Licensing</h4>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">License Number</label>
+                    <input required type="text" class="form-control" placeholder="License Number" name="license_number">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">Regulatory Body</label>
+                    <input required type="text" class="form-control" placeholder="Regulatory Body"
+                        name="regulatory_body">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="" class="form-label">License Document</label>
+                    <input required type="file" accept="application/pdf" class="form-control" name="license_file">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="">
+                    <div id="msgSubmit"></div>
+                    <div id="msgSubmitErrors"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="send-btn">
+                    <button class="default-btn">Sign Up Now</button>
+                </div>
+                <br>
+                <span>Already a registered user? <a href="{% url 'signin' %}">Login!</a></span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Adding qualification modal -->
+
+<div class="modal fade" id="qualification-modal" tabindex="-1" aria-labelledby="qualification-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="qualification-modal">Add New Qualification</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="qualification-form">
+                    <div class="vstack gap-2">
+                        <div class="form-group">
+                            <label for="" class="form-label">Course</label>
+                            <select class="w-100 form-select shadow-none not-select" id="course" name="course">
+                                {% for course in courses %}
+                                <option value="{{course.id}}">{{course.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Institution</label>
+                            <input type="text" required class="form-control shadow-none" id="institution">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Year</label>
+                            <input type="number" required class="form-control shadow-none" id="year">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Notes <small>If course selected is other, indicate here.</small> </label>
+                            <input type="text" class="form-control shadow-none" id="notes">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Supporting Document</label>
+                            <input type="file" accept="application/pdf" required class="form-control shadow-none"
+                                id="file">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="qualification-form" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

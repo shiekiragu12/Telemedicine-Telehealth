@@ -1,0 +1,75 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block title %} Approved Products {% endblock %}
+
+{% block content %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Approved Products</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            {% for product in approved_products %}
+            <div class="col-lg-12 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row m-b-30">
+                            <div class="col-md-5 col-xxl-12">
+                                <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+                                    <div class="new-arrivals-img-contnent">
+                                        <img class="img-fluid" src="{{product.image.url}}" alt="" style="height:215px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-xxl-12">
+                                <div class="new-arrival-content position-relative">
+                                    <h4><a href="ecom-product-detail.html">{{product.name}}</a></h4>
+                                    <div class="comment-review star-rating">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star-half-empty"></i></li>
+                                            <li><i class="fa fa-star-half-empty"></i></li>
+                                        </ul>
+                                        <span class="review-text">(34 reviews) / </span><a class="product-review"
+                                            href="ecom-product-list.html" data-bs-toggle="modal"
+                                            data-bs-target="#reviewModal">Write a review?</a>
+                                        <p class="price">{{product.pice}}</p>
+                                    </div>
+                                    <p>Availability: <span class="item"> In stock <i
+                                                class="fa fa-check-circle text-success"></i></span></p>
+                                    <p>Product code: <span class="item">{{product.code}}</span> </p>
+                                    <p>Brand: <span class="item">{{product.brand}}</span></p>
+                                    <p class="text-content">{{product.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Required vendors -->
+<script src="{% static 'dashboard/vendor/global/global.min.js' %}"></script>
+<script src="{% static 'dashboard/vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+
+
+<script src="{% static 'dashboard/vendor/star-rating/jquery.star-rating-svg.js' %}"></script>
+<!-- Circle progress -->
+
+
+<script src="{% static 'dashboard/js/custom.min.js' %}"></script>
+<script src="{% static 'dashboard/js/deznav-init.js' %}"></script>
+<script src="{% static 'dashboard/js/demo.js' %}"></script>
+<!-- <script src="{% static 'dashboard/js/styleSwitcher.js' %}"></script> -->
+{% endblock %}

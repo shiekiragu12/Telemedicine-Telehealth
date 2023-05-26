@@ -1,0 +1,344 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Facilities {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-description">
+                <h1>Facilities</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-primary">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Total Facilities</span>
+                            <span class="widget-stats-amount">{{total_facilities}}</span>
+                            <!-- <span class="widget-stats-info">471 Orders Total</span> -->
+                        </div>
+                        <!-- <div class="widget-stats-indicator widget-stats-indicator-negative align-self-start">
+                            <i class="material-icons">keyboard_arrow_down</i> 4%
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="row col">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="filter-form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>Filter</h5>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">County</label>
+                                        <select name="county" id="" class="form-select w-100">
+                                            <option value="">Select County</option>
+                                            {% for county in 'counties'|counties %}
+                                            <option value="{{county.id}}" {% if request.GET.county == county.id|stringformat:"i" %} selected {% endif %} >{{county.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Constituency</label>
+                                        <select name="constituency" id="" class="form-select w-100">
+                                            <option value="">Select Constituency</option>
+                                            {% for const in 'const'|constituencies %}
+                                            <option value="{{const.id}}" {% if request.GET.constituency == const.id|stringformat:"i" %} selected {% endif %} >{{const.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Authorized</label>
+                                        <select name="authorized" id="" class="form-select w-100">
+                                            <option value="">Select</option>
+                                            <option value="True" {% if request.GET.authorized == 'True' %} selected {% endif %} >Authorized</option>
+                                            <option value="False" {% if request.GET.authorized == 'False' %} selected {% endif %}>Not Authorized</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Ordering</label>
+                                        <select name="ordering" id="" class="form-select w-100">
+                                            <option value="">Select</option>
+                                            <optgroup label="Ascending">
+                                                <option value="id" {% if request.GET.ordering == 'id' %} selected {% endif %} >ID</option>
+                                                <option value="name" {% if request.GET.ordering == 'name' %} selected {% endif %}>Name</option>
+                                            </optgroup>
+                                            <optgroup label="Descending">
+                                                <option value="-id" {% if request.GET.ordering == '-id' %} selected {% endif %} >ID</option>
+                                                <option value="-name" {% if request.GET.ordering == '-name' %} selected {% endif %}>Name</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Search</label>
+                                        <input name="search" type="search" value="{{request.GET.search}}" placeholder="Enter Search Text" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="form-label"> Limit</label>
+                                        <select name="limit" id="" class="form-select w-100">
+                                            <option value="">Select Limit</option>
+                                            <option value="10" {% if request.GET.limit == '10' %} selected {% endif %} >10</option>
+                                            <option value="25" {% if request.GET.limit == '25' %} selected {% endif %} >25</option>
+                                            <option value="50" {% if request.GET.limit == '50' %} selected {% endif %} >50</option>
+                                            <option value="75" {% if request.GET.limit == '75' %} selected {% endif %} >75</option>
+                                            <option value="100" {% if request.GET.limit == '100' %} selected {% endif %} >100</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="h-100 d-flex gap-3 align-items-end">
+                                        <button type="submit" class="btn btn-primary py-2 px-4">
+                                            Filter/Search
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <div class="h-100 d-flex align-items-end">
+                                    <p>Showing {{page_obj|length}} results of {{paginator_count}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table id="datatable4" class="display nowrap custom-table" style="width:auto">
+                    <thead>
+                        <tr>
+                            <th class="custom-th-text">Name</th>
+                            <th class="custom-th">Facility Code</th>
+                            <th class="custom-th">Owner</th>
+                            <th class="custom-th">Owner Name</th>
+                            <th class="custom-th">Facility Type</th>
+                            <th class="custom-th">Authorized</th>
+                            <th class="custom-th">County</th>
+                            <th class="custom-th">Constituency</th>
+                            <th class="custom-th">Contact Number</th>
+                            <th class="custom-th">Email</th>
+                            <th class="custom-th">Registered On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in page_obj %}
+                        <tr>
+                            <td class="w-custom">
+                                <a href="{% url 'super-admin-facilities-single' obj.id %}" class="custom-name-holder">
+                                    <div
+                                        class="avatar rounded-circle avatar-sm me-2 d-flex align-items-center justify-content-center bg-light text-capitalize p-1">
+                                        {% if obj.logo %}
+                                        <img src="{{obj.logo.url}}" alt="">
+                                        {% else %}
+                                        {{obj.name|get_first_letter}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="vstack gap-0">
+                                        <p class="m-0 p-0">{{obj.name}} </p>
+                                        <p class="m-0 p-0">
+                                            <small>{{obj.email}}</small>
+                                        </p>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                {{obj.facility_code}}
+                            </td>
+                            <td class="w-custom">
+                                {% if obj.owner %}
+                                <div class="custom-name-holder">
+                                    <div
+                                        class="avatar rounded-circle avatar-sm me-2 d-flex align-items-center justify-content-center bg-light text-capitalize p-1">
+                                        {% if obj.owner.profile.profile_photo %}
+                                        <img src="{{obj.owner.profile.profile_photo.url}}" alt="">
+                                        {% else %}
+                                        {{obj.owner.username|get_first_letter}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="vstack gap-0">
+                                        <p class="m-0 p-0">{{obj.owner.first_name}} {{obj.owner.last_name}}</p>
+                                        <p class="m-0 p-0">
+                                            <small>{{obj.owner.email}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </td>
+                            <td>{{obj.owner_name}}</td>
+                            <td>{{obj.facility_type.name}}</td>
+                            <td>
+                                <div class="btn-group dropend">
+                                    {% if obj.authorized %}
+                                    <button type="button" class="btn rounded-pill btn-success">
+                                        AUthorized
+                                    </button>
+                                    {% else %}
+                                    <button type="button" class="btn rounded-pill btn-warning">
+                                        Not Authorized
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td>{{obj.county.name}}</td>
+                            <td>{{obj.constituency.name}}</td>
+                            <td>{{obj.contact_name}}</td>
+                            <td>{{obj.email}}</td>
+                            <td>{{obj.created_on}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="custom-th-text">Name</th>
+                            <th class="custom-th">Facility Code</th>
+                            <th class="custom-th">Owner</th>
+                            <th class="custom-th">Owner Name</th>
+                            <th class="custom-th">Facility Type</th>
+                            <th class="custom-th">Authorized</th>
+                            <th class="custom-th">County</th>
+                            <th class="custom-th">Constituency</th>
+                            <th class="custom-th">Contact Number</th>
+                            <th class="custom-th">Email</th>
+                            <th class="custom-th">Registered On</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="pagination-section">
+                    <div>
+                        {% if request.GET.page %}
+                        <p>Showing page {{request.GET.page}} of {{page_count}}</p>
+                        {% else %}
+                        <p>Showing page 1 of {{page_count}}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="border-0">
+                        <nav aria-label="Page navigation example py-2">
+                            <ul class="pagination flex-wrap">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request.build_absolute_uri|update_page_param:page_obj.previous_page_number }}">
+                                        Previous
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                                        Previous
+                                    </a>
+                                </li>
+                                {% endif %}
+    
+                                {% for page in pages %}
+                                {% if request.GET.page == page|stringformat:'i' %}
+                                <li class="page-item active">
+                                    <a class="page-link" aria-current="page" href="javascript:void(0)">
+                                        {{page}}
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ request.build_absolute_uri|update_page_param:page }}">
+                                        {{page}}
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+    
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="{{ request.build_absolute_uri|update_page_param:page_obj.next_page_number }}">
+                                        Next
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1" href="javascript:void(0)" aria-disabled="true">
+                                        Next
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Email Preview modal -->
+<div class="modal fade" id="email-preview" tabindex="-1" aria-labelledby="email-preview-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="email-preview-title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    $(document).ready(function () {
+        "use strict";
+        $('select').select2()
+
+        // DataTable
+        var table = $('#datatable4').DataTable({
+            scrollY: false,
+            scrollX: true,
+            pageLength: 50,
+
+            paging: false,
+            info: false,
+            searching: false,
+        });
+
+    })
+</script>
+{% endblock %}

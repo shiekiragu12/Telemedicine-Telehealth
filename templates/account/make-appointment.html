@@ -1,0 +1,176 @@
+{% extends './../base.html' %}
+{% load static %}
+
+{% block title %} Delivered Prescription Orders {% endblock %}
+
+{% block content %}
+<div class="content-body">
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="page-titles">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Delivered Prescription Orders</a></li>
+			</ol>
+		</div>
+
+		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+			<div class="me-auto d-none d-lg-block">
+				<h3 class="text-black font-w600">Delivered Prescription Orders</h3>
+				<p class="mb-0 fs-18">Orders for prescription that have been marked as delivered by the pharmacy.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example5" class="table table-striped patient-list mb-4 dataTablesCard fs-14">
+								<thead>
+									<tr>
+										<th style="min-width: 150px;">Patient</th>
+										<th class="c-header">Prescription</th>
+										<th class="c-header">Amount</th>
+										<th class="c-header">Notes</th>
+										<th class="c-header">Status</th>
+										<th class="c-header">Paid</th>
+										<th class="c-header">Created On</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									{% for obj in prescriptions %}
+									<tr>
+										<td>
+											{{obj.prescription.patient.user.first_name}}
+											{{obj.prescription.patient.user.last_name}}
+										</td>
+										<td>
+											<button class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#info-modal"
+												data-bs-title="{{obj.prescription.patient.user.first_name}} {{obj.prescription.patient.user.last_name}}'s Prescription from doctor"
+												data-bs-content="{{obj.prescription.prescription}}">
+												Read
+											</button>
+										</td>
+										<td>
+											{{obj.amount}}
+										</td>
+										<td>
+											<button class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#info-modal"
+												data-bs-title="{{obj.prescription.patient.user.first_name}} {{obj.prescription.patient.user.last_name}}'s Prescription from doctor"
+												data-bs-content="{{obj.notes}}">
+												Read
+											</button>
+										</td>
+										<td>
+											<div class="btn-group dropend">
+												{% if obj.status == 'new' %}
+												<button type="button" class="btn rounded-pill btn-default dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													New
+												</button>
+												{% elif obj.status == 'confirmed' %}
+												<button type="button" class="btn rounded-pill btn-primary dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													Confirmed
+												</button>
+												{% elif obj.status == 'pending' %}
+												<button type="button" class="btn rounded-pill btn-warning dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													Pending
+												</button>
+												{% elif obj.status == 'delivered' %}
+												<button type="button" class="btn rounded-pill btn-success dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													Delivered
+												</button>
+												{% elif obj.status == 'undelivered' %}
+												<button type="button" class="btn rounded-pill btn-danger dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+													Un-Delivered
+												</button>
+												{% else %}
+												<button type="button" class="btn rounded-pill btn-secondary dropdown-toggle"
+													data-bs-toggle="dropdown" aria-expanded="false">
+												   Unknown
+												</button>
+												{% endif %}
+												<ul class="dropdown-menu p-2 dropdown-menu-dar">
+													<li>
+														Mark As
+													</li>
+													<li>
+														<a class="dropdown-item"
+															href="{% url 'change-prescription-order-status' request.facility.id obj.id 'new' %}">
+															New
+														</a>
+													</li>
+													<li>
+														<a class="dropdown-item"
+															href="{% url 'change-prescription-order-status' request.facility.id obj.id 'confirmed' %}">
+															Confirmed
+														</a>
+													</li>
+													<li>
+														<a class="dropdown-item"
+															href="{% url 'change-prescription-order-status' request.facility.id obj.id 'pending' %}">
+															Pending
+														</a>
+													</li>
+													<li>
+														<a class="dropdown-item"
+															href="{% url 'change-prescription-order-status' request.facility.id obj.id 'delivered' %}">
+															Delivered
+														</a>
+													</li>
+													<li>
+														<a class="dropdown-item"
+															href="{% url 'change-prescription-order-status' request.facility.id obj.id 'undelivered' %}">
+															Undelivered
+														</a>
+													</li>
+												</ul>
+											</div>
+										</td>
+										<td>
+											<td>
+												{% if obj.paid %}
+												<button class="btn btn-success px-4">
+													Paid
+												</button>
+												{% else %}
+												<button class="btn btn-primary px-4">
+													Not Paid
+												</button>
+												{% endif %}
+											</td>
+										</td>
+										<td class="text-primary">
+											{{obj.created_on}}
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var modal = document.getElementById('exampleModal');
+		modal.addEventListener('shown.bs.modal', function () {
+			var nameField = document.getElementById('name');
+			nameField.focus();
+		});
+	});
+
+</script>
+{% endblock %}

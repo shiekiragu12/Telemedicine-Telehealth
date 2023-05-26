@@ -1,0 +1,105 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load customtags %}
+
+{% block title %} Images {% endblock %}
+
+{% block styles %}
+<link href="{% static 'dashboard/vendor/lightgallery/css/lightgallery.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-description">
+                <h1>Media</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card widget widget-stats">
+                <div class="card-body">
+                    <div class="widget-stats-container d-flex">
+                        <div class="widget-stats-icon widget-stats-icon-primary">
+                            <i class="material-icons">save</i>
+                        </div>
+                        <div class="widget-stats-content flex-fill">
+                            <span class="widget-stats-title">Total Media</span>
+                            <span class="widget-stats-amount">{{total_media}}</span>
+                            <!-- <span class="widget-stats-info">471 Orders Total</span> -->
+                        </div>
+                        <!-- <div class="widget-stats-indicator widget-stats-indicator-negative align-self-start">
+                            <i class="material-icons">keyboard_arrow_down</i> 4%
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Images</div>
+        <div class="card-body">
+            <div class="row" id="lightgallery">
+                {% for file in 'images'|get_media %}
+                <div data-exthumbimage="{{file.file.url}}" data-src="{{file.file.url}}" class="col-md-2">
+                    <img src="{{file.file.url}}" class="rounded" style="max-width: 100%;" alt="Image">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'dashboard/vendor/lightgallery/js/lightgallery-all.min.js' %}"></script>
+
+<script>
+    $('#lightgallery').lightGallery({
+        loop: true,
+        thumbnail: true,
+        exThumbImage: 'data-exthumbimage'
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        "use strict";
+
+        // $('#datatable4 tfoot th').each(function () {
+        //     var title = $(this).text();
+        //     $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+        // });
+
+        // DataTable
+        var table = $('#datatable4').DataTable({
+            // scrollY: "300px",
+            scrollX: true,
+            // scrollCollapse: true,
+            // paging: true,
+
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            }
+        });
+
+    })
+</script>
+
+{% endblock %}

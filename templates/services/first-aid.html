@@ -1,96 +1,413 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} First Aid {% endblock title %}
+
 {% block content %}
 
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-5">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>Services Details</h2>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li>Services Details</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-11">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="container">
+        <div class="page-title-content">
+          <h2 style="color:white">First Aid</h2>
+          <ul>
+            <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
+            <li style="color:white">First Aid</li>
+          </ul>
         </div>
-        <!-- End Page Title Area -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Title Area -->
 
-        <!-- Service details -->
-        <div class="service-details ptb-100">
-            <div class="container">
-                <div class="service-details-image">
-                    <img src="assets/img/single-service.jpg" alt="image">
-                </div>
+<!-- Service details -->
+<div class="service-details ptb-100">
+  <div class="container">
+    <div class="row">
+      <div class="service-details-image col-lg-6">
+        <img src="{% static 'assets/img/aid.png'%}" alt="image">
+      </div>
+      <div class="col-lg-6">
+        <h3>FIRE SAFETY AND FIRST AID TRAININGS</h3>
 
-                <div class="service-details-content">
-                    <h3>We care your health and checkup with best</h3>
-        
-                    <p></p>
-                    <h4>Our Services</h4>
-                    <p>No fake products and services. The customer is king, their lives and needs are the inspiration. But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-            
-                    <h4>Define Your Category</h4>
-<p></p>
-                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this.</p>
+        <p>
+          Fire Safety & First Aid Training is a crucial aspect of safety awareness, organizational preparedness
+          to handle emergencies are critical in making sure people’s lives are not at risks and properties
+          protected. which teach individuals how to prevent and respond to fire and medical emergencies. An
+          estimated 180,000 lives are lost by burns, vast majority happen in low- and middle-income countries.
+          In health , top global causes of death, in order of total number of lives lost, are associated with three:
+          cardiovascular (ischaemic heart disease, stroke), respiratory (chronic obstructive pulmonary disease,
+          lower respiratory infections) and neonatal conditions. First aid skills to individuals nearest to victims
+          can help greatly in saving lives. We support you in the in gaining this crucial skills .
+        </p>
+      </div>
+    </div>
+    <div class="service-details-content">
+      <h4>Basic first aid techniques such as CPR, bleeding control, and shock management</h4>
+      <p>
+        CPR (cardiopulmonary resuscitation) is a lifesaving technique used to revive a person who has
+        stopped breathing and has no pulse. Bleeding control involves stopping or slowing down bleeding
+        from an injury. Shock management involves recognizing and treating symptoms of shock, which is a
+        life-threatening condition caused by a drop in blood flow to the body&#39;s vital organs. Having basic skills
+        in first aid will go along way in helping save life.
+      </p>
 
-                    <div class="service-details-info">
-                        <div class="single-info-box">
-                            <h4>Client</h4>
-                            <span>James Anderson</span>
-                        </div>
+      <h4>Recognizing and responding to medical emergencies such as heart attacks, strokes, and
+        choking.</h4>
 
-                        <div class="single-info-box">
-                            <h4>Category</h4>
-                            <span>Fever, Allergies, Morbidity</span>
-                        </div>
+      <p>
+        Recognizing medical emergencies such as heart attacks, strokes, and choking requires being aware
+        of common symptoms and seeking immediate medical attention. For a heart attack, symptoms may
+        include chest pain, shortness of breath, and lightheadedness. Stroke symptoms may include sudden
+        weakness or numbness on one side of the body, confusion, and difficulty speaking. Choking can be
+        recognized by the universal choking sign (grabbing the throat) and a person being unable to speak or
+        breathe. If you don’t possess the necessary first aid skills , don’t attend to the victim , call
+        emergencies services and follow their instructions.
+      </p>
+      <p><b>
+          Basic knowledge of common first aid kit items and their usage.
+        </b></p>
+      <p>
+        What you should expect in a typical aid kit ;
+      </p>
+      <div class="about-content">
+        <ul class="about-features two">
 
-                        <div class="single-info-box">
-                            <h4>Date</h4>
-                            <span>February 28, 2022</span>
-                        </div>
+          <li>
+            <span>Adhesive bandages (for cuts and scrapes)</span>
+          </li>
+          <li><span>Sterile gauze pads (for wound dressing)</span></li>
+          <li><span>Adhesive tape (to secure dressings)</span></li>
+          <li><span>Antiseptic wipes (to clean wounds)</span></li>
+          <li><span>Pain relievers (such as ibuprofen)</span></li>
 
-                        <div class="single-info-box">
-                            <h4>Share</h4>
-                            <ul class="social">
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-twitter'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-instagram'></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
 
-                        <div class="single-info-box">
-                            <a class="default-btn" href="#">
-                                Live Preview
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <li><span>Scissors and tweezers (for removing splinters)</span></li>
+          <li><span>Gloves (to protect from bodily fluids)</span></li>
+          <li><span>Instant cold pack (for reducing swelling)</span></li>
+          <li><span>CPR breathing barrier (for administering CPR)</span></li>
+          <li><span>A first aid manual (for guidance)</span></li>
+
+
+
+        </ul>
+      </div>
+      <br>
+      <p>
+        Our trainings are hands-on. It is important for individuals to regularly update their fire safety and first
+        aid knowledge to stay prepared for emergencies.
+      </p>
+      <div class="row">
+        <h4>Fire Safety:</h4>
+        <p>Causes of fire and fire prevention measures.</p>
+        <p>Causes of fire can be classified into several categories, including:</p>
+        <div class="col-lg-6">
+
+          <p><b>Electrical:</b>
+            Overheating of electrical equipment, short circuits, and faulty wiring are common
+            causes of electrical fires.
+          </p>
+          <p><b>Human Error:</b>
+            Unattended cooking, smoking, and careless disposal of smoking materials are
+            examples of human error that can lead to fires..
+          </p>
+          <p><b>Natural:</b>
+            Lightning, wildfires, and other natural causes can also lead to fires.
+            To prevent fires, some effective fire prevention measures include:
+          </p>
+          <p><b>Electrical Safety:</b>
+            Regular maintenance of electrical equipment and appliances, as well as
+            avoiding overloading of electrical outlets.
+          </p>
+          <p><b>Cooking Safety:</b>
+            Staying in the kitchen while cooking, keeping flammable materials away
+            from heat sources, and ensuring proper ventilation.
+          </p>
+          <p><b>Smoking Safety:</b>
+            Designating smoking areas outside and properly disposing of smoking
+            materials.
+          </p>
+          <p><b>Fire Alarms and Extinguishers:</b>
+            Installing working fire alarms and fire extinguishers in
+            homes and buildings and regularly checking and maintaining them.
+          </p>
+          <p><b>Education:</b>
+            Regular fire safety education and training to raise awareness and promote fire
+            prevention habits.
+          </p>
         </div>
-        <!-- End Service details -->
+        <div class="col-lg-6">
+          <img src="{% static 'assets/img/first.png'%}" alt="image">
+        </div>
+      </div>
 
-        {% endblock %}
+
+      <p>
+        By following these fire prevention measures, we can reduce the risk of fires and ensure the safety of
+        individuals and communities.
+      </p>
+      <h4>Types of fire and appropriate fire extinguisher usage.</h4>
+      <p>There are several types of fire, classified based on the type of fuel that is burning:</p>
+      <ul>
+        <li>Class A: fires involving ordinary combustibles such as wood, paper, cloth, and plastics.</li>
+        <li>Class B: fires involving flammable liquids, gases, and greases.</li>
+        <li>Class C: fires involving energized electrical equipment.</li>
+        <li>Class D: fires involving flammable metals.</li>
+        <li>Class K: fires involving cooking oils and fats in commercial kitchens.</li>
+      </ul>
+      <p>
+        To effectively extinguish a fire, it&#39;s important to use the appropriate type of fire extinguisher. The fire
+        extinguisher&#39;s label will indicate the classes of fire it can be used on. Here are the common types of
+        fire extinguishers:
+      </p>
+      <ul>
+        <li>Water: used on Class A fires.</li>
+        <li>Foam: used on Class A and Class B fires.</li>
+        <li>Dry Chemical: used on Class A, B, and C fires.</li>
+        <li>Carbon Dioxide (CO2): used on Class B and Class C fires.</li>
+        <li>Wet Chemical: used on Class K fires.</li>
+      </ul>
+      <p>
+        It&#39;s important to understand the different types of fires and their respective fire extinguisher usage to
+        respond effectively in case of an emergency. Regular fire extinguisher training and inspections are
+        also crucial to ensure that the fire extinguishers are in good working condition and ready for use
+      </p>
+
+      <div class="service-details-info">
+
+        <h4>Evacuation procedures, fire alarms, and fire drills.</h4>
+        <span>
+          <p>
+            Its critical to have your organization train on evacuation procedures, steps to follow in case of a fire,
+            such as exiting the building, assembling at a designated location, and notifying authorities. Instruction
+            on Fire alarms , fire drills to prepare for a real fire emergency.
+
+      </div>
+      <div class="service-details-info">
+
+        <h4>Fire suppression systems and fire safety equipment</h4>
+        <span>
+          <p>
+            Fire suppression systems are installed in buildings to automatically detect and extinguish fires.
+            Examples include sprinkler systems, fire extinguishers, and fire suppression systems for kitchen
+            appliances. Fire safety equipment refers to items used to prevent and respond to fires, such as smoke
+            detectors, fire alarms, fire extinguishers, and fire blankets.
+          </p>
+        </span>
+
+      </div>
+
+      <h4 class="text-center">SCHEDULE A TRAINING FOR YOUR ORGANIZATION TODAY.
+        <button class="btn btn-primary text-white align-self-center" data-bs-toggle="modal"
+          data-bs-target="#apply-modal">Click here</button>
+      </h4>
+
+      <div class="modal fade" id="apply-modal" tabindex="-1" aria-labelledby="apply-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="apply-modal-title">TRAINING FOR YOUR ORGANIZATION</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="signup-form" style="box-shadow: none;max-width:100% !important;" method="post"
+                id="appointment-form" enctype="multipart/form-data" action="{% url 'first_aid' %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-12 form-group mb-3">
+                    <label for="name">Name of Organization</label>
+                    <input type="text" id="name" name="org_name" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">First Name</label>
+                    <input type="text" id="name" name="f_name" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Last Name</label>
+                    <input type="text" id="name" name="l_name" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Email Address</label>
+                    <input type="email" id="name" name="email" class="form-control" required>
+                  </div>
+
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Phone Number</label>
+                    <input type="number" id="phoneF" name="phone" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Role in organization</label>
+                    <input type="text" id="name" name="role" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Organization Location</label>
+                    <input type="text" id="name" name="location" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Core Activities</label>
+                    <input type="text" id="name" name="core" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">No of Employees</label>
+                    <select class="form-select" aria-label="Default select example" name="no_of_employees">
+                      <option selected>Select</option>
+                      <option name="employee" value="2-10">2-10</option>
+                      <option name="employee" value="10-20">10-20</option>
+                      <option name="employee" value="20-50">20-50</option>
+                      <option name="employee" value="50-100">50-100</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Schedule Date</label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                  </div>
+
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="name">Schedule time</label>
+                    <input type="time" id="time-input" name="time" class="form-control" required>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" form="appointment-form" class="btn btn-primary">SUBMIT</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- End Service details -->
+<script>
+  const phone = document.getElementById('code');
+
+  phone.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 3);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+<script>
+  const phoneInput = document.getElementById('phone');
+
+  phoneInput.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 9);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+
+<script>
+  const timeInput = document.getElementById('time-input_');
+
+  timeInput.addEventListener('input', function () {
+    const selectedTime = this.value;
+    const selectedHour = parseInt(selectedTime.split(':')[0]);
+
+    // Check if selected time is before 8 am or after 5 pm
+    if (selectedHour < 8 || selectedHour >= 12) {
+      alert('Please select a time strictly between 8 am and 12 pm.');
+      this.value = '';
+    }
+  });
+
+
+  const dateInput = document.getElementById('date');
+  const today = new Date();
+
+  dateInput.addEventListener('input', function () {
+    const selectedDate = new Date(this.value);
+
+    if (selectedDate < today) {
+      alert('Date cannot be in the past');
+      this.value = '';
+    } else if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
+      alert('Date cannot be on a weekend');
+      this.value = '';
+    }
+  });
+
+</script>
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myButton");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+</script>
+<script>
+  const phoneInputF = document.getElementById('phoneF');
+
+  phoneInputF.addEventListener('input', function () {
+    const inputValue = this.value;
+
+    // Remove all non-digit and non-plus characters from input
+    const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+
+    // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+    const truncatedValue = strippedValue.substring(0, 10);
+
+    // If stripped value contains more than one plus sign, remove all but the first one
+    const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+
+    // Update input value to final value
+    if (finalValue !== inputValue) {
+      this.value = finalValue;
+    }
+  });
+
+</script>
+{% endblock %}

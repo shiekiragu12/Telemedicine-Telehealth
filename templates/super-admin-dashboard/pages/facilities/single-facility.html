@@ -1,0 +1,426 @@
+{% extends './../../base.html' %}
+{% load static %}
+{% load humanize %}
+{% load customtags %}
+
+{% block title %} Facilities - {{facility.name}} {% endblock %}
+
+{% block styles %}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="page-description">
+                <h1>{{facility.name}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border {% if facility.authorized %} border-success {% else %} border-danger {% endif %}"
+        style="border-width: 2px !important;">
+        {% if facility.authorized %}
+        <button class="btn btn-success rounded">Facility Authorized/Verified</button>
+        {% else %}
+        <button class="btn btn-danger rounded">Facility Not Authorized</button>
+        {% endif %}
+        <div class="card-body">
+            <form method="post" id="facility-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <h4>Basic Information</h4>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Name</label>
+                            <input required type="text" class="form-control" placeholder="Facility Name" name="name"
+                                value="{{facility.name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Facility Code</label>
+                            <input required type="text" class="form-control" placeholder="Faciity Code"
+                                name="facility_code" value="{{facility.facility_code}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Owner Name</label>
+                            <input required type="text" class="form-control" placeholder="Faciity Owner Name"
+                                name="owner_name" value="{{facility.owner_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Facility Type</label>
+                            <input required type="text" class="form-control" placeholder="Faciity Type"
+                                name="owner_name" value="{{facility.facility_type.name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Facility Kind</label>
+                            <input required type="text" class="form-control" placeholder="Faciity Owner Name"
+                                name="owner_name" value="{{facility.facility_kind}}">
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <h4>Contact Information</h4>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Email</label>
+                            <input required type="text" class="form-control" placeholder="Email" name="email"
+                                value="{{facility.email}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Contact Number</label>
+                            <input required type="text" class="form-control" placeholder="Contact Number"
+                                name="contact_no" value="{{facility.contact_no}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Address</label>
+                            <textarea required type="text" class="form-control" placeholder="Address"
+                                name="address">{{facility.address}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <h4>Location Information</h4>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Location</label>
+                            <input required type="text" class="form-control" placeholder="Location Name" name="location"
+                                value="{{facility.location}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">City/Town</label>
+                            <input required type="text" class="form-control" placeholder="City/Town which is near"
+                                name="city" value="{{facility.city}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">County</label>
+                            <input required type="text" class="form-control" placeholder="County" name="county"
+                                value="{{facility.county.name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Constituency</label>
+                            <input required type="text" class="form-control" placeholder="Constituency"
+                                name="constituency" value="{{facility.constituency.name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-2 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Latitude</label>
+                            <input required type="number" step="0.0000001" class="form-control" placeholder="Latitude"
+                                name="latitude" value="{{facility.latitude}}">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-2 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Longitude</label>
+                            <input required type="number" step="0.0000001" class="form-control" placeholder="Longitude"
+                                name="longitude" value="{{facility.longitude}}">
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <h4>Images</h4>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div>
+                            {% if facility.logo %}
+                            <div class="mx-auto" style="width: 60%">
+                                <img src="{{facility.logo.url}}" style="max-width: 100%;" alt="" class="rounded">
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="" class="form-label">
+                                    Logo
+                                    <small>
+                                        Current file:
+                                        {% if facility.logo %}
+                                        <a href="{{facility.logo.url}}" target="_blank">Preview on new Tab</a>
+                                        {% else %}
+                                        Not set
+                                        {% endif %}
+                                    </small>
+                                </label>
+                                <input required type="file" class="form-control" name="logo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <div>
+                            {% if facility.cover_image %}
+                            <div class="mx-auto" style="width: 80%">
+                                <img src="{{facility.cover_image.url}}" style="max-width: 100%;" alt="" class="rounded">
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="" class="form-label">
+                                    Cover Image
+                                    <small>
+                                        Current file:
+                                        {% if facility.cover_image %}
+                                        <a href="{{facility.cover_image.url}}" target="_blank">Preview on new Tab</a>
+                                        {% else %}
+                                        Not set
+                                        {% endif %}
+                                    </small>
+                                </label>
+                                <input required type="file" class="form-control" name="cover_image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label class="form-label">What does the facility deal in</label>
+                        <div>
+                            {% for speciality in facility.specialities.all %}
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="material-icons text-primary">
+                                    done_all
+                                </span>
+                                <p class="m-0 p-0 text-capitalize">{{speciality.name}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <h4>Services</h4>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="row">
+                            {% with facility.service_set.all as services %}
+                            {% for service in services %}
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-img bg-light" style="height: 120px; overflow: hidden;">
+                                        {% if service.image %}
+                                        <img src="{{service.image.url}}" alt="{{service.name}}">
+                                        {% else %}
+                                        <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+                                            <p>No image</p>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="text-center mb-2">{{service.name|truncatechars:20}}</h5>
+                                        <p class="mb-2" style="text-align: justify;">
+                                            {{service.description|truncatechars:50}}
+                                        </p>
+                                        <p class="mb-2" style="font-weight: 600;">
+                                            Cost: KES {{service.charges|intcomma}}
+                                        </p>
+                                        <p class="mb-2" style="font-weight: 600;">
+                                            Doctor: {{service.doctor.user.first_name}} {{service.doctor.user.last_name}}
+                                        </p>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#service-preview-modal"
+                                            data-bs-data="{{service|to_json:'service'}}">
+                                            Read More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="alert alert-info">
+                                This facility has not listed any services
+                            </div>
+                            {% endfor %}
+                            {% endwith %}
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <h4>Sub-website Information</h4>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="form-group">
+                            <label for="blog" class="form-label">Home Page Content</label>
+                            <textarea name="home_page_content" id="home_page_content" required
+                                rows="30">{{facility.home_page_content}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="form-group">
+                            <label for="blog" class="form-label">About Page Content</label>
+                            <textarea name="about_page_content" id="about_page_content" required
+                                rows="30">{{facility.about_page_content}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="form-group">
+                            <label for="blog" class="form-label">Online Page Content</label>
+                            <textarea name="online_page_content" id="online_page_content" required
+                                rows="30">{{facility.online_page_content}}</textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-12">
+                        <div class="">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-12">
+                        <div class="send-btn">
+                            <button class="default-btn">Sign Up Now</button>
+                        </div>
+                    </div> -->
+                </div>
+            </form>
+
+            <h4 class="my-3">Actions</h4>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-3">
+                        {% if facility.authorized %}
+                        <a href="{% url 'super-admin-facilities-update' facility.id 'False' %}"
+                            class="btn btn-danger d-flex align-items-center gap-3">
+                            <span class="material-icons">
+                                close
+                            </span>
+                            <span>
+                                De-Authorize
+                            </span>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'super-admin-facilities-update' facility.id 'True' %}"
+                            class="btn btn-primary d-flex align-items-center gap-3">
+                            <span class="material-icons">
+                                done
+                            </span>
+                            <span>
+                                Authorize
+                            </span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Service Preview Modal -->
+<div class="modal fade" id="service-preview-modal" tabindex="-1" aria-labelledby="service-preview-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="service-preview-title"><span id="service-title"></span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-2">
+                    <h4 class="mb-2">Short Description</h4>
+                    <div id="short-desc"></div>
+                </div>
+                <div class="mb-2">
+                    <h4 class="mb-2">Long Description</h4>
+                    <div id="long-desc"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.js' %}"></script>
+<script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+    $('#facility-form').on('submit', e => {
+        e.preventDefault()
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        // $('#tags').select2();
+        $('#home_page_content').summernote({
+            height: 600,
+
+        });
+        $('#about_page_content').summernote({
+            height: 600,
+
+        });
+        $('#online_page_content').summernote({
+            height: 600,
+
+        });
+    });
+</script>
+
+<script>
+
+    function serviceDetails() {
+        return `
+        
+        `
+    }
+
+    $('#service-preview-modal').on("show.bs.modal", e => {
+        const trigger = e.relatedTarget
+        const loc = window.location
+        const data = JSON.parse(trigger.getAttribute('data-bs-data'))
+
+        $('#service-preview-modal #service-title').text(data.name)
+        $('#service-preview-modal #short-desc').html(data.description)
+        $('#service-preview-modal #long-desc').html(data.long_description)
+
+    })
+</script>
+
+{% endblock %}

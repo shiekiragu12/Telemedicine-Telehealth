@@ -1,0 +1,298 @@
+{% extends './../components/base.html' %}
+{% load static %}
+{% block title %} Prescriptions {% endblock %}
+
+{% load humanize %}
+
+{% block styles %}
+<link href="{% static 'dashboard/vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+{% now "H" as current_hour %}
+
+<div class="content-body">
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+			<div class="me-auto d-none d-lg-block">
+				<h3 class="text-black font-w600 text-capitalize">Welcome {{request.user.username}}</h3>
+				<p class="mb-0 fs-18">
+					{% if current_hour|add:"0" < 12 %} Good morning! {% elif current_hour|add:"0" < 18 %} Good
+						afternoon! {% else %} Good evening! {% endif %} </p>
+			</div>
+		</div>
+		<!-- Stats -->
+		<div class="row">
+			<div class="col-xl-4 col-xxl-4 col-sm-6">
+				<div class="card gradient-bx text-white bg-success rounded">
+					<div class="card-body">
+						<div class="media align-items-center">
+							<div class="media-body">
+								<p class="mb-1">Prescriptions</p>
+								<div class="d-flex flex-wrap">
+									<h2 class="fs-40 font-w600 text-white mb-0 me-3">{{prescriptions|length}}</h2>
+								</div>
+							</div>
+							<span class="border rounded-circle p-4">
+								<i class="lni lni-write"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="card">
+			<div class="card-header">
+				<h3>Prescriptions</h3>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table id="prescriptions" class="display" style="width:100%">
+						<thead>
+							<tr>
+								<th>Doctor</th>
+								<th>Prescription</th>
+								<th>Created On</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for prescription in prescriptions %}
+							<tr>
+								<td>Dr {{prescription.doctor.user.first_name}} {{prescription.doctor.user.last_name}}
+								</td>
+								<td>
+									<button class="btn btn-primary px-4" data-bs-toggle="modal"
+										data-bs-target="#info-modal"
+										data-bs-title="{{prescription.patient.user.first_name}} {{prescription.patient.user.last_name}} - Prescription Note"
+										data-bs-content="{{prescription.prescription}}">
+										Read
+									</button>
+								</td>
+								<td>{{prescription.created_on}}</td>
+								<td>
+									<button class="btn btn-primary rounded" data-bs-toggle="modal"
+										data-bs-target="#share-modal" data-bs-p_id="{{prescription.id}}">
+										<i class="lni lni-share"></i>
+									</button>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="modal fade" id="share-modal" tabindex="-1" aria-labelledby="share-modal-title" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="share-modal-title">
+					<!-- Title goes here -->
+				</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="search-facility-form">
+					<div class="input-group">
+						<input type="text" required class="form-control" placeholder="Facility ID" id="f_id">
+						<button class="btn btn-primary">
+							<i class="lni lni-search fs-5"></i>
+							<span>Search</span>
+						</button>
+					</div>
+					<div class="row col-md-8 offset-md-2">
+						<div id="msgSubmit py-2"></div>
+						<div id="msgSubmitErrors"></div>
+					</div>
+				</form>
+				<form id="share-form" class="mt-3 d-none">
+					<input type="text" id="p_id" class="d-none" name="prescription">
+					<div class="form-group">
+						<label for="facility_id" class="form-label">Select Facility</label>
+						<div id="facilities">
+
+						</div>
+					</div>
+					<div class="form-group d-none" id="share-btn">
+						<button class="btn btn-primary px-4">
+							Share
+						</button>
+					</div>
+					<div class="row col-md-8 offset-md-2">
+						<div id="msgSubmit" class="py-2"></div>
+						<div id="msgSubmitErrors"></div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'dashboard/vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+<script>
+	$('#prescriptions').DataTable()
+</script>
+
+<script>
+	const shareModal = document.getElementById('share-modal')
+	shareModal.addEventListener('show.bs.modal', event => {
+		// Button that triggered the modal
+		const button = event.relatedTarget
+		// Extract info from data-bs-* attributes
+		const p_id = button.getAttribute('data-bs-p_id')
+		// const content = button.getAttribute('data-bs-content')
+		const searchForm = shareModal.querySelector("#search-facility-form")
+		$('#search-facility-form').on('submit', e => {
+			e.preventDefault()
+			searchMedicalFacilities('search-facility-form')
+		})
+
+		// Update the modal's content
+		shareModal.querySelector('.modal-title').textContent = 'Share this Prescription to another facility'
+		shareModal.querySelector('#p_id').value = p_id
+
+	})
+
+	$('#share-form').on('submit', e => {
+		e.preventDefault()
+		sharePrescription('share-form')
+	})
+
+	const getFormErrorHolders = (form_id, target) => {
+		if (target === 0) {
+			return `#${form_id} #msgSubmit`
+		}
+		return `#${form_id} #msgSubmitErrors`
+	}
+
+	const spinner = () => {
+		return `
+			<div class="d-flex align-items-center justify-content-center flex-column py-2">
+				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+				<strong>Loading...</strong>
+			</div>
+		`
+	}
+
+	function formCheckInput(facility) {
+		return `
+			<div class="form-check d-flex gap-3 align-items-center">
+				<input type="radio" value="${facility.id}" id="facility_${facility.id}" name="facility" class="form-check-input">
+				<label for="facility_${facility.id}" class="form-check-label p-0">${facility.name}</label>
+			</div>
+		`
+	}
+
+	function renderFacilityChoices(facilities) {
+		const where_ = $('#facilities')
+		const share_btn = $('#share_btn')
+		if (facilities?.length > 0) {
+			const facilities_html = facilities?.map(f => formCheckInput(f))
+			where_.html(facilities_html)
+			share_btn.removeClass('d-none')
+			share_btn.addClass('d-block')
+		}
+		else{
+			where_.html('No facilitie found with the facility Code given')
+			share_btn.removeClass('d-block')
+			share_btn.addClass('d-none')
+		}
+
+	}
+
+	function searchMedicalFacilities(form_id) {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/facilities/?search=${$(`#${form_id} #f_id`).val()}`
+
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$(getFormErrorHolders(form_id, 0)).html(spinner)  // msgSubmit holder
+		$(getFormErrorHolders(form_id, 1)).html("") // msgError holder
+		$('#share-form').addClass('d-none')
+		axios.get(url, {}, { headers }).then((response) => {
+			const data = response.data;
+			toastr.info('Facility search successful')
+			$(getFormErrorHolders(form_id, 0)).html(`${data.length} facilities found.`)
+			renderFacilityChoices(data)
+			$('#share-form').removeClass('d-none')
+		}).catch((error) => {
+			toastr.error(`Error - ${error.message}`)
+			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+
+	}
+
+	function sharePrescription(form_id) {
+		const loc = window.location
+		const url = `${loc.protocol}//${loc.host}/api/shared-prescriptions/`
+
+		const formdata = new FormData(document.getElementById(form_id))
+
+		const facility = document.querySelector('input[name="facility"]');
+		console.log(facility)
+
+		toastr.options = {
+			positionClass: "toast-bottom-center",
+			progressBar: true,
+			timeOut: 10000
+		}
+		const headers = {
+			'X-CSRFToken': getCookie('csrftoken')
+		}
+
+		$(getFormErrorHolders(form_id, 0)).html(spinner)  // msgSubmit holder
+		$(getFormErrorHolders(form_id, 1)).html("") // msgError holder
+		axios.post(url, formdata, { headers }).then((response) => {
+			const data = response.data;
+
+			toastr.info('Prescription shared Successfully')
+			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Prescription shared Successfully. Your prescription has been shared, kindly wait for feedback in your email from the facility you shared with.</div>`)
+			$('#share-form').addClass('d-none')
+			window.location.reload()
+		}).catch((error) => {
+			toastr.error(`Error - ${error.message}`)
+			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
+			if (typeof error?.response?.data === 'object') {
+				const stringified_error = JSON.stringify(error.response.data, null, 4)
+				const highlight_HTML = hljs.highlight(stringified_error, { language: 'json' }).value
+				const header = `<h4>Errors</h4>`
+				$("#msgSubmitErrors").html(`${header}<pre><code class="hljs rounded">${highlight_HTML}</code></pre>`)
+			}
+		});
+	};
+</script>
+
+{% endblock %}

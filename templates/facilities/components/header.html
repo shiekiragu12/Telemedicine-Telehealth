@@ -1,17 +1,21 @@
 <!-- Start Page Title Area -->
-<div class="page-title-area item-bg-2" style="background-image: url({{request.facility.cover_image.url}});">
-    <div class="d-table">
-        <div class="d-table-cell">
-            <div class="container">
-                <div class="page-title-content">
-                    <h2>{{request.facility.name}}</h2>
-                    <ul>
-                        <li><a href="{% url 'index' %}">Home</a></li>
-                        <li>{{request.facility.name}}</li>
-                    </ul>
+{% if request.facility.cover_image %}
+<div class="page-title-area item-bg-2" style="background: linear-gradient(10deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url({{request.facility.cover_image.url}});">
+    {% else %}
+    <div class="page-title-area item-bg-2 bg-dark">
+        {% endif %}
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content">
+                        <h2>{{request.facility.name}}</h2>
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li>{{request.facility.name}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Page Title Area -->
+    <!-- End Page Title Area -->

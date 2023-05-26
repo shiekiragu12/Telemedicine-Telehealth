@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+      
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+      }
+      
+      h1 {
+        margin-bottom: 20px;
+        font-size: 36px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      label, input,select {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        box-sizing: border-box;
+      }
+      
+      input[type="text"], input[type="email"],input[type="number"], input[type="date"], input[type="time"], textarea {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        background-color: rgb(231, 243, 245);
+      }
+      
+      button[type="submit"] {
+        background-color: rgb(58, 58, 255);
+        color: #fff;
+        border: 0;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: blue;
+      }
+      
+</style>
+<body>
+  <div class="container">
+    {% for msg in messages %}
+    {% if msg.tags == 'error' %}
+    <div class="alert alert-danger">
+        {{msg}}
+    </div>
+    {% else %}
+    <div class="alert alert-{{msg.tags}}">
+        {{msg}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <form method="post" enctype="multipart/form-data" action="request_form">
+      {% csrf_token %}
+      <h1>Application Form</h1>
+      <div class="form-group">
+        <label for="name">First Name:</label>
+        <input type="text" id="f_name" name="f_name" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Last Name:</label>
+        <input type="text" id="l_name" name="l_name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+      <label for="name" class="form-label">Phone Number:</label>
+      <input type="number" id="phone" name="phone" maxlength="10" required>  
+      </div>
+
+      <div class="form-group">
+          <label for="name">Facility</label>
+          <select id="facility" name="facility" required style="width: 100%; color:black; outline:none;padding: 1rem;border-color: lightgray;border-radius: 7px;background-color: rgb(231, 243, 245);">
+            <option value="">Select Facility</option>
+            {% for facility in typefacility %}
+            <option value="{{ facility.id }}">{{ facility.name }}</option>
+            {% endfor %}
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label for="name">Town:</label>
+          <select id="location" name="location" required style="width: 100%; color:black; outline:none;padding: 1rem;border-color: lightgray;border-radius: 7px;background-color: rgb(231, 243, 245);">
+            <option value="">Select a location</option>
+          </select>
+      </div>
+
+      <div class="row" style="margin-bottom:2rem">
+        <div class="col-lg-6">
+          <label for="name" class="form-label">Schedule Date:</label>
+          <input type="date" id="date" name="date" required><br>
+        </div>
+        <div class="col-lg-6">
+          
+      <label for="time-input">Schedule time:</label>
+      <input type="time" id="time-input" name="time">
+        </div>
+      </div>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+
+window.onload = function() {
+    // Get the user's location
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+}
+
+function showPosition(position) {
+    // Get the latitude and longitude from the position object
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    // Send the latitude and longitude to the OpenCage Geocoding API to reverse geocode the user's location
+    var url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=daf3bf0b940f4c26bba5ad622c21c27e&pretty=1&no_annotations=1`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Get the nearest town from the OpenCage Geocoding API response
+            var town = data.results[0].components.town || data.results[0].components.city;
+
+            // Display the nearest town as an option in the select element
+            var option = document.createElement("option");
+            option.text = town;
+            option.value = town;
+            var select = document.getElementById("location");
+            select.add(option);
+        })
+        .catch(error => console.error(error));
+}
+
+function showError(error) {
+    // If the user denies location access, change the select element to an input element
+    var select = document.getElementById("location");
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "location";
+    input.id = "location";
+    select.parentNode.replaceChild(input, select);
+}
+
+  </script>    
+
+<script>
+  const phoneInput = document.getElementById('phone');
+
+phoneInput.addEventListener('input', function() {
+  const inputValue = this.value;
+  
+  // Remove all non-digit and non-plus characters from input
+  const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+  
+  // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+  const truncatedValue = strippedValue.substring(0, 9);
+  
+  // If stripped value contains more than one plus sign, remove all but the first one
+  const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+  
+  // Update input value to final value
+  if (finalValue !== inputValue) {
+    this.value = finalValue;
+  }
+});
+
+</script>
+
+<script>
+const timeInput = document.getElementById('time-input');
+
+timeInput.addEventListener('input', function() {
+  const selectedTime = this.value;
+  const selectedHour = parseInt(selectedTime.split(':')[0]);
+  
+  // Check if selected time is before 8 am or after 5 pm
+  if (selectedHour < 8 || selectedHour >= 12) {
+    alert('Please select a time strictly between 8 am and 12 pm.');
+    this.value = '';
+  }
+});
+
+
+  const dateInput = document.getElementById('date');
+const today = new Date();
+
+dateInput.addEventListener('input', function() {
+  const selectedDate = new Date(this.value);
+
+  if (selectedDate < today) {
+    alert('Date cannot be in the past');
+    this.value = '';
+  } else if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
+    alert('Date cannot be on a weekend');
+    this.value = '';
+  }
+});
+
+</script>
+    
+</body>
+</html>

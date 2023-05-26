@@ -1,0 +1,573 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} How Resq247 System Works  {% endblock title %}
+
+{% block content %}
+<style>
+    .modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+z-index: 3;
+}
+
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+.modal {
+display: none;
+}
+
+.visible {
+display: block;
+}
+.clickable-span{
+    color: blue;
+}
+
+</style>
+ <!-- Start Page Title Area -->
+ <div class="page-title-area item-bg-5">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>How it works</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>How it works</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<!-- Start App Area -->
+<section class="app-area ptb-100">
+    <div class="container-fluid pl-0">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <img src="{% static 'assets/img/app.png' %}" alt="image">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="app-content">
+                    <h3>How To Get Started by Using  Our App</h3>
+                     
+                        <p>
+                            Download the app: The first step is to download the telehealth app from the App Store or
+                            Google Play.
+                        </p>
+                        <p>
+                            Create an account: Once you have the app, create a new account by providing your personal
+                            information and setting up a secure password.
+                        </p>
+                        <p>
+                            Choose your healthcare provider: Browse through our network of healthcare providers and
+                            select one that fits your needs. You can view their qualifications, specialties, and patient
+                            reviews to help make your decision.
+                        </p>
+                        <p>
+                            Schedule an appointment: Schedule a virtual appointment with your chosen provider. You can
+                            choose from a range of available times and dates to find one that works best for you.
+                        </p>
+                        <p>
+                            Get started with your appointment: At the appointed time, log into the app and start your
+                            virtual appointment. You&#39;ll be able to see and hear your healthcare provider and they will be
+                            able to see and hear you.   
+                        </p>
+                        <p>
+                            Receive your care: During the appointment, your healthcare provider will diagnose your
+                            condition and provide you with treatment recommendations. You can also ask questions and
+                            receive answers in real-time.
+                        </p>
+                        <p>
+                            Complete your appointment: Once your appointment is finished, you&#39;ll receive a summary of
+                            your visit, including any follow-up instructions or recommendations.
+                        </p>
+                     
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="app-text">
+                    <div class="icon">
+                        
+                    </div>
+                    <h4><i class="flaticon-calendar"></i> Pick Your Package</h4>
+                    <p style="font-size:11px; font-weight:bolder;">OUR TELEHEALTH APP OFFERS A RANGE OF PACKAGES TO SUIT DIFFERENT NEEDS AND BUDGET</p>
+                     
+                        <p>
+                            <b><i class="flaticon-pregnancy"></i> Basic Package:</b> This package is designed for patients who only need occasional telehealth
+                            consultations. It includes access to our network of healthcare providers, virtual
+                            appointments, and patient portal for secure messaging. <span id="span1" class="clickable-span">Know More</span>
+                        </p>
+                        <p>
+                            <b><i class="flaticon-clinic"></i> Premium Package:</b> The premium package is for patients who need regular telehealth
+                            consultations. It includes all of the features of the basic package, as well as access to
+                            additional resources, such as personalized health coaching and real-time monitoring of vital
+                            signs.<span id="span2" class="clickable-span">Know More</span>
+                        </p>
+                        <p>
+                            <b><i class="flaticon-mental-health"></i> Family Package:</b> The family package is designed for families with multiple members who
+                            need telehealth care. It includes access to all of the features of the premium package for up
+                            to 5 family members. <span id="span3" class="clickable-span">Know More</span>
+                        </p>
+                        <p>
+                            <b><i class="flaticon-beauty-treatment"></i> Corporate Package:</b> The corporate package is designed for businesses who want to offer
+                            telehealth benefits to their employees. It includes access to all of the features of the
+                            premium package for all employees, as well as the ability to track and manage employee
+                            health and wellness. <span id="span4" class="clickable-span">Know More</span>
+                        </p>
+                        <div id="modal1" class="modal">
+                                
+                            <div class="modal-content">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="">BASIC PACKAGE</h2>
+                                <span class="close float-end">&times;</span>
+                                
+                            </div>
+                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam risus. Sed sodales euismod nibh, in tincidunt quam ultricies non. Maecenas luctus ligula non turpis vestibulum, id lacinia dolor accumsan. Duis eu massa at odio lobortis scelerisque vel sit amet augue. Sed vel tellus a ipsum lobortis sagittis. Nullam lobortis justo at ligula euismod, eget ullamcorper nisl faucibus. Sed ut dolor in sapien aliquam suscipit. Sed auctor aliquam lacus id lacinia. Sed vestibulum venenatis diam, in mollis velit. Sed vehicula a augue eu commodo. Sed at sapien ultricies, interdum nulla vel, pharetra tortor. Cras vel laoreet lorem, quis tristique lectus. Duis luctus enim vitae mauris feugiat, nec rhoncus velit commodo. Sed tincidunt nisl sit amet purus lacinia suscipit. 
+                            </p>
+                            </div>
+                          </div>
+                        <div id="modal2" class="modal">
+                                
+                            <div class="modal-content">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="">PREMIUM PACKAGE</h2>
+                                <span class="close float-end">&times;</span>
+                                
+                            </div>
+                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam risus. Sed sodales euismod nibh, in tincidunt quam ultricies non. Maecenas luctus ligula non turpis vestibulum, id lacinia dolor accumsan. Duis eu massa at odio lobortis scelerisque vel sit amet augue. Sed vel tellus a ipsum lobortis sagittis. Nullam lobortis justo at ligula euismod, eget ullamcorper nisl faucibus. Sed ut dolor in sapien aliquam suscipit. Sed auctor aliquam lacus id lacinia. Sed vestibulum venenatis diam, in mollis velit. Sed vehicula a augue eu commodo. Sed at sapien ultricies, interdum nulla vel, pharetra tortor. Cras vel laoreet lorem, quis tristique lectus. Duis luctus enim vitae mauris feugiat, nec rhoncus velit commodo. Sed tincidunt nisl sit amet purus lacinia suscipit. 
+                            </p>
+                            </div>
+                          </div>
+                        <div id="modal3" class="modal">
+                                
+                            <div class="modal-content">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="">FAMILY PACKAGE</h2>
+                                <span class="close float-end">&times;</span>
+                                
+                            </div>
+                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam risus. Sed sodales euismod nibh, in tincidunt quam ultricies non. Maecenas luctus ligula non turpis vestibulum, id lacinia dolor accumsan. Duis eu massa at odio lobortis scelerisque vel sit amet augue. Sed vel tellus a ipsum lobortis sagittis. Nullam lobortis justo at ligula euismod, eget ullamcorper nisl faucibus. Sed ut dolor in sapien aliquam suscipit. Sed auctor aliquam lacus id lacinia. Sed vestibulum venenatis diam, in mollis velit. Sed vehicula a augue eu commodo. Sed at sapien ultricies, interdum nulla vel, pharetra tortor. Cras vel laoreet lorem, quis tristique lectus. Duis luctus enim vitae mauris feugiat, nec rhoncus velit commodo. Sed tincidunt nisl sit amet purus lacinia suscipit. 
+                            </p>
+                            </div>
+                          </div>
+                        <div id="modal4" class="modal">
+                                
+                            <div class="modal-content">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="">CORPORATE PACKAGE</h2>
+                                <span class="close float-end">&times;</span>
+                                
+                            </div>
+                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut diam risus. Sed sodales euismod nibh, in tincidunt quam ultricies non. Maecenas luctus ligula non turpis vestibulum, id lacinia dolor accumsan. Duis eu massa at odio lobortis scelerisque vel sit amet augue. Sed vel tellus a ipsum lobortis sagittis. Nullam lobortis justo at ligula euismod, eget ullamcorper nisl faucibus. Sed ut dolor in sapien aliquam suscipit. Sed auctor aliquam lacus id lacinia. Sed vestibulum venenatis diam, in mollis velit. Sed vehicula a augue eu commodo. Sed at sapien ultricies, interdum nulla vel, pharetra tortor. Cras vel laoreet lorem, quis tristique lectus. Duis luctus enim vitae mauris feugiat, nec rhoncus velit commodo. Sed tincidunt nisl sit amet purus lacinia suscipit. 
+                            </p>
+                            </div>
+                          </div>
+                    </ul>
+                    <p>
+                        When choosing your package, consider your individual health needs, budget, and desired level of access to healthcare services. Our telehealth experts are also available to answer any questions and help you choose the
+                        best package for you.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <img src="{% static 'assets/img/step-three-image.png' %}" alt="image">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <img src="{% static 'assets/img/treatment.png' %}" alt="image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="app-text">
+                    <h4><i> <i class="flaticon-mobile-app"></i>  ResQ247-plus App Setup</i></h4>
+                    <p>
+                        Setting up our telehealth app is quick and easy! Follow these steps to get started:
+                    </p>
+                     
+                        <p>
+                            Download the app: The first step is to download the telehealth app from the App Store or Google Play.
+                        </p>
+                        <p>
+                            Create an account: Once you have the app, create a new account by providing your personal information and setting up a secure password.
+                        </p>
+                        <p>
+                            Choose your package: Browse through our different package options and choose one that fits your needs and budget.
+                        </p>
+                        <p>
+                            Connect your devices: If you have any wearable devices, such as a smartwatch or fitness tracker, you can connect them to the app to track your health and wellness data.
+                        </p>
+                        <p>
+                            Complete your profile: Fill out your personal health information, including any medications you
+                            are taking and any conditions you have been diagnosed with.
+                        </p>
+                        <p>
+                            Payment: Enter your payment information to complete the setup process. You&#39;ll be charged a
+                            monthly fee for your chosen package, and any additional services will be billed as needed.
+                        </p>
+                        <p>
+                            Get started: You&#39;re now ready to start using our telehealth app! Browse through our network
+                            of healthcare providers and schedule your first virtual appointment.
+                        </p>
+                    </ul>
+                    <p>Setting up our app takes only a few minutes and provides you with quick and easy access to quality
+                        healthcare services from the comfort of your own home.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row align-items-center">   
+            <div class="col-lg-6">
+                <div class="app-text">
+                     <h4><i class="flaticon-patient"></i> Patient Onboarding</h4>
+                    <p>
+                        Patient onboarding is the process of introducing new patients to our telehealth app and getting them
+                        started with virtual care. Here are the steps for a successful patient onboarding process:
+                    </p>
+                     
+                        <p>
+                            A user can onboard by registering from the our web application or by through our mobile
+                            application. .
+                        </p>
+                        <p>
+                            App download: Provide patients with instructions for downloading the app from the App Store
+                            or Google Play.
+                        </p>
+                        <p>
+                            Account creation: provide your personal information and set up a secure password
+                        </p>
+                        <p>
+                            Package selection: choose a package that fits your needs and budget.
+                        </p>
+                        <p>
+                            Profile completion: complete your personal health information, including any medications
+                            that you are taking and any conditions you may have been diagnosed with.
+                        </p>
+                        <p>
+                            Payment: Remember to set up your payment preference information to complete the setup process.
+                        </p>
+                        <p>
+                            Now you are ready for your first virtual appointment with one of our healthcare providers.
+                        </p>
+                        <p>
+                            Incase you have any difficulties , please reach out to our support team on the available number or chat live. Our team is on standby to assist you 24/7.
+                        </p>
+                     
+                
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <img src="{% static 'assets/img/step-four-image.png' %}" alt="image">
+                </div>
+            </div> 
+        </div>
+
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <img src="{% static 'assets/img/step-three-image.png' %}" alt="image">
+                </div>
+            </div> 
+            <div class="col-lg-6">
+                <div class="app-image">
+                    <div class="app-text">
+                      <h4><i class="flaticon-broadcasting"></i> Going Live</h4>
+                        <p>
+                            Going live with our telehealth app is a simple and straightforward process. Here are the steps to get
+                            started:
+                        </p>
+                         
+                            <p>
+                                Equipment preparation: Ensure that you have a stable internet connection and a device with a
+                                camera, such as a smartphone, tablet, or laptop, to participate in virtual appointments.
+                            </p>
+                            <p>
+                                Appointments: Schedule a virtual appointment with one of our healthcare providers through the app.
+                            </p>
+                            <p>
+                                Video call: At the designated appointment time, log in to the app and initiate the video call.
+                            </p>
+                            <p>
+                                Consultation: Engage in a virtual consultation with your healthcare provider, just as you would during an in-person visit.
+                            </p>
+                            <p>
+                                Follow-up: After the appointment, your healthcare provider will follow up with any next steps, such as additional testing or a prescription.
+                            </p>
+                        
+                         
+                        <p>
+                        Going live with our telehealth app is easy and convenient, and it provides patients with access to quality healthcare services from the comfort of their own home. Our healthcare providers are available
+                        for virtual appointments during regular business hours, and appointments can be scheduled in
+                        advance or on-demand, depending on your needs.
+                        </p>
+                    </div>
+                </div>
+            </div>    
+        </div>          
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End App Area -->
+ <!-- Start Appointment Area -->
+ <section class="appointment-area ptb-100">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-fun-fact">
+                            <h3>
+                                <span class="odometer" data-count="2700">00</span>
+                                <span class="sign-icon">+</span>
+                            </h3>
+                            <p>Care Locations</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-fun-fact">
+                            <h3>
+                                <span class="odometer" data-count="2.7">00</span>
+                                <span class="sign-icon">K</span>
+                            </h3>
+                            <p>Virtual Care Solutions</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-fun-fact">
+                            <h3>
+                                <span class="odometer" data-count="99.60">00</span>
+                                <span class="sign-icon">%</span>
+                            </h3>
+                            <p>Connections Success Rate</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="single-fun-fact">
+                            <h3>
+                                <span class="odometer" data-count="30">00</span>
+                                <span class="sign-icon">+</span>
+                            </h3>
+                            <p>Award Winning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="appointment-form">
+                    <div class="content">
+                        <span>Call to Action</span>
+                        <h3>Make An Appointment</h3>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Name" placeholder="Enter Your Name">
+                                    <i class="flaticon-user"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Email" placeholder="Enter Email">
+                                    <i class="flaticon-email"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Phone" placeholder="Enter Phone Number">
+                                    <i class="flaticon-call"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <select>
+                                        <option value="">Select Category</option>
+                                        <option value="">Cardiologists</option>
+                                        <option value="">Dermatologists</option>
+                                        <option value="">Endocrinologists</option>
+                                        <option value="">Gastroenterologists</option>
+                                        <option value="">Allergists</option>
+                                        <option value="">Immunologists</option>
+                                    </select>	
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <select>
+                                        <option value="">Select Doctor</option>
+                                        <option value="">Dr. James Adult</option>
+                                        <option value="">Dr. James Alison</option>
+                                        <option value="">Dr. Peter Adlock</option>
+                                        <option value="">Dr. Jelin Alis</option>
+                                        <option value="">Dr. Josh Taylor</option>
+                                        <option value="">Dr. Steven Smith</option>
+                                    </select>	
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker">
+                                        <input type="text" class="form-control" placeholder="Date">
+                                        <span class="input-group-addon"></span>
+                                    </div>	
+                                    <i class="flaticon-calendar"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="appointment-btn">
+                                    <button type="submit" class="default-btn">
+                                        Confirm Appointment
+                                        <span></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Appointment Area -->
+
+<!-- Start Consult Area -->
+<section class="consult-area ptb-100">
+    <div class="container-fluid pl-0">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="consult-image">
+                    <img src="{% static 'assets/img/patient.png' %}" alt="image">
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="consult-content">
+                    <span>Online Consult</span>
+                    <h3>Get 24/7 Care Right From Your Phone</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+
+                    <ul class="list">
+                        <p>
+                            <i class="flaticon-check-1"></i>
+                            Get unlimited 24/7 Video Chat with a provider at no extra cost
+                        </p>
+                        <p>
+                            <i class="flaticon-check-1"></i>
+                            Easily book appointments and renew prescriptions
+                        </p>
+                        <p>
+                            <i class="flaticon-check-1"></i>
+                            Skip unnecessary trips to the ER or urgent care
+                        </p>
+                        <p>
+                            <i class="flaticon-check-1"></i>
+                            Have a Remote Visit with your primary care provider over video
+                        </p>
+                        <p>
+                            <i class="flaticon-check-1"></i>
+                            Message with your provider
+                        </p>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Consult Area -->
+<!-- End Service details -->
+
+<script>
+    // Get all the clickable spans
+const clickableSpans = document.querySelectorAll('.clickable-span');
+
+// Loop through the clickable spans and attach a click event listener to each one
+clickableSpans.forEach(span => {
+  span.addEventListener('click', function() {
+    // Get the ID of the clicked span
+    const spanId = this.id;
+
+    // Get the ID of the modal corresponding to the clicked span
+    const modalId = `modal${spanId.slice(4)}`;
+
+    // Get the modal element
+    const modal = document.getElementById(modalId);
+
+    // Get the close button element inside the modal
+    const closeButton = modal.querySelector('.close');
+
+    // When the user clicks on the span, display the corresponding modal
+    modal.style.display = 'block';
+
+    // When the user clicks on the close button, hide the modal
+    closeButton.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  });
+});
+
+  </script> 
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends './../../base.html' %}
+{% load customtags %}
+
+{% block title %} Email Template Variables {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-description">
+                <h1>Email Template Variables</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row col">
+        <div class="card">
+            <div class="card-body">
+                <h3>Usage</h3>
+                <p>
+                    Given a prefix, you can use the variables in the template by using the following syntax:
+                </p>
+                <p>
+                    <code>&lbrace;&lbrace; prefix.variable &rbrace;&rbrace; </code>
+                </p>
+                <p>
+                    ie <code>&lbrace;&lbrace; account_creation.first_name &rbrace;&rbrace;</code>
+                </p>
+                <h3>Account Creation Template</h3>
+                <p>
+                    prefix: <code>account_creation</code>
+                </p>
+                <p>
+                    variables: <code>first_name</code>, <code>last_name</code>, <code>username</code>, <code>email</code>, <code>profile</code>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

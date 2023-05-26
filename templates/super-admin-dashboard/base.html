@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Resq247 Admin Dashboard">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="Resq247">
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Resq247 Admin - {% block title %}{% endblock %} </title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'superadmin/assets/images/neptune.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'superadmin/assets/images/neptune.png' %}" />
+
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+    <link href="{% static 'superadmin/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'superadmin/assets/plugins/perfectscroll/perfect-scrollbar.css' %}" rel="stylesheet">
+    <link href="{% static 'superadmin/assets/plugins/pace/pace.css' %}" rel="stylesheet">
+    <link href="{% static 'superadmin/assets/plugins/highlight/styles/github-gist.css' %}" rel="stylesheet">
+    <link href="{% static 'superadmin/assets/plugins/summernote/summernote-lite.min.css' %}" rel="stylesheet">
+
+    <!-- Select 2 CSS -->
+    <link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+
+    <!-- Theme Styles -->
+    <link href="{% static 'superadmin/assets/css/main.min.css' %}" rel="stylesheet">
+    <link href="{% static 'superadmin/assets/css/custom.css' %}" rel="stylesheet">
+
+    <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
+    <!-- Highlight css -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/solarized-light.min.css"> -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/vs2015.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+
+        th a, td a{
+            /* overflow: hidden; */
+            text-decoration: none;
+        }
+        .custom-table th::after,
+        .custom-table th::before {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .custom-table thead th,
+        .custom-table tfoot th {
+            min-width: 150px;
+        }
+
+        .custom-table tbody tr td {
+            max-width: 150px;
+            word-wrap: break-word;
+            word-break: break-all !important;
+            overflow: hidden !important;
+            /* white-space: pre !important; */
+        }
+
+        .w-custom {
+            width: 300px !important;
+            max-width: 320px !important;
+            text-decoration: none;
+        }
+
+        .custom-name-holder {
+            display: flex;
+            max-width: 100%;
+            overflow: hidden;
+            align-items: center;
+            padding: 2px !important;
+            border-radius: 10px;
+            background-color: rgba(245, 245, 245, 0.521);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .custom-name-holder:hover {
+            background-color: rgb(226, 242, 255);
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .fs-c {
+            font-size: 16px !important;
+        }
+
+        .custom-th {
+            min-width: 200px !important;
+        }
+
+        .custom-th-text {
+            min-width: 300px !important;
+            white-space: pre-line !important;
+        }
+
+        .product-table-image{
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: whitesmoke;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-table-image img{
+            width: 100%;
+        }
+    </style>
+    <style>
+        .facility-card-image {
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .facility-card-image img {
+            max-height: 100% !important;
+        }
+
+        .facility-card-image a:hover {
+            color: var(--bs-link-color) !important;
+        }
+
+        .page-numbers {
+            text-align: center !important;
+        }
+
+        .avatar-sm{
+            width: 50px !important;
+            height: 50px !important;
+            min-height: 50px !important;
+            min-width: 50px !important;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+
+
+    <div class="app align-content-stretch d-flex flex-wrap">
+        {% include './components/sidebar.html' %}
+        <div class="app-container">
+            {% include './components/navbar.html' %}
+            <div class="app-content">
+                <div class="content-wrapper">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include './components/footer.html' %}
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

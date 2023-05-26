@@ -1,0 +1,163 @@
+{% extends './../../base.html' %}
+{% load customtags %}
+
+{% block title %} Users - {{user.first_name}} {{user.last_name}} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="page-description">
+                <h1>{{user.first_name}} {{user.last_name}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post" id="user-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <h4>Basic Information</h4>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">First Name</label>
+                            <input required type="text" class="form-control" placeholder="First Name" name="first_name"
+                                value="{{user.first_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Last Name</label>
+                            <input required type="text" class="form-control" placeholder="Last Name" name="last_name"
+                                value="{{user.last_name}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Username</label>
+                            <input required type="text" class="form-control" placeholder="Username" name="username"
+                                value="{{user.username}}">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Email</label>
+                            <input required type="email" id="user-email" class="form-control" placeholder="Email"
+                                name="email" value="{{user.email}}">
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-12 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Password  <small>(8 characters long, include symbols, numbers & alphabets)</small> </label>
+                            <input required type="password" maxlength="8" minlength="8" class="form-control pass1" placeholder="Password" name="user.password">
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="" class="form-label">Confirm Password <small>(8 characters long, include symbols, numbers & alphabets)</small></label>
+                            <input required type="password" minlength="8" maxlength="8" class="form-control pass2" placeholder="Confirm Password"
+                                name="user.password1">
+                        </div>
+                    </div> -->
+
+                    <div class="col-12 mb-3">
+                        <h4>Profile Information</h4>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+254</span>
+                                <input required type="number" class="form-control phone" placeholder="700000000"
+                                    name="profile.phone_number" value="{{user.profile.phone_number}}"
+                                    minlength="9" maxlength="9">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group overflow-hidden">
+                            <label for="" class="form-label">Gender</label>
+                            <input required type="text" class="form-control" placeholder="male/female"
+                                value="{{user.profile.gender}}" name="profile.gender">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">
+                                Profile Photo
+                                <small>Current:
+                                    {% if doctor.user.profile.profile_photo %}
+                                    <a href="{{user.profile.profile_photo.url}}" target="_blank"
+                                        referrerpolicy="noreferrer">Preview on new tab</a>
+                                    {% else %}
+                                    Not set
+                                    {% endif %}
+                                </small>
+                            </label>
+                            <div class="input-group">
+                                <input required type="file" accept="image/png, image/jpg, image/jpeg"
+                                    class="form-control" name="profile.profile_photo" maxlength="9">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Town/City</label>
+                            <input required type="text" value="{{user.profile.city}}" class="form-control"
+                                placeholder="Town/City" name="profile.city">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-label">Address</label>
+                            <div class="input-group">
+                                <textarea required class="form-control" name="profile.address"
+                                    placeholder="P.0 BOX 1212-00100 Nairobi">{{user.profile.address}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-lg-12">
+                        <div class="">
+                            <div id="msgSubmit"></div>
+                            <div id="msgSubmitErrors"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-lg-12">
+                        <div class="send-btn">
+                            <button class="default-btn">Sign Up Now</button>
+                        </div>
+                    </div> -->
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('#user-form').on('submit', e => {
+        e.preventDefault()
+    })
+</script>
+{% endblock %}

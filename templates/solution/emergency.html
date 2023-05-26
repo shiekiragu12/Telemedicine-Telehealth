@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .modalls {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1024; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border-radius:20px;
+border: 1px solid #888;
+width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.close {
+color: white;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+/* Form Styles */
+form {
+display: flex;
+flex-direction: column;
+
+}
+
+label {
+font-weight: bold;
+margin-bottom: 10px;
+font-size:20px;
+}
+
+input[type="text"], input[type="email"],input[type="number"], input[type="date"], textarea {
+  padding: 10px;
+ 
+  width: 85%;
+  margin-left: 1rem;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  background-color: #fbfbff;
+}
+input[type="submit"] {
+  background-color: #207ef7;
+  color: white;
+  border: none;
+  align-self: end;
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: 25%;
+  font-size: 21px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+background-color: blue;
+}
+</style>
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-15">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Emergency Medical Respoonse</h2>
+                           
+                    <button class="btn btn-primary text-white align-self-center" id="myButton123">
+                      <a href="tel:0738247247" class="text-white">In an emergency. Call now. </a>
+
+                   </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+
+        <!-- Service details -->
+        <div class="service-details ptb-100">
+            <div class="container">
+                <div class="service-details-image ">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <img src="{% static 'assets/img/emergencies.png'%}" alt="image">
+                    </div>
+                   
+                    <div class="service-details-content col-lg-7">
+                        <p>
+                            We understand every second counts when it comes to saving lives. That's why we provide fast, reliable ambulance services to ensure that patients receive the care they need when they need it the most.  
+                        </p>
+                        <p>
+                            Our ambulances are equipped with state-of-the-art medical equipment and staffed by highly trained medical professionals who are committed to providing the highest quality care. Our team includes paramedics, EMTs, and other healthcare professionals who work together to deliver exceptional emergency medical care when you or your loved one’s need it .
+                            We provide a wide range of emergency medical response services, including transportation to hospitals, urgent care facilities, and other medical facilities. Our team is available 24/7, and we respond to emergencies promptly, ensuring that patients receive timely care.
+                        </p>
+                        <p>
+                            Our emergency medical response services are designed to provide peace of mind to patients and their loved ones. We understand that medical emergencies can be stressful and overwhelming, which is why we go above and beyond to provide compassionate care and support to our patients and their families.
+                            
+                        </p>
+    
+                    </div>
+                
+                </div>
+                 </div>
+
+                <div class="service-details-content">
+        
+                    <p>
+                        We also work closely with local hospitals and healthcare providers to ensure that patients receive the best possible care throughout their medical journey. Our goal is to help patients get the care they need and to ensure that they have a smooth transition to the appropriate medical facility.
+                    </p>
+            
+                    <p>
+                        In addition, we offer affordable pricing for our services, making emergency medical response accessible to everyone. We believe that quality healthcare should be available to all, and we strive to make our services as affordable  and accessible as possible.
+
+                    </p>
+                    <p>
+                        we are committed to providing the highest quality care to our patients. We are passionate about what we do, and we take pride in being a trusted partner in the communities we serve. Contact us today to learn more about our services or to schedule an appointment.
+                    </p>
+
+                    <button class="btn btn-primary text-white align-self-center" id="myButton123">
+                      <a href="tel:0738247247" class="text-white">In an emergency. Call now. </a>
+
+                   </button>
+                </div>
+                <div id="myModal" class="modalls">
+                    <div class="modal-content">
+                      <div class="d-flex justify-content-between" style="
+                      background: #bd9508;
+                      padding: 1rem;
+                      width: 100%;
+                      border-radius: 10px;
+                      margin-bottom: 2rem;
+                     
+                  ">
+                          
+                          <h2>In an emergency. Call now.</h2>
+                          <span class="close">&times;</span>
+                      </div>
+                      
+     <form method="post" enctype="multipart/form-data" action="schedule">
+      {% csrf_token %}
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br>
+      
+      <label for="name">Phone Number:</label>
+      <input type="text" id="phone" name="phone"><br>
+      
+      <label for="message">Which Kind of services do you want:</label>
+      <textarea id="message" name="message"></textarea><br>
+    
+      <div class="row" style="margin-bottom:2rem">
+        <div class="col-lg-6">
+          <label for="name" class="form-label">Schedule Date:</label>
+          <input type="date" id="date" name="date" required><br>
+        </div>
+        <div class="col-lg-6">
+          
+      <label for="time-input">Schedule time:</label>
+      <input type="time" id="time-input" name="time">
+        </div>
+      </div>
+
+      <input type="submit" value="Submit" class="">
+    </form>
+                    </div>
+                  </div>
+         </div>
+        </div>
+        <!-- End Service details -->
+        <script>
+          const timeInput = document.getElementById('time-input');
+          
+          timeInput.addEventListener('input', function() {
+            const selectedTime = this.value;
+            const selectedHour = parseInt(selectedTime.split(':')[0]);
+            
+            // Check if selected time is before 8 am or after 5 pm
+            if (selectedHour < 8 || selectedHour >= 12) {
+              alert('Please select a time strictly between 8 am and 12 pm.');
+              this.value = '';
+            }
+          });
+          
+          
+            const dateInput = document.getElementById('date');
+          const today = new Date();
+          
+          dateInput.addEventListener('input', function() {
+            const selectedDate = new Date(this.value);
+          
+            if (selectedDate < today) {
+              alert('Date cannot be in the past');
+              this.value = '';
+            } else if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
+              alert('Date cannot be on a weekend');
+              this.value = '';
+            }
+          });
+          
+          </script>
+<script>
+  // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myButton");
+var btn2 = document.getElementById("myButton2");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+modal.style.display = "block";
+}
+btn2.onclick = function() {
+modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+
+</script>
+        {% endblock %}

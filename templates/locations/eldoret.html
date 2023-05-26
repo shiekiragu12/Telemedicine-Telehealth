@@ -1,0 +1,445 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Eldoret Medical Facilities {% endblock title %}
+
+{% block content %}
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Eldoret Medical Facilities</h2>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li>Eldoret Medical Facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<form style="display:none; float:right;" class="mb-3">
+
+   <input type="text" id="search-input" placeholder="Search..." style="margin-right:1.5rem">
+    <button id="search-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Search</button>
+  </form>
+  
+  <table id="my-table" class="table-bordered w-100" style="margin:1.5rem">
+    <thead style="">
+      <tr>
+        <th>NAME</th>
+            <th>TYPE</th>
+            <th>CONSTITUENCY</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th> 
+      </tr>
+    </thead>
+    <tbody style="" id="table-body">
+      
+        <tr style="">
+          <td>13541 | Ekerubo Health Centre (Masaba South)</td>
+          <td>Basic Health Centre</td>
+          <td>Nyaribari Masaba Constituency</td>
+          <td></td>
+          <td></td>
+                   
+        </tr>
+
+        <tr>
+            <td>13563 | Gesusu (SDA) Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13567 | Getembe Hospital</td>
+            <td>Primary care hospitals</td>
+            <td>Kitutu Chache South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+      
+        <tr>
+            <td>13568 | Geteri Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13595 | Gucha Maternity and Nursing Home</td>
+            <td>Nursing Homes</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13611 | Ibacho Sub-County Hospital</td>
+            <td>Primary care hospitals</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13622 | Isana Maternity and Nursing</td>
+            <td>Nursing and Maternity Home</td>
+            <td>Nyaribari Chache Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13675 | Kenyerere Health Centre (Masaba South)</td>
+            <td>Basic Health Centre</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13681 | Kiagware Dispensary</td>
+            <td>Dispensary</td>
+            <td>South Mugirango Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13683 | Kiamokama health centre</td>
+            <td>Comprehensive Health Centre</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13748 | Magena Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bomachoge Borabu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13893 | Nyamagwa Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bobasi Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13942 | Nyasike Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>13984 | Omogwa Dispensary</td>
+            <td>Dispensary</td>
+            <td>South Mugirango Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>14004 | Our Lady of Lourdes Dispensary (Gucha)</td>
+            <td>Dispensary</td>
+            <td>Bomachoge Chache Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>14025 | Raganga Health Centre</td>
+            <td>Comprehensive Health Centre</td>
+            <td>Kitutu Chache South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>14029 | Ramasha Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>14099 | Sosera Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>16265 | Nyamagesa Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>16984 | Motonto Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Bobasi Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>17272 | Emeroka Dispensary</td>
+            <td>Dispensary</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>18340 | Igorera Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bomachoge Borabu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>18447 | Moogi Dispensary</td>
+            <td>Dispensary</td>
+            <td>Bomachoge Borabu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>19984 | Egetuki GOK Dispensary</td>
+            <td>Dispensary</td>
+            <td>Bomachoge Borabu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>19996 | Kenyoro Dispensary</td>
+            <td>Dispensary</td>
+            <td>Bomachoge Borabu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>20901 | Medhiram Medical Centre (Masaba North)</td>
+            <td>Medical Clinic</td>
+            <td>Nyaribari Masaba Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>21449 | Maroba Health Centre</td>
+            <td>Dispensary</td>
+            <td>Bomachoge Chache Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>22135 | Sugubo Dispensary</td>
+            <td>Dispensary</td>
+            <td>Bobasi Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>24058 | Riverside Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bomachoge Chache Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>24059 | Ibencho Advent Hope Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bomachoge Chache Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>24103 | Erick Mokua Eye Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Kitutu Chache South Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+    </tbody>
+  </table>
+  
+  <div id="pagination" class="mb-3 mx-2">
+    <button id="prev-button" class="default-btn" style="background:gray; border-radius:0px; padding-top:0px; padding-bottom:0px;">Previous</button>
+    <span id="page-number"></span>
+    <button id="next-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Next</button>
+  </div>
+
+  <script>
+    
+    let rowsPerPage = 10;
+    let currentPage = 0;
+    let rows = Array.from(document.querySelectorAll('#my-table tbody tr'));
+    let numPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function showPage(page) {
+      currentPage = page;
+      let startIndex = currentPage * rowsPerPage;
+      let endIndex = startIndex + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+      });
+    }
+    
+    function showPrevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+    
+    function showNextPage() {
+      if (currentPage < numPages - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+    
+    document.querySelector('#search-button').addEventListener('click', function() {
+        let searchInput = document.querySelector('#search-input').value;
+        let tableRows = document.querySelectorAll('#table-body tr');
+      
+        tableRows.forEach(function(row) {
+          let name = row.children[0].textContent;
+          if (name.toLowerCase().indexOf(searchInput.toLowerCase()) === -1) {
+            row.style.display = "none";
+          } else {
+            row.style.display = "table-row";
+          }
+        });
+      });
+      
+    
+    document.querySelector('#prev-button').addEventListener('click', showPrevPage);
+    document.querySelector('#next-button').addEventListener('click', showNextPage);
+    
+    showPage(0);
+  </script>
+  
+  
+  
+  
+  {% endblock %} 

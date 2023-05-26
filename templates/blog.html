@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} News & Updates | {{blog.title}} {% endblock title %}
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-5">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>{{blog.title}}</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Blog</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<!-- Start Single Blog Area -->
+<section class="single-blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-blog-details">
+                    <div class="blog-details-image">
+                        <img src="{{blog.image.url}}" alt="image" style="max-width: 100%;">
+                    </div>
+
+                    <div class="content">
+                        <ul class="list">
+                            <li>
+                                <a href="#">By</a>
+                            </li>
+                            <li>
+                                <a href="#">{{blog.created_by.first_name}} {{blog.created_by.last_name}}</a>
+                            </li>
+                            <li>{{blog.created_on}}</li>
+                        </ul>
+                        <h3>{{blog.title}}</h3>
+                    </div>
+
+                    <div>
+                        {{blog.body|safe}}
+                    </div>
+
+                    <div class="post-tags">
+                        <ul class="tags">
+                            <li>
+                                <span>Tags:</span>
+                            </li>
+                            {% for tag in blog.tags.all %}
+                            <li>
+                                <a href="#">
+                                    {{tag.name}}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="related-posts">
+                        <h3>Related Blogs</h3>
+                        <p>Other Blogs that you might be interested in for this topic.</p>
+                        <div class="row">
+                            {% for blog_ in related_blogs %}
+                            <div class="col-lg-6 mb-5">
+                                {% include './components/post_item.html' with blog=blog_ %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="comments-area">
+                        <h2 class="comments-title">Comments</h2>
+                        <ol class="comment-list">
+                            {% for reply in replies %}
+                            <li class="comment">
+                                <article class="comment-body d-flex align-items-center p-2">
+                                    <footer class="comment-meta">
+                                        <div class="comment-author vcard"
+                                            style="width: 60px !important; height: 60px !important; min-width: 60px !important; min-height: 60px !important;">
+                                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+                                                class="w-100 rounded-circle" alt="image">
+                                        </div>
+                                    </footer>
+                                    <div class="comment-content ms-2">
+                                        <div class="comment-metadata">
+                                            <p class="fn w-100 p-0 m-0">{{reply.author}}</p>
+                                            <p class="p-0 m-0">
+                                                <small><time>{{reply.created_on}}</time></small>
+                                            </p>
+                                        </div>
+                                        <p>
+                                            {{reply.comment}}
+                                        </p>
+                                    </div>
+                                    <!-- <div class="reply">
+                                        <a href="#" class="comment-reply-link">Reply</a>
+                                    </div> -->
+                                </article>
+                            </li>
+                            {% endfor %}
+                        </ol>
+
+                        <div class="comment-respond">
+                            <h2 class="comment-reply-title">Leave a Reply</h2>
+                            <form class="comment-form" action="{% url 'blog_reply' blog.id %}" method="post">
+                                {% csrf_token %}
+                                <p class="comment-notes">
+                                    <span id="email-notes">Your email address will not be published.</span>
+                                    Required fields are marked
+                                    <span class="required">*</span>
+                                </p>
+                                <p class="comment-form-comment">
+                                    <label>Comment</label>
+                                    <textarea name="comment" id="comment" rows="5" maxlength="65525"
+                                        required="required"></textarea>
+                                </p>
+                                <p class="comment-form-author">
+                                    <label>Name <span class="required">*</span></label>
+                                    <input type="text" id="author" name="author" required="required">
+                                </p>
+                                <p class="comment-form-email">
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" required="required">
+                                </p>
+                                <p class="form-submit">
+                                    <input type="submit" name="submit" id="submit" class="submit"
+                                        value="Post A Comment">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <aside class="widget-area" id="secondary">
+                    <section class="widget widget_search">
+                        <h3 class="widget-title">Search</h3>
+
+                        <form class="search-form search-top">
+                            <label>
+                                <span class="screen-reader-text">Search for:</span>
+                                <input type="search" class="search-field" placeholder="Search...">
+                            </label class="">
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </section>
+
+                    <section class="widget widget_content">
+                        <h3 class="widget-title">Topics</h3>
+
+                        <ul class="list">
+                            {% for topic in topics %}
+                            <li>
+                                <a href="#">
+                                    {{topic.title}}
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+
+                    <section class="widget widget_tinzer_posts_thumb">
+                        <h3 class="widget-title">Recent Posts</h3>
+                        {% for blog_ in recent_blogs %}
+                        <article class="item">
+                            <a href="{% url 'single_blog' blog_.id blog_.slug %}" class="thumb">
+                                <span class="fullimage cover bg1 d-flex align-items-center justify-content-center" role="img">
+                                    <img src="{{blog_.image.url}}" style="width: auto !important" alt="">
+                                </span>
+                            </a>
+                            <div class="info">
+                                <time class="2022-06-30">{{blog_.created_on}}</time>
+                                <h4 class="title usmall">
+                                    <a href="{% url 'single_blog' blog_.id blog_.slug %}">{{blog_.title}}</a>
+                                </h4>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </section>
+
+                    <section class="widget widget-image">
+                        <img src="{% static 'assets/img/solution-details/image5.jpg' %}" alt="image">
+                        <div class="click-btn">
+                            <a href="{% url 'contact' %}">Click Here</a>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Single Blog Area -->
+
+{% endblock %}

@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Start Page Title Area -->
+<style>
+
+</style>
+<div class="page-title-area item-bg-15">
+  <div class="d-table">
+    <div class="d-table-cell">
+      <div class="container">
+        <div class="page-title-content">
+          <h2>Healthcare Servicing Finance 455</h2>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">APPLY HERE</button>
+ 
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+
+  <div class="container">
+    <div class="service-details-image ">
+      <div class="row">
+        <div class="col-lg-5">
+          <img src="{% static 'assets/img/service-health.png'%}" alt="image">
+        </div>
+
+        <div class="service-details-content col-lg-7">
+
+          <p> We believe that access to quality medical care should be a right for all individuals, not just a privilege
+            for those who can afford it. With the high cost of medical care, many people are struggling to pay for the
+            care they need. This is why we have introduced KOPA HUDUMA or HEALTHCARE SERVICE FINANCING , a healthcare
+            financing solution that helps make universal healthcare coverage a reality for all.
+
+            Our goal is to ensure that everyone has access to quality medical care, regardless of their financial
+            situation. We understand that navigating the healthcare system can be overwhelming, especially when faced
+            with a medical bill and limited financial resources. That's why we have created a simple and straightforward
+            process for determining eligibility for healthcare financing.</p>
+        </div>
+
+      </div>
+
+      <div class="service-details-content" style="margin-top:2rem;">
+
+        <p>
+          By partnering with healthcare providers, insurance companies and other stakeholders in the industry , we are
+          able to offer a range of financing options that can help cover the cost of medical treatments and procedures.
+          Whether it's through medical insurance, government programs, or other financial aid, we work with our clients
+          to find the best solution for their individual needs.
+
+          We are committed to making healthcare accessible and affordable for all. Contact us today to find out if you
+          are eligible for healthcare financing and take the first step towards securing the care you need.
+
+          Having a medical bill and you don’t have access to financial resources? Find out if you are eligible.
+        </p>
+       
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">APPLY HERE</button>
+      </div>
+      <div class="modal fade" id="apply-modal" tabindex="-1"
+      aria-labelledby="apply-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="apply-modal-title">APPLY HERE</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form class="signup-form" style="box-shadow: none;max-width:100% !important;"
+                      method="post" id="appointment-form" enctype="multipart/form-data"
+                      action="apply">
+                      {% csrf_token %}
+                      <div class="row">
+                          <div class="col-lg-6 form-group mb-3">
+                              <label for="name" >First Name:</label>
+                              <input type="text" id="name" name="f_name" class="form-control"
+                                  required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                              <label for="name">Last Name:</label>
+                              <input type="text" id="name" name="l_name" class="form-control"
+                                  required>
+                          </div>
+
+                          <div class="col-lg-12 form-group mb-3">
+                              <label for="name">Name of the patient if different from the applicant</label>
+                              <input type="text" id="name" name="p_name"  class="form-control" required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                              <label for="name">Your occupation</label>
+                              <input type="text" id="name" name="occupation" class="form-control"
+                                  required>
+                          </div>
+                      <div class="col-lg-6 form-group mb-3">
+                            <label for="name">Phone Number</label>
+                            <input type="number" id="phone" name="p_number" class="form-control" required>
+                          </div>
+
+                          <div class="col-lg-12 form-group mb-3">
+                              <label for="name">Email Address</label>
+                              <input type="email" id="name" name="email" class="form-control"
+                                  required>
+                          </div>
+
+                        
+                          <div class="col-lg-12 form-group mb-3">
+                            <label for="name">Name of the facility hospitalized.</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                            <label for="name">Location of the facility</label>
+                            <input type="text" id="name" name="location" class="form-control" required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                            <label for="name">Tel: No. of the Facility</label>
+                            <input type="number" id="phoneF" name="n_facility" class="form-control" required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                            <label for="name">Medical Bill Ksh</label>
+                            <input type="number" id="name" name="bill" class="form-control" required>
+                          </div>
+     
+                          <div class="col-lg-6 form-group mb-3">
+                              <label for="name">Dates of hospitalization</label>
+                              <input type="date" id="date-input" name="date" class="form-control"
+                                  required>
+                          </div>
+
+                          <div class="col-lg-6 form-group mb-3">
+                            <label for="name">Discharged dates pending clearance.</label>
+                            <input type="date" id="date_hosi" name="date_hosi" class="form-control"
+                                required>
+                        </div>
+
+                          <div class="col-lg-12 form-group mb-3">
+                              <label for="message">Message (Tell us more on why you need assistance in clearing your medical
+                                bill)</label>
+                              <textarea id="message" name="message" class="form-control"
+                                  required></textarea>
+                          </div>
+
+                      </div>
+
+
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" form="appointment-form" class="btn btn-primary">SUBMIT</button>
+                  <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+</div>
+<!-- End Service details -->
+<script>
+const dateHosi = document.getElementById('date-input');
+const currentDate = new Date();
+const yesterday = new Date(currentDate);
+yesterday.setDate(currentDate.getDate() - 1);
+const dayBeforeYesterday = new Date(currentDate);
+dayBeforeYesterday.setDate(currentDate.getDate() - 2);
+const restrictedDates = [currentDate.toISOString().split('T')[0], yesterday.toISOString().split('T')[0], dayBeforeYesterday.toISOString().split('T')[0]];
+
+dateHosi.addEventListener('input', function() {
+  const userDate = this.value;
+  if (restrictedDates.includes(userDate)) {
+      alert('Please enter a date that is earlier than 3 days ago.');
+    this.value = '';
+  }
+});
+
+
+  </script>
+<script>
+  const dateInput = document.getElementById('date_hosi');
+  const today = new Date();
+
+  dateInput.addEventListener('input', function () {
+    const selectedDate = new Date(this.value);
+    if (selectedDate > today) {
+      alert('Date cannot be in the future');
+      this.value = '';
+    }
+
+  }
+  );
+</script>
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myButton");
+  var btn2 = document.getElementById("myButton2");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+  btn2.onclick = function () {
+    modal.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+</script>
+<script>
+  const phoneInput = document.getElementById('phone');
+
+phoneInput.addEventListener('input', function() {
+  const inputValue = this.value;
+  
+  // Remove all non-digit and non-plus characters from input
+  const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+  
+  // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+  const truncatedValue = strippedValue.substring(0, 10);
+  
+  // If stripped value contains more than one plus sign, remove all but the first one
+  const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+  
+  // Update input value to final value
+  if (finalValue !== inputValue) {
+    this.value = finalValue;
+  }
+});
+
+</script>
+<script>
+  const phoneInputF = document.getElementById('phoneF');
+
+phoneInputF.addEventListener('input', function() {
+  const inputValue = this.value;
+  
+  // Remove all non-digit and non-plus characters from input
+  const strippedValue = inputValue.replace(/[^0-9+]/g, '');
+  
+  // If stripped value is longer than 4 characters, truncate it to the first 4 characters
+  const truncatedValue = strippedValue.substring(0, 10);
+  
+  // If stripped value contains more than one plus sign, remove all but the first one
+  const finalValue = truncatedValue.replace(/\+/g, (match, offset) => offset ? '' : match);
+  
+  // Update input value to final value
+  if (finalValue !== inputValue) {
+    this.value = finalValue;
+  }
+});
+
+</script>
+{% endblock %}

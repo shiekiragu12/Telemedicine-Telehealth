@@ -8,7 +8,8 @@ from django.db.models import Q
 
 from .decorators import unauthenticated_user
 from django.contrib import messages
-from facilities.models import County, FacilitySpeciality, Facility
+from facilities.models import County, FacilitySpeciality, Facility, SpecialityField, QualificationCourse
+from .models import Profile
 
 
 @unauthenticated_user
@@ -28,6 +29,16 @@ def account_login(request):
             return render(request, template_name='auth/signin.html', context={})
 
     return render(request, template_name='auth/signin.html', context={})
+
+
+@unauthenticated_user
+def register_as(request):
+    context = {
+        'specialities': FacilitySpeciality.objects.all(),
+        'specialityfields': SpecialityField.objects.all(),
+        'courses': QualificationCourse.objects.all(),
+    }
+    return render(request, template_name='auth/register/register.html', context=context)
 
 
 @unauthenticated_user
@@ -71,10 +82,16 @@ def account_logout(request):
 @login_required(login_url='signin')
 def account_change_profile_pic(request):
     if request.method == 'POST':
-        userp = request.user.profile
-        pic = request.FILES.get('profile_photo')
-        userp.profile_photo = pic
-        userp.save()
+        if getattr(request.user, 'profile', None):
+            userp = request.user.profile
+            pic = request.FILES.get('profile_photo')
+            userp.profile_photo = pic
+            userp.save()
+        else:
+            profile = Profile.objects.create(user=request.user)
+            pic = request.FILES.get('profile_photo')
+            profile.profile_photo = pic
+            profile.save()
         messages.success(request, 'You have successfully changed your profile picture')
         return redirect('account_profile')
 

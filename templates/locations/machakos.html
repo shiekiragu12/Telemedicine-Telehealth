@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Machakos Medical Facilites {% endblock title %}
+
+{% block content %}
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area item-bg-5">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-title-content">
+                            <h2>Machakos Medical Facilities</h2>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li>Machakos Medical Facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+        
+<div class="main-navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+
+            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    
+
+                    <li class="nav-item">
+                        <a href="{% url 'nairobi' %}" class="nav-link">
+                            Nairobi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'nakuru' %}" class="nav-link">
+                            Nakuru
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'kisumu' %}" class="nav-link">
+                            Kisumu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'eldoret' %}" class="nav-link">
+                            Eldoret
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mombasa' %}" class="nav-link">
+                            Mombasa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'nyeri' %}" class="nav-link">
+                            Nyeri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'embu' %}" class="nav-link">
+                            Embu
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'machakos' %}" class="nav-link">
+                            Machakos
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<form style="display:none; float:right;" class="mb-3">
+
+   <input type="text" id="search-input" placeholder="Search..." style="margin-right:1.5rem">
+    <button id="search-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Search</button>
+  </form>
+  
+  <table id="my-table" class="table-bordered w-100" style="margin:1.5rem">
+    <thead style="">
+      <tr>
+        <th>NAME</th>
+            <th>TYPE</th>
+            <th>CONSTITUENCY</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th> 
+      </tr>
+    </thead>
+    <tbody style="" id="table-body">
+      
+        <tr style="">
+          <td> AAR Healthcare Services Syokimau Outpatient Centre</td>
+          <td>Medical Center</td>
+          <td>Mavoko Constituency</td>
+          <td></td>
+          <td></td>
+                   
+        </tr>
+
+        <tr>
+            <td> Aims Medical Centre EPZ</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Athi Complex Community Centre</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Beam Healthcare Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Bigson Health Services</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+        <tr>
+            <td> Bloom Health Care</td>
+            <td>Dialysis Center</td>
+            <td>Machakos Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+      
+        <tr>
+            <td> Delam Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Devki Staff Clinic</td>
+            <td>Dispensary</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Favour Primary Health Care</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td>Imani Yako Medical Clinic - Joska</td>
+            <td>Medical Clinic</td>
+            <td>Matungulu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kikunuani Dispensary Kathiani</td>
+            <td>Dispensary</td>
+            <td>Kathiani Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kinphil Medical Centre limited</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kivaani Medicare</td>
+            <td>Medical Clinic</td>
+            <td>Kangundo Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kwakalusya Dispensary</td>
+            <td>Dispensary</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kyumbi Family Hospital Limited</td>
+            <td>Medical Center</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Kyumbi Health Centre</td>
+            <td>Basic Health Centre</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> labram Medicare</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Makyau Dispensary</td>
+            <td>Dispensary</td>
+            <td>Machakos Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Masii Medical Centre</td>
+            <td>Medical Clinic</td>
+            <td>Mwala Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Matungulu Medical Centre</td>
+            <td>Medical Clinic</td>
+            <td>Matungulu Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Mitaboni Boundless Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Kathiani Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Mother Ippolata Mukuru Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Mwanainchi Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Bobasi Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Nadimer Care and Medics</td>
+            <td>Medical Center</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Ngwata rural medical clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Serenity Medical Centre(Machakos)</td>
+            <td>Medical Clinic</td>
+            <td>Machakos Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> St Kizito Mission</td>
+            <td>Dispensary</td>
+            <td>Yatta Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> St philip Neri Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> The Hope spring Medical Clinic</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Tumaini Medical Clinic (Yatta)</td>
+            <td>Medical Clinic</td>
+            <td>Yatta Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Unit Healthcare</td>
+            <td>Medical Clinic</td>
+            <td>Mavoko Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+        <tr>
+            <td> Wondeni Dispensary</td>
+            <td>Dispensary</td>
+            <td>Machakos Town Constituency</td>
+            <td></td>
+            <td></td>
+           
+        </tr>
+
+    </tbody>
+  </table>
+  
+  <div id="pagination" class="mb-3 mx-2">
+    <button id="prev-button" class="default-btn" style="background:gray; border-radius:0px; padding-top:0px; padding-bottom:0px;">Previous</button>
+    <span id="page-number"></span>
+    <button id="next-button" class="default-btn" style="background:blue; border-radius:0px; padding-top:0px; padding-bottom:0px;">Next</button>
+  </div>
+
+  <script>
+    
+    let rowsPerPage = 10;
+    let currentPage = 0;
+    let rows = Array.from(document.querySelectorAll('#my-table tbody tr'));
+    let numPages = Math.ceil(rows.length / rowsPerPage);
+    
+    function showPage(page) {
+      currentPage = page;
+      let startIndex = currentPage * rowsPerPage;
+      let endIndex = startIndex + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+      });
+    }
+    
+    function showPrevPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+    
+    function showNextPage() {
+      if (currentPage < numPages - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+    
+    document.querySelector('#search-button').addEventListener('click', function() {
+        let searchInput = document.querySelector('#search-input').value;
+        let tableRows = document.querySelectorAll('#table-body tr');
+      
+        tableRows.forEach(function(row) {
+          let name = row.children[0].textContent;
+          if (name.toLowerCase().indexOf(searchInput.toLowerCase()) === -1) {
+            row.style.display = "none";
+          } else {
+            row.style.display = "table-row";
+          }
+        });
+      });
+      
+    
+    document.querySelector('#prev-button').addEventListener('click', showPrevPage);
+    document.querySelector('#next-button').addEventListener('click', showNextPage);
+    
+    showPage(0);
+  </script>
+  
+  
+  
+  
+  {% endblock %} 

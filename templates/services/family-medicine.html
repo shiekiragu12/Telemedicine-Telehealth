@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Family Medicine  {% endblock title %}
+
 {% block content %}
 
         <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-5">
+        <div class="page-title-area item-bg-10">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="container">
                         <div class="page-title-content">
-                            <h2>Services Details</h2>
+                            <h2>Family Medicine</h2>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li>Services Details</li>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li>Family Medicine</li>
                             </ul>
                         </div>
                     </div>
@@ -24,70 +26,52 @@
         <!-- Service details -->
         <div class="service-details ptb-100">
             <div class="container">
-                <div class="service-details-image">
-                    <img src="assets/img/single-service.jpg" alt="image">
+                <div class="row">
+                    <div class="service-details-image col-lg-6">
+                    <img src="{% static 'assets/img/fam.png'%}" alt="image">
                 </div>
-
-                <div class="service-details-content">
+                <div class="col-lg-6">
                     <h3>We care your health and checkup with best</h3>
         
-                    <p></p>
-                    <h4>Our Services</h4>
-                    <p>No fake products and services. The customer is king, their lives and needs are the inspiration. But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-            
-                    <h4>Define Your Category</h4>
-<p></p>
-                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this.</p>
+                    <p>
+                        Family medicine is a branch of medicine that deals with the comprehensive health care for
+individuals and families. It covers a wide range of medical services, including preventive care,
+diagnosis and treatment of acute and chronic illnesses, and management of health issues across all
+stages of life.
+                    </p>
+                    <p>
+                        Telehealth is a rapidly growing trend in the medical industry, where medical services are provided
+via remote communication technology. With the advent of technology and the need for accessible
+healthcare services, telehealth is providing a much-needed solution to the growing need for medical
+care.
+                    </p>
+                    <p>
+                        Family medicine on telehealth involves providing medical care to patients through virtual means,
+such as video conferencing, phone calls, or text messaging. This allows for individuals and families to
+access medical care from the comfort of their own homes, without the need to travel to a doctor&#39;s
+office.
+                    </p>
+                </div>
+</div>
+                <div class="service-details-content">
 
-                    <div class="service-details-info">
-                        <div class="single-info-box">
-                            <h4>Client</h4>
-                            <span>James Anderson</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Category</h4>
-                            <span>Fever, Allergies, Morbidity</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Date</h4>
-                            <span>February 28, 2022</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Share</h4>
-                            <ul class="social">
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-twitter'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-instagram'></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="single-info-box">
-                            <a class="default-btn" href="#">
-                                Live Preview
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
+                    <h4>Some benefits of family medicine on telehealth include:</h4>
+                    <p><b>Increased Accessibility: </b> Telehealth services are available 24/7, providing patients with access to medical care at any time of the day or night.</p>
+                    <p><b>Convenience:</b>Patients do not have to take time off work or travel to see a doctor, making it easier for them to access medical care.</p>
+                    <p><b>Cost-Effective:</b>Telehealth services can save patients money by eliminating the cost of transportation, co-payments, and other costs associated with in-person visits.</p>
+                    <p><b>Reduced Wait Time:</b>With telehealth, patients can be seen more quickly, as there is no need to wait for a doctor's appointment.</p>
+                    <p><b>Improved Quality of Care: </b>Telehealth allows for remote monitoring of patients, allowing for early detection and treatment of potential health issues.</p>
+                    <p>
+                        Overall, family medicine on telehealth is a convenient and cost-effective solution for providing
+medical care to individuals and families. With its increased accessibility and improved quality of care,
+it is an excellent option for those who need medical attention but cannot make it to a doctor&#39;s office.
+                    </p><br>
+                    
+                      <p class="text-center text-primary fs-5 fw-bold">Sign up today and experience a whole new difference.
+                          <a  href="{% url 'register-as' %}" class="btn btn-primary text-white align-self-center">Click Here</a>  
+                       </p>
+                    
+                   
                 </div>
             </div>
         </div>

@@ -14,9 +14,9 @@
     }
 </style>
 <div class="nav-header">
-    <a href="{% url 'dashboard' facility_id=1 %}" class="brand-logo">
-        <div class="c-logo">
-            <img src="{% if request.facility.logo %} {{request.facility.logo.url}} {% endif %}" alt="">
+    <a href="{% url 'index' %}" class="brand-logo">
+        <div class="c-logo text-dark">
+            <i class="lni lni-home fs-3"></i>
         </div>
     </a>
 

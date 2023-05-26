@@ -1,5 +1,6 @@
 {% extends './../base.html' %}
 {% load static %}
+{% block title %} Sign In to your Account {% endblock title %}
 
 {% block content %}
 
@@ -25,60 +26,11 @@
 <!-- Start Log In Area -->
 <div class="sign-in-area ptb-100">
     <div class="container">
-        <div class="sign-in-form">
-            <div class="sign-in-title">
-                <h3>Welcome Back!</h3>
-                <p>Please Sign In to your account.</p>
-            </div>
-            {% for msg in messages %}
-            {% if msg.tags == 'error' %}
-            <div class="alert alert-danger">
-                {{msg}}
-            </div>
-            {% else %}
-            <div class="alert alert-{{msg.tags}}">
-                {{msg}}
-            </div>
-            {% endif %}
-            {% endfor %}
-            <form method="post">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="" class="form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="Username" name="username">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="" class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" name="password">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkme">
-                            <label class="form-check-label" for="checkme">Keep me Log In</label>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 text-end">
-                        <p class="forgot-password"><a href="single-events.html">Forgot Password?</a></p>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="send-btn">
-                            <button class="default-btn">Login</button>
-                        </div>
-                        <br>
-                        <span>Don't have account? <a href="sign-up.html">Signup!</a></span>
-                    </div>
-                </div>
-            </form>
+       <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% include './sign-in-component.html' %}
         </div>
+       </div>
     </div>
 </div>
 <!-- End Log In Area -->

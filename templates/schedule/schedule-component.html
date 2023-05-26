@@ -1,0 +1,332 @@
+{% load customtags %}
+<div class="my-5">
+    <div id="calendar"></div>
+</div>
+
+<!-- Add Appointment modal -->
+<div class="modal fade" id="event-calendar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="event-modal-title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                {% if request.user.is_authenticated %}
+                {% if request.user.patient %}
+                <form id="appointment-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control d-none" id="doctor-id" name="doctor" value="{{doctor.id}}"
+                        placeholder="Doctor ID">
+                    <input type="text" class="form-control d-none" id="patient-id" name="patient"
+                        value="{{request.user.patient.id}}" placeholder="Patient ID">
+
+                    <div class="row form-material">
+
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Date of Appointment:</label>
+                                <input type="date" class="form-control shadow-none" id="date" name="date">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Consultation Type</label>
+                                <select type="date" class="form-control shadow-none" id="consultation_type"
+                                    name="consultation_type">
+                                    <option value="text">Text</option>
+                                    <option value="video">Video</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">From</label>
+                                <input type="text" class="form-control shadow-none" id="start_time" name="start_time"
+                                    placeholder="Starting time">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">To</label>
+                                <input type="text" class="form-control shadow-none" id="end_time" name="end_time"
+                                    placeholder="End time">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Injury/Condition</label>
+                                <select class="form-control shadow-none" name="condition" required>
+                                    {% for illness in 'illness'|illness %}
+                                    <option value="{{illness.id}}">{{illness.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Condition not stated</label>
+                                <input type="text" class="form-control shadow-none" id="other_condition"
+                                    name="other_condition" placeholder="Enter Condition here in a few words">
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Note:</label>
+                                <textarea class="form-control shadow-none" id="exampleFormControlTextarea1" rows="5"
+                                    name="note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-8 offset-md-2 text-center">
+                        <div id="msgSubmit" class="py-2"></div>
+                        <div id="msgSubmitErrors" class="py-2"></div>
+                    </div>
+
+                    <div class="row col-md-8 offset-md-2 text-center">
+                        <button class="default-btn">Make Appointment</button>
+                    </div>
+
+                </form>
+                {% else %}
+                <div class="alert alert-info text-center py-3">
+                    <h4 class="alert-heading">You are not a patient!</h4>
+                    <p>Please login as a patient to make an appointment.</p>
+                    <hr>
+                    <p class="mb-0">If you don't have a patient account, please register or contact support to enable your patient account.</p>
+                    <a href="{% url 'signup' %}" class="btn btn-primary mt-3">Register</a>
+                </div>
+                {% endif %}
+                {% else %}
+                <div class="alert alert-info text-center py-3">
+                    <h4 class="alert-heading">You are not logged in!</h4>
+                    <p>Please login to make an appointment.</p>
+                    <hr>
+                    <p class="mb-0">If you don't have an account, please register.</p>
+                    <a href="{% url 'signup' %}" class="btn btn-primary mt-3">Register</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer d-none">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="event-form" class="btn btn-primary">Make Schedule</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- View Appointment modal -->
+<div class="modal fade" id="event-view" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="event-modal-title-view"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body-view">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="patient-id" data-patientid="{{request.user.patient.id}}"></div>
+<div id="doctor-id" data-doctorid="{{request.user.doctor.id}}"></div>
+<div id="doctor-events" data-events="{{events}}"></div>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const events = JSON.parse(document.getElementById('doctor-events').getAttribute('data-events'))
+
+        const calendarEl = document.getElementById('calendar')
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            editable: true, // important for activating event interactions!
+            selectable: true, // important for activating date selectability!
+            weekends: true, // Disables weekends
+            datesSet: function (info) { // Disable some dates
+                var currentDate = new Date(); // Get the current date
+                var disabledDate = '2023-05-26'; // Disable May 15th, 2023
+
+                // Check if the current date range includes the disabled date
+                if (info.start < disabledDate && disabledDate < info.end) {
+                    // Remove the disabled date from the date range
+                    calendar.getApi().remove(disabledDate.format('YYYY-MM-DD'));
+                }
+            },
+            events: [
+                ...events,
+                // other events here
+            ],
+            eventClick: function (info) {
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+                console.log("Event: ", info.event)
+                openViewEventModal(info.event)
+                if (info.event.url) {
+                    // window.open(info.event.url);
+                }
+            },
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                // right: 'dayGridMonth,dayGridWeek,dayGridDay',
+                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+            },
+            dateClick: function (info) {
+                openAddEventModal(info.dateStr)
+            },
+            slotDuration: '00:15:00',
+        })
+
+        calendar.render()
+
+        function openAddEventModal(date) {
+            if (date < new Date().toISOString().slice(0, 10)) {
+                toastr.options = {
+                    positionClass: "toast-bottom-center",
+                    progressBar: true,
+                    timeOut: 60000
+                }
+                toastr.warning('You cannot make an appointment for a past date')
+                return
+            }
+            $('#event-modal-title').html('Make Appointment')
+            $('#date').val(date)
+            $('#event-calendar').modal('show')
+        }
+
+        function propertyRow(property) {
+            return `
+                <tr>
+                    <td>${property?.label}</td>
+                    <td>${property?.value}</td>
+                </tr>    
+            `
+        }
+
+        function eventDetailsTable(properties) {
+            const rows = properties.map(property => propertyRow(property)).join('')
+            return `
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                </tbody>
+            </table>
+            `
+        }
+
+        function openViewEventModal(event) {
+            const doctorID = document.getElementById('doctor-id').getAttribute('data-doctorid')
+            const patientID = document.getElementById('patient-id').getAttribute('data-patientid')
+            console.log(doctorID, event.extendedProps.doctorID, patientID, event.extendedProps.patientID)
+            const eventDetails = event.extendedProps
+            const props = [
+                { label: 'Doctor', value: eventDetails?.doctor },
+                { label: 'Patient', value: eventDetails?.patient },
+                { label: 'Date', value: eventDetails?.customDate },
+                { label: 'Start Time', value: eventDetails?.start_time },
+                { label: 'End Time', value: eventDetails?.end_time },
+            ]
+            let propsHTML = eventDetailsTable(props)
+            if (eventDetails?.doctorID === parseInt(doctorID)) {
+                propsHTML += `<a href="${eventDetails?.doctorURL}" class="btn btn-primary me-2">View Appointment</a>`
+            }
+            if (eventDetails?.patientID === parseInt(patientID)) {
+                propsHTML += `<a href="${eventDetails?.patientURL}" class="btn btn-primary me-2">View Appointment</a>`
+            }
+            $('#event-modal-title-view').html('View Appointment')
+            $('#modal-body-view').html(propsHTML)
+            $('#event-view').modal('show')
+        }
+
+        function closeEventModal() {
+            $('#event-calendar').modal('hide')
+        }
+
+        $('#appointment-form').on('submit', e => {
+            e.preventDefault()
+
+            var form = document.querySelector('#appointment-form');
+            let formData = {};
+
+            form.querySelectorAll('input, textarea').forEach(function (input) {
+                formData[input.name] = input.value;
+            });
+
+            postAppointment()
+            // Reset the form
+            form.reset()
+            // closeEventModal()
+        })
+
+    })
+
+
+    function validateTime(event) {
+        let timeInput = event.target;
+        let selectedTime = new Date('1970-01-01T' + timeInput.value);
+        let minTime = new Date('1970-01-01T09:00:00');
+        let maxTime = new Date('1970-01-01T16:00:00');
+
+        if (selectedTime < minTime || selectedTime > maxTime) {
+            alert('Please select a time between 9am and 4pm.');
+            timeInput.value = ''; // Clear the input field
+        }
+    }
+
+    const timeInputs = document.querySelectorAll('input[type="time"]')
+    timeInputs.forEach(input => {
+        input.addEventListener('change', validateTime)
+    })
+
+
+    const postAppointment = () => {
+        const loc = window.location
+        const url = `${loc.protocol}//${loc.host}/api/appointments/`
+
+        const formdata = new FormData(document.getElementById("appointment-form"))
+        // formdata.append('facility', $("#appointment-form #facility_id").val())
+        toastr.options = {
+            positionClass: "toast-bottom-center",
+            progressBar: true,
+            timeOut: 10000
+        }
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+
+        $("#msgSubmitErrors").html("")
+        $("#msgSubmit").html(spinner)
+        axios.post(url, formdata, { headers }).then((response) => {
+            const data = response.data;
+            toastr.info('Appointment Created Successfully')
+            $("#msgSubmit").html(`<div class="alert alert-success">Appointment Created Successfully. On the next page refresh you can be able to see the newly created appointment.</div>`)
+            setTimeout(() => {
+                setTimeout(() => {
+                    closeEventModal()
+                    window.location.reload()
+                }, 1000)
+                window.location.reload()
+            }, 4000)
+        }).catch((error) => {
+            console.log(error.response.data)
+            toastr.error(`Error - ${error.message}`)
+            $("#msgSubmit").html(`<div class="alert alert-danger">${error.message}</div>`)
+            if (typeof error?.response?.data === 'object') {
+                displayToastrErrors(errors)
+            }
+        });
+    };
+
+</script>
