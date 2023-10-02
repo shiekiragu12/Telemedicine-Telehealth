@@ -1,0 +1,186 @@
+{% extends './../components/base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Lab Test Form {% endblock %}
+
+{% load humanize %}
+
+{% block content %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="card_">
+            <div class="card-header">
+                <h3>Lab Form</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="lab">Laboratory</label>
+                            <div class="w-100">
+                                <select required name="laboratory" class="w-100" style="width: 100%;">
+                                    {% get_labs as labs %}
+                                    {% for lab in labs %}
+                                    <option value="{{lab.id}}" {% if form.laboratory.id == lab.id %} selected {% endif %} >{{lab.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4>Sample Details</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-0">Urgency</p>
+                            <div class="d-flex " style="column-gap: 20px;">
+                                <div class="form-group">
+                                    <input type="radio" id="normal" name="urgency" value="Normal" class="form-radio"
+                                    {% if form.urgency == 'Normal' %} checked {% endif %}
+                                    >
+                                    <label for="normal">Normal</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" id="urgent" name="urgency" value="Urgent" class="form-radio"
+                                    {% if form.urgency == 'Urgent' %} checked {% endif %}
+                                    >
+                                    <label for="urgent">Urgent</label>
+                                </div>
+                            </div>
+                            <p class="mb-0">Fasting</p>
+                            <div class="d-flex " style="column-gap: 20px;">
+                                <div class="form-group">
+                                    <input type="radio" id="yes" value="yes" name="fasting" class="form-radio"
+                                    {% if form.fasting == True %} checked {% endif %}
+                                    >
+                                    <label for="yes">Yes</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="fasting" value="no" id="no" class="form-radio"
+                                    {% if form.fasting == False %} checked {% endif %}
+                                    >
+                                    <label for="no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="sample_date">When was Sample Taken from Patient</label>
+                                <input type="datetime-local" id="sample_date" name="sample_date_time"
+                                    class="form-control" value="{{form.sample_date_time|date:'Y-m-d\TH:i'}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="mb-0">Sample Taken</p>
+                            <div class="d-flex " style="column-gap: 20px;">
+                                {% get_sample_types as sample_types %}
+                                {% for sample_type in sample_types %}
+                                <div class="form-group d-flex align-items-center" style="column-gap: 10px;">
+                                    <input type="checkbox" name="sample_type" id="sample_{{sample_type.id}}"
+                                        value="{{sample_type.id}}" 
+                                        {% if sample_type in form.sample_type.all %} checked {% endif %}
+                                        class="form-check">
+                                    <label for="sample_{{sample_type.id}}"
+                                        class="form-label m-0">{{sample_type.name}}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4>Relevant Clinical Information</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Drug Therapy</label>
+                                <textarea type="text" name="drug_therapy" class="form-control" rows="4">{{form.drug_therapy}}</textarea>
+                            </div>
+                            <div>
+                                <label for="" class="form-label">Other Relevant Clinical Information</label>
+                                <textarea type="text" name="other_relevant_clinical_info" class="form-control"
+                                    rows="4">{{form.other_relevant_clinical_info}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <label for="" class="form-label">Last Dose</label>
+                                <input type="text" name="last_dose" value="{{form.last_dose}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="sample_dose_date">Date</label>
+                                <input type="datetime-local" id="sample_dose_date" value="{{form.last_dose_date_time|date:'Y-m-d\TH:i'}}" name="last_dose_date_time"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <h4>Examination Requested</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% get_examination_groups as examination_groups %}
+                                {% for group in examination_groups %}
+                                <div class="col-md-3 mb-3">
+                                    <div class="h-100 p-2" style="background-color: white; border-radius: 10px;">
+                                        <h5>{{group.name}}</h5>
+                                        <div class="row">
+                                            {% for item in group.examinations_requested.all %}
+                                            <div class="col-6 overflow-hidden" style="word-break: break-all;">
+                                                <div class="form-group d-flex align-items-center mb-0"
+                                                    style="column-gap: 6px;">
+                                                    <input type="checkbox" name="examination_requested"
+                                                        id="exam_requested_{{item.id}}" value="{{item.id}}"
+                                                        {% if item in form.examination_requested.all %} checked {% endif %}
+                                                        class="form-check">
+                                                    <label for="exam_requested_{{item.id}}"
+                                                        class="form-label m-0">{{item.name}}</label>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Additional Tests</h4>
+                            <textarea class="form-control" name="additional_tests" rows="6">{{form.additional_tests}}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Cervical Cytology</h4>
+                            {% get_cervical_cytologies as cervical_cytologies %}
+                            <div class="row">
+                                {% for item in cervical_cytologies %}
+                                <div class="col-6">
+                                    <div class="form-group d-flex align-items-center mb-0" style="column-gap: 6px;">
+                                        <input type="checkbox" name="cervical_cytology" id="cytology_{{item.id}}"
+                                            value="{{item.id}}" class="form-check"
+                                            {% if item in form.cervical_cytology.all %} checked {% endif %}>
+                                        <label for="cytology_{{item.id}}" class="form-label m-0">{{item.name}}</label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <h5>Site</h5>
+                            {% get_cervical_sites as cervical_sites %}
+                            <div class="d-flex flex-wrap" style="column-gap: 30px;">
+                                {% for item in cervical_sites %}
+                                <div class="form-group d-flex align-items-center mb-0" style="column-gap: 6px;">
+                                    <input type="checkbox" name="cervical_cytology_site" id="cervical_site{{item.id}}"
+                                        value="{{item.id}}" class="form-check" 
+                                        {% if item in form.cervical_cytology_site.all %} checked {% endif %}>
+                                    <label for="cervical_site{{item.id}}" class="form-label m-0">{{item.name}}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -7,7 +7,7 @@ from .helperfuncs import get_instance_mail_settings
 from .models import SentEmail
 
 
-def send_email(email_config, emails):
+def send_email(email_config, emails, sent_mails = []):
     connection = get_connection(
         host=email_config.host,
         port=email_config.port,
@@ -20,12 +20,14 @@ def send_email(email_config, emails):
         connection.open()
         connection.send_messages(emails)
         connection.close()
+        for email in sent_mails:
+            email.sent = True
+        SentEmail.objects.bulk_create(sent_mails)
         return {
             "message": "success"
         }
     except Exception as e:
-        print('EXCEPTION ', e)
-        # connection.close()
+        SentEmail.objects.bulk_create(sent_mails)
         return {
             "message": "failed"
         }
@@ -67,11 +69,13 @@ def send_custom_email(instance_name, instance, email_receivers):
             sent_mail = SentEmail(
                 receiver=receiver,
                 subject=email.subject,
-                body=template
+                body=template,
+                sent=False
             )
             sent_mails.append(sent_mail)
-
-        result = send_email(email_config, [email_text])
+        # print("Starting to send email")
+        result = send_email(email_config, [email_text], sent_mails)
+        # print('Result: ', result)
 
         return result
     return {

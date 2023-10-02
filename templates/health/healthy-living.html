@@ -4,281 +4,231 @@
 {% block title %} Healthy Living & Lifestyle {% endblock title %}
 
 {% block content %}
-<style>
-       .modal {
-        display: none;
-        position: fixed;
-        z-index: 1020;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Healthy Living and Lifestyle</h2>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li>Healthy Living and Lifestyle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        z-index: 3;
-    }
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="service-details-image col-6">
+                <!-- <img src="{% static 'assets/img/family.jpg'%}" alt="image"> -->
+            </div>
 
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+            <div class="about-content col-6">
+                <h3>Healthy living and lifestyle</h3>
 
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    } 
+                <p>
+                    Living a healthy lifestyle isn&#39;t just about looking good on the outside; it&#39;s about feeling
+                    good on the
+                    inside too. Our goal is to help you achieve a healthy and happy life by providing you with practical
+                    tips and advice on healthy living and lifestyles. Here are some areas we cover:
+                </p>
+                <ul class="about-features two">
+                    <li>
+                        <span id="span1" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Nutrition"
+                            data-bs-content="nutrition">
+                            <i class='flaticon-doctor'></i>
+                            Nutrition
+                        </span>
+                    </li>
+                    <div id="nutrition" class="d-none">
 
-</style>
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-17">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>Healthy Living and Lifestyle</h2>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Healthy Living and Lifestyle</li>
-                            </ul>
+                        <div class="">
+                            <p>
+                                Eating a healthy diet is essential for maintaining good health. We provide
+                                guidance on healthy eating habits, meal planning, and making informed choices about the
+                                foods you eat.
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <li>
+                        <span id="span2" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Exercise"
+                            data-bs-content="exercise">
+                            <i class='flaticon-worm'></i>
+                            Exercise
+                        </span>
+                    </li>
+
+                    <div id="exercise" class="d-none">
+
+                        <div class="">
+                            <p>
+                                Exercise is crucial for maintaining physical health and emotional well-being. We
+                                provide tips and advice on how to incorporate exercise into your daily routine, whether
+                                it&#39;s
+                                through traditional workouts or more unconventional forms of physical activity.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <li>
+                        <span id="span3" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Nutrition"
+                            data-bs-content="mental-health">
+                            <i class='flaticon-cough'></i>
+                            Mental Health
+                        </span>
+                    </li>
+
+                    <div id="mental-health" class="d-none">
+                        <div>
+                            <p>
+                                Your mental health is just as important as your physical health. We provide
+                                tips and resources for managing stress, anxiety, and depression, and information on
+                                finding professional help when needed.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <li>
+                        <span id="span4" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Nutrition"
+                            data-bs-content="self-care">
+                            <i class='flaticon-blood-test'></i>
+                            Self-care
+                        </span>
+                    </li>
+
+                    <div id="self-care" class="d-none">
+
+                        <div class="">
+                            <p class="">
+                                Taking care of yourself is not selfish; it&#39;s necessary for maintaining good health
+                                and
+                                well-being. We provide advice and resources for practicing self-care and self-love, such
+                                as
+                                meditation, journaling, and other relaxation techniques.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <li>
+                        <span id="span5" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Nutrition"
+                            data-bs-content="relationship">
+                            <i class='flaticon-family'></i>
+                            Relationships
+                        </span>
+                    </li>
+
+                    <div id="relationship" class="d-none">
+                        <div>
+                            <p>
+                                Healthy relationships are vital to overall well-being. We provide advice and
+                                resources for building and maintaining healthy relationships with partners, family
+                                members,
+                                and friends.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <li>
+                        <span id="span6" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Nutrition"
+                            data-bs-content="virtual-care">
+                            <i class='flaticon-insurance'></i>
+                            Virtual care
+                        </span>
+                    </li>
+
+                    <div id="virtual-care" class="d-none">
+
+                        <div>
+                            <p>
+                                it's a lifeline that connects patients with their healthcare providers when they need it
+                                the most. For many patients, telemedicine has been a source of comfort and reassurance,
+                                allowing them to receive the care they need while staying safe and comfortable in their
+                                own homes.
+                            </p>
+                            <p>
+                                For patients who are dealing with chronic illnesses or disabilities, telemedicine can be
+                                a game-changer. It provides you with the flexibility and convenience they need to manage
+                                their health conditions effectively, without the stress and inconvenience of traveling
+                                to a healthcare facility. It's a lifeline that connects you with your healthcare
+                                providers, helping them to stay on top of their medications, monitor their symptoms, and
+                                get the support you need to stay healthy.
+                            </p>
+                            <p>
+                                For patients who live in rural or remote areas, telemedicine can be a godsend. It will
+                                provide you with access to healthcare services that might otherwise be out of reach,
+                                connecting you with doctors and specialists who can provide you with the care you need.
+                                It's a lifeline that bridges the gap between patients and healthcare providers, ensuring
+                                that everyone has access to the care they need, regardless of where they live and social
+                                economic status.
+                            </p>
+                            <p>
+                                And for patients who are dealing with the challenges of aging, telemedicine can be a
+                                source of comfort and companionship. It provides them with a connection to the outside
+                                world, helping them to stay connected with their healthcare providers and their loved
+                                ones. It's a lifeline that helps them to stay engaged, to stay connected, and to stay
+                                healthy. </p>
+                            <p>
+                                In these difficult times, telemedicine is more than just a technology - it's a lifeline
+                                that connects us all. It's a reminder that, even when we're apart, we're all in this
+                                together. So let's embrace the power of telemedicine, and let's work together to build a
+                                brighter, healthier future for us all.
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                </ul>
+
+
+            </div>
+        </div>
+        <div class="service-details-content">
+            <p>By prioritizing healthy living and self-care, you can live your best life and be the best version of
+                yourself. Remember, taking care of yourself is a form of self-love.</p>
+
+
+            <div class="service-details-info">
+                <div class="row w-100">
+                    <div class="col-md-8">
+                        <div class="single-info-ox">
+                            <h4 class="text-center">
+                                Follow our health news for more tips and advice on healthy living and
+                                lifestyles. Subscribe now to
+                                stay updated on our latest content.
+                            </h4>
+                            <div class="d-flex justify-content-center">
+                                <span>ResQ247, Your best virtual care platform</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3">
+                        <div class="single-info-bx d-flex justify-content-center">
+                            <a class="default-btn-two" href="{% url 'blogs' %}">
+                                Go To Resources
+                                <span></span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        <!-- End Page Title Area -->
-
-        <!-- Service details -->
-        <div class="service-details ptb-100">
-            <div class="container">
-<div class="row">
-    <div class="service-details-image col-6">
-        <img src="{% static 'assets/img/family.jpg'%}" alt="image">
-    </div>
-
-     <div class="about-content col-6">
-        <h3>Healthy living and lifestyle</h3>
-
-<p>
-    Living a healthy lifestyle isn&#39;t just about looking good on the outside; it&#39;s about feeling good on the
-inside too. Our goal is to help you achieve a healthy and happy life by providing you with practical
-tips and advice on healthy living and lifestyles. Here are some areas we cover:
-</p>
-<ul class="about-features two">
-    <li>
-        <span id="span1" class="clickable-span">
-            <i class='flaticon-doctor'></i>
-            Nutrition 
-        </span>
-    </li>
-    <div id="modal1" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Nutrition </h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                Eating a healthy diet is essential for maintaining good health. We provide
-                guidance on healthy eating habits, meal planning, and making informed choices about the
-                foods you eat.
-                        </p>
-     
-            </div>
-    </div>
-
-
-    <li>
-        <span id="span2" class="clickable-span">
-            <i class='flaticon-worm'></i>
-            Exercise
-        </span>
-    </li>
-
-    <div id="modal2" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Exercise </h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                Exercise is crucial for maintaining physical health and emotional well-being. We
-                provide tips and advice on how to incorporate exercise into your daily routine, whether it&#39;s
-                through traditional workouts or more unconventional forms of physical activity.
-                        </p>
-           
-            </div>
-    </div>
-
-    <li>
-        <span id="span3" class="clickable-span">
-            <i class='flaticon-cough'></i>
-            Mental Health
-        </span>
-    </li>
-
-    <div id="modal3" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Mental Health</h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                Your mental health is just as important as your physical health. We provide
-                tips and resources for managing stress, anxiety, and depression, and information on finding
-                professional help when needed.
-            </p>  
-            
-            </div>
-    </div>
-
-    <li>
-        <span id="span4" class="clickable-span">
-            <i class='flaticon-blood-test'></i>
-            Self-care
-        </span>
-    </li>
-
-    <div id="modal4" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Self-care </h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                Taking care of yourself is not selfish; it&#39;s necessary for maintaining good health and
-                well-being. We provide advice and resources for practicing self-care and self-love, such as
-                meditation, journaling, and other relaxation techniques.
-                        </p>                                       
-           
-            </div>
-    </div>
-
-
-    <li>
-        <span id="span5" class="clickable-span">
-            <i class='flaticon-family'></i>
-            Relationships
-        </span>
-    </li>
-
-    <div id="modal5" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Relationships </h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                Healthy relationships are vital to overall well-being. We provide advice and
-                resources for building and maintaining healthy relationships with partners, family members,
-                and friends.            </p>  
-           
-           
-            </div>
-    </div>
-
-
-    <li>
-        <span id="span6" class="clickable-span">
-            <i class='flaticon-insurance'></i>
-           Virtual care 
-        </span>
-    </li>
-
-    <div id="modal6" class="modal">
-
-        <div class="modal-content">
-            <div class="d-flex justify-content-between">
-                <h2 class="">Virtual care  </h2>
-                <span class="close float-end">&times;</span>
-
-            </div>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                it's a lifeline that connects patients with their healthcare providers when they need it the most. For many patients, telemedicine has been a source of comfort and reassurance, allowing them to receive the care they need while staying safe and comfortable in their own homes. 
-            </p>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                For patients who are dealing with chronic illnesses or disabilities, telemedicine can be a game-changer. It provides you  with the flexibility and convenience they need to manage their health conditions effectively, without the stress and inconvenience of traveling to a healthcare facility. It's a lifeline that connects you  with your healthcare providers, helping them to stay on top of their medications, monitor their symptoms, and get the support you  need to stay healthy.
-            </p>  
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                For patients who live in rural or remote areas, telemedicine can be a godsend. It will provide you  with access to healthcare services that might otherwise be out of reach, connecting you  with doctors and specialists who can provide you  with the care you  need. It's a lifeline that bridges the gap between patients and healthcare providers, ensuring that everyone has access to the care they need, regardless of where they live and social economic status.
-            </p>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                And for patients who are dealing with the challenges of aging, telemedicine can be a source of comfort and companionship. It provides them with a connection to the outside world, helping them to stay connected with their healthcare providers and their loved ones. It's a lifeline that helps them to stay engaged, to stay connected, and to stay healthy.                                        </p>
-            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                In these difficult times, telemedicine is more than just a technology - it's a lifeline that connects us all. It's a reminder that, even when we're apart, we're all in this together. So let's embrace the power of telemedicine, and let's work together to build a brighter, healthier future for us all.
-            </p>
-           
-           
-            </div>
-    </div>
-
-
-</ul>
-
-       
     </div>
 </div>
-<div class="service-details-content">
-    <p>By prioritizing healthy living and self-care, you can live your best life and be the best version of
-        yourself. Remember, taking care of yourself is a form of self-love.</p>
-        <a style="color:blue" href="#">Follow our health blog for more tips and advice on healthy living and lifestyles. Subscribe now to
-    stay updated on our latest content.</a>
 
-   
-</div>
-</div>
-</div>
-
-        <!-- End Service details -->
-        <script>
-            // Get all the clickable spans
-            const clickableSpans = document.querySelectorAll('.clickable-span');
-        
-            // Loop through the clickable spans and attach a click event listener to each one
-            clickableSpans.forEach(span => {
-                span.addEventListener('click', function () {
-                    // Get the ID of the clicked span
-                    const spanId = this.id;
-        
-                    // Get the ID of the modal corresponding to the clicked span
-                    const modalId = `modal${spanId.slice(4)}`;
-        
-                    // Get the modal element
-                    const modal = document.getElementById(modalId);
-        
-                    // Get the close button element inside the modal
-                    const closeButton = modal.querySelector('.close');
-        
-                    // When the user clicks on the span, display the corresponding modal
-                    modal.style.display = 'block';
-        
-                    // When the user clicks on the close button, hide the modal
-                    closeButton.addEventListener('click', function () {
-                        modal.style.display = 'none';
-                    });
-                });
-            });
-        
-        </script>
-        {% endblock %}
+{% endblock %}

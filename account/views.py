@@ -1,15 +1,17 @@
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.shortcuts import render, redirect
 
+from facilities.models import County, Speciality, Facility, QualificationCourse
 from .decorators import unauthenticated_user
-from django.contrib import messages
-from facilities.models import County, FacilitySpeciality, Facility, SpecialityField, QualificationCourse
 from .models import Profile
+from .forms import ProfileForm
+from website.models import Notification
 
 
 @unauthenticated_user
@@ -17,13 +19,13 @@ def account_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        next_url = request.GET.get('next', None)
+        next_url = request.POST.get('next', None)
 
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             messages.success(request, 'You have successfully logged In!')
-            return redirect('index')
+            return redirect(next_url) if next_url else redirect('index')
         else:
             messages.error(request, 'Login failed! Check your username and password.')
             return render(request, template_name='auth/signin.html', context={})
@@ -34,10 +36,9 @@ def account_login(request):
 @unauthenticated_user
 def register_as(request):
     context = {
-        'specialities': FacilitySpeciality.objects.all(),
-        'specialityfields': SpecialityField.objects.all(),
         'courses': QualificationCourse.objects.all(),
     }
+
     return render(request, template_name='auth/register/register.html', context=context)
 
 
@@ -131,9 +132,64 @@ def account_profile(request):
     context = {
         'my_facilities': Facility.objects.filter(owner=request.user),
         'counties': County.objects.all(),
-        'specialities': FacilitySpeciality.objects.all(),
+        'specialities': Speciality.objects.all(),
     }
     return render(request, template_name='account/profile.html', context=context)
+
+
+@login_required(login_url='signin')
+def account_notifications(request):
+
+    context = {
+    }
+    return render(request, template_name='account/notifications.html', context=context)
+
+
+@login_required(login_url='signin')
+def notification_read(request, pk):
+    notification = Notification.objects.filter(id=pk).first()
+    if notification:
+        if notification.to_admin:
+            if request.user.is_superuser:
+                messages.success(request, 'Marked as read')
+                notification.read = True
+            else:
+                messages.warning(request, 'You will be blocked, no impersonation')
+        else:
+            if notification.to_user == request.user:
+                messages.success(request, 'Marked as read')
+                notification.read = True
+            else:
+                messages.warning(request, 'Only owners of notifications can mark them as read')
+        notification.save()
+    else:
+        messages.error(request, 'No such notification', extra_tags='danger')
+    context = {
+    }
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required(login_url='signin')
+def notification_delete(request, pk):
+    notification = Notification.objects.filter(id=pk).first()
+    if notification:
+        if notification.to_admin:
+            if request.user.is_superuser:
+                messages.success(request, 'Deleted')
+                notification.delete()
+            else:
+                messages.warning(request, 'You will be blocked, no impersonation')
+        else:
+            if notification.to_user == request.user:
+                messages.success(request, 'Marked as read')
+                notification.delete()
+            else:
+                messages.warning(request, 'Only owners of notifications can mark them as read')
+    else:
+        messages.error(request, 'No such notification', extra_tags='danger')
+    context = {
+    }
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required(login_url='signin')
@@ -161,25 +217,14 @@ def account_edit(request):
 @login_required(login_url='signin')
 def account_profile_edit(request):
     if request.method == 'POST':
-        pnumber = request.POST.get('phone_number')
-        address = request.POST.get('address')
-        country = request.POST.get('country')
-        gender = request.POST.get('gender')
-        city = request.POST.get('city')
-        postal_code = request.POST.get('postal_code')
-
-        user = request.user
-        user.profile.phone_number = pnumber
-        user.profile.address = address
-        user.profile.country = country
-        user.profile.gender = gender
-        user.profile.city = city
-        user.profile.postal_code = postal_code
-
-        user.profile.save()
-
-        messages.success(request, 'Account Profile information updated successfully')
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account Profile information updated successfully')
+        else:
+            messages.error(request, 'Could not update your account information. Try again', extra_tags='danger')
 
         return redirect('account_profile')
 
     return redirect('account_profile')
+

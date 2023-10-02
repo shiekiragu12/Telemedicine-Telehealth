@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load customtags %}
+{% load static %}
+
+{% block title %} {{product.name}} - Medical Supply {% endblock %}
+
+{% block styles %}
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" /> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" /> -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
+{% endblock %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>{{product.name}}</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li>{{product.name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<section class="product-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="owl-carousel">
+                    <div class="product-details-image w-100 d-flex justify-content-center align-items-center">
+                        <img src="{% if product.image %}{{product.image.url}}{% endif %}"
+                            style="width: auto !important; border-radius: 10px;" alt="">
+                    </div>
+                    {% for image in product.images.all %}
+                    <div class="product-details-image w-100 d-flex justify-content-center align-items-center">
+                        <img src="{% if image.image %}{{image.image.url}}{% endif %}"
+                            style="width: auto !important; border-radius: 10px;" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="product-details-desc">
+                    <h3>{{product.name}}</h3>
+                    <div class="price">
+                        <span class="new-price">KES {{product.price|intcomma}}</span>
+                    </div>
+                    <p>
+                        {{product.description|striptags|truncatechars:50}}
+                    </p>
+                    <form id="product-cart-form">
+                        <div class="product-add-to-cart">
+                            <div class="input-counter">
+                                <span class="minus-btn">
+                                    <i class="fas fa-minus"></i>
+                                </span>
+                                <input type="text" id="product-qty" min="1" value="1">
+                                <span class="plus-btn">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                            <button type="submit" class="default-btn"
+                                onclick="handleAddToCart('{{product.id}}', '{{product.image.url}}', '{{product.name}}', '{{product.price}}')">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to cart
+                                <span></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+                <div class="tab products-details-tab">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <ul class="tabs">
+                                <li>
+                                    <a href="single-product.html#">
+                                        <div class="dot"></div>
+                                        Description
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="single-product.html#">
+                                        <div class="dot"></div>
+                                        Additional information
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="tab_content">
+                                <div class="tabs_item">
+                                    <div class="products-details-tab-content">
+                                        {{product.description|safe}}
+                                    </div>
+                                </div>
+                                <div class="tabs_item">
+                                    <div class="products-details-tab-content">
+                                        <ul class="additional-information">
+                                            <li>
+                                                <span>Brand:</span>
+                                                {{product.brand}}
+                                            </li>
+                                            <li>
+                                                <span>Facility:</span>
+                                                {{product.facility.name}}
+                                            </li>
+                                            <li>
+                                                <span>Type:</span>
+                                                {{product.product_type.name}}
+                                            </li>
+                                            <li>
+                                                <span>Price:</span>
+                                                KES {{product.price|intcomma}}
+                                            </li>
+                                            <li>
+                                                <span>Categories:</span>
+                                                {{product.categories.all|get_product_categories}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="related-products">
+        <div class="container">
+            <div class="products-title">
+                <span class="sub-title">Our Shop</span>
+                <h2>Related Products</h2>
+            </div>
+            <div class="row">
+                {% for product in related_products %}
+                {% include './components/product-card.html' %}
+                {% empty %}
+                <div class="alert alert-info text-center py-3">
+                    <h4 class="alert-heading">No Related Products!</h4>
+                    <p>
+                        This products has no related products.
+                    </p>
+                    <hr>
+                    <p class="mb-0">
+                        More similar products will be added soon.
+                    </p>
+                    <a href="{% url 'shop' %}" class="default-btn mt-3">Find Some Medical Supplies</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+
+    const addToCartForm = document.getElementById('product-cart-form')
+    addToCartForm.addEventListener('submit', () => {
+        event.preventDefault()
+    })
+
+    function handleAddToCart(id, image, name, cost) {
+        const qty = document.getElementById('product-qty').value
+       
+        addToCart(id, image, name, cost, parseInt(qty))
+    }
+
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+        });
+    });
+
+</script>
+{% endblock %}
+
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<API3G>
+    <CompanyToken>57466282-EBD7-4ED5-B699-8659330A6996</CompanyToken>
+    <Request>createToken</Request>
+    <Transaction>
+        <PaymentAmount>450.00</PaymentAmount>
+        <PaymentCurrency>USD</PaymentCurrency>
+        <CompanyRef>49FKEOA</CompanyRef>
+        <RedirectURL>http://www.domain.com/payurl.php</RedirectURL>
+        <BackURL>http://www.domain.com/backurl.php </BackURL>
+        <CompanyRefUnique>0</CompanyRefUnique>
+        <PTL>5</PTL>
+    </Transaction>
+    <Services>
+        <Service>
+            <ServiceType>45</ServiceType>
+            <ServiceDescription>Flight from Nairobi to Diani</ServiceDescription>
+            <ServiceDate>2013/12/20 19:00</ServiceDate>
+        </Service>
+    </Services>
+</API3G> -->
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<API3G>
+    <StatusCode>130</StatusCode>
+    <ResultExplanation>New invoice</ResultExplanation>
+    <instructions>
+        Dear Customer,
+        <br>
+        Shortly you will receive an M-PESA prompt on your phone requesting you to enter
+        your M-PESA PIN to complete your payment. Please ensure your phone is on and unlocked to enable you to complete
+        the process. Thank you.
+        <br>
+        <br>
+        You can also pay using Lipa na MPESA by using the following instructions: 
+        <br>
+        1.Go to the M-PESA menu
+        <br>
+        2. Select Lipa na M-PESA
+        <br>
+        3. Select the Paybill option
+        <br>
+        4. Enter business
+        number 927633
+        <br>
+        5. Enter your account number R47859912
+        <br>
+        6. Enter the amount 450
+        <br>
+        7. Enter PIN and press OK to send
+        <br>
+        8. You will receive a confirmation SMS with your payment reference number.
+    </instructions>
+    <RedirectOption>0</RedirectOption>
+</API3G> -->

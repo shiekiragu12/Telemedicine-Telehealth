@@ -1,4 +1,5 @@
 {% load customtags %}
+{% load website_tags %}
 
 <div class="app-sidebar">
     <div class="logo">
@@ -45,6 +46,15 @@
                     class="{% if request.path == 'super-admin-settings'|get_full_url %}active{% endif %}">
                     <i class="material-icons-two-tone">settings</i>
                     App Settings
+                </a>
+            </li>
+            <li class="{% if request.path == 'super-admin-notifications'|get_full_url %}active-page{% endif %}">
+                {% get_admin_unread_notifications_count as admin_notifs %}
+                <a href="{% url 'super-admin-notifications' %}"
+                    class="{% if request.path == 'super-admin-notifications'|get_full_url %}active{% endif %}">
+                    <i class="material-icons-two-tone">notifications</i>
+                    Notifications
+                    <span class="badge badge-danger float-end">{{admin_notifs}}</span>
                 </a>
             </li>
 

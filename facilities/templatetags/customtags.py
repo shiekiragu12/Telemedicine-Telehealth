@@ -1,13 +1,15 @@
+from datetime import datetime, timedelta, time, date
+
 from django import template
-from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
+from urllib.parse import urlparse, parse_qsl, urlencode
 import json
-from datetime import date
+
 from django.utils import timezone
 
 from django.urls import reverse
 from django.utils.text import slugify
 
-from facilities.models import Condition, Doctor, FacilitySpeciality, Illness, County, Constituency, Facility
+from facilities.models import *
 from facilities.serializers import ConditionSerializer, FacilityTypeSerializer, ServiceSerializer, \
     ServiceCategorySerializer, CountySerializer, ConstituencySerializer
 from shop.models import ProductType, Category, Product
@@ -15,8 +17,8 @@ from mailer.serializers import EmailConfigSerializer, EmailSerializer
 from shop.serializers import CategorySerializer, ProductTypeSerializer
 from superadmin.models import Media
 from mainapp.models import Tag, Topic, Contact
+from account.models import Salutation
 
-import pycountry
 
 from website.models import Firstaid, DemoRequest, Telehealth, Book, Schedule, Analytic, Apply, Equip
 
@@ -129,7 +131,7 @@ def doctors(text):
 
 @register.filter
 def specialities(text):
-    return FacilitySpeciality.objects.all()
+    return Speciality.objects.all()
 
 
 image_extensions = ["ai", "bmp", "eps", "gif", "ico", "jpeg", "jpg", "png", "ps", "psd", "svg", "tif", "tiff", "webp"]
@@ -179,11 +181,10 @@ def topics(text):
 
 @register.filter(name='country_codes')
 def country_codes(some_country):
-    codes = []
+    codes = [f"+{code}" for code in range(1, 400)]
     # for country in pycountry.countries:
     #     phone_code = '+' + str(int(country.numeric))
     #     codes.append(phone_code)
-    codes.append('+254')
     return codes
 
 
@@ -258,20 +259,23 @@ def get_contact_links(links):
 def get_navbar_links(group_name, path):
     if group_name == 'services':
         links = [
-            make_link('Emergencies', 'emergencies', None, None, path),
-            make_link('Emergency Medicine', 'emergency-medicine', None, None, path),
+            make_link('Emergency Evacuation and Ambulance Services', 'emergency-evacuation-and-ambulance-services',
+                      None, None, path),
             make_link('Mental Health', 'mental-health', None, None, path),
-            make_link('Family Medicine', 'family-medicine', None, None, path),
-            make_link('Cancer Care', 'cancer-care', None, None, path),
-            make_link('Laboratory Centers', 'laboratories-center', None, None, path),
-            make_link('Birthing Care', 'birthing-care', None, None, path),
-            make_link('Online Referrals', 'online-referral', None, None, path),
-            make_link('Patient Safety', 'first-aid', None, None, path),
+
+            make_link('Home Based Care', 'home-based-care', None, None, path),
+            make_link('Concierge Services', 'concierge-services', None, None, path),
+            make_link('Virtual Consultation', 'virtual-consultation', None, None, path),
+
+            make_link('Patient Safety', 'patient-safety', None, None, path),
+
+            # make_link('Birthing Care', 'birthing-care', None, None, path),
+            # make_link('Online Referrals', 'online-referral', None, None, path),
         ]
         return links
     if group_name == 'solutions':
         links = [
-            make_link('Scheduler', 'call_schedule', None, None, path),
+            # make_link('Scheduler', 'call_schedule', None, None, path),
             # make_link('Symptom Checker', 'symptom_checker', None, None, path),
             make_link('Analytic Solutions', 'analytic', None, None, path),
             make_link('Healthcare services financing', 'healthcare', None, None, path),
@@ -284,7 +288,7 @@ def get_navbar_links(group_name, path):
         return links
     if group_name == 'health-in-hand':
         links = [
-            make_link('Team', 'teams', None, None, path),
+            make_link('Medical Practitioners', 'medical_practitioners', None, None, path),
             make_link('Health information', None, None, None, path, [
                 make_link('Diseases Conditions A-Z', 'disease-list', None, None, path),
                 make_link('General Health Topics', 'health-topic', None, None, path),
@@ -292,14 +296,21 @@ def get_navbar_links(group_name, path):
                 make_link(' Medical facilities and location', 'facilities', None, None, path),
             ]),
             # make_link('Projects', 'projects', None, None, path),
-            make_link('FAQ', 'faq', None, None, path),
-            make_link('Appointment', 'appointment', None, None, path),
-            make_link('Testimonials', 'testimonials', None, None, path),
+            # make_link('FAQ', 'faq', None, None, path),
+            # make_link('Appointment', 'appointment', None, None, path),
+            # make_link('Testimonials', 'testimonials', None, None, path),
             make_link('How it works', 'how-it-works', None, None, path),
+        ]
+        return links
+
+    if group_name == 'footer-terms':
+        links = [
             make_link('Terms & Conditions', 'terms-conditions', None, None, path),
             make_link('Privacy Policy', 'privacy-policy', None, None, path),
             make_link('User Policy', 'user-policy', None, None, path),
             make_link('Practitioner Policy', 'practitioner-policy', None, None, path),
+            make_link('Payment & Refund Policy', 'payment-refund-policy', None, None, path),
+            # make_link('Practitioner Contract', 'sign-contract', None, None, path),
         ]
         return links
 
@@ -317,5 +328,196 @@ def get_doctor_specialties(specs):
 
 
 @register.filter
+def get_product_categories(cats):
+    return " | ".join([cat.name for cat in cats])
+
+
+@register.filter
 def get_date(date_obj):
-    return date_obj.strftime('%Y-%m-%d')
+    if date_obj:
+        return date_obj.strftime('%Y-%m-%d')
+    return date_obj
+
+
+@register.simple_tag
+def get_courses():
+    all_ = {
+        # 'specialities': Speciality.objects.all(),
+        # 'ProviderCategorys': ProviderCategory.objects.all(),
+        'courses': QualificationCourse.objects.all(),
+    }
+    return all_['courses']
+
+
+@register.simple_tag
+def specialities():
+    return Speciality.objects.all()
+
+
+@register.simple_tag
+def providercategories():
+    return ProviderCategory.objects.all()
+
+
+@register.simple_tag
+def get_display_doctors(page):
+    if page == 'home':
+        return Doctor.objects.filter(display_on_homepage=True)
+    if page == 'mental':
+        return Doctor.objects.filter(display_on_mental_health=True)
+    return []
+
+
+@register.simple_tag
+def get_salutations():
+    return Salutation.objects.all()
+
+
+@register.simple_tag
+def appointment_time():
+    return AppointmentTime.objects.all().order_by('order')
+
+
+@register.simple_tag
+def appointment_durations():
+    return AppointmentDuration.objects.all().order_by('order')
+
+
+# @register.filter
+# def is_time_available(appointments, time_to_check):
+#     for appointment in appointments:
+#         if appointment.start_time.time <= time_to_check <= appointment.end_time:
+#             return False
+#     return True
+
+@register.simple_tag
+def is_time_available(appointments, time_to_check, date_to_check):
+    current_time = datetime.now().time()
+    minimum_time = (datetime.combine(datetime.now().date(), current_time) + timedelta(hours=2)).time()
+    given_date = date.today()
+    if date_to_check:
+        given_date = datetime.strptime(date_to_check, '%Y-%m-%d').date()
+
+    if time_to_check <= minimum_time and date.today() == given_date:
+        return False
+
+    for appointment in appointments:
+        if appointment.start_time.time <= time_to_check <= appointment.end_time:
+            return False
+    return True
+
+
+@register.simple_tag
+def get_sample_types():
+    return SampleType.objects.all().order_by('name')
+
+
+@register.simple_tag
+def get_examination_groups():
+    return ExaminationRequestedGroup.objects.all()
+
+
+@register.simple_tag
+def get_cervical_cytologies():
+    return CervicalCytology.objects.all()
+
+
+@register.simple_tag
+def get_cervical_sites():
+    return CervicalCytologySite.objects.all()
+
+
+@register.simple_tag
+def get_intervention_terminologies():
+    return InterventionTerminology.objects.all()
+
+
+@register.simple_tag
+def get_client_behaviours():
+    return ClientBehavior.objects.all()
+
+
+@register.simple_tag
+def get_labs():
+    return Facility.objects.all()
+
+
+@register.simple_tag
+def get_availability_days():
+    return DayAvailability.objects.all()
+
+
+@register.simple_tag
+def get_availability_times():
+    return TimeAvailability.objects.all()
+
+
+@register.simple_tag
+def get_yes_no():
+    return YesNo.objects.all()
+
+
+@register.simple_tag
+def get_substance_use_titles():
+    return SubstanceUseTitle.objects.all()
+
+
+@register.simple_tag
+def get_substances():
+    return Substance.objects.all()
+
+
+@register.simple_tag
+def get_counselling_related_topics():
+    return CounsellingTopic.objects.all()
+
+
+@register.simple_tag
+def get_counselling_experiences():
+    return CounsellingExperience.objects.all()
+
+
+@register.simple_tag
+def get_counselling():
+    return (
+        ('I want counselling', 'I want counselling'),
+        ('Someone else does', 'Someone else does'),
+        ('Both', 'Both')
+    )
+
+
+@register.simple_tag
+def check_contains(day_id, time_id, list_to_check_in):
+    available = f"availability_{day_id}_{time_id}"
+    return available in list_to_check_in
+
+
+@register.simple_tag
+def get_value_from_list(list_to_check_in, substance_id):
+    for item in list_to_check_in:
+        if item.substance.id == substance_id:
+            return item
+    return None
+
+
+@register.simple_tag
+def get_substance_field_name(sub_id, form_name):
+    return f"substance_{sub_id}_{form_name}"
+
+
+@register.simple_tag
+def get_value_from_object(obj, field_name):
+    val = getattr(obj, field_name, None)
+    return val if val else ''
+
+
+@register.filter
+def check_if_null(val):
+    # return val if val is not None or val != 'None' or val != '' else 'fuck'
+    return val if val != 'None' else ''
+
+
+@register.simple_tag
+def get_teletherapy_services():
+    return TeletherapyService.objects.all()
+

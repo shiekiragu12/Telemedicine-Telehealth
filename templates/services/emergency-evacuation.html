@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Emergency Evacuation {% endblock title %}
+
+{% block content %}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Emergency Evacuation</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Emergency Evacuation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="service-details-image col-lg-6">
+                <img src="{% static 'new/ers/ers.jpg'%}" class="img rounded" alt="Emergency rescue services">
+            </div>
+            <div class="col-lg-6">
+
+                <ol class="bullet-list">
+                    <li class="mb-3">
+                        Rapid response to medical emergencies, including accidents, heart attacks, strokes,
+                        and other critical conditions.
+                    </li>
+                    <li class="mb-3">
+                        Highly trained paramedics equipped with advanced life support equipment and
+                        vehicles for immediate on-site medical assistance.
+                    </li>
+
+                    <li class="mb-3">
+                        Safe and efficient transportation of patients to healthcare facilities, ensuring
+                        continuous monitoring and necessary interventions en route.
+                    </li>
+                    <li class="mb-3">
+                        Coordination with emergency departments and hospitals to ensure seamless
+                        transfer of patients for further medical care.
+                    </li>
+                    <li class="mb-3">
+                        Availability of specialized ambulances for specific medical needs, such as neonatal
+                        care or cardiac emergencies. At ResQ247, we understand that every patient&#39;s
+                        medical needs are unique and require specialized care.
+                    </li>
+                    <li class="mb-3">
+                        Regular training and quality assurance programs to maintain high standards of
+                        emergency medical care.
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="{% static 'new/ers/ers-1.jpg'%}" class="img rounded mx-auto" alt="Emergency rescue services">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'new/ers/ers-2.jpg'%}" class="img rounded" alt="Emergency rescue services">
+            </div>
+        </div>
+        <div class="service-details-content">
+
+            <div class="service-details-info">
+                <div class="row w-100">
+                    <div class="col-md-8">
+                        <div class="single-info-ox">
+                            <h4 class="text-center">Sign up today and experience a whole new difference.</h4>
+                            <div class="d-flex justify-content-center">
+                                <span>ResQ247, Your best virtual care platform</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3">
+                        <div class="single-info-bx d-flex justify-content-center">
+                            <a class="default-btn-two" href="{% url 'register-as' %}">
+                                Click Here
+                                <span></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- End Service details -->
+
+{% endblock %}

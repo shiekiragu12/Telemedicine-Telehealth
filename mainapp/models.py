@@ -74,6 +74,18 @@ class AppConfig(models.Model):
                                                          on_delete=models.SET_NULL,
                                                          related_name="appointment_creation_emailconfig")
 
+    patient_appointment_creation_email = models.ForeignKey(Email, blank=True, null=True, on_delete=models.SET_NULL,
+                                                           related_name="patient_appointment_creation_email")
+    patient_appointment_creation_emailconfig = models.ForeignKey(EmailConfiguration, blank=True, null=True,
+                                                                 on_delete=models.SET_NULL,
+                                                                 related_name="patient_appointment_creation_emailconfig")
+
+    appointment_video_link_update_email = models.ForeignKey(Email, blank=True, null=True, on_delete=models.SET_NULL,
+                                                            related_name="appointment_video_link_update_email")
+    appointment_video_link_update_emailconfig = models.ForeignKey(EmailConfiguration, blank=True, null=True,
+                                                                  on_delete=models.SET_NULL,
+                                                                  related_name="appointment_video_link_update_emailconfig")
+
     facility_creation_email = models.ForeignKey(Email, blank=True, null=True, on_delete=models.SET_NULL,
                                                 related_name="facility_creation_email")
     facility_creation_emailconfig = models.ForeignKey(EmailConfiguration, blank=True, null=True,

@@ -19,7 +19,7 @@
 	<div class="container-fluid">
 		<div class="form-head d-flex mb-3 mb-md-4 align-items-start">
 			<div class="me-auto d-none d-lg-block">
-				<h3 class="text-black font-w600 text-capitalize">Welcome Dr {{request.user.get_full_name}}</h3>
+				<h3 class="text-black font-w600 text-capitalize">Welcome {{request.user.profile.salutation.title}} {{request.user.get_full_name}}</h3>
 				<p class="mb-0 fs-18">
 					{% if current_hour|add:"0" < 12 %} Good morning! {% elif current_hour|add:"0" < 18 %} Good
 						afternoon! {% else %} Good evening! {% endif %} </p>
@@ -178,7 +178,7 @@
 						<tbody>
 							{% for report in medical_reports %}
 							<tr>
-								<td>Dr {{report.patient.user.first_name}} {{report.patient.user.last_name}}</td>
+								<td>{{report.patient.user.first_name}} {{report.patient.user.last_name}}</td>
 								<td>{{report.facility.name}}</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"
@@ -206,6 +206,7 @@
 					<table id="appointments" class="display" style="width:100%">
 						<thead>
 							<tr>
+								<th>Action</th>
 								<th>Patient</th>
 								<th>Note</th>
 								<th>Consultation</th>
@@ -216,25 +217,7 @@
 						</thead>
 						<tbody>
 							{% for appointment in appointments %}
-							<tr>
-								<td>
-									<a href="{% url 'doctor:single-appointment' appointment.id %}">
-										{{appointment.patient.user.get_full_name}}
-									</a>
-								</td>
-								<td>
-									<button class="btn btn-primary px-4" data-bs-toggle="modal"
-										data-bs-target="#info-modal"
-										data-bs-title="{{appointment.patient.user.first_name}} {{appointment.patient.user.last_name}} - Appointment Note"
-										data-bs-content="{{appointment.note}}<br>Condition: {{appointment.condition.name}}">
-										Read
-									</button>
-								</td>
-								<td>{{appointment.consultation_type}}</td>
-								<td>{{appointment.date|get_date}}</td>
-								<td>{{appointment.start_time}}</td>
-								<td>{{appointment.end_time}}</td>
-							</tr>
+							{% include './../components/appointment-row.html' %}
 							{% endfor %}
 						</tbody>
 					</table>

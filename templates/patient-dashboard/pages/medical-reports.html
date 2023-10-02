@@ -68,7 +68,7 @@
 						<tbody>
 							{% for report in medical_reports %}
 							<tr>
-								<td>Dr {{report.doctor.user.first_name}} {{report.doctor.user.last_name}}</td>
+								<td>{{report.doctor.user.profile.salutation.title}} {{report.doctor.user.first_name}} {{report.doctor.user.last_name}}</td>
 								<td>{{report.facility.name}}</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"

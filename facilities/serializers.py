@@ -31,7 +31,7 @@ class IllnessSerializer(serializers.ModelSerializer):
 
 class SpecialitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = FacilitySpeciality
+        model = Speciality
         fields = '__all__'
 
 
@@ -76,7 +76,7 @@ class DoctorSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = Doctor
-        fields = ['id', 'facilities', 'user', 'available', 'about', 'specialities', 'speciality_field',
+        fields = ['id', 'facilities', 'user', 'available', 'about',
                   'qualifications', 'license_number',
                   'regulatory_body', 'license_file', 'is_verified', 'created_on', 'updated_on']
         extra_kwargs = {
@@ -91,7 +91,7 @@ class DoctorSerializer(WritableNestedModelSerializer):
     def to_representation(self, instance):
         self.fields['facilities'] = FacilitySerializer(many=True)
         self.fields['user'] = PubUserSerializer(many=False)
-        self.fields['specialities'] = SpecialitySerializer(many=True)
+        # self.fields['specialities'] = SpecialitySerializer(many=True)
         # self.fields['doctor_appointments'] = AppointmentSerializer(many=True)
         self.fields['qualifications'] = QualificationSerializer(many=True)
         return super(DoctorSerializer, self).to_representation(instance)
@@ -111,16 +111,16 @@ class StaffSerializer(WritableNestedModelSerializer):
         return super(StaffSerializer, self).to_representation(instance)
 
 
-class EncounterSerializerForPatientSerializer(serializers.ModelSerializer):
+class DoctorNoteSerializerForPatientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Encounter
+        model = DoctorNote
         fields = ['id', 'facility', 'doctor', 'description', 'date', 'encounter_medical_files', 'created_on']
 
     def to_representation(self, instance):
         self.fields['doctor'] = DoctorSerializer(many=False)
         self.fields['facility'] = FacilitySerializer(many=False)
         self.fields['encounter_medical_files'] = MedicalFileSerializer(many=True)
-        return super(EncounterSerializerForPatientSerializer, self).to_representation(instance)
+        return super(DoctorNoteSerializerForPatientSerializer, self).to_representation(instance)
 
 
 class PatientSerializer(WritableNestedModelSerializer):
@@ -220,13 +220,13 @@ class AppointmentSerializer(serializers.ModelSerializer):
         return serializer.data["name"]
 
 
-class EncounterSerializer(serializers.ModelSerializer):
+class DoctorNoteSerializer(serializers.ModelSerializer):
     # patient = serializers.SerializerMethodField()
     # doctor = serializers.SerializerMethodField()
     # facility = serializers.SerializerMethodField()
 
     class Meta:
-        model = Encounter
+        model = DoctorNote
         fields = ['id', 'facility', 'patient', 'doctor', 'description', 'date', 'encounter_medical_files', 'created_on']
 
     def to_representation(self, instance):
@@ -234,7 +234,7 @@ class EncounterSerializer(serializers.ModelSerializer):
         self.fields['patient'] = PatientSerializer(many=False)
         self.fields['facility'] = FacilitySerializer(many=False)
         self.fields['encounter_medical_files'] = MedicalFileSerializer(many=True)
-        return super(EncounterSerializer, self).to_representation(instance)
+        return super(DoctorNoteSerializer, self).to_representation(instance)
 
     def get_doctor(self, obj):
         serializer = PubUserSerializer(obj.doctor.user, many=False)

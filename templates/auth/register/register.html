@@ -5,6 +5,11 @@
 {% block styles %}
 <link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet">
 <link href="{% static 'superadmin/assets/plugins/select2/css/select2.min.css' %}" rel="stylesheet">
+<style>
+    .form-control:focus {
+        border: 1px solid var(--bs-red) !important;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -53,21 +58,22 @@
 <div class="signup-area ptb-100">
 
     <div class="container">
-        <ul class="nav nav-pills mb-3 row" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3 row justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item col-md-4 mb-3" role="presentation">
-                <button class="nav-lin reg-card active" id="pills-provider-tab" data-bs-toggle="pill"
-                    data-bs-target="#provider" type="button" role="tab" aria-controls="pills-provider"
+                <button class="nav-lin reg-card active" id="pills-patient-tab" data-bs-toggle="pill"
+                    data-bs-target="#patient" type="button" role="tab" aria-controls="pills-patient"
                     aria-selected="true">
-                    <h3>Service Provider</h3>
-                </button>
-            </li>
-            <li class="nav-item col-md-4 mb-3" role="presentation">
-                <button class="nav-lin reg-card" id="pills-patient-tab" data-bs-toggle="pill" data-bs-target="#patient"
-                    type="button" role="tab" aria-controls="pills-patient" aria-selected="false">
                     <h3>Patient</h3>
                 </button>
             </li>
             <li class="nav-item col-md-4 mb-3" role="presentation">
+                <button class="nav-lin reg-card" id="pills-provider-tab" data-bs-toggle="pill"
+                    data-bs-target="#provider" type="button" role="tab" aria-controls="pills-provider"
+                    aria-selected="false">
+                    <h3>Service Provider</h3>
+                </button>
+            </li>
+            <li class="nav-item col-md-4 mb-3 d-none" role="presentation">
                 <button class="nav-lin reg-card" id="pills-user-tab" data-bs-toggle="pill" data-bs-target="#user"
                     type="button" role="tab" aria-controls="pills-user" aria-selected="false">
                     <h3>Basic User</h3>
@@ -75,22 +81,22 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="provider" role="tabpanel" aria-labelledby="pills-provider-tab"
+            <div class="tab-pane fade show active" id="patient" role="tabpanel" aria-labelledby="pills-patient-tab"
                 tabindex="0">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        {% include './../sign-up-provider-component.html' %}
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="patient" role="tabpanel" aria-labelledby="pills-patient-tab" tabindex="0">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         {% include './../sign-up-patient-component.html' %}
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="pills-user-tab" tabindex="0">
+            <div class="tab-pane fade" id="provider" role="tabpanel" aria-labelledby="pills-provider-tab" tabindex="0">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        {% include './../sign-up-provider-component.html' %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade d-none" id="user" role="tabpanel" aria-labelledby="pills-user-tab" tabindex="0">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         {% include './../sign-up-component.html' %}
@@ -149,32 +155,6 @@
         $("#qualifications-holder").html(qualificationEls)
     }
 
-    const qualificationModal = document.getElementById('qualification-modal')
-
-    qualificationModal.addEventListener('show.bs.modal', event => {
-        const button = event.relatedTarget
-        const form = qualificationModal.querySelector('#qualification-form')
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-
-            const course = qualificationModal.querySelector('#course').value
-            const institution = qualificationModal.querySelector('#institution').value
-            const year = qualificationModal.querySelector('#year').value
-            const notes = qualificationModal.querySelector('#notes').value
-            const file = qualificationModal.querySelector('#file').files[0]
-
-            const q = {
-                course, institution, year, notes: notes ? notes : 'N/A', file
-            }
-
-            qualifications.push(q)
-            renderQualifications()
-
-            form?.reset()
-        })
-
-    })
-
     const getFormErrorHolders = (form_id, target) => {
         if (target === 0) {
             return `#${form_id} #msgSubmit`
@@ -184,11 +164,11 @@
 
     const spinner = () => {
         return `
-			<div class="d-flex align-items-center justify-content-center flex-column py-2">
-				<div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
-				<strong>Loading...</strong>
-			</div>
-		`
+            <div class="d-flex align-items-center justify-content-center flex-column py-2">
+                <div class="spinner-border ml-auto mb-2" role="status" aria-hidden="true"></div>
+                <strong>Loading...</strong>
+            </div>
+        `
     }
 
     $(`#doctor-form`).on("submit", e => {
@@ -219,10 +199,6 @@
         formdata.append('user.username', $('#user-email').val())
         // formdata.append('qualifications', qualifications)
 
-        for (let [key, value] of formdata.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-
         toastr.options = {
             positionClass: "toast-bottom-center",
             progressBar: true,
@@ -238,13 +214,14 @@
         axios.post(url, formdata, { headers }).then((response) => {
             const data = response.data;
 
-            postQualifications('doctor-form', qualifications.map(each => ({
-                doctor: data.id,
-                ...each,
-            })))
+            // postQualifications('doctor-form', qualifications.map(each => ({
+            //     doctor: data.id,
+            //     ...each,
+            // })))
 
             toastr.info('Account Created Successfully')
             $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Your account has been created successfully. It is pending verification and you will get an update in your email withing 48hrs. You can now login to continue.</div>`)
+            window.location.href = "https://resq247.life/account/login/"
         }).catch((error) => {
             toastr.error(`Error - ${error.message}`)
             $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
@@ -297,7 +274,6 @@
             }
         }
 
-
     }
 
     function postEachQualification(form_id, qualificationFormData) {
@@ -319,7 +295,7 @@
         }).catch((error) => {
             toastr.error(`Error - ${error.message}`)
             $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
-            if(error?.response?.data?.user?.username){
+            if (error?.response?.data?.user?.username) {
                 toastr.error("The email you entered has already been used to register an account. Contact support.")
             }
             if (typeof error?.response?.data === 'object') {
@@ -352,10 +328,11 @@
             const data = response.data;
             toastr.info('Account Created Successfully')
             $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Your account has been created successfully. You can proceed to book appointments with various doctors and getting other services.</div>`)
+            window.location.href = "https://resq247.life/account/login/"
         }).catch((error) => {
             toastr.error(`Error - ${error.message}`)
             $(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-danger my-1">${error.message}</div>`)
-            if(error?.response?.data?.user?.username){
+            if (error?.response?.data?.user?.username) {
                 toastr.error("The email you entered has already been used to register an account. Contact support.")
             }
             if (typeof error?.response?.data === 'object') {
@@ -384,24 +361,17 @@
 
 
     function attachPhoneChangeListeners() {
-        // Find all input elements with class 'phone' using jQuery
         const phoneInputs = $('input.phone');
-
-        // Loop over each phone input and attach an input listener
         phoneInputs.each(function () {
-            $(this).on('input', function () {
-                // Get the input's value and truncate it if necessary
+            $(this).on('blur', function () {
                 let val = $(this).val()
                 let newValue = val.substring(0, 9);
-                // If the length of the value is greater than 9, display a warning message
                 if (val.length > 9) {
                     toastr.warning('Danger! Phone number too long.');
                 }
-                // If the value has changed, update the input's value
                 if (newValue !== $(this).val()) {
                     $(this).val(newValue);
                 }
-
             });
         });
     }
@@ -409,33 +379,16 @@
     attachPhoneChangeListeners()
 
     function attachPasswordChangeListeners() {
-        // Find all input elements with type 'password' using jQuery
         const passwordInputs = $('input[type="password"]');
-
-        // Loop over each password input and attach an input listener
         passwordInputs.each(function () {
-            $(this).on('input', function () {
-                // Get the input's value
+            $(this).on('blur', function () {
                 let password = $(this).val();
-                console.log(password.length)
-                // Check if the password meets the security requirements
-                if (password.length >= 8) {
-                    if (testPassword(password)) {
-                        toastr.success('Password is secure!');
-                    }
+                if (testPassword(password) && password.length >= 8) {
+                    toastr.success('Password is secure!');
                 }
             });
         });
-        passwordInputs.each(function () {
-            $(this).on('change', function () {
-                // Get the input's value
-                let password = $(this).val();
-                // Check if the password meets the security requirements
-                if (password.length < 8) {
-                    toastr.warning('Password must be atleast 8 characters long!');
-                }
-            });
-        });
+        
     }
 
     function testPassword(password) {

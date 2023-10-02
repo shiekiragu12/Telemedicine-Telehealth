@@ -6,6 +6,7 @@ urlpatterns = [
 
     # Settings
     path('settings/', settings, name='super-admin-settings'),
+    path('notifications/', admin_notifications, name='super-admin-notifications'),
 
     # Users
     path('users/', users, name='super-admin-users'),

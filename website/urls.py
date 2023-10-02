@@ -6,15 +6,19 @@ urlpatterns = [
     path('', views.index, name="index"),
 
     # services paths
-    path('services/emergencies', views.emergencies, name="emergencies"),
-    path('services/birthing-care', views.birthingcare, name="birthing-care"),
+    path('services/emergency-evacuation-and-ambulance-services', views.emergency_evacuation,
+         name="emergency-evacuation-and-ambulance-services"),
     path('services/mental-health', views.mental_health, name="mental-health"),
-    path('services/cancer-care', views.cancercare, name="cancer-care"),
-    path('services/family-medicine', views.familymedicine, name="family-medicine"),
-    path('services/emergency-medicine', views.emergencymedicine, name="emergency-medicine"),
-    path('services/laboratories-center', views.laboratiescenter, name="laboratories-center"),
-    path('services/online-referral', views.onlinereferral, name="online-referral"),
-    path('services/first-aid', views.firstaid, name="first-aid"),
+    path('services/home-based-care', views.home_based_care, name="home-based-care"),
+    path('services/patient-safety', views.patient_safety, name="patient-safety"),
+    path('services/concierge-services', views.concierge_services, name="concierge-services"),
+    path('services/virtual-consultation', views.virtual_consultation, name="virtual-consultation"),
+
+    # path('services/birthing-care', views.birthingcare, name="birthing-care"),
+    # path('services/cancer-care', views.cancercare, name="cancer-care"),
+    # path('services/emergency-medicine', views.emergencymedicine, name="emergency-medicine"),
+    # path('services/laboratories-center', views.laboratiescenter, name="laboratories-center"),
+    # path('services/online-referral', views.onlinereferral, name="online-referral"),
 
     # about
     path('about', views.about, name="about"),
@@ -25,7 +29,6 @@ urlpatterns = [
     path('health-topic', views.healthtopic, name="health-topic"),
     path('healthy-living', views.healthyliving, name="healthy-living"),
     path('location', views.location, name="location"),
-    path('teams', views.teams, name="teams"),
     path('project', views.project, name="project"),
     path('project-details', views.projectdetails, name="project-details"),
     path('faq', views.faq, name="faq"),
@@ -65,7 +68,10 @@ urlpatterns = [
     #  Terms & Conditions
     # path('terms-and-conditions/user-policy', name, name='user-policy'),
     path('terms-and-conditions', views.terms_conditions, name="terms-conditions"),
+    path('terms-and-conditions/payment-and-refund-policy', views.payment_refund_policy, name="payment-refund-policy"),
     path('terms-and-conditions/privacy-policy', views.privacy_policy, name="privacy-policy"),
     path('terms-and-conditions/user-policy', views.user_policy, name="user-policy"),
     path('terms-and-conditions/practitioner-policy', views.practitioner_policy, name="practitioner-policy"),
+    path('terms-and-conditions/practitioner-contract/<str:doctor_id>/sign/', views.practitioner_contract,
+         name="sign-contract"),
 ]

@@ -49,6 +49,14 @@
                                         Linked Facilities
                                     </a>
                                 </li>
+                                {% if request.user.doctor %}
+                                <li>
+                                    <a href="#" class="rounded-pill">
+                                        <div class="dot"></div>
+                                        Doctor Profile
+                                    </a>
+                                </li>
+                                {% endif %}
                                 {% if request.user.doctor.is_verified %}
                                 <li>
                                     <a href="#" class="rounded-pill">
@@ -64,406 +72,30 @@
 
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
-                                        <form action="{% url 'account_edit' %}" method="post"
-                                            enctype="multipart/form-data" class="form">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-12 mb-2">
-                                                    <h3>Basic user information</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="first_name" class="form-label">First Name</label>
-                                                    <input type="text" class="form-control shadow-none"
-                                                        name="first_name" id="first_name" placeholder="First Name"
-                                                        value="{{request.user.first_name}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="last_name" class="form-label">Last Name</label>
-                                                    <input type="text" id="last_name" class="form-control shadow-none"
-                                                        name="last_name" placeholder="Last Name"
-                                                        value="{{request.user.last_name}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="username" class="form-label">Username</label>
-                                                    <input type="text" disabled id="username"
-                                                        class="form-control shadow-none" name="username"
-                                                        placeholder="Username" value="{{request.user.username}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-3">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="text" id="email" class="form-control shadow-none"
-                                                        name="email" placeholder="Email" value="{{request.user.email}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
-                                                    <button class="btn btn-primary rounded-pill px-5">
-                                                        Update
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <form action="{% url 'account_profile_edit' %}" method="post"
-                                            enctype="multipart/form-data" class="form mt-4">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-12 mb-2">
-                                                    <h3>Advanced information</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="phone" class="form-label">Phone Number</label>
-                                                    <input type="text" id="phone" class="form-control shadow-none"
-                                                        name="phone_number" placeholder="Phone Number"
-                                                        value="{{request.user.profile.phone_number}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="gender" class="form-label">Gender
-                                                        ({{request.user.profile.gender}})</label>
-                                                    <select type="text" id="gender" class="w-100 shadow-none"
-                                                        name="gender" placeholder="Gender"
-                                                        value="{{request.user.profile.gender}}">
-                                                        {% with request.user.profile.gender as gender %}
-                                                        <option value="">Select Gender</option>
-                                                        <option value="male" {% if gender == 'male' %} selected {% endif %} >Male</option>
-                                                        <option value="female" {% if gender == 'female' %} selected {% endif %} >Female</option>
-                                                        {% endwith %}
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="country" class="form-label">Country</label>
-                                                    <input type="text" id="country" class="form-control shadow-none"
-                                                        name="country" placeholder="Country"
-                                                        value="{{request.user.profile.country}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="city" class="form-label">City</label>
-                                                    <input type="text" id="city" class="form-control shadow-none"
-                                                        name="city" placeholder="City"
-                                                        value="{{request.user.profile.city}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="postal_code" class="form-label">Postal Code</label>
-                                                    <input type="text" id="postal_code" class="form-control shadow-none"
-                                                        name="address" placeholder="Postal Code"
-                                                        value="{{request.user.profile.address}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
-                                                    <button class="btn btn-primary rounded-pill px-5">
-                                                        Update
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <form action="{% url 'account_profile_photo_edit' %}" method="post"
-                                            enctype="multipart/form-data" class="form mt-4">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-12 mb-2">
-                                                    <h3>Profile Picture</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <p class="text-center mb-1">Current profile picture</p>
-                                                    <div class="rounded-circle overflow-hidden bg-light mx-auto d-flex justify-content-center align-items-center"
-                                                        style="width: 100px; height: 100px;">
-                                                        <img src="{% if request.user.profile.profile_photo %} {{request.user.profile.profile_photo.url}} {% endif %}"
-                                                            width="90%" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2 d-flex align-items-center">
-                                                    <div class="w-100">
-                                                        <label for="profile_photo" class="form-label">Profile
-                                                            Photo</label>
-                                                        <input type="file" id="profile_photo"
-                                                            class="form-control shadow-none" name="profile_photo"
-                                                            placeholder="Old Password">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
-                                                    <button class="btn btn-primary rounded-pill px-5">
-                                                        Update
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <form action="{% url 'account_change_password' %}" method="post"
-                                            enctype="multipart/form-data" class="form mt-4">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-12 mb-2">
-                                                    <h3>Security</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="old_password" class="form-label">Old Password</label>
-                                                    <input type="password" id="old_password"
-                                                        class="form-control shadow-none" name="old_password"
-                                                        placeholder="Old Password">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="password" class="form-label">New Password</label>
-                                                    <input type="password" id="password"
-                                                        class="form-control shadow-none" name="password"
-                                                        placeholder="New Password">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="password1" class="form-label">Confirm Password</label>
-                                                    <input type="password" id="password1"
-                                                        class="form-control shadow-none" name="password1"
-                                                        placeholder="Confirm Password">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
-                                                    <button class="btn btn-primary rounded-pill px-5">
-                                                        Update
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        {% include './forms/basic-user-info-form.html' %}
+                                        {% include './forms/account-profile-form.html' %}
+                                        {% include './forms/profile-picture-form.html' %}
+                                        {% include './forms/password-form.html' %}
                                     </div>
                                 </div>
 
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
-                                        <div class="row">
-                                            {% if my_facilities|length > 0 %}
-                                            <div class="col-12 py-4">
-                                                <h2 class="pb-3">Listed by you</h2>
-
-                                                <div class="row py-2">
-                                                    {% for facility in my_facilities %}
-                                                    <div class="col-md-4 mb-3">
-                                                        {% include './components/facility_card.html' with facility=facility has_admin_buttons=True %}
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                                {% if my_facilities|length == 0 %}
-                                                <p>You have not listed any facilities yet!</p>
-                                                {% endif %}
-                                            </div>
-                                            {% endif %}
-
-                                            {% if request.user.patient %}
-                                            <div class="col-12 py-4">
-                                                <h2 class="pb-3">As a patient</h2>
-                                                <div class="row py-2">
-                                                    {% if request.user.patient.facility %}
-                                                    <div class="col-md-4 mb-3">
-                                                        {% include './components/facility_card.html' with facility=request.user.patient.facility has_admin_buttons=False
-                                                        %}
-                                                    </div>
-                                                    {% endif %}
-
-                                                    {% for facility in request.user.patient.facilities.all %}
-                                                    <div class="col-md-4 mb-3">
-                                                        {% include './components/facility_card.html' with facility=request.user.patient.facility has_admin_buttons=False
-                                                        %}
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            {% endif %}
-
-                                            {% if request.user.doctor %}
-                                            <div class="col-12 py-2">
-                                                <h2 class="pb-3">As a doctor</h2>
-                                                <div class="row py-2">
-                                                    {% if request.user.doctor.facility %}
-                                                    <div class="col-md-4 mb-3">
-                                                        {% include './components/facility_card.html' with facility=request.user.doctor.facility has_admin_buttons=True %}
-                                                    </div>
-                                                    {% endif %}
-                                                    {% for facility in request.user.doctor.facilities.all %}
-                                                    <div class="col-md-4 mb-3">
-                                                        {% include './components/facility_card.html' with facility=facility has_admin_buttons=True %}
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            {% endif %}
-
-                                        </div>
+                                        {% include './facilities/account-facilities.html' %}
                                     </div>
                                 </div>
+                                {% if request.user.doctor %}
+                                <div class="tabs_item">
+                                    <div class="products-details-tab-content">
+                                        <h3>Update doctor profile</h3>
+                                        {% include './components/qualifications.html' %}
+                                    </div>
+                                </div>
+                                {% endif %}
                                 {% if request.user.doctor.is_verified %}
                                 <div class="tabs_item">
                                     <div class="products-details-tab-content">
-                                        <form action="{% url 'create_facility' %}" method="POST"
-                                            enctype="multipart/form-data" class="form">
-                                            {% csrf_token %}
-                                            <div class="row">
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Basic facility information</h3>
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-2">
-                                                    <label for="name" class="form-label">Name</label>
-                                                    <input type="text" required class="form-control shadow-none"
-                                                        name="name" id="name" placeholder="Facility Name"
-                                                        value="{{facility.name}}">
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-2">
-                                                    <label for="facility_code" class="form-label">Facility Code</label>
-                                                    <input type="text" required class="form-control shadow-none"
-                                                        name="facility_code" id="facility_code" placeholder="Facility Code"
-                                                        value="{{facility.facility_code}}">
-                                                </div>
-                                                <div class="col-md-12 input-group-lg mb-2">
-                                                    <label for="description" class="form-label">Description</label>
-                                                    <textarea type="text" required id="description"
-                                                        class="form-control shadow-none" name="description"
-                                                        placeholder="Describe the facility"
-                                                        value="{{facility.description}}"></textarea>
-                                                </div>
-
-                                                <div class="col-md-12 input-group-lg mb-2">
-                                                    <label for="" class="form-label">Facility Kind</label>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="form-check ms-3 mb-3">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="facility_kind" value="clinic" id="clinic">
-                                                            <label class="form-check-label" for="clinic">
-                                                                Clinic
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check ms-3 mb-3">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="facility_kind" value="hospital"
-                                                                id="hospital">
-                                                            <label class="form-check-label" for="hospital">
-                                                                Hospital
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check ms-3 mb-3">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="facility_kind" value="pharmacy" id="pharmacy">
-                                                            <label class="form-check-label" for="pharmacy">
-                                                                Pharmacy
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check ms-3 mb-3">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="facility_kind" value="nutraceutical"
-                                                                id="nutraceutical">
-                                                            <label class="form-check-label" for="nutraceutical">
-                                                                Nutraceutical
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Contact information</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="fphone_number" class="form-label">Phone Number</label>
-                                                    <input type="text" required id="fphone_number"
-                                                        class="form-control shadow-none" name="contact_no"
-                                                        placeholder="Facility Phone number"
-                                                        value="{{facility.contact_no}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-3">
-                                                    <label for="femail" class="form-label">Email</label>
-                                                    <input type="text" id="femail" class="form-control shadow-none"
-                                                        name="email" required placeholder="Facility Email"
-                                                        value="{{facility.email}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-3">
-                                                    <label for="address" class="form-label">Address</label>
-                                                    <input type="text" id="address" class="form-control shadow-none"
-                                                        name="address" required placeholder="Facility address"
-                                                        value="{{facility.address}}">
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Location Details</h3>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-2">
-                                                    <label for="county" class="form-label w-100">County</label>
-                                                    <select type="text" required id="county" class="w-100 shadow-none" name="county"
-                                                        placeholder="County" value="{{facility.county}}">
-                                                        <option value="">Select county</option>
-                                                        {% for county in counties %}
-                                                        <option value="{{county.id}}" class="text-capitalize">{{county.name}}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-3">
-                                                    <label for="city" class="form-label">City</label>
-                                                    <input type="text" required id="city"
-                                                        class="form-control shadow-none" name="city" placeholder="City"
-                                                        value="{{facility.city}}">
-                                                </div>
-                                                <div class="col-md-4 input-group-lg mb-3">
-                                                    <label for="location" class="form-label">Location Name</label>
-                                                    <input type="text" required id="location"
-                                                        class="form-control shadow-none" name="location"
-                                                        placeholder="Location" value="{{facility.location}}">
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Geo Coordinates</h3>
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-2">
-                                                    <label for="latitude" class="form-label">Latitude</label>
-                                                    <input type="text" id="latitude" class="form-control shadow-none"
-                                                        name="latitude" required placeholder="Latitude"
-                                                        value="{{facility.latitude}}">
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-3">
-                                                    <label for="longitude" class="form-label">Longitude</label>
-                                                    <input type="text" id="longitude" class="form-control shadow-none"
-                                                        name="longitude" required placeholder="Longitude"
-                                                        value="{{facility.longitude}}">
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Facility Specialities</h3>
-                                                </div>
-                                                <div class="col-md-12 input-group-lg mb-2">
-                                                    <label for="specialities" class="form-label">Specialities</label>
-                                                    <!-- <select type="text" id="specialities" multiple class="w-100"
-                                                        name="specialities" placeholder="Specialities"
-                                                        value="{{facility.specialities}}">
-                                                        <option value="">Select specialities</option>
-                                                        {% for speciality in specialities %}
-                                                        <option value="{{speciality.id}}">{{speciality.name}}</option>
-                                                        {% endfor %}
-                                                    </select> -->
-                                                    <div class="row">
-                                                        {% for speciality in specialities %}
-                                                        <div class="col-6 col-md-4">
-                                                            <div class="form-check">
-                                                                <input type="checkbox" name="specialities"
-                                                                    class="form-check-input" id="spe_{{speciality.id}}"
-                                                                    value="{{speciality.id}}">
-                                                                <label class="form-check-label"
-                                                                    for="spe_{{speciality.id}}">{{speciality.name}}</label>
-                                                            </div>
-                                                        </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 mb-2">
-                                                    <h3>Images</h3>
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-2">
-                                                    <label for="logo" class="form-label">Logo</label>
-                                                    <input type="file" id="logo" class="form-control shadow-none"
-                                                        name="logo" placeholder="Logo" value="{{facility.logo}}"
-                                                        accept="image/*">
-                                                </div>
-                                                <div class="col-md-6 input-group-lg mb-3">
-                                                    <label for="cover_image" class="form-label">Cover Image</label>
-                                                    <input type="file" id="cover_image" class="form-control shadow-none"
-                                                        name="cover_image" placeholder="Cover Image"
-                                                        value="{{facility.cover_image}}" accept="image/*">
-                                                </div>
-
-
-                                                <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
-                                                    <button class="btn btn-primary rounded-pill px-5">
-                                                        Create facility
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        {% include './facilities/add-facility.html' %}
                                     </div>
                                 </div>
                                 {% endif %}

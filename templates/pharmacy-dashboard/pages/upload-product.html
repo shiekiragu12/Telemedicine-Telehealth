@@ -88,7 +88,7 @@
 							<div class="col-xl-6">
 								<div class="form-group">
 									<label for="message-text" class="col-form-label">Product Category(s)</label>
-									<select type="text" class="form-control" placeholder="Product Type"
+									<select type="text" class="form-control" placeholder="Product Category"
 										name="categories" multiple required>
 										{% for cat in product_categories %}
 										<option value="{{cat.id}}" {% if cat in product.categories.all %} selected {% endif %}>{{cat.name}}</option>
@@ -122,6 +122,14 @@
 									<label for="message-text" class="col-form-label">Image</label>
 									<input type="file" accept="image/*" class="form-control" placeholder="Product Image"
 										name="image" required>
+								</div>
+							</div>
+
+							<div class="col-xl-6">
+								<div class="form-group">
+									<label for="message-text" class="col-form-label">Other Images</label>
+									<input type="file" accept="image/*" multiple class="form-control" placeholder="Product Images"
+										name="images" required>
 								</div>
 							</div>
 
@@ -205,7 +213,7 @@
 		$(getFormErrorHolders(form_id, 1)).html("") // msgError holder
 		axios.post(url, formdata, { headers }).then((response) => {
 			const data = response.data;
-			console.log(response)
+			$(`#product-form`).trigger('reset')
 			toastr.info('Product Created Successfully')
 			$(getFormErrorHolders(form_id, 0)).html(`<div class="alert alert-success my-1">Product created successfully. It is being reviewed for approval.</div>`)
 		}).catch((error) => {

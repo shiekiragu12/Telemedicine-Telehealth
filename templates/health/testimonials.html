@@ -1,47 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} What people say about Resq247  {% endblock title %}
+{% block title %} What people say about Resq247 {% endblock title %}
 
 {% block content %}
 
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-5">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>Our Testimonial</h2>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Our Testimonial</li>
-                            </ul>
-                        </div>
-                    </div>
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Testimonials</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Our Testimonial</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!-- End Page Title Area -->
+    </div>
+</div>
+<!-- End Page Title Area -->
 
-   <!-- Start Clients Area -->
-   <section class="clients-area ptb-100">
+<!-- Start Clients Area -->
+<section class="clients-area ptb-100">
     <div class="container">
         <div class="section-title">
             <div class="section-title">
                 <span>Testimonial</span>
                 <h2>What Client’s Say About Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse</p>
+                <p>
+                    Here is what the platform users have to say.
+                </p>
             </div>
         </div>
 
         <div class="clients-slider owl-carousel owl-theme">
+            {% for testimonial in testimonials %}
             <div class="clients-item">
                 <div class="content">
                     <div class="icon">
                         <i class="flaticon-left-quote"></i>
                     </div>
                     <p>
-                        Using technology to deliver health care has several advantages, including cost savings, convenience, and the ability to provide care to people with mobility limitations, or those in rural areas who don't have access to a local doctor or clinic. For these reasons, the use of telehealth has grown significantly over the last decade. Currently, 76 percent of hospitals in the U.S. connect doctors and patients remotely via telehealth, up from 35 percent a decade ago.
+                        Using technology to deliver health care has several advantages, including cost savings,
+                        convenience, and the ability to provide care to people with mobility limitations, or those in
+                        rural areas who don't have access to a local doctor or clinic. For these reasons, the use of
+                        telehealth has grown significantly over the last decade. Currently, 76 percent of hospitals in
+                        the U.S. connect doctors and patients remotely via telehealth, up from 35 percent a decade ago.
                     </p>
                     <div class="info">
                         <img src="assets/img/client/1.jpg" alt="image">
@@ -50,210 +57,11 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
-            <div class="clients-item">
-                <div class="content">
-                    <div class="icon">
-                        <i class="flaticon-left-quote"></i>
-                    </div>
-                    <p>Telehealth has become even more essential during the coronavirus (COVID-19) pandemic. Fears of spreading and catching the virus during in-person medical visits have led to a greater interest in, and use of, technology to provide and receive health care.</p>
-
-                    <div class="info">
-                        <img src="assets/img/client/2.jpg" alt="image">
-                        <h4>Alison Jack</h4>
-                        <p>Developer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="clients-item">
-                <div class="content">
-                    <div class="icon">
-                        <i class="flaticon-left-quote"></i>
-                    </div>
-                    <p>Almost three-quarters of Americans surveyed said the pandemic has made them more eager to try virtual care. And one in four Americans over age 50 said they'd had a virtual health care visit during the first three months of the pandemic, up from just four percent of older adults who'd had a remote visit the previous year.</p>
-
-                    <div class="info">
-                        <img src="assets/img/client/3.jpg" alt="image">
-                        <h4>Steven Jony</h4>
-                        <p>Manager</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="clients-item">
-                <div class="content">
-                    <div class="icon">
-                        <i class="flaticon-left-quote"></i>
-                    </div>
-                    <p>Almost three-quarters of Americans surveyed said the pandemic has made them more eager to try virtual care. And one in four Americans over age 50 said they'd had a virtual health care visit during the first three months of the pandemic, up from just four percent of older adults who'd had a remote visit the previous year.</p>
-
-                    <div class="info">
-                        <img src="assets/img/client/2.jpg" alt="image">
-                        <h4>Alison Jack</h4>
-                        <p>Developer</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 <!-- End Clients Area -->
 
-<!-- Start Doctor Area -->
-<section class="doctor-area pt-100 pb-70">
-    <div class="container-fluid">
-        <div class="section-title">
-            <div class="section-title">
-                <span>Our Doctors</span>
-                <h2>Specialized Doctors</h2>
-                <p>Almost three-quarters of Americans surveyed said the pandemic has made them more eager to try virtual care. And one in four Americans over age 50 said they'd had a virtual health care visit during the first three months of the pandemic, up from just four percent of older adults who'd had a remote visit the previous year.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="assets/img/team/image1.jpg" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. James Adult</h3>
-                        <span>Cardiologist</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="assets/img/team/image2.jpg" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. James Alison</h3>
-                        <span>Medicine</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="assets/img/team/image3.jpg" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. Peter Adlock</h3>
-                        <span>Neurologiest</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="assets/img/team/image4.jpg" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. Jelin Alis</h3>
-                        <span>Medicine</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Doctor Area -->
-
-        {% endblock %}
+{% endblock %}

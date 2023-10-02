@@ -1,0 +1,1187 @@
+{% load static %}
+{% load humanize %}
+{% load customtags %}
+
+<style>
+    .list-disc {
+        list-style-type: disc;
+    }
+
+    .list-circle {
+        list-style-type: circle;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .custom-th {
+        max-width: 136px;
+        min-width: 136px;
+        padding: 0;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .my-th {
+        font-size: small !important;
+        font-weight: 400 !important;
+        text-transform: capitalize !important; 
+    }
+
+    table input::placeholder {
+        color: rgba(0, 0, 0, 0.1) !important;
+    }
+</style>
+
+<div class="">
+    <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+        <div class="me-auto d-none d-lg-block">
+            <h3 class="text-black font-w600 text-capitalize">Mental Health Appointment Form</h3>
+            <p class="mb-0 fs-18">
+                Fill out the form below.
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <h4 class="text-danger">
+                    Client Informed Consent & Confidentiality Agreement
+                </h4>
+                <p>
+                    <strong>
+                        Informed Consent & Confidentiality Agreement ( If you are unable to fill and by virtue of
+                        you
+                        submitting the form, you consent to allowing the psychologist guide you through the filling
+                        process
+                        and that all the information captured is a true picture of what you shared and you agree not
+                        to
+                        hold
+                        ResQ247 or its affiliate partners that include psychologists and therapists liable including
+                        in
+                        a
+                        court of law.
+                    </strong>
+                </p>
+                <p>
+                    Thank you for taking the time to request counseling services, we understand this is a big step
+                    in
+                    your journey towards healing and we are excited to work with you. Please read and initial next
+                    to
+                    each section below indicating you have read about what you can expect from our counseling
+                    services,
+                    what we expect of our clients, and other important information regarding your care. Please
+                    expect to
+                    review this information with your counselor at your first appointment.
+                </p>
+                <h4>Our Services </h4>
+                <p class="text-justify">
+                    ResQ247 mental health dept. offers affordable person-centered and trauma-informed counseling to
+                    our
+                    community with the support of professional counselors. These counselors are licensed by the
+                    ministry
+                    of health . We strive to provide individualized therapy to our clients, and you can learn more
+                    about
+                    your therapist – their clinical background and therapeutic approaches in your first session. Our
+                    counselors work in a collaborative setting where consultation with supervisors and other
+                    counselors
+                    is common and encouraged. The practice of consultation ensures safe, ethical, and quality care
+                    is
+                    being provided to clients while offering therapists educational opportunities. Our counselors
+                    must
+                    meet certain requirements before they are authorized to practice and are closely supervised in
+                    group
+                    and individual supervision.
+                </p>
+                <h4>Our Commitment to You </h4>
+                <p class="text-justify">
+                    <strong>Regular Sessions</strong> We know that counseling is not easy work and in order to help
+                    our
+                    clients meet
+                    their therapeutic goals we do our best to provide consistent, reliable, and predictable
+                    services.
+                </p>
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Your counselor will meet with you for one 50-minute session in a safe and confidential
+                            space
+                            (via telehealth or in person) each week for approximately 25-50 sessions. We do have the
+                            capacity to see clients for shorter or longer amounts of time according to individual
+                            need.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If you are engaging in a teletherapy session, you can expect:
+                        </p>
+                        <ul style="padding-left: 20px;">
+                            <li class="list-circle">
+                                <p>
+                                    Your counselor to ask if you are in a safe and private location for the session.
+                                    If
+                                    you are not safe or in a private space, we may ask that you move to a different
+                                    location or reschedule for a time that privacy can be ensured.
+                                </p>
+                            </li>
+                            <li class="list-circle">
+                                <p>
+                                    The counselor will take note of your physical location in the unlikely event
+                                    that an
+                                    emergency occurs, and we need to contact outside support. In an emergency, we
+                                    may
+                                    reach out to your emergency contact.
+                                </p>
+                            </li>
+                            <li class="list-circle">
+                                <p>
+                                    To make a plan with your therapist in the event of technological failure (bad
+                                    connection, dropped call, etc.). This plan may involve your counselor reaching
+                                    out
+                                    using a different method or resending a link, etc.
+                                </p>
+                            </li>
+                            <li class="list-circle">
+                                <p>
+                                    In situations where it is deemed necessary or requested by the client, the
+                                    counselor
+                                    may use a method to ensure they are speaking with the client, such as a password
+                                    or
+                                    code word to verify the client’s identity and/or indicate it is safe to talk.
+                                </p>
+                            </li>
+                            <li class="list-circle">
+                                <p>
+                                    Please note, if you are receiving teletherapy, you must physically be within
+                                    Nairobi
+                                    at the time you are receiving services
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            All our bookings are online . please sign-up on www.resq247.life , go to services tab ,
+                            click on mental health and select the preferred mental health service provider.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Our current operating business hours are Monday through Sunday , 7 days a week ,24 hours
+                            a
+                            day
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            ResQq247 counselors provide regular therapy, but we cannot provide or perform any
+                            psychological or psychiatric evaluations or provide medication evaluation or medication
+                            management. Should
+                            you need an evaluation or request support with medications, your counselor will refer
+                            you to
+                            someone who can meet that specific need.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            We strive to offer some of the most affordable mental health services in kenya , with
+                            fees
+                            ranging from Ksh. 3,500 per session. We trust you to indicate how much you can afford to
+                            pay
+                            at any given session and ask that you communicate concerns you have about your ability
+                            to
+                            pay with your counselor. You may pay for your services via our cashless secure platform
+                            using your VISA card or mobile money , or check and we request that you submit payment
+                            following each session or at any interval of time that makes sense for you financially
+                            (i.e.
+                            monthly, quarterly, etc.).
+                        </p>
+                    </li>
+                </ul>
+                <p class="align-right">
+                    <strong>Waiting List</strong> Due to high demand for our services, <br> we often have a waiting
+                    list
+                    so
+                    it is possible you will not be assigned a counselor right away.
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Once we receive your request for services the system automatically sends you a
+                            notification
+                            on email with details of your service provider , session time and consent form. Which
+                            you
+                            will be required to sign. Before meeting time.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            It is our general practice to reach out to clients via phone and/or email to share
+                            information about our process, answer questions, and connect.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If you indicate on your request for services that it is okay for us to email you, we
+                            will
+                            also notify you of any new groups that start while you are on our waiting list.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Should you experience a mental health crisis while you are on our waiting list you
+                            should
+                            either: call <strong><a href="tel:0738 247 247">0738 247 247</a></strong>, call a crisis
+                            line <strong><a href="tel:999">999</a></strong> or go to the nearest hospital emergency
+                            room.
+                        </p>
+                    </li>
+                </ul>
+
+                <p class="align-right">
+                    <strong>Confidentiality Counseling</strong> is confidential and materials <br> about the
+                    services
+                    you receive will be kept
+                    confidential except in cases involving threat or harm to yourself or others.
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Kenyan law requires we report abuse of a child, an elderly person, or a person who has a
+                            disability. Child abuse includes physical abuse, sexual abuse or exploitation, and
+                            neglect.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If you we re to express intention of serious self-harm or suicide, our counselors will
+                            respond as they deem appropriate to help ensure your safety. This may mean completing a
+                            safety plan or, if indicated, moving towards hospitalization. A supervisor may become
+                            more
+                            directly involved in cases of severe suicidality or self-harm.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If we receive a request for your file from another care or medical provider or for any
+                            other
+                            purpose, we would reach out to you and try to obtain a signed Release of Information
+                            before
+                            relinquishing it. However, if your file were to be subpoenaed by a judge, we would need
+                            to
+                            comply with the subpoena with or without your consent. We will notify you of any
+                            subpoena to
+                            allow you an opportunity to take any action in court if you deem appropriate. Any such
+                            notification will be sent to your last address on file.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            We will comply with all applicable laws including laws which require us, in certain
+                            circumstances related to minors, to report domestic violence that occurs in the presence
+                            of
+                            a minor.
+                        </p>
+                    </li>
+                </ul>
+
+                <p class="align-right">
+                    <strong>Your File</strong> Counselors take notes <br> and keep a file on each client or family
+                    system they work with. Client files and notes are:
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Created and used by ResQ247 licensed and non-licensed personnel, they are intended to be
+                            used by our program as part of day-to-day administrative functions and educational
+                            training
+                            tools. The files we keep are the property of ResQ247House.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Our files are not intended to be used by clients or third parties for any purpose other
+                            than
+                            helping to understand and enhance the experience of the client and help them achieve
+                            their
+                            counseling goals and thus, are not intended to be utilized in any civil, criminal, or
+                            administrative proceeding of any kind. Our document retention practices apply to our
+                            client
+                            files and are in compliance with applicable laws.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Notes for family and partner therapy sessions are kept on one form in one file, as is
+                            the
+                            accepted standard of practice for family and partner therapists. Due to this practice
+                            ResQ247 counseling department may be limited in its ability to protect the individual
+                            privacy of those named in family notes but every effort to protect your identity and
+                            information will be made.
+                        </p>
+                    </li>
+                </ul>
+
+                <p class="align-right">
+                    <strong>Counselor/Client Boundaries</strong> We want you to know <br> and understand the
+                    boundaries
+                    we have put in place to protect our clients and our counselors.
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Counselors are not allowed to meet with you off-site or have any kind of contact with
+                            you
+                            outside of scheduled counseling services.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Counselors cannot receive gifts from or offer gifts to clients and may not initiate
+                            physical
+                            contact with you. If you experience any interaction in which a counselor attempts to
+                            initiate physical contact with you, we ask that you immediately notify our Clinical
+                            Director.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If you were to run into your counselor outside of ResQ247House, for the sake of
+                            confidentiality and your privacy, your counselor will not initiate conversation or
+                            indicate
+                            they know you. This is not meant to be a personal rejection but simply to protect your
+                            confidentiality.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Counselors will not engage with any client on any social media platform, and we ask that
+                            you
+                            do not
+                            reach out to your counselor on any platform at any time, even after your therapy
+                            services
+                            have ended.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            Your counselor may contact you with your permission only via phone, email, and text
+                            appointment
+                            reminders (not direct text).
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            It is our practice not to provide therapeutic support via email between sessions though
+                            your
+                            counselor
+                            may email you information in the form of articles, links, and updated paperwork as
+                            appropriate and only
+                            when you have approved these interactions. Please note that email is not the most
+                            confidential form of
+                            communication and all efforts will be made to protect your information; anything you
+                            send
+                            via email
+                            cannot be guaranteed to be confidential.
+                        </p>
+                    </li>
+                </ul>
+
+                <p class="align-right">
+                    <strong>Attendance</strong> We ask our clients <br> to come to therapy ready to engage and
+                    participate in therapy.
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            If you are unable to make your appointment, please call or email to either cancel or
+                            reschedule your
+                            appointment at least six hours before the scheduled session.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            We will try to reach out via phone or email if you are not present for a scheduled
+                            appointment and, if
+                            we are concerned about your safety, we may reach out to your emergency contact. We will
+                            only
+                            do so after
+                            alerting you that this is our next step in a voice mail or email.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If we do not hear from you after at least 3 different communication attempts we may
+                            close
+                            your file,
+                            we will let you know that this has occurred, and you are welcome to reinitiate a request
+                            for
+                            services
+                            with us at any time.
+                        </p>
+                    </li>
+                </ul>
+
+                <p class="align-right">
+                    <strong>Safety</strong> We are dedicated <br> to being a safe place for every member of our
+                    community.
+                </p>
+
+                <ul class="list-group" style="padding-left: 20px;">
+                    <li class="list-disc">
+                        <p>
+                            Our therapists are trained to provide appropriate and trauma-informed counseling to
+                            people
+                            in all
+                            bodies and of all identities. If you feel you are being discriminated against or if you
+                            are
+                            unhappy with
+                            the services you have been provided, please register your complain to
+                            <strong><a
+                                    href="mailto:customercare@resq247.life">customercare@resq247.life</a></strong>,
+                            remember to share the name of the counselor/therapist and dates attended to , include a
+                            brief on how you
+                            were treated / attended to.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If a client threatens or enacts physical or sexual harm to members of our community
+                            (staff,
+                            volunteers, interns, or other clients) the proper authorities will be notified.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            If you experience a mental health emergency, please first call either: <strong><a
+                                    href="tel:+254 738 247 247">+254 738 247 247</a></strong>
+                            emergency line
+                            or go to the nearest hospital emergency room. Once you are safe book your virtual
+                            session on
+                            <strong><a href="www.resq247.life">www.resq247.life</a></strong>
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            We work hard to provide the highest quality care to our clients, and we understand we
+                            cannot
+                            meet the
+                            needs of everyone requesting our services. If we do not feel we can adequately meet your
+                            therapeutic
+                            needs, we will work to refer you to someone who is better suited to help you achieve
+                            your
+                            goals.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            When working with clients experiencing substance use or misuse issues, we operate from a
+                            place of harm
+                            reduction and ask that you not attend therapy sessions under the influence of
+                            substances. If
+                            at any time
+                            your therapist feels it is unsafe for you or for them to continue a session due to
+                            intoxication, they
+                            will end the session and consult their supervisor on next steps.
+                        </p>
+                    </li>
+                    <li class="list-disc">
+                        <p>
+                            We want you to feel safe with the person delivering your care. If you have any requests
+                            or
+                            concerns
+                            regarding the counselor that is assigned to you, please indicate this in your Request
+                            for
+                            Services so we
+                            can be sure to assign the most appropriate therapist to you. We cannot always
+                            accommodate
+                            all requests
+                            though we will do our best and may reach out to you to learn more before assigning you a
+                            counselor.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <h4>
+                By signing below, you are agreeing to the services as they are described above.
+            </h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Printed Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for=""><strong>Are you seeking in-person or teletherapy services at this time?</strong></label>
+                            <div class="d-flex" style="gap: 10px;">
+                                {% get_teletherapy_services as teletherapy_services %}
+                                {% for service in teletherapy_services %}
+                                <div class="form-check d-flex align-items-center">
+                                    <input type="radio" name="services_wanted" class="form-check-input mt-0" value="{{service.id}}" 
+                                    id="service_{{service.id}}"
+                                    {% if form.services_wanted.id == service.id %} checked {% endif %}
+                                    >
+                                    <label class="form-check-label" style="margin-bottom: 0 !important ;"
+                                        for="service_{{service.id}}">{{service.title}}</label>
+                                </div>
+                                {% endfor %}
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">
+                                <strong>Family Counseling</strong> If you are requesting family counseling please
+                                list the names of anyone else who will be in your counseling session with you (i.e.
+                                partner(s), family members, etc.).
+                            </label>
+                            <textarea name="family_counselling_names" rows="3" class="form-control">{{form.family_counselling_names}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h5>
+                            Request for Counselling Services – Adolescent Client
+                        </h5>
+                        <p>
+                            Thank you for taking the time to complete this form, we are excited to learn more about
+                            you and your goals. Please complete this to the best of your ability and let us know if
+                            you have questions.
+                        </p>
+                        <p>
+                            <strong>Demographic Information</strong> Please be informed that anything you share here
+                            is for us to
+                            learn about the people and communities accessing our services. If you are uncomfortable
+                            answering any question, please skip it.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Application Date</label>
+                            <input type="date" class="form-control" name="application_date" value="{{form.application_date|get_date}}">
+                        </div>
+                    </div>
+                    {% if patient %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Date of Birth</label>
+                            <input type="date" class="form-control" disabled value="{{appointment.patient.user.profile.dob|get_date}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Age</label>
+                            <input type="text" disabled class="form-control" value="{{appointment.patient.user.profile.dob|calculate_age}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Last Name</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.last_name}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">First Name</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.first_name}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Prefered Name</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.preferred_name}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Pronouns</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.pronouns}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Race</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.race}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Sexual Orientation</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.sexual_orientation}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.address}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">City</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.city}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">State</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.country}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Phone Number</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.profile.phone_number}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Email Address</label>
+                            <input type="text" class="form-control" disabled value="{{appointment.patient.user.email}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                    {% endif %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">What language would you like to receive services in?</label>
+                            <input type="text" name="language" class="form-control" value="{{form.language|check_if_null}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">May we send you text message reminders for appointments?</label>
+                            {% include './yes-no-component.html' with field_name='send_text_message' value=form.send_text_message %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">May we send WhatsApp?</label>
+                            {% include './yes-no-component.html' with field_name='send_whatsapp' value=form.send_whatsapp %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">May we email you?</label>
+                            {% include './yes-no-component.html' with field_name='send_email' value=form.send_email %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Emergency Contact Name</label>
+                            <input type="text" name="emergency_contact_name" value="{{form.emergency_contact_name|check_if_null}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Emergency Contact Relationship</label>
+                            <input type="text" name="emergency_contact_relationship" value="{{form.emergency_contact_relationship|check_if_null}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Emergency Contact Phone Number </label>
+                            <input type="text" name="emergency_contact_phone_no" value="{{form.emergency_contact_phone_no|check_if_null}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Emergency Contact Email Address </label>
+                            <input type="text" name="emergency_contact_email" value="{{form.emergency_contact_email|check_if_null}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">How did you hear about our services or who referred you?</label>
+                            <textarea name="referrer_source" class="form-control">{{form.referrer_source}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">How long have you lived in your current area of residence </label>
+                            <input name="time_lived_in_current_place" value="{{form.time_lived_in_current_place|check_if_null}}" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            <strong>Counseling Needs & Goals</strong> The information you list here will be used to
+                            understand more
+                            fully what you are hoping for from your counseling experience, match you with an
+                            appropriate counselor, and make sure we can meet your needs.
+                        </p>
+                        <div class="form-group">
+                            <label for="">
+                                Please share a little bit about why you are seeking counseling now – what are you
+                                hoping to get out of counseling?
+                            </label>
+                            <textarea name="why_seek_counselling" rows="4" class="form-control">{{form.why_seek_counselling|check_if_null}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Who brought you into counseling?</label>
+                            <textarea name="who_brought_you_into_counselling" class="form-control">{{form.who_brought_you_into_counselling|check_if_null}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Are you here because you want counseling or because someone else wants
+                                counseling for you? </label>
+                                {% get_counselling as who_wants_counselling %}
+                                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+                                    {% for me in who_wants_counselling %}
+                                    <div class="form-check d-flex align-items-center">
+                                        <input name="want_counselling_or_someone_else_told_you_to" 
+                                        type="radio" class="form-check-input" id="want_{{me.0}}"
+                                        value="{{me.0}}"
+                                        {% if me.0 == form.want_counselling_or_someone_else_told_you_to %} checked {% endif %}
+                                        >
+                                        <label class="form-check-label" style="margin-bottom: 0 !important ;"
+                                            for="want_{{me.0}}">{{me.1}}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            In order of importance, please rank the top 5 counseling-related topics you are
+                            interested in exploring in therapy by
+                        </p>
+                        <div class="form-group">
+                            <label for="">
+                                Ticking the check boxes , if unable , a counseling psychologist will be able to take
+                                you through in the virtual consultation session you booked.
+                            </label>
+                            <div class="row">
+                                {% get_counselling_related_topics as counselling_topics %}
+                                {% for topic in counselling_topics %}
+                                <div class="col-md-3">
+                                    <div class="form-check d-flex align-items-center">
+                                        <input name="counselling_related_topics" value="{{topic.id}}" 
+                                        type="checkbox" class="form-check-input" id="topic_{{topic.id}}"
+                                        {% if topic in form.counselling_related_topics.all %} checked {% endif %}
+                                        >
+                                        <label class="form-check-label" style="margin-bottom: 0 !important ;"
+                                            for="topic_{{topic.id}}">{{topic.name}}</label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            Relationships & Resources Information
+                        </p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">How many are you in your family ? </label>
+                            <input type="text" name="how_many_in_family" value="{{form.how_many_in_family|check_if_null}}" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Which Number are you in your family? </label>
+                            <input type="text" name="first_born_ro_last_born" placeholder="First, Second Third, etc" value="{{form.first_born_ro_last_born|check_if_null}}"  class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">What are some hobbies, interests, or activities you enjoy? </label>
+                            <textarea name="hobbies" class="form-control">{{form.hobbies|check_if_null}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Who are some supportive people in your life?</label>
+                            <textarea name="supportive_people" class="form-control">{{form.supportive_people|check_if_null}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">What are some skills you feel you have?</label>
+                            <textarea name="skills" class="form-control">{{form.skills|check_if_null}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Is any member of your family (family of origin or chosen family) or
+                                household currently receiving counseling services with us?</label>
+                            {% include './yes-no-component.html' with field_name='family_receiving_counselling_from_us' value=form.family_receiving_counselling_from_us %}
+                        </div>
+                        <div class="form-group">
+                            <label>If so, who and what is their relationship to you?</label>
+                            <textarea name="who_is_getting_counselling" class="form-control">{{form.who_is_getting_counselling|check_if_null}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <p>
+                            <strong>Mental Health Information & History</strong> We understand information in this
+                            section is
+                            extremely sensitive and may be painful to recount. We are vigilant to protect this
+                            information and only ask about history that is necessary to provide you with excellent
+                            care. If there is information you do not wish to disclose in this format that is
+                            understandable. The counseling psychologists you selected for your virtual session may
+                            reach out during your first session to pick the information( please remember this
+                            information is ONLY meant for your counseling session. We may have follow-up questions
+                            regarding information shared in this section, such follow-up is designed to be sure we
+                            can provide you with the appropriate types of services. Thank you for your cooperation
+                            and understanding.
+                        </p>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="">Have you ever been in counseling before?</label>
+                            {% include './yes-no-component.html' with field_name='ever_been_in_counselling' value=form.ever_been_in_counselling %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="">If yes, what was your experience like? Please select only one:</label>
+                            <div class="d-flex" style="gap: 20px;">
+                                {% get_counselling_experiences as counselling_experiences %}
+                                {% for c_exp in counselling_experiences %}
+                                <div class="form-check">
+                                    <input type="radio" name="counselling_experience" value="{{c_exp.id}}" 
+                                    class="form-check-input mt-0" id="c_exp_{{c_exp.id}}"
+                                    {% if c_exp in form.counselling_experience.all %} checked {% endif %}
+                                    >
+                                    <label class="form-check-label"
+                                        for="c_exp_{{c_exp.id}}">{{c_exp.name}}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="">Have you ever been diagnosed with a mental illness? </label>
+                            {% include './yes-no-component.html' with field_name='ever_diagnosed_with_mental_illness' value=form.ever_diagnosed_with_mental_illness %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="">If yes, please list diagnoses and describe the circumstances surrounding
+                                these diagnoses (i.e. who diagnosed you, what was the setting, what year were you
+                                diagnosed)? Please also note if you agree or disagree with this assessment. </label>
+                            <div class="form-group d-flex align-items-center">
+                                <textarea name="mental_illness_diagnosed_with" class="form-control">{{form.mental_illness_diagnosed_with|check_if_null}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Do you currently take prescriptions or over-the-counter medications to
+                                help manage mental health symptoms? </label>
+                                {% include './yes-no-component.html' with field_name='currently_taking_prescriptions' value=form.currently_taking_prescriptions %}
+                        </div>
+                        <div class="form-group">
+                            <label for="">If so, please list medication and dosage: </label>
+                            <div class="form-group d-flex align-items-center">
+                                <input type="text" name="prescription_dosage_notes" value="{{form.prescription_dosage_notes|check_if_null}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Do you currently have a mental health provider (therapist,
+                                psychiatrist, peer supporter, etc.) </label>
+                                {% include './yes-no-component.html' with field_name='currently_having_mental_health_provider' value=form.currently_having_mental_health_provider %}
+                        </div>
+                        <div class="form-group">
+                            <label for="">If so, please list their names and roles: </label>
+                            <div class="form-group d-flex align-items-center">
+                                <input type="text" name="mental_health_provider_notes" value="{{form.mental_health_provider_notes|check_if_null}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Have you ever been hospitalized or in an in-patient facility for a mental
+                                health issue? </label>
+                                {% include './yes-no-component.html' with field_name='ever_been_hospitalized' value=form.ever_been_hospitalized %}
+                        </div>
+                        <div class="form-group">
+                            <label for="">If yes, please list the facility and approximate dates you were there
+                            </label>
+                            <div class="form-group d-flex align-items-center">
+                                <input type="text" name="hospitalized_notes" value="{{form.hospitalized_notes|check_if_null}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Have you ever attempted suicide? </label>
+                            {% include './yes-no-component.html' with field_name='ever_attempted_suicide' value=form.ever_attempted_suicide %}
+                        </div>
+                        <div class="form-group">
+                            <label for="">If so, please list the date(s)
+                            </label>
+                            <div class="form-group d-flex align-items-center">
+                                <input type="text" name="suicide_notes" value="{{form.suicide_notes|check_if_null}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Are you currently experiencing suicidal thoughts or have a plan to harm
+                                yourself? </label>
+                                {% include './yes-no-component.html' with field_name='currently_experiencing_suicidal_thoughts' value=form.currently_experiencing_suicidal_thoughts %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Do you have access to a gun? </label>
+                            {% include './yes-no-component.html' with field_name='access_to_gun' value=form.access_to_gun %}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <p>
+                            <strong>Substance Use Information & History</strong> Please describe your current and
+                            historical
+                            substance use in the table below. If you use a substance as prescribed please indicate
+                            this in the “Method” column.
+                        </p>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                {% get_substance_use_titles as substance_use_titles %}
+                                {% get_substances as substances %}
+                                <thead class="bg-dark text-white">
+                                    <th class="custom-th">Substance</th>
+                                    {% for title in substance_use_titles %}
+                                    <th class="custom-th text-center my-th">{{title.title}}</th>
+                                    {% endfor %}
+                                </thead>
+                                <tbody>
+                                    {% for substance in substances%}
+                                    <tr>
+                                        <td class="custom-th">{{substance.title}}</td>
+                                        {% for title in substance_use_titles %}
+                                        {% get_value_from_list form.substance_usage.all substance.id as substance_object %}
+                                        {% get_value_from_object substance_object title.form_name as substance_value %}
+                                        <td class="custom-th">
+                                            {% get_substance_field_name substance.id title.form_name as field_name %}
+                                            {% if title.type == 'radio' %}
+                                            {% include './yes-no-component.html' with field_name=field_name value=substance_value %}
+                                            {% else %}
+                                            <div class="w-100 d-flex align-items-center justify-content-center">
+                                                <input type="{{title.type}}" placeholder="{{title.placeholder}}" value="{{substance_value}}" name="{{field_name}}"
+                                                    class="form-control">
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">
+                                Is there any additional information about your substance use that you wish to share
+                                with us?
+                            </label>
+                            <textarea name="additional_substance_use_info" class="form-control" rows="5">{{form.additional_substance_use_info}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <p>
+                            <strong>Health Information & History</strong> Please list any information you feel is
+                            relevant regarding
+                            your current physical health. Consider adding information about ailments and illnesses,
+                            sleeping issues, eating disturbances or pattern you are concerned about, and information
+                            about your physical activity.
+                        </p>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">
+                                Tell us about your current health– are there things you are concerned about?
+                            </label>
+                            <textarea name="current_health" class="form-control" rows="5">{{form.current_health}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">
+                                Are there aspects of your health that you feel are going particularly well?
+                            </label>
+                            <textarea name="aspects_of_health" class="form-control" rows="5">{{form.aspects_of_health}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <p>
+                            <strong>Availability</strong> Please indicate when you are available for physical
+                            counseling by checking
+                            all times you are generally available below.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                {% get_availability_days as availability_days %}
+                                {% get_availability_times as availability_times %}
+                                <thead class="bg-dark text-white">
+                                    <th class="custom-th text-center">Availability</th>
+                                    {% for day in availability_days %}
+                                    <th class="custom-th my-th text-center">{{day.day}}</th>
+                                    {% endfor %}
+                                </thead>
+                                <tbody>
+                                    {% for time in availability_times%}
+                                    <tr>
+                                        <td>{{time.time_slot}}</td>
+                                        {% for day in availability_days %}
+                                        <td class="custom-th">
+                                            <div class="w-100 d-flex align-items-center justify-content-center">
+                                                {% check_contains day.id time.id form.selected_slots as exists %}
+                                                <input type="checkbox" name="selected_slots"
+                                                    value="availability_{{day.id}}_{{time.id}}"
+                                                    class="form-check-input cursor-pointer"
+                                                    {% if exists %} checked {% endif %}
+                                                    >
+                                            </div>
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">
+                                Our on-site counseling services often take place on the second floor, there are NO
+                                lifts or escalator within the building . If you are not able to climb or access
+                                stairs, we will be sure to schedule your appointments in an accessible location.
+                                Please indicate if you have any accessibility requests or needs here and we will do
+                                our very best to accommodate you.
+                            </label>
+                            <textarea name="on_site_counselling" rows="3" class="form-control">{{form.on_site_counselling}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="mb-1">
+                            Are you currently residing in any of this cities ? Nairobi, Nakuru, Mombasa, Kisumu,
+                            Eldoret
+                        </p>
+                        {% include './yes-no-component.html' with field_name='residing_in_cities' value=form.residing_in_cities %}
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-1">
+                            If not, could you physically be in any of this cities during teletherapy sessions?
+                        </p>
+                        {% include './yes-no-component.html' with field_name='can_be_in_any_of_cities' value=form.can_be_in_any_of_cities %}
+                    </div>
+                    {% if doctor %}
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <h3 class="mb-3 text-danger">For Doctor's Use Only</h3>
+                                <h4>Intervention Terminology</h4>
+                                <div class="row">
+                                    {% get_intervention_terminologies as intervention_terminologies %}
+                                    {% for item in intervention_terminologies %}
+                                    <div class="col-6 col-md-3 overflow-hidden" style="word-break: break-all;">
+                                        <div class="form-group d-flex align-items-center mb-0" style="column-gap: 6px;">
+                                            <input type="checkbox" name="intervention_terminologies"
+                                                id="intervention_{{item.id}}" value="{{item.id}}" class="form-check"
+                                                {% if item in form.intervention_terminologies.all %} checked  {% endif %}
+                                                >
+                                            <label for="intervention_{{item.id}}"
+                                                class="form-label m-0">{{item.name}}</label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h4>Client Behavior, affect Performance</h4>
+                                <div class="row">
+                                    {% get_client_behaviours as client_behaviours %}
+                                    {% for item in client_behaviours %}
+                                    <div class="col-6 col-md-3 overflow-hidden" style="word-break: break-all;">
+                                        <div class="form-group d-flex align-items-center mb-0" style="column-gap: 6px;">
+                                            <input type="checkbox" name="client_behavior"
+                                                id="client_behavior_{{item.id}}" value="{{item.id}}" class="form-check"
+                                                {% if item in form.client_behavior.all %} checked  {% endif %}
+                                                >
+                                            <label for="client_behavior_{{item.id}}"
+                                                class="form-label m-0">{{item.name}}</label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h4>Practitioner's Comment</h4>
+                                <textarea class="form-control" name="practitioner_comment" rows="4" placeholder="Practitioner's Comment">{{form.practitioner_comment}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-12 mt-4">
+                        <p>
+                            By SUBMITTING the form , you are stating that the information provided is accurate and
+                            true
+                            to the best of your knowledge. Kindly remember our Services are hybrid, the first
+                            sessions
+                            will always be online unless advised by the psychologists.
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'dashboard/vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+<script>
+    $('#appointments').DataTable()
+</script>

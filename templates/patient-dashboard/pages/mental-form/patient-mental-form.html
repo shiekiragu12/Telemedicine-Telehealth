@@ -1,0 +1,14 @@
+{% extends './../../components/base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Appointment Form {% endblock %}
+
+{% block content %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="card_">
+            {% include './mental-health.html' with patient=True %}
+        </div>
+    </div>
+</div>
+{% endblock %}

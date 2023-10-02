@@ -1,0 +1,14 @@
+{% load customtags %}
+{% get_yes_no as yes_no %}
+<div class="d-flex align-center" style="gap: 10px; flex-wrap: wrap;">
+    {% for option in yes_no %}
+    <div class="form-check d-flex align-items-center">
+        <input type="radio" name="{{field_name}}" value="{{option.title}}" class="form-check-input mt-0" 
+        id="yes_no_{{field_name}}_{{option.id}}"
+        {% if value == option.title %} checked {% endif %}
+        >
+        <label class="form-check-label" style="margin-bottom: 0 !important ;"
+            for="yes_no_{{field_name}}_{{option.id}}">{{option.title}}</label>
+    </div>
+    {% endfor %}
+</div>

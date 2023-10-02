@@ -1,311 +1,495 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Terms & Conditions  {% endblock title %}
+{% block title %} Terms & Conditions {% endblock title %}
 
 {% block content %}
 
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-5" style="background-image: url(/static/new/privacy-policy.jpg);">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>Terms and conditions</h2>
-                            <ul>
-                                <li><a href="{% url 'index' %}">Home</a></li>
-                                <li>Terms and conditions</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Page Title Area -->
-
-        <!-- Service details -->
-        <div class="service-details ptb-100">
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg-5" style="background-image: url(/static/new/privacy-policy.jpg);">
+    <div class="d-table" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="d-table-cell">
             <div class="container">
-                
-                <div class="service-details-content">
-                    <h3>GENERAL TERMS AND CONDITIONS</h3>
+                <div class="page-title-content">
+                    <h2>Terms and conditions</h2>
                     <ul>
-                        <li><b>Definition of Telemedicine and Telehealth:</b>
-                            Telemedicine refers to the delivery of
-                            healthcare services using electronic communication technologies such as video conferencing,
-                            phone, and the internet. Telehealth, on the other hand, encompasses a broader range of
-                            remote health services, including telemedicine, remote patient monitoring, and other digital
-                            health technologies.
-                        </li>
-
-                        <li><b>Purpose:</b>
-                            The purpose of telemedicine and telehealth is to provide medical consultations,
-                            care, and support to patients without the need for an in-person visit. This service is intended
-                            for patients who are unable to physically visit a healthcare provider due to various reasons,
-                            including location, mobility issues, or health conditions.
-                        </li>
-
-                        <li><b>Service Provider:</b>
-                            The telemedicine and telehealth services are provided by a licensed
-                            healthcare provider who is authorized to provide medical services in the jurisdiction where the
-                            patient is located, Our medical professionals are attached to a licensed medical facility and
-                            are registered by relevant medical regulatory bodies in Kenya.
-                        </li>
-                        <li><b>Patient Eligibility:</b>
-                            Patients must be at least 18 years of age and have access to a device
-                            with internet connectivity to use telemedicine and telehealth services. Patients must also
-                            provide accurate and complete information about their health conditions and medical history.
-                        </li>
-                        <li><b>Quality of Service:</b>
-                            The healthcare provider will make every effort to provide high-quality
-                            telemedicine and telehealth services, but the quality of the service may be impacted by
-                            various factors, including the quality of the patient&#39;s internet connection and the availability of
-                            medical equipment and technology.
-                        </li>
-                        <li><b>Limitations of Telemedicine and Telehealth:</b>
-                            Telemedicine and telehealth services are not
-                            a substitute for in-person medical care, and the healthcare provider may determine that an in-
-                            person visit is necessary in some cases. The provider may also determine that telemedicine
-                            and telehealth services are not appropriate for certain medical conditions or treatments.
-                        </li>
-                        <li><b>Privacy and Security:</b>
-                            The healthcare provider will take appropriate measures to protect the
-                            privacy and security of patient information and medical records, including the use of secure
-                            communication technologies and the compliance with all applicable privacy and security laws
-                            and regulations.
-                        </li>
-                        <li><b>Fees and Payments:</b>
-                            Patients will be charged a fee for telemedicine and telehealth services,
-                            which will be disclosed in advance. Patients must provide payment for the services before or
-                            during the consultation.
-                        </li>
-                        <li><b>Refunds and Cancellations:</b>
-                            Patients may cancel their telemedicine and telehealth
-                            appointment within 24 hours of the scheduled appointment time, and a full refund will be
-                            provided. Patients who miss their appointment or cancel after the 24-hour deadline will not be
-                            eligible for a refund.
-                        </li>
-                        <li><b>Disclaimer:</b>
-                            The healthcare provider is not responsible for any adverse outcomes or negative
-                            effects that may result from the use of telemedicine and telehealth services. The provider will
-                            not be liable for any damages arising from the use of telemedicine and telehealth services,
-                            including, but not limited to, damages caused by technical problems, equipment failure, or
-                            human error, inaccurate diagnosis and any other causes that are humanly impossible to
-                            execute using this platform.
-                        </li>
-                        <li><b>Governing Law:</b>
-                            These terms and conditions are governed by the laws of the jurisdiction
-                            where the patient is located and any applicable federal laws.
-                        </li>
-                        <li><b>Changes to Terms and Conditions:</b>
-                            The healthcare provider may modify these terms and
-                            conditions from time to time, and the most current version will be available on the provider&#39;s
-                            website.
-                        </li>
-                        <li><b>Dispute Resolution:</b>
-                            Any disputes arising from the use of our platform and services will be
-                            resolved by an arbitrator duly authorized to perform such duties by Kenyan judiciary or a
-                            competent court in Kenya. Governing laws will be such laws that govern the country where
-                            ResQ247 is registered.
-                        </li>
-                        <li><b>Acceptance of Terms and Conditions:</b>
-                            By using telemedicine and telehealth services,
-                            patients agree to be bound by these terms and conditions.
-                        </li>                       
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Terms and conditions</li>
                     </ul>
-
-                    <h4>TERMS AND CONDITIONS FOR CONSULTING DOCTOR ON OUR PLATFORM</h4>
-                    <ul>
-                        <li>
-                            Introduction: This agreement sets forth the terms and conditions for updating medical
-data on the Patient’s profile. By using this service, the Patient agrees to be bound by
-these terms and conditions.
-                        </li>
-                        <li>
-                            Purpose of Service: The purpose of this service is to provide Patients with the ability to
-update their medical information on their profile. The information will be used by
-healthcare providers to provide the best medical care.
-                        </li>
-                        <li>
-                            Accuracy of Data: The Patient is responsible for ensuring the accuracy of their medical
-information. The Patient must provide complete and up-to-date information to avoid any
-adverse consequences. The Patient must also notify the service provider of any changes
-in their medical information.
-                        </li>
-                        <li>Confidentiality: The service provider will maintain the confidentiality of the Patient’s
-                            medical information in accordance with applicable law. The service provider will not
-                            disclose any confidential information to any third party without the Patient’s written
-                            consent, except as required by law.
-                        </li>
-                        <li>
-                            Disclaimer of Warranties: THE SERVICE PROVIDER MAKES NO WARRANTIES,
-EXPRESS OR IMPLIED, WITH RESPECT TO THE UPDATE SERVICE. THE SERVICE
-PROVIDER DISCLAIMS ALL WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE.
-                        </li>
-                        <li>
-                            Limitation of Liability: THE SERVICE PROVIDER WILL NOT BE LIABLE TO THE
-PATIENT OR ANY THIRD PARTY FOR ANY DAMAGES, INCLUDING WITHOUT
-LIMITATION, DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR SPECIAL
-DAMAGES, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING OUT OF
-THE USE OF OR INABILITY TO USE THE UPDATE SERVICE, OR FOR ANY OTHER
-CLAIM BY THE PATIENT.
-                        </li>
-                        <li>
-                            Indemnification: The Patient agrees to indemnify and hold the service provider and its
-affiliates harmless from any and all claims, damages, and expenses, including, without
-limitation, reasonable attorney’s fees, arising from the Patient’s use of the update service.
-                        </li>
-                        <li>
-                            Governing Law: This agreement shall be governed by and construed in accordance with
-the laws of the state in which the service provider is located, without giving effect to any
-principles of conflicts of law.
-                        </li>
-                        <li>
-                            Dispute Resolution: Any dispute arising out of or relating to this agreement shall be
-resolved through arbitration in accordance with the rules of the American Arbitration
-Association. The arbitration shall be conducted in the state in which the service provider
-is located.
-                        </li>
-                        <li>
-                            Entire Agreement: This agreement constitutes the entire agreement between the parties
-and supersedes all prior negotiations, understandings, and agreements between the
-parties. No amendment or modification of this agreement shall be binding unless in
-writing and signed by both parties.
-                        </li>
-                    </ul>
-
-                    <h4>TERMS AND CONDITIONS FOR PHARMACY PRODUCTS</h4>
-                        <ul>
-                            <li>
-                                Delivery Time: Delivery of pharmacy products will be made within the specified delivery time
-frame provided by the customer. In case of any delay, the customer will be informed
-promptly.
-                            </li>
-                            <li>
-                                Product Availability: The pharmacy will only deliver the products that are readily available in
-the store and not out of stock.
-                            </li>
-                            <li>Delivery Location: Delivery of the pharmacy products will be made to the specified delivery
-                                address provided by the customer.</li>
-                            <li>Delivery Fees: Delivery fees will be charged as per the delivery location and the weight of the
-                                products. The customer will be informed about the delivery fees before placing the order.</li>
-                            <li>Payment Method: Payment for the pharmacy products and delivery fees can be made
-                                through various modes such as cash, credit card, and online payment.</li>
-                            <li>Return Policy: If the customer receives a damaged product or incorrect product, the
-                                pharmacy will provide a replacement or refund. The customer must inform the pharmacy
-                                within 7 days of receiving the product.</li>
-                            <li>Product Quality: The pharmacy ensures that all products are of high quality and are sourced
-                                from reliable suppliers. The customer can request for a product certificate of analysis if
-                                required.</li>
-                            <li>Privacy Policy: The pharmacy will protect the customer&#39;s personal and financial information
-                                and will not share it with any third party.</li>
-                            <li>Liability: The pharmacy will not be liable for any loss or damage to the product during
-                                transit.</li>
-                            <li>Changes to Terms and Conditions: The pharmacy reserves the right to change these terms
-                                and conditions at any time without prior notice.</li>
-
-                        </ul>
-
-                        <h4>TERMS AND CONDITIONS FOR E-COMMERCE PHARMACY</h4>
-                        <ul>
-                            <li>Introduction: This agreement sets forth the terms and conditions under which the E-
-                                commerce Pharmacy (the “Pharmacy”) agrees to provide its services to its customers (the
-                                “Customer”). By using the Pharmacy’s services, the Customer agrees to be bound by these
-                                terms and conditions.</li>
-                            <li>Service Description: The Pharmacy offers online sales of prescription and non-prescription
-                                drugs, over-the-counter medications, and other related products. The Pharmacy does not
-                                offer medical advice or diagnose medical conditions. All products sold by the Pharmacy are
-                                subject to the terms and conditions of the manufacturer.</li>
-                            <li>Ordering: Customers may place orders for products through the Pharmacy’s website or by
-                                contacting the Pharmacy by phone or email. Orders are subject to verification and acceptance
-                                by the Pharmacy. The Pharmacy reserves the right to refuse any order.</li>
-                            <li>Payment: Payment for products must be made in advance by credit card, PayPal, or other
-                                approved payment methods. The Pharmacy may, at its discretion, refuse to process a
-                                transaction or cancel an order if it determines that the Customer’s payment method is not
-                                valid or if there are insufficient funds in the Customer’s account to cover the purchase price.</li>
-                            <li>Shipping: The Pharmacy ships products to Customers in accordance with the shipping
-                                method selected by the Customer at the time of purchase. The Pharmacy is not responsible
-                                for shipping delays or product damage during shipment.</li>
-                            <li>Return Policy: The Pharmacy will accept returns of unopened and unused products within 30
-                                days of purchase, subject to a 20% restocking fee. Returns of opened or used products will
-                                not be accepted. The Customer is responsible for the cost of shipping for returns.</li>
-                            <li>Disclaimer of Warranties: THE PHARMACY MAKES NO WARRANTIES, EXPRESS OR
-                                IMPLIED, WITH RESPECT TO THE PRODUCTS SOLD. THE PHARMACY DISCLAIMS ALL
-                                WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
-                                MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</li>
-                            <li>Limitation of Liability: THE PHARMACY WILL NOT BE LIABLE TO THE CUSTOMER OR
-                                ANY THIRD PARTY FOR ANY DAMAGES, INCLUDING WITHOUT LIMITATION, DIRECT,
-                                INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR SPECIAL DAMAGES, WHETHER IN
-                                CONTRACT, TORT, OR OTHERWISE, ARISING OUT OF THE USE OF OR INABILITY TO
-                                USE THE PRODUCTS, OR FOR ANY OTHER CLAIM BY THE CUSTOMER.</li>
-                            <li>Indemnification: The Customer agrees to indemnify and hold the Pharmacy and its affiliates
-                                harmless from any and all claims, damages, and expenses, including, without limitation,
-                                reasonable attorney’s fees, arising from the Customer’s use of the products or services
-                                provided by the Pharmacy.</li>
-                            <li>Governing Law: This agreement shall be governed by and construed in accordance with the
-                                laws of the state in which the Pharmacy is located, without giving effect to any principles of
-                                conflicts of law.</li>
-                            <li>Dispute Resolution: Any dispute arising out of or relating to this agreement shall be resolved
-                                through arbitration in accordance with the rules of the American Arbitration Association. The
-                                arbitration shall be conducted in the state in which the Pharmacy is located.</li>
-                            <li>Entire Agreement: This agreement constitutes the entire agreement between the parties and
-                                supersedes all prior negotiations, understandings, and agreements between the parties. No
-                                amendment or modification of this agreement</li>
-                        </ul>
-                    <div class="service-details-info">
-                        <div class="single-info-box">
-                            <h4>Client</h4>
-                            <span>James Anderson</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Category</h4>
-                            <span>Fever, Allergies, Morbidity</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Date</h4>
-                            <span>February 28, 2022</span>
-                        </div>
-
-                        <div class="single-info-box">
-                            <h4>Share</h4>
-                            <ul class="social">
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-twitter'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <i class='fab fa-instagram'></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="single-info-box">
-                            <a class="default-btn" href="#">
-                                Live Preview
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- End Service details -->
+    </div>
+</div>
+<!-- End Page Title Area -->
 
-        {% endblock %}
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+
+        <div class="service-details-content">
+            <p>
+                This User Agreement (&quot;Agreement&quot;) is between you and ResQ247 , with a
+                principal place of business at Delta corner , Chiromo lane westlands
+                Nairobi Your rights and obligations under this Agreement and in using this
+                Site are not assignable. Your use and access of the web site constitutes
+                your acceptance, without modification, of the terms, conditions and notices
+                contained herein.
+            </p>
+            <p>
+                In addition, when using particular site services, you shall
+                be subject to any posted guidelines, rules, and policies applicable to such
+                services that may be posted from time to time. All such guidelines, rules,
+                and policies are hereby incorporated by reference into this Agreement.
+            </p>
+            <p>
+                By using this web site /platform , YOU <b>
+                    ACKNOWLEDGE THAT YOU HAVE
+                    READ THIS AGREEMENT AND THAT YOU ACCEPT THE TERMS
+                    THEREOF.
+                </b>
+            </p>
+            <p>
+                Please read the following terms carefully. If you do not agree to
+                the terms and conditions of this Agreement, you may not access, view,
+                obtain goods or services from, or otherwise use this web site.
+            </p>
+            <p>
+                You acknowledge that you are 18 years of age or older, and, if under the
+                age of 18, are using this web site under the supervision of a parent, legal
+                guardian, or other responsible adult. Children under the age of 18 are not
+                allowed to visit or otherwise use our Site. You agree to the terms and
+                conditions of the Privacy Policy, hereby incorporated by reference, which
+                details the ways in which we and other parties might use personal
+                information that belongs to you.
+            </p>
+            <p>
+                In accordance with this Policy, we may use
+                information and materials received from you or collected through your use
+                of our Site, and may disclose such information to third parties.
+                You are responsible for regularly reviewing this User Agreement. ResQ247
+                reserves the right, at its sole discretion, to change, modify, add, remove or
+                terminate any portion of this Agreement, in whole or in part, at any time,
+                without prior notice.
+            </p>
+            <p>
+                You acknowledge that you own or otherwise control all of the rights to the
+                content that you post; that the content is accurate; that use of the content
+                you supply does not violate this Agreement and will not cause injury to any
+                person or entity; and that you will indemnify ResQ247 or its affiliates for all
+                claims resulting from content you supply.
+            </p>
+            <p>
+                You shall not upload, email, post or transmit to, or distribute or otherwise
+                publish through the web site any material which:
+            </p>
+            <ul>
+                <li>
+                    (i) disrupts the normal flow
+                    of dialogue and/or exchange on the Site, including posting or otherwise
+                    transmitting material that is not related to the subject at issue or otherwise
+                    restricts or inhibits any other user from using and enjoying the web site;
+                </li>
+                <li>
+                    (ii)
+                    is or may be unlawful, threatening, abusive, libelous, defamatory, obscene,
+                    vulgar, offensive, harassing, hateful, embarrassing, pornographic, profane,
+                    sexually explicit, or indecent;
+                </li>
+                <li>
+                    (iii) violates the rights of any third party
+                    (including privacy),
+                </li>
+                <li>
+                    (iv) is medically inaccurate,
+                </li>
+                <li>
+                    (v) constitutes or
+                    encourages conduct that would constitute a criminal offense, potentially
+                    give rise to civil liability (including claims of defamation and/or libel), or
+                    otherwise violate the local, state, or national laws of any country;
+                </li>
+                <li>
+                    (vi)
+                    violates, plagiarizes, or infringes the rights of third parties including, without
+                    limitation, copyright, trademark, patent, rights of privacy or publicity, trade
+                    secrets, or any other proprietary right;
+                </li>
+                <li>
+                    (vii) contains a virus, worm, Trojan
+                    horse, or other harmful component; (viii) contains any information,
+                    software, or other material of a commercial nature;
+                </li>
+                <li>
+                    (ix) contains
+                    solicitations or advertisements of any kind;
+                </li>
+                <li>
+                    (x) constitutes or contains false
+                    or misleading indication of origin or statement of fact; or
+                </li>
+                <li>
+                    (ix) contains chain
+                    letters or pyramid schemes.
+                    You will not create or participate in any activity determined by ResQ247 to
+                    have been created for the purpose of exchanging or swapping images,
+                    music, or other protected intellectual property.
+                </li>
+            </ul>
+            <p>
+                We reserve the right to release information to the proper authorities, as a
+                result of a violation of our standards or unlawful acts, if the information is
+                subpoenaed and/or if we deem it necessary and/or appropriate. ResQ247
+                has the right, but not the obligation, to refuse service, terminate accounts,
+                or remove or edit content, in its sole discretion.
+            </p>
+            <p>
+                By posting creating an account with ResQ247 , sharing information with
+                service providers , creating or modifying a home page, chatting, uploading
+                files, inputting data, transmitting e-mail, or engaging in any other form of
+                communication (individually or collectively &quot;Communications&quot;) to or through
+                the web site, you hereby grant to ResQ247 a perpetual, worldwide,
+                irrevocable, unrestricted, non-exclusive, royalty-free license to use, copy,
+                license, sublicense, adapt, distribute, display, publicly perform, reproduce,
+                transmit, modify, edit and otherwise exploit such Communications
+                throughout the world, in all media now known or hereafter developed.
+            </p>
+            <p>
+                Youhereby waive all rights to any claim against ResQ247 for any alleged or
+                actual infringements of any proprietary rights, rights of privacy and publicity,
+                moral rights, and rights of attribution in connection with such
+                Communications.
+            </p>
+            <p>
+                You will be responsible for your own Communications and the
+                consequences of posting or otherwise transmitting those Communications.
+            </p>
+            <p>
+                ResQ247 does not represent or guarantee the truthfulness, accuracy, or
+                reliability of any material posted or otherwise transmitted by web site users
+                or endorse any opinions expressed by such users.
+            </p>
+            <p>
+                ResQ247 does not generally screen, monitor or approve Communications from our web site
+                users in advance. However, ResQ247 may, from time to time, participate in
+                communications on the site, or review communications on the site.
+            </p>
+            <p>
+                If ResQ247 does identify Communications which violate this agreement, or If
+                we receive notification about a user regarding Communications which
+                allegedly do not conform to this Agreement, ResQ247 has the right, but
+                not the obligation, to investigate the allegations and determine in good faith
+                and at its sole discretion whether to remove or request the removal of the
+                Communication.
+            </p>
+            <p>
+                We have no liability or responsibility to users for
+                performance or nonperformance of such activities. ResQ247 reserves the
+                right to expel users and prevent their further access to the web site for
+                violating this Agreement or violating the law. We have the right, but not the
+                obligation, to remove Communications that are abusive, illegal,
+                disrespectful, disruptive, or otherwise problematic.
+            </p>
+            <p>
+                ResQ247 may immediately, without prior notice, issue a warning,
+                temporarily suspend, indefinitely suspend, or terminate your use of and
+                access to the Site, at our sole discretion, for any reason, whether with or
+                without cause or warning, and without liability. Your sole remedy against
+                ResQ247 in the event of a dispute arising out of this Agreement, the Site
+                or your use thereof, is to terminate this Agreement by ceasing your use of
+                the Site. In the event of termination of this Agreement, ResQ247 may
+                delete and/or store, in its discretion, data associated with your use of the
+                Site. ResQ247 may also change, suspend, or discontinue any aspect of
+                the web site at any time, including the availability of any web site feature,
+                database, or content.
+            </p>
+            <p>
+                ResQ247 makes no warranty, express or implied, with respect to the
+                content, information, or services provided through, or in conjunction with,
+                the web site. We make no guarantee of the accuracy, correctness or
+
+                completeness of any information on the Site, and shall not be responsible
+                for:
+            </p>
+            <ul>
+                <li>
+                    (i) any errors of omission arising from the use of such information;
+                </li>
+                <li>
+                    (ii) any failures, delays or interruptions in the delivery of any content or service
+                    contained within the web site; and
+                </li>
+                <li>
+                    (iii) any defamatory, libelous or unlawful
+                    material contained within the Site, including user web pages, resumes,
+                    emails, profiles, opinions, advice, statements, memorandums or discussion
+                    board postings, or materials related to a users&#39; use of the Site&#39;s chat
+                    features.
+                </li>
+            </ul>
+            <p>
+                You acknowledge that any reliance upon any such opinion,
+                advice, statement, memorandum, or information shall be at your sole risk.
+                We advise users to always seek the advice of a physician or other qualified
+                health care provider with any questions regarding personal health or
+                medical conditions.
+            </p>
+            <p>
+                Never disregard, avoid or delay in obtaining medical
+                advice from your doctor or other qualified health care provider because of
+                something you have read on this site. If you have or suspect that you have
+                a medical problem or condition, please contact a qualified health care
+                professional immediately.
+            </p>
+            <p>
+                If you are in the Kenya and are experiencing a
+                medical emergency, please call 999 or call for emergency medical help on
+                the nearest telephone.
+            </p>
+            <p>
+                You acknowledge that neither ResQ247 nor its web
+                site members, while such members are participating in the Site, are
+                engaged in rendering legal, medical, counseling, or other professional
+                services or advice..
+            </p>
+            <p>
+                ResQ247 has the right, but not the obligation, to
+                correct any errors or omissions in any portion of the web site.
+                Gathering email addresses from this site through harvesting or automated
+                means is prohibited. Posting or transmitting unauthorized or unsolicited
+                advertising, promotional materials, or any other forms of solicitation to other
+                users is prohibited.
+            </p>
+            <p>
+                Inquiries regarding a commercial relationship with
+                ResQ247 should be made through our contact form.
+            </p>
+            <p>
+                <b>
+                    YOU AGREE THAT YOUR USE OF THE WEB SITE IS AT YOUR OWN
+                    RISK. THE WEB SITE, INCLUDING ALL CONTENT, SOFTWARE,
+                    FUNCTIONS, SERVICES, MATERIALS, AND/OR INFORMATION MADE
+                    AVAILABLE OR DISCUSSED ON OR ACCESSED THROUGH THE WEB
+                    SITE, IS PROVIDED &quot;AS IS,&quot; WITHOUT WARRANTY OF ANY KIND. IN
+                    NO EVENT SHALL RESQ247 NETWORKS BE LIABLE FOR ANY
+                    DIRECT, INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL
+                    DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE
+                    USE OF THE WEB SITE OR WITH THE DELAY OR INABILITY TO USE
+                    SAME, OR WITH HYPERTEXT OR GRAPHIC LINKS TO THIRD
+
+                    PARTIES, OR FOR ANY BREACH OF SECURITY ASSOCIATED WITH
+                    THE TRANSMISSION OF SENSITIVE INFORMATION THROUGH THE
+                    WEB SITE OR ANY LINKED SITE, OR FOR ANY INFORMATION,
+                    PRODUCTS, AND SERVICES OBTAINED THROUGH THE WEB SITE,
+                    OR OTHERWISE ARISING OUT OF THE USE OF SAME, WHETHER
+                    BASED ON CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE,
+                    EVEN IF RESQ247 HAS BEEN ADVISED OF THE POSSIBILITY OF
+                    DAMAGES AND EVEN IF SUCH DAMAGES RESULT FROM RESQ247 &#39;S
+                    NEGLIGENCE OR GROSS NEGLIGENCE. FURTHER, RESQ247
+                    DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+                    WITHOUT LIMITATION, NON-INFRINGEMENT, MERCHANTABILITY,
+                    AND/OR FITNESS FOR A PARTICULAR PURPOSE. WE DO NOT
+                    WARRANT THAT THE FUNCTIONS CONTAINED IN THE WEB SITE OR
+                    ANY MATERIALS OR CONTENT CONTAINED OR AVAILABLE THEREIN
+                    WILL BE UNINTERRUPTED OR ERROR FREE, THAT DEFECTS WILL
+                    BE CORRECTED, OR THAT THE WEB SITE OR THE SERVER THAT
+                    MAKES IT AVAILABLE IS FREE OF VIRUSES OR OTHER HARMFUL
+                    COMPONENTS. BECAUSE SOME COUNTRIES/JURISDICTIONS DO
+                    NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR
+                    CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE
+                    LIMITATION MAY NOT APPLY TO YOU. IN SUCH STATES/CONTRIES ,
+                    RESQ247 ’S LIABILITY SHALL BE LIMITED TO THE FULLEST EXTENT
+                    PERMITTED BY LAW. ADDITIONAL DISCLAIMERS APPEAR WITHIN
+                    THE BODY OF THIS SITE AND ARE INCORPORATED HEREIN BY
+                    REFERENCE. TO THE EXTENT ANY SUCH DISCLAIMERS PLACE
+                    GREATER RESTRICTIONS ON YOUR USE OF THIS SITE OR THE
+                    MATERIAL CONTAINED THEREIN, SUCH GREATER RESTRICTIONS
+                    SHALL APPLY.
+
+                </b>
+            </p>
+            <p>
+                The links found on the web site will let you in stances leave our web site
+                and go to sites operated by parties other than ResQ247 .
+            </p>
+            <p>
+                The linked sites are often not under the control of ResQ247 and we are not responsible for
+                the contents of any linked site or any link contained in a linked site that are
+                not owned and operated by ResQ247 , or any changes or updates to such
+                sites. Such links by the web site to sites maintained by third parties do not
+                constitute an endorsement, guaranty, or warranty by ResQ247 , or any of
+                its affiliates, of any third party or their content, nor the existence of a
+                partnership, joint venture, agency, or other relationship between ResQ247 ,
+                or any of its affiliates, and any linked third party or their content.
+            </p>
+            <p>
+                ResQ247 does not assume any responsibility or liability for the actions, product,
+                content and/or information of these and other third parties and/or their web
+                sites. You should carefully review their privacy statements and other
+                conditions of use.
+            </p>
+            <p>
+                By offering a number of third party products and services, including
+                advertisements, on our Site, ResQ247 makes no warranties or
+                representations of any kind as to the content or suitability of the subject
+                matter of any web site, product or service from any such third party
+                business or individual.
+            </p>
+            <p>
+                ResQ247 expressly disclaims liability for direct,
+                consequential, or incidental damages arising from the products, services,
+                advertisements, actions, or web site content of these and any other third
+                parties, and you waive any claims against ResQ247 for damages arising
+                from such transactions or your reliance upon statements contained therein.
+                You will not consider ResQ247 nor will ResQ247 be construed as, a party
+                to such transactions, whether or not we may have received some form of
+                revenue or other remuneration in connection with the transaction.
+            </p>
+            <p>
+                Merchants are responsible for all aspects of order processing, fulfillment,
+                billing, and customer service.
+            </p>
+            <p>
+                You agree that use of such merchants is <b> AT
+                    YOUR SOLE RISK AND IS WITHOUT WARRANTIES OF ANY KIND BY
+                    US, EXPRESSED, IMPLIED, OR OTHERWISE INCLUDING
+                    WARRANTIES OF TITLE, FITNESS FOR PURPOSE,
+                    MERCHANTABILITY, AND/OR NONINFRINGEMENT. UNDER NO
+                    CIRCUMSTANCES IS RESQ247 LIABLE FOR ANY DAMAGES ARISING
+                    FROM THE TRANSACTIONS BETWEEN YOU AND MERCHANTS
+                    FOUND ON THE WEB SITE OR FOR ANY INFORMATION APPEARING
+                    ON MERCHANT SITES OR ANY OTHER SITE LINKED FROM OR TO
+                    OUR SITE.
+                </b>
+            </p>
+            <p>
+                This Agreement shall be governed and constructed in accordance with the
+                laws of the State of Minnesota without regard to conflicts of law provisions.
+                Sole and exclusive jurisdiction for any action or proceeding arising out of or
+                related to this Agreement shall be an appropriate state or federal court
+                located in Nairobi.
+            </p>
+            <p>
+                Any cause of action you may have with respect to your use of the web site
+                must be commenced within one year after the claim or cause of action
+                arises. If for any reason a court of competent jurisdiction finds any provision
+                of this Agreement, or portion thereof, to be unenforceable, that provision
+                shall be enforced to the maximum extent permissible so as to affect the
+
+                intent of the Agreement, and the remainder of this Agreement shall
+                continue in full force and effect.
+            </p>
+            <p>
+                You shall defend or settle at your sole expense any claim or suit, including
+                without limitation any proceeding, investigation or claim by a self-regulatory
+                organization, state or federal securities agency or commission, (collectively,
+                an &quot;Action&quot;) against ResQ247 and/or each of its affiliates, directors,
+                officers, agents, employees or sublicensees, (collectively, the &quot;Indemnitee&quot;)
+                to the fullest extent permitted by law arising out of or in connection with
+            </p>
+            <ul>
+                <li>
+                    (1) an assertion that the information, content or other materials or services
+                    provided or made available by you or the use thereof may infringe any
+                    copyright or trademark rights of any individual or entity, or are a
+                    misappropriation of any individual or entity&#39;s trade secret, or contain any
+                    libelous, defamatory, disparaging, pornographic, or obscene materials;
+                </li>
+                <li>
+                    (2)
+                    any breach by you of your obligations under this Agreement; and
+                </li>
+                <li>
+                    (3) any
+                    content provided by you in a chat room, message board, e-mail, or home
+                    page (created or used by you) on the web site, or statements made by you
+                    in the Site or through other media. You shall indemnify and hold harmless
+                    the Indemnitee from and against any and all damages, costs, liabilities and
+                    attorneys&#39; fees incurred in defending and/or resolving such Action.
+                    Notices under this Agreement shall be sufficient only if in writing and
+                    transmitted via personal delivery, delivered by a major commercial rapid
+                    delivery courier service, or mailed, postage or charges prepaid, by certified
+                    or registered mail, return receipt requested, to ResQ247 , Attn: Legal
+                    Department,
+                </li>
+            </ul>
+            <p>
+
+                This Agreement and our Privacy Policy contain the entire agreement
+                between you and ResQ247 with respect to this Site. It supersedes all prior
+                or contemporaneous communications and proposals, whether electronic,
+                oral or written, between the user and ResQ247 with respect to this Site.
+                Any rights not expressly granted herein are reserved.
+            </p>
+            <h3>Copyright</h3>
+            <p>
+                The content, organization, graphics, design, compilation, magnetic
+                translation, digital conversion, and other matters related to the web site are
+                protected under applicable copyrights, trademarks, and other proprietary
+                (including but not limited to intellectual property) rights as a collective work
+                and/or compilation, pursuant to international conventions and KENYA and
+                other copyright laws. Other product and company names mentioned herein may be the trademarks of their
+                respective owners. The contents, and every
+                part thereof, of the web site are only for your personal, non-commercial
+                use.
+            </p>
+            <p>
+                You do not acquire ownership rights to any content, document, or
+                other materials viewed through our Site. The posting of information or
+                materials on the web site does not constitute a waiver of any right in such
+                information and materials. You will abide by any and all additional copyright
+                notices, information, or restrictions contained in any content on our Site.
+                Unless otherwise prohibited from doing so, you may download and make
+                one
+            </p>
+            <p>
+                (1) copy of the content and other downloadable items displayed on the
+                web site for your personal, noncommercial use only, provided that you
+                maintain all copyright and other notices contained in such content. Any
+                copying, republication, or redistribution of web site content, including by
+                caching, framing, or similar means, is expressly prohibited without the prior
+                written consent of ResQ247 and/or the respective intellectual property
+                rights holder identified in the subject content.
+                ResQ247 respects the intellectual property rights of others and expects
+                our users to do the same. The policy of ResQ247 is to terminate the
+                accounts of repeat copyright offenders and other users who infringe upon
+                the intellectual property rights of others. If you believe that your work has
+                been copied in a way that constitutes copyright infringement, please
+                provide ResQ247 &#39;s Copyright Agent &amp; Counsel with the following
+                information required by the Online Copyright Infringement Liability
+                Limitation Act . A physical or electronic signature of a person authorized to
+                act on behalf of the owner of an exclusive right that is allegedly infringed;
+            </p>
+            <p>
+                (2) identification of the copyright work claimed to have been infringed, or, if
+                multiple copyrighted works at a single online site are covered by a single
+                notification, a representative list of such works at that site;
+            </p>
+            <p>
+                (3) identification
+                of the material that is claimed to be infringing or to be the subject of
+                infringing activity and that is to be removed or access to which is to be
+                disabled, and information reasonably sufficient to permit us to locate the
+                material;
+            </p>
+            <p>
+                (4) information reasonably sufficient to permit us to contact the
+                complaining party;
+            </p>
+            <p>
+                (5)a statement that the complaining party has a good-
+                faith belief that use of the material in the manner complained of is not
+                authorized by the copyright owner, its agent, or the law; and,
+            </p>
+            <p>
+                (6) a
+                statement that the information in the notification is accurate, and under
+                penalty of perjury, that the complaining party is authorized to act on behalf
+                of the owner of an exclusive right that is allegedly infringed.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- End Service details -->
+
+{% endblock %}

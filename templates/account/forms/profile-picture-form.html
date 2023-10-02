@@ -1,0 +1,29 @@
+<form action="{% url 'account_profile_photo_edit' %}" method="post" enctype="multipart/form-data" class="form mt-4">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12 mb-2">
+            <h3>Profile Picture</h3>
+        </div>
+        <div class="col-md-4 input-group-lg mb-2">
+            <p class="text-center mb-1">Current profile picture</p>
+            <div class="rounded-circle overflow-hidden bg-light mx-auto d-flex justify-content-center align-items-center"
+                style="width: 100px; height: 100px;">
+                <img src="{% if request.user.profile.profile_photo %} {{request.user.profile.profile_photo.url}} {% endif %}"
+                    width="90%" alt="">
+            </div>
+        </div>
+        <div class="col-md-4 input-group-lg mb-2 d-flex align-items-center">
+            <div class="w-100">
+                <label for="profile_photo" class="form-label">Profile
+                    Photo</label>
+                <input type="file" id="profile_photo" class="form-control shadow-none" name="profile_photo"
+                    placeholder="Old Password">
+            </div>
+        </div>
+        <div class="col-md-4 input-group-lg my-2 d-flex align-items-center">
+            <button class="btn btn-primary rounded-pill px-5">
+                Update
+            </button>
+        </div>
+    </div>
+</form>

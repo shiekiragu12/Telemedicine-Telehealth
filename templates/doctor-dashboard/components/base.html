@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />
+    <meta name="robotsk" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="ERES : Hospital Admin Template" />
@@ -21,14 +21,23 @@
     <link href="{% static 'dashboard/vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
     <link href="{% static 'dashboard/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/vendor/toastr/css/toastr.min.css' %}">
 
     <!-- Style Css -->
-
     <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
     {% block styles %}{% endblock %}
     <style>
-        .c-header{
+        .c-header {
             min-width: 200px;
+        }
+
+        .chat-container.hide {
+            display: none;
+        }
+
+        .chat-container.show{
+            display: block;
         }
     </style>
 </head>
@@ -63,14 +72,35 @@
     <!-- Apex Chart -->
     <!-- <script src="{% static 'dashboard/vendor/apexchart/apexchart.js' %}"></script> -->
 
-     <!-- Dashboard 1 -->
+    <!-- Dashboard 1 -->
     <!-- <script src="{% static 'dashboard/js/dashboard/dashboard-1.js' %}"></script> -->
     <script src="{% static 'dashboard/js/custom.min.js' %}"></script>
     <script src="{% static 'dashboard/js/deznav-init.js' %}"></script>
     <script src="{% static 'dashboard/js/demo.js' %}"></script>
     <script src="{% static 'dashboard/js/styleSwitcher.js' %}"></script>
 
+    <!-- Toastr JS -->
+    <script src="{% static 'dashboard/vendor/toastr/js/toastr.min.js' %}"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     {% block scripts %} {% endblock %}
+    <script>
+        function showChat(){
+            const chatContainer = document.querySelector('.chat-container')
+            if(chatContainer.classList.contains('hide')){
+                chatContainer.classList.remove('hide')
+                chatContainer.classList.add('show')
+            }
+        }
+        function hideChat(){
+            const chatContainer = document.querySelector('.chat-container')
+            if(chatContainer.classList.contains('show')){
+                chatContainer.classList.remove('show')
+                chatContainer.classList.add('hide')
+            }
+        }
+    </script>
 
     <style>
         .errorlist {
@@ -95,8 +125,8 @@
             </div>
         </div>
         {% else %}
-        <div id="liveToast" class="toast show bg-{{msg.tags}} text-white border-0 mb-2" role="alert" aria-live="assertive"
-            aria-atomic="true">
+        <div id="liveToast" class="toast show bg-{{msg.tags}} text-white border-0 mb-2" role="alert"
+            aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <!-- <img src="..." class="rounded me-2" alt="..."> -->
                 <i class="fa fa-bell me-2"></i>

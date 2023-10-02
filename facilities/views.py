@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 from mainapp.models import Tag
 from .decorators import authorized_user, check_facility_and_attach_it_to_request, \
     check_facility_and_attach_it_to_request_2
-from .forms import CreateFacility, ServiceForm
-import openpyxl
+from .forms import CreateFacility, ServiceForm, AppointmentForm
+
 from .models import *
 
 
@@ -119,7 +119,7 @@ def edit_facility(request, facility_id):
     context = {
         'facility_types': FacilityType.objects.all(),
         'counties': County.objects.all(),
-        'specialities': FacilitySpeciality.objects.all(),
+        'specialities': Speciality.objects.all(),
         'options': [
             {"label": "Pharmacy", "value": 'pharmacy'},
             {"label": "Clinic", "value": 'clinic'},
@@ -213,7 +213,7 @@ def get_value(request, key):
 @check_facility_and_attach_it_to_request
 def doctors(request, facility_id):
     context = {
-        "specialities": FacilitySpeciality.objects.all(),
+        "specialities": Speciality.objects.all(),
         "doctors": Doctor.objects.filter(facilities__id=request.facility.id)
     }
     return render(request, template_name='dashboard/pages/doctor-list.html', context=context)
@@ -282,16 +282,21 @@ def create_medical_report(request, facility_id):
 @check_facility_and_attach_it_to_request
 def appointments_create(request, facility_id):
     if request.method == "POST":
-        patient = Patient.objects.filter(id=get_value(request, 'patient')).first()
-        doctor = Doctor.objects.filter(id=get_value(request, 'doctor')).first()
-        condition_ = Condition.objects.filter(id=get_value(request, 'condition')).first()
-
-        appointment = Appointment.objects.create(facility=request.facility, doctor=doctor,
-                                                 patient=patient, note=get_value(request, 'note'),
-                                                 start_time=get_value(request, 'start_time'),
-                                                 end_time=get_value(request, 'end_time'),
-                                                 condition=condition_, date=get_value(request, 'date'))
-        appointment.save()
+        # patient = Patient.objects.filter(id=get_value(request, 'patient')).first()
+        # doctor = Doctor.objects.filter(id=get_value(request, 'doctor')).first()
+        # condition_ = Condition.objects.filter(id=get_value(request, 'condition')).first()
+        #
+        # appointment = Appointment.objects.create(facility=request.facility, doctor=doctor,
+        #                                          patient=patient, note=get_value(request, 'note'),
+        #                                          start_time=get_value(request, 'start_time'),
+        #                                          end_time=get_value(request, 'end_time'),
+        #                                          condition=condition_, date=get_value(request, 'date'))
+        # appointment.save()
+        appointment_form = AppointmentForm(request.POST)
+        if appointment_form.is_valid():
+            appointment_form.save()
+        else:
+            print(appointment_form.errors)
         messages.success(request, "Appointment created successfully")
     return redirect('appointments', facility_id)
 

@@ -1,97 +1,118 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Laboratories Centers  {% endblock title %}
+{% block title %} Laboratories Centers {% endblock title %}
 
 {% block content %}
 
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-12">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>Laboratories-Centers</h2>
-                            <ul>
-                                <li><a href="{% url 'index' %}">Home</a></li>
-                                <li>Laboratories-Centers</li>
-                            </ul>
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Laboratories-Centers</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Laboratories-Centers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="service-details-image col-lg-6">
+                <img src="{% static 'assets/img/laboratories.png'%}" alt="image">
+            </div>
+            <div class="col-lg-6">
+                <p>
+                    Technology has revolutionized the healthcare industry, We provide patients unmatched privilege
+                    access to medical care from the comfort of their own homes. In the field of laboratory services,
+                    telehealth has proven to be a valuable tool in providing patients with access to laboratory testing
+                    without the need for an in-person visit to the lab.</p>
+                <p>
+
+                    Our laboratories network across the country allows patients to receive laboratory testing through
+                    remote means such as video conferencing, phone calls, or instant messaging. Some of the services
+                    you can access :
+                </p>
+
+
+                <ul>
+                    <li><b>Blood tests:</b>We provide patients with access to blood tests, including complete blood
+                        count,
+                        blood glucose levels, cholesterol levels, and liver function tests, among many others. Sign up
+                        for free and find out more.
+                    </li>
+                    <li><b>Urine tests:</b>Telehealth laboratory services can provide patients with access to urine
+                        tests,
+                        including urinalysis and urine culture, among others.
+                    </li>
+                    <li><b>Stool tests:</b>Telehealth laboratory services can provide patients with access to stool
+                        tests,
+                        including fecal occult blood tests and stool culture, among others.
+                    </li>
+                    <li><b>Infectious disease testing:</b>we facilitate testing for infectious diseases, including
+                        COVID-19,
+                        influenza, and streptococcus, among others.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="service-details-content">
+
+
+            <h4>What are the advantages!</h4>
+            <ul>
+                <li>Convenience: Patients do not have to leave their homes or wait in long lines at the lab to
+                    receive laboratory testing.
+                </li>
+                <li>Reduced risk of exposure: Telehealth laboratory services reduce the risk of exposure to
+                    infectious diseases, including COVID-19, by limiting in-person contact.
+                </li>
+                <li>Cost-effective: Telehealth laboratory services are typically less expensive than in-person
+                    laboratory services.
+                </li>
+                <li>Access to laboratory testing: Telehealth laboratory services provide patients with access to
+                    laboratory testing in areas with a shortage of laboratory services.
+                </li>
+            </ul>
+
+            <p>Our laboratory services have proven to be a valuable tool in providing patients with access to
+                testing without the need for an in-person visit to the lab. With its convenience, reduced risk of
+                exposure and cost-effectiveness.
+            </p>
+
+            <div class="service-details-info">
+                <div class="row w-100">
+                    <div class="col-md-8">
+                        <div class="single-info-ox">
+                            <h4 class="text-center">Sign up today and experience a whole new difference.</h4>
+                            <div class="d-flex justify-content-center">
+                                <span>ResQ247, Your best virtual care platform</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3">
+                        <div class="single-info-bx d-flex justify-content-center">
+                            <a class="default-btn-two" href="{% url 'register-as' %}">
+                                Click Here
+                                <span></span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End Page Title Area -->
 
-        <!-- Service details -->
-        <div class="service-details ptb-100">
-            <div class="container">
-                <div class="row">
-                    <div class="service-details-image col-lg-6">
-                    <img src="{% static 'assets/img/laboratories.png'%}" alt="image">
-                </div>
-                <div class="col-lg-6">
-                    <p>
-                        Technology has revolutionized the healthcare industry, We provide patients unmatched privilege
-                        access to medical care from the comfort of their own homes. In the field of laboratory services,
-                        telehealth has proven to be a valuable tool in providing patients with access to laboratory testing
-                        without the need for an in-person visit to the lab.</p>
-                        <p>
-                        
-                            Our laboratories network across the country allows patients to receive laboratory testing through
-                            remote means such as video conferencing, phone calls, or instant messaging. Some of the services
-                            you can access :
-                        </p>
-                        
-                 
-                    <ul>
-                        <li><b>Blood tests:</b>We provide patients with access to blood tests, including complete blood count,
-                            blood glucose levels, cholesterol levels, and liver function tests, among many others. Sign up
-                            for free and find out more.
-                        </li>
-                        <li><b>Urine tests:</b>Telehealth laboratory services can provide patients with access to urine tests,
-                            including urinalysis and urine culture, among others.
-                        </li>
-                        <li><b>Stool tests:</b>Telehealth laboratory services can provide patients with access to stool tests,
-                            including fecal occult blood tests and stool culture, among others.
-                        </li>
-                        <li><b>Infectious disease testing:</b>we facilitate testing for infectious diseases, including COVID-19,
-                            influenza, and streptococcus, among others.
-                        </li>
-                    </ul>
-                </div>
+        </div>
+    </div>
 </div>
-                <div class="service-details-content">
-        
-            
-                    <h4>What are the advantages!</h4>
-                    <ul>
-                        <li>Convenience: Patients do not have to leave their homes or wait in long lines at the lab to
-                            receive laboratory testing.
-                        </li>
-                        <li>Reduced risk of exposure: Telehealth laboratory services reduce the risk of exposure to
-                            infectious diseases, including COVID-19, by limiting in-person contact.
-                        </li>
-                        <li>Cost-effective: Telehealth laboratory services are typically less expensive than in-person
-                            laboratory services.
-                        </li>
-                        <li>Access to laboratory testing: Telehealth laboratory services provide patients with access to
-                            laboratory testing in areas with a shortage of laboratory services.
-                        </li>
-                    </ul>
-                    
-                    <p>Our laboratory services have proven to be a valuable tool in providing patients with access to
-                        testing without the need for an in-person visit to the lab. With its convenience, reduced risk of
-                        exposure and cost-effectiveness.
-                    </p>
-                     <p class="text-center text-primary fs-5 fw-bold">Sign up today and experience a whole new difference.
-                          <a  href="{% url 'register-as' %}" class="btn btn-primary text-white align-self-center">Click Here</a>  
-                       </p>
+<!-- End Service details -->
 
-                 
-                </div>
-            </div>
-        </div>
-        <!-- End Service details -->
-
-        {% endblock %}
+{% endblock %}

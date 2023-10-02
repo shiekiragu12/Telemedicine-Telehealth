@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from facilities.utils import is_not_blank_or_empty
 from mailer.models import Email, EmailConfiguration
 from facilities.models import Doctor, Patient, Staff, County, Constituency, Service, ServiceCategory, Condition, \
-    FacilitySpeciality, Facility, FacilityType, Appointment, Encounter, Illness
+    Speciality, Facility, FacilityType, Appointment, DoctorNote, Illness
 from mailer.utils import send_custom_email
 from shop.models import Category, Product, Order, ProductType
 from mainapp.models import Blog, Tag, AppConfig, Contact
@@ -30,7 +30,7 @@ def dashboard(request):
     facilities_ = Facility.objects.all()
     facility_types_ = FacilityType.objects.all()
     products_ = Product.objects.all()
-    specialities_ = FacilitySpeciality.objects.all()
+    specialities_ = Speciality.objects.all()
     diseases_ = Condition.objects.all()
     blogs_ = Blog.objects.all()
 
@@ -65,6 +65,17 @@ def settings(request):
         "emailconfigs": EmailConfiguration.objects.all(),
     }
     return render(request, template_name='super-admin-dashboard/pages/settings/settings.html', context=context)
+
+
+# Admin Notifications
+@admin_only
+def admin_notifications(request):
+    context = {
+        "app": AppConfig.objects.filter(app='main').first(),
+        "emails": Email.objects.all(),
+        "emailconfigs": EmailConfiguration.objects.all(),
+    }
+    return render(request, template_name='super-admin-dashboard/pages/settings/notifications.html', context=context)
 
 
 # Users
@@ -132,7 +143,7 @@ def doctors(request):
     limit = request.GET.get('limit')  # Show 25 results per page.
 
     if is_not_blank_or_empty(speciality):
-        doctors_2 = doctors_2.filter(specialities__id__in=[speciality])
+        doctors_2 = doctors_2.filter(specialities__id=speciality)
 
     if is_not_blank_or_empty(gender):
         doctors_2 = doctors_2.filter(user__profile__gender=gender)
@@ -462,12 +473,12 @@ def illness_page(request):
 
 @admin_only
 def specialities(request):
-    specialities_ = FacilitySpeciality.objects.all()
+    specialities_ = Speciality.objects.all()
     if request.method == "POST":
         specialities_input = request.POST.get('specialities')
         specialities_list = specialities_input.split(',')
-        specialities_to_save = [FacilitySpeciality(name=mystr.strip()) for mystr in specialities_list]
-        FacilitySpeciality.objects.bulk_create(specialities_to_save)
+        specialities_to_save = [Speciality(name=mystr.strip()) for mystr in specialities_list]
+        Speciality.objects.bulk_create(specialities_to_save)
         messages.success(request, 'Specialities created successfully')
         return redirect(request.META.get('HTTP_REFERER'))
     context = {
@@ -685,8 +696,8 @@ def appointments(request):
 
 @admin_only
 def encounters(request):
-    encounters_ = Encounter.objects.get_queryset().order_by('id')
-    encounters_2 = Encounter.objects.get_queryset().order_by('id')
+    encounters_ = DoctorNote.objects.get_queryset().order_by('id')
+    encounters_2 = DoctorNote.objects.get_queryset().order_by('id')
 
     search = request.GET.get('search', None)
     ordering = request.GET.get('ordering', None)
@@ -801,7 +812,7 @@ def products(request):
         products_2 = products_2.filter(product_type=product_type)
 
     if is_not_blank_or_empty(category):
-        products_2 = products_2.filter(category__id__in=[int(category)])
+        products_2 = products_2.filter(categories__id__in=[int(category)])
 
     if is_not_blank_or_empty(tags_):
         products_2 = products_2.filter(tags__id__in=[int(tags_)])
@@ -995,11 +1006,11 @@ def upload_specialities(request):
 
         specialities_ = []
         for data in excel_data:
-            available = FacilitySpeciality.objects.filter(name=data[0].strip()).first()
+            available = Speciality.objects.filter(name=data[0].strip()).first()
             if available is None:
-                cond = FacilitySpeciality(name=data[0].strip())
+                cond = Speciality(name=data[0].strip())
                 specialities_.append(cond)
-        FacilitySpeciality.objects.bulk_create(specialities_)
+        Speciality.objects.bulk_create(specialities_)
         messages.success(request, "Specialities uploaded successfully")
 
     return render(request, template_name='super-admin-dashboard/pages/specialities/upload-specialities.html',

@@ -45,7 +45,7 @@ def edit_facility(request, facility_id):
     context = {
         'facility_types': FacilityType.objects.all(),
         'counties': County.objects.all(),
-        'specialities': FacilitySpeciality.objects.all(),
+        'specialities': Speciality.objects.all(),
         'options': [
             {"label": "Pharmacy", "value": 'pharmacy'},
             {"label": "Clinic", "value": 'clinic'},

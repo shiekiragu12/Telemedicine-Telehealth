@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 
-from mailer.moreviews import send_prescription_quotation_email
+from mailer.utils import send_custom_email
 
 
 # Create your models here.
@@ -12,7 +12,7 @@ from mailer.moreviews import send_prescription_quotation_email
 
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    slug = models.SlugField(default="")
+    slug = models.SlugField(default="no-default", blank=True, null=True)
 
     created_on = models.DateTimeField(auto_created=True, auto_now_add=True)
     updated_on = models.DateTimeField(auto_created=True, auto_now=True)
@@ -56,18 +56,20 @@ class Product(models.Model):
     facility = models.ForeignKey('facilities.Facility', blank=True, null=True, on_delete=models.SET_NULL)
 
     name = models.CharField(max_length=100, blank=False, null=False)
+    slug = models.SlugField(default="", blank=True)
     brand = models.CharField(max_length=100, blank=False, null=True)
     code = models.CharField(max_length=100, blank=False, null=True)
     description = models.TextField(null=True)
     available = models.BooleanField(default=True)
 
     price = models.FloatField()
-    image = models.FileField(upload_to='products/images/', null=True)
+    price_usd = models.FloatField(default=0.0)
+    image = models.ImageField(upload_to='products/images/', null=True, blank=False)
     discount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     dom = models.TextField(blank=True, null=True)
-    product_type = models.ForeignKey(ProductType, blank=True, null=True, on_delete=models.SET_NULL)  # medical
+    product_type = models.ForeignKey(ProductType, blank=False, null=True, on_delete=models.SET_NULL)  # medical
     # device, allergy medicine, etc
-    category = models.ManyToManyField(Category, blank=True)
+    categories = models.ManyToManyField(Category, blank=True, related_name='categories')
     tags = models.ManyToManyField('mainapp.Tag', blank=True)
     status = models.CharField(max_length=20, blank=False, null=False, choices=PRODUCT_STATUS,
                               default='pending')
@@ -80,9 +82,17 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     # self.created_by = self.request.user
-    #     return super(Product, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super(Product, self).save(*args, **kwargs)
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, blank=False, null=False, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to='products/images/', null=True)
+
+    def __str__(self):
+        return self.product.name
 
 
 class PrescriptionOrder(models.Model):
@@ -110,7 +120,7 @@ class PrescriptionOrder(models.Model):
 @receiver(post_save, sender=PrescriptionOrder)
 def send_new_quotation_creation_email(sender, instance, created, **kwargs):
     if created:
-        send_prescription_quotation_email(instance)
+        send_custom_email('prescription_quotation', instance, [instance.patient.user.email, instance.doctor.user.email])
 
 
 class Order(models.Model):
@@ -122,7 +132,13 @@ class Order(models.Model):
     updated_on = models.DateTimeField(auto_created=True, auto_now=True)
 
     def __str__(self):
-        return self.user.username
+        return f"Order #{self.id}"
+
+
+@receiver(post_save, sender=PrescriptionOrder)
+def send_new_quotation_creation_email(sender, instance, created, **kwargs):
+    if created:
+        send_custom_email('order_creation', instance, [instance.user.email])
 
 
 class OrderItem(models.Model):
@@ -141,6 +157,17 @@ class OrderItem(models.Model):
 class Payment(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE, null=True, blank=False)
     amount = models.FloatField()
+
+    paid = models.BooleanField(default=False)
+    # Transaction details
+    trans_ref = models.CharField(blank=True, null=True, max_length=100)
+    trans_token = models.CharField(blank=True, null=True, max_length=100)
+    trans_result = models.CharField(blank=True, null=True, max_length=100)
+    other_trans_info = models.TextField(blank=True, null=True)
+    # payment details
+    payment_code = models.CharField(blank=True, null=True, max_length=100)
+    amount_paid = models.FloatField(blank=True, null=True)
+    other_payment_info = models.TextField(blank=True, null=True)
 
     created_on = models.DateTimeField(auto_created=True, auto_now_add=True)
     updated_on = models.DateTimeField(auto_created=True, auto_now=True)

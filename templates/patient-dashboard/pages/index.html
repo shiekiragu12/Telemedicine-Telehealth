@@ -140,7 +140,7 @@
 						<tbody>
 							{% for prescription in prescriptions %}
 							<tr>
-								<td>Dr {{prescription.doctor.user.first_name}} {{prescription.doctor.user.last_name}}
+								<td>{{prescription.doctor.user.profile.salutation.title}} {{prescription.doctor.user.first_name}} {{prescription.doctor.user.last_name}}
 								</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"
@@ -212,6 +212,7 @@
 					<table id="appointments" class="display" style="width:100%">
 						<thead>
 							<tr>
+								<th>Action</th>
 								<th>Doctor</th>
 								<th>Facility</th>
 								<th>Note</th>
@@ -223,22 +224,7 @@
 						</thead>
 						<tbody>
 							{% for appointment in appointments %}
-							<tr>
-								<td>Dr {{appointment.doctor.user.first_name}} {{appointment.doctor.user.last_name}}</td>
-								<td>{{appointment.facility.name}}</td>
-								<td>
-									<button class="btn btn-primary px-4" data-bs-toggle="modal"
-										data-bs-target="#info-modal"
-										data-bs-title="{{appointment.patient.user.first_name}} {{appointment.patient.user.last_name}} - Appointment Note"
-										data-bs-content="{{appointment.note}}">
-										Read
-									</button>
-								</td>
-								<td>{{appointment.condition.name}}</td>
-								<td>{{appointment.date}}</td>
-								<td>{{appointment.start_time}}</td>
-								<td>{{appointment.end_time}}</td>
-							</tr>
+							{% include './../components/appointment-row.html' %}
 							{% endfor %}
 						</tbody>
 					</table>

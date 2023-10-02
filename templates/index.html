@@ -35,7 +35,7 @@
                             <div class="banner-form">
                                 <form action="{% url 'doctor_search' %}" method="get">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-4 col-md-6 mb-3">
+                                        <div class="col-lg-8 col-md-6 mb-3">
                                             <div class="form-group">
                                                 <select class="w-100" name="specialist">
                                                     <option value="">Select Specialist</option>
@@ -47,7 +47,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 mb-3">
+                                        <!-- <div class="col-lg-4 col-md-6 mb-3">
                                             <div class="form-group">
                                                 <select class="w-100" name="condition">
                                                     <option value="">Select Condition</option>
@@ -56,7 +56,7 @@
                                                     {% endfor %}
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-4 col-md-6 mb-3">
                                             <div class="form-group">
                                                 <button type="submit" class="banner-form-btn">
@@ -68,19 +68,20 @@
                                     </div>
                                 </form>
                             </div>
-
+                            {% comment %}
                             <div class="banner-btn">
                                 <a href="https://virtualcare.resq247.life/" class="default-btn">
                                     Make An Appointment
                                     <span></span>
                                 </a>
                             </div>
+                            {% endcomment %}
                         </div>
                     </div>
 
                     <div class="col-lg-5">
                         <div class="banner-image">
-                            <img src="{% static 'assets/img/doctor.png' %}" alt="image">
+                            <img loading="lazy"  src="{% static 'assets/img/doctor.png' %}" alt="image">
                         </div>
                     </div>
                 </div>
@@ -90,31 +91,31 @@
 
     <div class="default-shape">
         <div class="shape-1">
-            <img src="{% static 'assets/img/shape/shape-1.png' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-1.png' %}" alt="image">
         </div>
 
         <div class="shape-2 rotateme">
-            <img src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
         </div>
 
         <div class="shape-3">
-            <img src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
         </div>
 
         <div class="shape-4">
-            <img src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-3.jpg' %}" alt="image">
         </div>
 
         <div class="shape-5">
-            <img src="{% static 'assets/img/shape/shape-2.png' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-2.png' %}" alt="image">
         </div>
 
         <div class="shape-6">
-            <img src="{% static 'assets/img/shape/shape-5.png' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-5.png' %}" alt="image">
         </div>
 
         <div class="shape-7">
-            <img src="{% static 'assets/img/shape/shape-7.png' %}" alt="image">
+            <img loading="lazy"  src="{% static 'assets/img/shape/shape-7.png' %}" alt="image">
         </div>
     </div>
 </div>
@@ -176,7 +177,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="about-image">
-                    <img src="{% static 'assets/img/about.png' %}" alt="image">
+                    <img loading="lazy"  src="{% static 'assets/img/about.png' %}" alt="image">
                 </div>
             </div>
 
@@ -194,154 +195,154 @@
 
                     <ul class="about-features">
                         <li>
-                           <span id="span6" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Personalized care" data-bs-content="personalized-care" >
+                            <span id="span6" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Personalized care" data-bs-content="personalized-care">
                                 <i class='flaticon-check'></i>
                                 Personalized care
                             </span>
                             <div class="d-none" id="personalized-care">
-                              <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                By leveraging advanced IT infrastructure, healthcare providers can collect and analyse
-                                patient data to offer personalized care that is tailored to individual patient needs.
-                                This can improve patient outcomes and satisfaction.
-                            </p>
-                        </div>
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    By leveraging advanced IT infrastructure, healthcare providers can collect and
+                                    analyse
+                                    patient data to offer personalized care that is tailored to individual patient
+                                    needs.
+                                    This can improve patient outcomes and satisfaction.
+                                </p>
+                            </div>
                         </li>
-                        
+
                         <li>
-                             <span id="span5" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Cost-effective care" data-bs-content="cost-effective" >
+                            <span id="span5" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Cost-effective care" data-bs-content="cost-effective">
                                 <i class='flaticon-check'></i>
                                 Cost-effective care
                             </span>
-                           <div class="d-none" id="cost-effective">
-                            
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Virtual care can reduce healthcare costs by eliminating the need for in-person visits,
-                                which can be expensive for patients and providers alike. Virtual care can also reduce
-                                costs associated with administrative tasks and overhead.
-                            </p>
-                        </div>
+                            <div class="d-none" id="cost-effective">
+
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    Virtual care can reduce healthcare costs by eliminating the need for in-person
+                                    visits,
+                                    which can be expensive for patients and providers alike. Virtual care can also
+                                    reduce
+                                    costs associated with administrative tasks and overhead.
+                                </p>
+                            </div>
                         </li>
-                        
-                        
+
+
                         <li>
-                             <span id="span4" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Improved patient engagement" data-bs-content="improved-patient" >
+                            <span id="span4" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Improved patient engagement" data-bs-content="improved-patient">
                                 <i class='flaticon-check'></i>
                                 Improved patient engagement
                             </span>
-                            
+
                             <div class="d-none" id="improved-patient">
-                           
+
                                 <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Virtual care can help to increase patient engagement and participation in their own
-                                care, as patients can access health information, track their progress, and communicate
-                                with their providers more easily.
+                                    Virtual care can help to increase patient engagement and participation in their own
+                                    care, as patients can access health information, track their progress, and
+                                    communicate
+                                    with their providers more easily.
                                 </p>
                             </div>
-                            
+
                         </li>
-                        
+
                         <li>
-                            <span id="span3" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Improved provider satisfaction" data-bs-content="improved-satisfaction" >
+                            <span id="span3" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Improved provider satisfaction" data-bs-content="improved-satisfaction">
                                 <i class='flaticon-check'></i>
                                 Improved provider satisfaction
                             </span>
 
-                        <div class="d-none" id="improved-satisfaction">
-                            
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Advanced IT infrastructure can help to reduce provider burnout and increase job
-                                satisfaction by reducing administrative tasks, improving workflow efficiency, and
-                                enabling providers to deliver high-quality care to patients.
-                            </p>
-                        </div>
-                    
+                            <div class="d-none" id="improved-satisfaction">
+
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    Advanced IT infrastructure can help to reduce provider burnout and increase job
+                                    satisfaction by reducing administrative tasks, improving workflow efficiency, and
+                                    enabling providers to deliver high-quality care to patients.
+                                </p>
+                            </div>
+
                         </li>
-                        
+
                         <li>
-                           <span id="span2" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Enhanced security and privacy" data-bs-content="enhanced-security" >
+                            <span id="span2" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Enhanced security and privacy" data-bs-content="enhanced-security">
                                 <i class='flaticon-check'></i>
                                 Enhanced security and privacy
                             </span>
-                            
-                           <div class="d-none" id="enhanced-security">
-                            
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Advanced IT infrastructure can provide enhanced security and privacy for patient data,
-                                ensuring that patient information is protected from unauthorized access or theft.
-                            </p>
-                        </div>
-                        </li>
 
-                        <li>
-                        
-                             <span id="span1" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Better outcomes tracking" data-bs-content="tracking" >
-                                <i class='flaticon-check'></i>
-                                 Better outcomes tracking
-                            </span>
-                            
-                            <div class="d-none" id="tracking">
-                           
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                IT infrastructure can help healthcare providers to track patient outcomes more
-                                effectively, enabling them to identify areas where care can be improved and adjust
-                                treatment plans accordingly.
-                            </p>
-                        </div>
-                            
-                        </li>
-                        <li>
-                           <span id="span7" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Improved care coordination" data-bs-content="coordination" >
-                                <i class='flaticon-check'></i>
-                                 Improved care coordination
-                            </span>
-                            
-                            <div class="d-none" id="coordination">
-                            
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Virtual care can improve care coordination among healthcare providers, enabling them to
-                                collaborate more effectively and deliver better care to patients. </p>
-                        </div>
-                        </li>
-                        <li>
-                        
-                             <span id="span8" data-bs-toggle="modal" data-bs-target="#info-modal" data-bs-title="Greater flexibility" data-bs-content="greater-flexibility" >
-                                <i class='flaticon-check'></i>
-                                 Greater flexibility
-                            </span>
-                            
-                            <div class="d-none" id="greater-flexibility">
-                            
-                            <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
-                                Virtual care can provide greater flexibility for patients and providers, enabling them
-                                to access and deliver care from any location with an internet connection. This can help
-                                to reduce scheduling conflicts and improve access to care. </p>
-                        </div>
-                        </li>
-                    </ul><br>
+                            <div class="d-none" id="enhanced-security">
 
-                    
-                    <!--main modal-->
-                      <div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modal-title"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="info-modal-title"></h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    Advanced IT infrastructure can provide enhanced security and privacy for patient
+                                    data,
+                                    ensuring that patient information is protected from unauthorized access or theft.
+                                </p>
                             </div>
-                        </div>
-                    <span class="fs-6">Learn how healthcare organizations could potentially see major gains from the
-                        expansion of virtual care.</span>
+                        </li>
+
+                        <li>
+
+                            <span id="span1" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Better outcomes tracking" data-bs-content="tracking">
+                                <i class='flaticon-check'></i>
+                                Better outcomes tracking
+                            </span>
+
+                            <div class="d-none" id="tracking">
+
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    IT infrastructure can help healthcare providers to track patient outcomes more
+                                    effectively, enabling them to identify areas where care can be improved and adjust
+                                    treatment plans accordingly.
+                                </p>
+                            </div>
+
+                        </li>
+                        <li>
+                            <span id="span7" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Improved care coordination" data-bs-content="coordination">
+                                <i class='flaticon-check'></i>
+                                Improved care coordination
+                            </span>
+
+                            <div class="d-none" id="coordination">
+
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    Virtual care can improve care coordination among healthcare providers, enabling them
+                                    to
+                                    collaborate more effectively and deliver better care to patients. </p>
+                            </div>
+                        </li>
+                        <li>
+
+                            <span id="span8" data-bs-toggle="modal" data-bs-target="#info-modal"
+                                data-bs-title="Greater flexibility" data-bs-content="greater-flexibility">
+                                <i class='flaticon-check'></i>
+                                Greater flexibility
+                            </span>
+
+                            <div class="d-none" id="greater-flexibility">
+
+                                <p class="" style="padding: 0.5rem;border-radius: 10px;margin-bottom: 0;">
+                                    Virtual care can provide greater flexibility for patients and providers, enabling
+                                    them
+                                    to access and deliver care from any location with an internet connection. This can
+                                    help
+                                    to reduce scheduling conflicts and improve access to care. </p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <span class="fs-6">
+                            Learn how healthcare organizations could potentially see major gains from the
+                            expansion of virtual care.
+                        </span>
+                    </div>
 
                 </div>
             </div>
@@ -349,6 +350,42 @@
     </div>
 </section>
 <!-- End About Area -->
+
+<!-- CTA to mental Health -->
+<section class="step-two ptb-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="step-two-content">
+                    <span>Mental Health</span>
+                    <h3>Find Expert Help for Mental Health.</h3>
+                    <p>
+                        Take a proactive step towards prioritizing your mental well-being. Explore our network of
+                        compassionate specialists who can provide expert guidance and support for a wide range of mental
+                        health concerns. Begin your journey to a healthier mind today.
+                    </p>
+                    <b>
+                        Discover Specialized Care for Mental Health
+                    </b>
+
+                    <div class="step-btn">
+                        <a href="{% url 'mental-health' %}" class="default-btn">
+                            See Specialist
+                            <span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="step-two-image">
+                    <img loading="lazy"  loading="lazy" src="{% static 'assets/img/step-two-image.png' %}" alt="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of CTA -->
 
 <!-- Start Services Area -->
 <section class="services-area  pt-100 pb-70">
@@ -488,7 +525,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="app-image">
-                    <img src="{% static 'assets/img/app.png' %}" alt="image">
+                    <img loading="lazy"  src="{% static 'assets/img/app.png' %}" alt="image">
                 </div>
             </div>
 
@@ -653,7 +690,7 @@
 
             <div class="col-lg-6">
                 <div class="solutions-image">
-                    <img src="{% static 'assets/img/solutions.png' %}" alt="image">
+                    <img loading="lazy"  src="{% static 'assets/img/solutions.png' %}" alt="image">
                 </div>
             </div>
         </div>
@@ -676,145 +713,13 @@
         </div>
 
         <div class="row">
+            {% get_display_doctors 'home' as doctors %}
+            {% for doctor in doctors %}
             <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="{% static 'assets/img/team/image1.jpg' %}" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. James Adult</h3>
-                        <span>Cardiologist</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                {% include './doctors/doctor-card.html' %}
             </div>
+            {% endfor %}
 
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="{% static 'assets/img/team/image2.jpg' %}" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. James Alison</h3>
-                        <span>Medicine</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="{% static 'assets/img/team/image3.jpg' %}" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. Peter Adlock</h3>
-                        <span>Neurologiest</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="doctor-item">
-                    <div class="image">
-                        <img src="{% static 'assets/img/team/image4.jpg' %}" alt="image">
-                    </div>
-                    <div class="content">
-                        <h3>Dr. Jelin Alis</h3>
-                        <span>Medicine</span>
-
-                        <ul class="social">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -876,7 +781,7 @@
                     </div>
                     <form action="{% url 'doctor_search' %}" method="get">
                         <div class="row align-items-center">
-                            <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="col-lg-8 col-md-6 mb-3">
                                 <div class="form-group">
                                     <select class="w-100" name="specialist">
                                         <option value="">Select Specialist</option>
@@ -888,7 +793,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 mb-3">
+                            <!-- <div class="col-lg-4 col-md-6 mb-3">
                                 <div class="form-group">
                                     <select class="w-100" name="condition">
                                         <option value="">Select Condition</option>
@@ -897,7 +802,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-4 col-md-6 mb-3">
                                 <button type="submit" class="default-btn w-100">
                                     Search
@@ -919,7 +824,7 @@
         <div class="row align-items-center">
             <div class="col-lg-7">
                 <div class="consult-image">
-                    <img src="{% static 'assets/img/consult.png' %}" alt="image">
+                    <img loading="lazy"  src="{% static 'assets/img/consult.png' %}" alt="image">
                 </div>
             </div>
 
@@ -956,6 +861,52 @@
     </div>
 </section>
 <!-- End Consult Area -->
+
+<!-- Start Partner Area -->
+<section class="partner-area pt-100 pb-70 d-none">
+    <div class="container">
+        <div class="section-title">
+            <sapn>Partners</sapn>
+            <h2>Featured Customer & Partners</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Quis ipsum suspendisse</p>
+        </div>
+
+        <div class="partner-list">
+            <div class="partner-item">
+                <a href="#" target="_blank">
+                    <img loading="lazy"  src="{% static 'assets/img/partner/1.jpg' %}" alt="image">
+                </a>
+            </div>
+
+            <div class="partner-item">
+                <a href="#" target="_blank">
+                    <img loading="lazy"  src="{% static 'assets/img/partner/2.jpg' %}" alt="image">
+                </a>
+            </div>
+
+            <div class="partner-item">
+                <a href="#" target="_blank">
+                    <img loading="lazy"  src="{% static 'assets/img/partner/3.jpg' %}" alt="image">
+                </a>
+            </div>
+
+            <div class="partner-item">
+                <a href="#" target="_blank">
+                    <img loading="lazy"  src="{% static 'assets/img/partner/4.jpg' %}" alt="image">
+                </a>
+            </div>
+
+            <div class="partner-item">
+                <a href="#" target="_blank">
+                    <img loading="lazy"  src="{% static 'assets/img/partner/5.jpg' %}" alt="image">
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Partner Area -->
 
 <!-- Start Blog Area -->
 <div class="container">
@@ -1034,7 +985,6 @@
     </div>
 </div>
 
-
 <section class="blog-area pb-70 pt-5">
     <div class="container-fluid">
 
@@ -1044,7 +994,7 @@
                 <div class="blog-item">
                     <div class="image">
                         <a href="{% url 'single_blog' blog.id blog.slug %}">
-                            <img src="{{ blog.image.url }}" loading="lazy" alt="image">
+                            <img loading="lazy"  src="{{ blog.image.url }}" loading="lazy" alt="image">
                         </a>
 
                         <a href="{% url 'single_blog' blog.id blog.slug %}" class="date">
@@ -1072,23 +1022,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    const infoModal = document.getElementById('info-modal')
-    infoModal.addEventListener('show.bs.modal', event => {
-        const button = event.relatedTarget
-
-        const title = button.getAttribute('data-bs-title')
-        const contentId = button.getAttribute('data-bs-content')
-        const content = $(`#${contentId}`).html()
-
-        // Update the modal's content.
-        const modalTitle = infoModal.querySelector('.modal-title')
-        const modalBody = infoModal.querySelector('.modal-body')
-
-        modalTitle.textContent = title
-        modalBody.innerHTML = content
-    })
-</script>
 <script src="{% static 'superadmin/assets/plugins/select2/js/select2.full.min.js' %}"></script>
 
 <script>
@@ -1096,36 +1029,4 @@
         $('select').select2();
     })
 </script>
-
-<script>
-    // Get all the clickable spans
-    const clickableSpans = document.querySelectorAll('.clickable-span');
-
-    // Loop through the clickable spans and attach a click event listener to each one
-    clickableSpans.forEach(span => {
-        span.addEventListener('click', function () {
-            // Get the ID of the clicked span
-            const spanId = this.id;
-
-            // Get the ID of the modal corresponding to the clicked span
-            const modalId = `modal${spanId.slice(4)}`;
-
-            // Get the modal element
-            const modal = document.getElementById(modalId);
-
-            // Get the close button element inside the modal
-            const closeButton = modal.querySelector('.close');
-
-            // When the user clicks on the span, display the corresponding modal
-            modal.style.display = 'block';
-
-            // When the user clicks on the close button, hide the modal
-            closeButton.addEventListener('click', function () {
-                modal.style.display = 'none';
-            });
-        });
-    });
-
-</script>
-
 {% endblock %}

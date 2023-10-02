@@ -1,221 +1,248 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} General Health Topics  {% endblock title %}
+{% block title %} General Health Topics {% endblock title %}
 
 {% block content %}
 <style>
     .top-services-content {
 
-background-color: #0a58ca;
-color: #ffffff;
--webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+        background-color: #0a58ca;
+        color: #ffffff;
+        -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
         box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
-padding: 30px 20px;
-text-align: center;
-border: 2px solid #bbcafc;
--webkit-transition: 0.5s;
-transition: 0.5s;
-border-radius: 15px;
-margin-bottom: 30px;
-}
+        padding: 30px 20px;
+        text-align: center;
+        border: 2px solid #bbcafc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
 
-.top-services-content .icon {
-margin-bottom: 25px;
-}
-.top-services-content .icon i {
-display: inline-block;
-height: 90px;
-width: 90px;
-line-height: 90px;
-background-color: #eaf7fd;
-color: #6c9dfb;
-font-size: 40px;
-border-radius: 50px;
-border: 1px dashed #a1c3fc;
--webkit-transition: 0.5s;
-transition: 0.5s;
-}
+    .top-services-content .icon {
+        margin-bottom: 25px;
+    }
 
-.top-services-content h4 {
-font-size: 18px;
-color: #ffffff;
-margin-bottom: 12px;
-}
+    .top-services-content .icon i {
+        display: inline-block;
+        height: 90px;
+        width: 90px;
+        line-height: 90px;
+        background-color: #eaf7fd;
+        color: #6c9dfb;
+        font-size: 40px;
+        border-radius: 50px;
+        border: 1px dashed #a1c3fc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
 
-.top-services-content p {
+    .top-services-content h4 {
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 12px;
+    }
 
-color: #ffffff;
+    .top-services-content p {
 
-}
+        color: #ffffff;
 
-.about-content h5 {
-  background-color: #d8ecff;
-  padding: 0.5rem;
-}
+    }
 
-.top-services-content:hover {
-border: 2px solid #ffffff;
-background-color: #d3da00;
--webkit-transform: translateY(-10px);
+    .about-content h5 {
+        background-color: #d8ecff;
+        padding: 0.5rem;
+    }
+
+    .top-services-content:hover {
+        border: 2px solid #ffffff;
+        background-color: #d3da00;
+        -webkit-transform: translateY(-10px);
         transform: translateY(-10px);
-}
+    }
 
-.top-services-content:hover .icon i {
-background-color: #207ef7;
-border: 1px dashed #207ef7;
-color: #ffffff;
-}
+    .top-services-content:hover .icon i {
+        background-color: #207ef7;
+        border: 1px dashed #207ef7;
+        color: #ffffff;
+    }
 
-.top-services-content:hover h4 {
+    .top-services-content:hover h4 {
 
-color: #000;
-}
-.top-services-content:hover p {
+        color: #000;
+    }
 
-color: #000;
-}
-.top-services-content.two {
-border: 2px solid #ffffff;
--webkit-transition: 0.5s;
-transition: 0.5s;
-}
+    .top-services-content:hover p {
 
-.top-services-content.two:hover {
-border: 2px solid #bbcafc;
-}
+        color: #000;
+    }
+
+    .top-services-content.two {
+        border: 2px solid #ffffff;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    .top-services-content.two:hover {
+        border: 2px solid #bbcafc;
+    }
 </style>
-        <!-- Start Page Title Area -->
-        <div class="page-title-area item-bg-12">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="container">
-                        <div class="page-title-content">
-                            <h2>General Health Topics</h2>
-                            <ul>
-                                <li><a href="{% url 'index' %}">Home</a></li>
-                                <li>General Health Topics</li>
-                            </ul>
+<!-- Start Page Title Area -->
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+    <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>General Health Topics</h2>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>General Health Topics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Service details -->
+<div class="service-details ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="service-details-image col-6">
+                <img src="{% static 'assets/img/analytic.jpg'%}" alt="image">
+            </div>
+
+            <div class="service-details-content col-6">
+                <h3>GENERAL HEALTH TOPICS</h3>
+                <p>Your health is your most valuable asset, and it&#39;s essential to take care of it. But with so much
+                    information out there, it can be challenging to know where to start. That&#39;s where we come in.
+                    Our
+                    mission is to empower you to achieve optimal health and wellness by providing reliable information
+                    on general health topics. Here are some the important topics you will come across:
+                </p>
+
+            </div>
+        </div>
+        <div class="service-details-content">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content h-100">
+                        <div class="icon">
+                            <i class="flaticon-insurance"></i>
+                        </div>
+                        <h4>Mental Health</h4>
+                        <p>Your mental health is just as important as your physical health. We provide
+                            tips and advice on how to manage stress, anxiety, and other mental health issues, and
+                            resources for finding professional help if needed.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content two h-100">
+                        <div class="icon">
+                            <i class="flaticon-relationship"></i>
+                        </div>
+                        <h4>Nutrition</h4>
+                        <p>
+                            Eating a healthy diet is crucial for maintaining good health. We provide guidance
+                            on healthy eating habits, meal planning, and making informed choices about the foods you
+                            eat.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content h-100">
+                        <div class="icon">
+                            <i class="flaticon-clinic"></i>
+                        </div>
+                        <h4>Exercise</h4>
+                        <p>
+                            Exercise is essential for maintaining physical health and emotional well-being. We
+                            provide tips and advice on how to incorporate exercise into your daily routine, whether
+                            it&#39;s
+                            through traditional workouts or more unconventional forms of physical activity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content h-100" style="margin-top:2rem">
+                        <div class="icon">
+                            <i class="flaticon-clinic"></i>
+                        </div>
+                        <h4>Sleep</h4>
+                        <p>
+                            Getting enough quality sleep is essential for overall health and well-being. We
+                            provide tips and advice on how to improve sleep quality, develop a sleep routine, and
+                            address common sleep disorders.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content h-100" style="margin-top:2rem">
+                        <div class="icon">
+                            <i class="flaticon-clinic"></i>
+                        </div>
+                        <h4>Women&#39;s Health</h4>
+                        <p>
+                            Women face unique health challenges, and we provide information on
+                            topics such as pregnancy, menopause, reproductive health, and breast health.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-services-content h-100" style="margin-top:2rem">
+                        <div class="icon">
+                            <i class="flaticon-clinic"></i>
+                        </div>
+                        <h4>Mens health</h4>
+                        <p>
+                            As a man, your health is crucial to your quality of life and overall well-being.
+                            But all too often, men put their health on the back burner, ignoring warning signs and
+                            neglecting routine check-ups. We&#39;re here to remind you that taking care of yourself is
+                            not a
+                            sign of weakness, but a powerful act of self-care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:3rem">
+                By empowering you with knowledge and resources, we aim to help you take control of your health
+                and live your best life. Remember, your health is worth investing in.
+            </p>
+
+            <div class="service-details-info">
+                <div class="row w-100">
+                    <div class="col-md-8">
+                        <div class="single-info-ox">
+                            <h4 class="text-center">
+                                Follow our health blog for more tips and advice on
+                                achieving optimal health and wellness. Subscribe
+                                now to stay updated on our latest content.
+                            </h4>
+                            <div class="d-flex justify-content-center">
+                                <span>ResQ247, Your best virtual care platform</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-3">
+                        <div class="single-info-bx d-flex justify-content-center">
+                            <a class="default-btn-two" href="{% url 'blogs' %}">
+                                Go To Resources
+                                <span></span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Page Title Area -->
-
-        <!-- Service details -->
-        <div class="service-details ptb-100">
-            <div class="container">
-<div class="row">
-    <div class="service-details-image col-6">
-        <img src="{% static 'assets/img/analytic.jpg'%}" alt="image">
-    </div>
-
-     <div class="service-details-content col-6">
-        <h3>GENERAL HEALTH TOPICS</h3>
-        <p>Your health is your most valuable asset, and it&#39;s essential to take care of it. But with so much
-            information out there, it can be challenging to know where to start. That&#39;s where we come in. Our
-            mission is to empower you to achieve optimal health and wellness by providing reliable information
-            on general health topics. Here are some the important topics you will come across:
-        </p>   
-       
     </div>
 </div>
-<div class="service-details-content">
-    <div class="row">
-                       
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content h-100">
-                <div class="icon">
-                    <i class="flaticon-insurance"></i>
-                </div>
-                <h4>Mental Health</h4>
-                <p>Your mental health is just as important as your physical health. We provide
-                   tips and advice on how to manage stress, anxiety, and other mental health issues, and
-                   resources for finding professional help if needed.</p>
-            </div>
-        </div>
+<!-- End Service details -->
 
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content two h-100">
-                <div class="icon">
-                    <i class="flaticon-relationship"></i>
-                </div>
-                <h4>Nutrition</h4>
-                <p>
-                    Eating a healthy diet is crucial for maintaining good health. We provide guidance
-                    on healthy eating habits, meal planning, and making informed choices about the foods you
-                    eat.
-                                </p> 
-            </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content h-100">
-                <div class="icon">
-                    <i class="flaticon-clinic"></i>
-                </div>
-                <h4>Exercise</h4>
-                <p>
-                    Exercise is essential for maintaining physical health and emotional well-being. We
-                    provide tips and advice on how to incorporate exercise into your daily routine, whether it&#39;s
-                    through traditional workouts or more unconventional forms of physical activity.
-                </p>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content h-100" style="margin-top:2rem">
-                <div class="icon">
-                    <i class="flaticon-clinic"></i>
-                </div>
-                <h4>Sleep</h4>
-                <p>
-                 Getting enough quality sleep is essential for overall health and well-being. We
-                 provide tips and advice on how to improve sleep quality, develop a sleep routine, and
-                 address common sleep disorders.
-                </p>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content h-100" style="margin-top:2rem">
-                <div class="icon">
-                    <i class="flaticon-clinic"></i>
-                </div>
-                <h4>Women&#39;s Health</h4>
-                <p>
-                Women face unique health challenges, and we provide information on
-                topics such as pregnancy, menopause, reproductive health, and breast health.
-                </p>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="top-services-content h-100" style="margin-top:2rem">
-                <div class="icon">
-                    <i class="flaticon-clinic"></i>
-                </div>
-                <h4>Mens health</h4>
-                <p>
-                    As a man, your health is crucial to your quality of life and overall well-being.
-                    But all too often, men put their health on the back burner, ignoring warning signs and
-                    neglecting routine check-ups. We&#39;re here to remind you that taking care of yourself is not a
-                    sign of weakness, but a powerful act of self-care.
-                </p>
-            </div>
-        </div>
-    </div>
-<p style="margin-top:3rem">
-    By empowering you with knowledge and resources, we aim to help you take control of your health
-and live your best life. Remember, your health is worth investing in.
-</p>
-    <p class="text-center text-primary fs-5 fw-bold">Follow our health blog for more tips and advice on achieving optimal health and wellness. Subscribe
-        now to stay updated on our latest content.
-        <a  href="{% url 'blogs' %}" class="btn btn-primary text-white align-self-center">Click Here</a>  
-     </p>
-</div>
-</div>
-</div>
-        <!-- End Service details -->
-
-        {% endblock %}
+{% endblock %}

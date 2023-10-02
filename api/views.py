@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, permissions
 from rest_framework_bulk import BulkModelViewSet
 
 from account.serializers import ProfileSerializer, UserSerializer
@@ -44,6 +44,7 @@ class ProductCategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -73,7 +74,7 @@ class IllnessViewSet(viewsets.ModelViewSet):
 
 
 class SpecialityViewSet(viewsets.ModelViewSet):
-    queryset = FacilitySpeciality.objects.all()
+    queryset = Speciality.objects.all()
     serializer_class = SpecialitySerializer
 
 
@@ -118,16 +119,19 @@ class ServiceCategoryViewSet(viewsets.ModelViewSet):
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
-class EncounterViewSet(viewsets.ModelViewSet):
-    queryset = Encounter.objects.all()
-    serializer_class = EncounterSerializer
+class DoctorNotesViewSet(viewsets.ModelViewSet):
+    queryset = DoctorNote.objects.all()
+    serializer_class = DoctorNoteSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 # App settings
@@ -135,46 +139,55 @@ class EncounterViewSet(viewsets.ModelViewSet):
 class EmailConfigViewSet(viewsets.ModelViewSet):
     queryset = EmailConfiguration.objects.get_queryset()
     serializer_class = EmailConfigSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class EmailViewSet(viewsets.ModelViewSet):
     queryset = Email.objects.get_queryset()
     serializer_class = EmailSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class AppConfigViewSet(viewsets.ModelViewSet):
     queryset = AppConfig.objects.get_queryset()
     serializer_class = AppConfigSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PrescriptionViewSet(viewsets.ModelViewSet):
     queryset = Prescription.objects.get_queryset()
     serializer_class = PrescriptionSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class SharedPrescriptionViewSet(viewsets.ModelViewSet):
     queryset = SharedPrescription.objects.get_queryset()
     serializer_class = SharedPrescriptionSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PrescriptionOrderViewSet(viewsets.ModelViewSet):
     queryset = PrescriptionOrder.objects.get_queryset()
     serializer_class = PrescriptionOrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.get_queryset()
     serializer_class = TopicsSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.get_queryset()
     serializer_class = BlogSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ReplyViewSet(viewsets.ModelViewSet):
     queryset = Reply.objects.get_queryset()
     serializer_class = ReplySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 # Contact Forms

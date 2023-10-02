@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Analytic Solution {% endblock title %}
+
 {% block content %}
 
 <!-- Start Page Title Area -->
-<div class="page-title-area item-bg-14">
-  <div class="d-table">
+<div class="page-title-area" style="background-image: url(/static/assets/img/page-title/bg.webp);">
+  <div class="d-table" style="background: rgba(0, 0, 0, 0.7);">
     <div class="d-table-cell">
       <div class="container">
         <div class="page-title-content">
           <h2>Analytic Solution</h2>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">
-            Schedule a call with us 
-
-         </button> 
+          <button type="button" class="default-btn" data-bs-toggle="modal" data-bs-target="#apply-modal">
+            Schedule a call with us
+          </button>
         </div>
       </div>
     </div>
@@ -41,8 +42,8 @@
           <p>This will help you identify patterns, trends, and relationships in the data, which can be used to inform
             clinical decision making, improve patient outcomes, and optimize resource utilization. Data analytics
             solutions play a crucial role in supporting the delivery of high-quality, cost-effective healthcare by
-            providing healthcare organizations with valuable insights into patient data</p>
-
+            providing healthcare organizations with valuable insights into patient data
+          </p>
 
         </div>
 
@@ -51,12 +52,29 @@
 
     <div class="service-details-content">
 
+      <div class="service-details-info">
+        <div class="row w-100">
+          <div class="col-md-8">
+            <div class="single-info-ox">
+              <h4 class="text-center">
+                Schedule a call with us
+              </h4>
+              <div class="d-flex justify-content-center">
+                <span>ResQ247, Your best virtual care platform</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 py-3">
+            <div class="single-info-bx d-flex justify-content-center">
+              <button class="default-btn-two" data-bs-toggle="modal" data-bs-target="#apply-modal">
+                Schedule Now!
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#apply-modal">
-        Schedule a call with us 
-
-     </button> 
     </div>
 
 
@@ -93,7 +111,7 @@
                   <label for="name">Schedule time</label>
                   <input type="time" id="time-input" name="time" class="form-control" required>
                 </div>
-        
+
 
                 <div class="col-lg-12 form-group mb-3">
                   <label for="message">Which area or department would like us to assist with our analytic tools</label>
@@ -112,7 +130,7 @@
         </div>
       </div>
     </div>
-  
+
   </div>
 </div>
 <!-- End Service details -->

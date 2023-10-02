@@ -1,5 +1,6 @@
 {% extends './../components/base.html' %}
 {% load static %}
+{% load customtags %}
 {% block title %} Text Consultations {% endblock %}
 
 {% load humanize %}
@@ -66,7 +67,11 @@
 						<tbody>
 							{% for appointment in appointments %}
 							<tr>
-								<td>Dr {{appointment.patient.user.first_name}} {{appointment.patient.user.last_name}}</td>
+								<td>
+									<a href="{% url 'doctor:single-appointment' appointment.id %}">
+										{{appointment.patient.user.get_full_name}}
+									</a>
+								</td>
 								<td>{{appointment.facility.name}}</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"
@@ -77,7 +82,7 @@
 									</button>
 								</td>
 								<td>{{appointment.condition.name}}</td>
-								<td>{{appointment.date}}</td>
+								<td>{{appointment.date|get_date}}</td>
 								<td>{{appointment.start_time}}</td>
 								<td>{{appointment.end_time}}</td>
 							</tr>

@@ -51,10 +51,55 @@
 				<h3>All Your Appointments</h3>
 			</div>
 			<div class="card-body">
+
+				<form action="" class="mb-4">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-2 mb-3">
+							<div>
+								<label for="" class="form-label">From Date</label>
+								<input type="date" name="from_date" value="{{request.GET.from_date}}"
+									class="form-control input-sm">
+							</div>
+						</div>
+						<div class="col-md-2 mb-3">
+							<div class="form-group-sm">
+								<label for="" class="form-label">To Date</label>
+								<input type="date" name="to_date" value="{{request.GET.to_date}}" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3 mb-3">
+							<div>
+								<label for="" class="form-label">Appointment Type</label>
+								<select name="type" id="" class="form-control">
+									<option value="" {% if request.GET.type == '' %} selected {% endif %}>All</option>
+									<option value="video" {% if request.GET.type == 'video' %} selected {% endif %}>Video</option>
+									<option value="text" {% if request.GET.type == 'text' %} selected {% endif %}>Text</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3 mb-3">
+							<div>
+								<label for="" class="form-label">Appointment Category</label>
+								<select name="category" id="" class="form-control">
+									<option value="" {% if request.GET.category == '' %} selected {% endif %}>All</option>
+									<option value="mental" {% if request.GET.category == 'mental' %} selected {% endif %}>Mental</option>
+									<option value="medical" {% if request.GET.category == 'medical' %} selected {% endif %}>Medical</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2 mb-3">
+							<div class="mb-2 h-100 d-flex align-items-center">
+								<button class="btn btn-primary">Filter</button>
+							</div>
+						</div>
+					</div>
+				</form>
 				<div class="table-responsive">
 					<table id="appointments" class="display" style="width:100%">
 						<thead>
 							<tr>
+								<th>Action</th>
 								<th>Patient</th>
 								<th>Note</th>
 								<th>Consultation</th>
@@ -65,25 +110,7 @@
 						</thead>
 						<tbody>
 							{% for appointment in appointments %}
-							<tr>
-								<td>
-									<a href="{% url 'doctor:single-appointment' appointment.id %}">
-										{{appointment.patient.user.get_full_name}}
-									</a>
-								</td>
-								<td>
-									<button class="btn btn-primary px-4" data-bs-toggle="modal"
-										data-bs-target="#info-modal"
-										data-bs-title="{{appointment.patient.user.first_name}} {{appointment.patient.user.last_name}} - Appointment Note"
-										data-bs-content="{{appointment.note}}<br>Condition: {{appointment.condition.name}}">
-										Read
-									</button>
-								</td>
-								<td>{{appointment.consultation_type}}</td>
-								<td>{{appointment.date|get_date}}</td>
-								<td>{{appointment.start_time}}</td>
-								<td>{{appointment.end_time}}</td>
-							</tr>
+							{% include './../components/appointment-row.html' %}
 							{% endfor %}
 						</tbody>
 					</table>
@@ -101,6 +128,10 @@
 
 <script src="{% static 'dashboard/vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
 <script>
-	$('#appointments').DataTable()
+	$('#appointments').DataTable({
+		searching: false,
+		paging: false,
+		pageLength: 100
+	})
 </script>
 {% endblock %}

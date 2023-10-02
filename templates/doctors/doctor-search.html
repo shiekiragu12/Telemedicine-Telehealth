@@ -39,46 +39,7 @@
         <div class="row"> 
             {% for doctor in doctors %}
             <div class="col-lg-3 col-md-6 mb-3">
-
-                <div class="doctor-item card h-100">
-                    <div class="image">
-                        {% if doctor.user.profile.profile_photo %}
-                        <img src="{{doctor.user.profile.profile_photo.url}}" alt="{{doctor.user.full_name}}">
-                        {% else %}
-                        <img src="{% static 'assets/img/team/image1.jpg' %}" alt="{{doctor.user.full_name}}">
-                        {% endif %}
-                    </div>
-                    <div class="content">
-                        <a href="{% url 'single-doctor' doctor.id %}">
-                            <h3>Dr. {{doctor.user.get_full_name}}</h3>
-                        </a>
-                        <span>
-                            {{ doctor.specialities.all|get_doctor_specialties }}
-                        </span>
-                        <!-- <ul class="social d-none">
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-pinterest-p"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul> -->
-                    </div>
-                </div>
+                {% include './doctor-card.html' %}
             </div>
             {% endfor %}
         </div>

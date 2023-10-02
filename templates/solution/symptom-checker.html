@@ -151,7 +151,7 @@
 <script>
     const chatForm = document.getElementById('chat-form');
     const msgsHolder1 = document.querySelector('.msgs-holder');
-    const API_KEY = "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"
+    const API_KEY = "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"
     const HEADERS = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${API_KEY}`
@@ -168,8 +168,10 @@
         `;
     }
 
-    const INSTRUCTIONS = `In the below prompt, if it is outside medicine, health care, healthcare, medicine, doctor, hospital, patient, diagnosis, treatment, prescription, surgery, nurse and related fields, ask the patient to rephrase their question on how they are feeling and try to give them a solution. All the information you will provide is not being used by the patient. It is only used to provide you with the best possible results.
-    Don't include 'As an AI model text' in your message. The information you give to the patient will be further used by the doctor to make the final decision. You are only helping the patient get some information before they see the doctor. Below is the patient's query.\n`
+    const INSTRUCTIONS = `In the below prompt, if it is outside medicine, health care, healthcare, medicine, doctor, hospital, patient, diagnosis, treatment, prescription, surgery, nurse and related fields, ask the patient to rephrase their question on how they are feeling and try to give them a solution. 
+    All the information you will provide is not being used by the patient. It is only used to provide you with the best possible results.
+    Don't include 'As an AI model text' or any message text that shows you are are an AI in your message. The information you give to the patient will be further used by the doctor to make the final decision. 
+    You are only helping the patient get some information before they see the doctor. Below is the patient's query.\n`
 //     const INSTRUCTIONS = `Use the questions below to help the patient through. Do not include 'as an ai model' in your suggestions. You are just helping a patient based on the questions and maybe give help or suggest a doctor for further checking. Ask all the questions before exiting or suggesting a doctor. Don't ask the questions all at once. Ask them separately. 1. What is your age  2. gender?
 // 3.  What is the primary symptom or issue you are experiencing? Please describe it in detail.
 // 4. When did the symptom or issue first appear?
@@ -252,8 +254,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         receiveMsg('Hi, I am your virtual assistant. I will help you to check your symptoms.');
     });
-
-    msgsHolder1.addEventListener('')
 
 
 

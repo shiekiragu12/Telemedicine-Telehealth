@@ -17,6 +17,16 @@ def send_new_account_creation_email(sender, instance, created, **kwargs):
         send_custom_email('account_creation', instance, [instance.email])
 
 
+class Salutation(models.Model):
+    title = models.CharField(blank=False, null=True, max_length=30)
+
+    created = models.DateTimeField(auto_now=True, auto_created=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
     country_code = models.CharField(max_length=10, blank=True, null=True)
@@ -27,6 +37,12 @@ class Profile(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     profile_photo = models.ImageField(upload_to='profile/photos/')
     dob = models.DateField(blank=True, null=True)
+    salutation = models.ForeignKey(Salutation, blank=True, null=True, on_delete=models.SET_NULL)
+
+    pronouns = models.CharField(max_length=50, blank=True, null=True)
+    race = models.CharField(max_length=50, blank=True, null=True)
+    sexual_orientation = models.CharField(max_length=50, blank=True, null=True)
+    preferred_name = models.CharField(max_length=50, blank=True, null=True)
 
     created = models.DateTimeField(auto_now=True, auto_created=True)
     updated = models.DateTimeField(auto_now_add=True)

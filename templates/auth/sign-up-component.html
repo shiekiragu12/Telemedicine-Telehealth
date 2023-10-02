@@ -1,3 +1,5 @@
+{% load customtags %}
+
 <div class="signup-form" {% if noshadow %} style="box-shadow: none; max-width: 100%;" {% else %} style="max-width: 100%;" {% endif %}>
     <h3>Create your Account</h3>
     {% for msg in messages %}
@@ -14,6 +16,18 @@
     <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="" class="form-label">Salutation*</label>
+                    {% get_salutations as salutations %}
+                    <select class="w-100 form-control" name="user.profile.salutation">
+                        <option>Select</option>
+                        {% for salutation in salutations %}
+                        <option value="{{salutation.id}}">{{salutation.title}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>  
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="" class="form-label">First Name</label>
@@ -60,7 +74,19 @@
                         placeholder="Confirm Password" name="password1">
                 </div>
             </div>
-
+            <div class="col-lg-12">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    <label class="form-check-label" for="terms">I agree to 
+                        <a href="{% url 'terms-conditions' %}" class="me-2" style="text-decoration: underline;">Terms & Conditions</a>
+                        <a href="{% url 'terms-conditions' %}" class="me-2" style="text-decoration: underline;">Privacy Policy</a>
+                        <a href="{% url 'terms-conditions' %}" class="me-2" style="text-decoration: underline;">User Policy</a>
+                        <a href="{% url 'terms-conditions' %}" class="me-2" style="text-decoration: underline;">Practitioner Policy</a>
+                        and
+                        <a href="{% url 'terms-conditions' %}" class="me-2" style="text-decoration: underline;">Payment & Refund Policy</a>
+                    </label>
+                </div>
+            </div>
             <div class="col-lg-12">
                 <div class="send-btn">
                     <button class="default-btn">Sign Up Now</button>

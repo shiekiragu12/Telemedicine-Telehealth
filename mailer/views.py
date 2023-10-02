@@ -52,12 +52,13 @@ def sendepasswordresetmail(user, token):
 
         # connection.open()
         register_sent_email = SentEmail(
-            user=user,
+            receiver=user.email,
             subject=email.subject,
-            body=template
+            body=template,
+            sent=False
         )
 
-        send_email(email_config, [email_text])
+        send_email(email_config, [email_text], [register_sent_email])
 
     return {"message": "failed"}
 

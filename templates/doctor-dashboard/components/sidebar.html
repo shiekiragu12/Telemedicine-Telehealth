@@ -1,3 +1,4 @@
+{% load website_tags %}
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
@@ -5,6 +6,16 @@
                 <a href="{% url 'index' %}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-home"></i>
                     <span class="nav-text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'account_notifications' %}" class="ai-icon" aria-expanded="false">
+                    {% get_my_unread_notifications_count request.user.id as my_notifications %}
+                    <i class="lni lni-alarm"></i>
+                    <span class="nav-text">
+                        Notifications 
+                    </span>
+                    <span class="badge bg-danger ml-auto">{{my_notifications}}</span>
                 </a>
             </li>
             <li>
@@ -39,6 +50,7 @@
                     <span class="nav-text">Lab Orders</span>
                 </a>
             </li>
+            {% comment %}
             <li>
                 <a href="{% url 'doctor:consultation-notes' %}" class="ai-icon" aria-expanded="false">
                     <i class="lni lni-consulting"></i>
@@ -57,8 +69,9 @@
                     <span class="nav-text">Video Consultation </span>
                 </a>
             </li>
+            {% endcomment %}
             <li>
-                <a href="{% url 'doctor:appointments' %}" class="ai-icon" aria-expanded="false">
+                <a href="{% url 'account_profile' %}" class="ai-icon" aria-expanded="false">
                     <i class="lni lni-cogs"></i>
                     <span class="nav-text">Profile </span>
                 </a>

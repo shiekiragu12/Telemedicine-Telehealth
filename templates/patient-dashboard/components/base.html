@@ -41,6 +41,14 @@
         .c-header {
             min-width: 200px;
         }
+
+        .chat-container.hide {
+            display: none;
+        }
+
+        .chat-container.show {
+            display: block;
+        }
     </style>
 </head>
 
@@ -85,13 +93,28 @@
     <script src="{% static 'dashboard/vendor/toastr/js/toastr.min.js' %}"></script>
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-     <!-- Hightlight JS -->
-     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Hightlight JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
-    
+
 
     {% block scripts %} {% endblock %}
-
+    <script>
+        function showChat() {
+            const chatContainer = document.querySelector('.chat-container')
+            if (chatContainer.classList.contains('hide')) {
+                chatContainer.classList.remove('hide')
+                chatContainer.classList.add('show')
+            }
+        }
+        function hideChat() {
+            const chatContainer = document.querySelector('.chat-container')
+            if (chatContainer.classList.contains('show')) {
+                chatContainer.classList.remove('show')
+                chatContainer.classList.add('hide')
+            }
+        }
+    </script>
     <style>
         .errorlist {
             list-style: auto;

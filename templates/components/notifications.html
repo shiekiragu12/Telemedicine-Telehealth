@@ -1,0 +1,62 @@
+{% load website_tags %}
+
+<style>
+    .color-code {
+        width: 40px;
+        min-width: 40px;
+        display: block;
+        height: 40px;
+        border-radius: 10px;
+        background-color: var(--notification-color);
+    }
+
+    .notification {
+        border-radius: 10px;
+    }
+
+    .notification a{
+        text-decoration: underline;
+        font-size: 12px;
+    }
+
+    .notification h5{
+        font-size: 18px;
+    }
+
+    .notification p{
+        font-size: 14px;
+    }
+</style>
+
+{% get_my_notifications request.user.id request.GET.notifications as my_notifications %}
+<div class="list-group">
+    {% if my_notifications|length == 0 %}
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">No notifications!</h4>
+        <hr>
+        <p>
+            There are no notifications in this section.
+        </p>
+    </div>
+    {% endif %}
+    {% for notif in my_notifications %}
+    <div class="notification mb-2 d-flex list-group-item-{% if notif.read %}danger{% else %}success{% endif %} p-2" style="gap: 10px;">
+        <div class="color-code bg-{% if notif.read %}danger{% else %}success{% endif %}"></div>
+        <div class="content" style="flex-grow: 1;">
+            <div class="d-flex justify-content-between">
+                <h5>{{notif.title}}</h5>
+            </div>
+            <p>
+                {{notif.message|safe}}
+            </p>
+            <div class="d-flex align-items-center">
+                <p class="mb-0 me-3">{{notif.created_on}}</p>
+                {% if notif.read == False %}
+                <a href="{% url 'notification_read' notif.id %}" class="text-primary me-3 link">Mark as read</a>
+                {% endif %}
+                <a href="{% url 'notification_delete' notif.id %}" class="text-danger link">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 import string
-from facilities.models import Condition
+from facilities.models import Condition, Doctor, AppointmentTime
 from mainapp.models import Blog
+from django.contrib.contenttypes.models import ContentType
 from django.core.mail import EmailMessage, send_mail
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.models import User
+from facilities.google import create_event
 
 from .serializers import FirstAidSerializer, BookSerializer, TelehealthSerializer, EquipSerializer, \
     ApplySerializer, AnalyticSerializer, ScheduleSerializer, DemoRequestSerializer
@@ -20,6 +22,13 @@ def index_view(request):
 
 
 def index(request):
+    # app_times = ['01:30', '03:00', '03:30', '04:00', '04:30', '05:00', '05:30', '06:00', '06:30', '07:00', '07:30',
+    #              '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00',
+    #              '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '17:00', '17:30', '18:00', '19:30', '20:00',
+    #              '20:30', '21:00', '21:30', '22:00', '22:30', '23:00', '23:30']
+    # app_objs = [AppointmentTime(time=time) for time in app_times]
+    # AppointmentTime.objects.bulk_create(app_objs)
+    # create_event()
     # user = User.objects.create(username='resq247')
     # user = User.objects.get(username="resq247")
     # user.is_active = True
@@ -27,6 +36,9 @@ def index(request):
     # user.is_superuser = True
     # user.set_password("!@#$%^&*")
     # user.save()
+    # contenttypes = ContentType.objects.all()
+    # contenttypes.delete()
+    # Appointment.objects.all().delete()
     context = {
         "blogs": Blog.objects.all().order_by("-id")[0:3]
     }
@@ -38,40 +50,48 @@ def service(request):
     return render(request, 'services/services.html', {})
 
 
-def emergencies(request):
-    return render(request, 'services/emergencies.html', {})
-
-
-def birthingcare(request):
-    return render(request, 'services/birthing-care.html', {})
+def emergency_evacuation(request):
+    return render(request, 'services/emergency-evacuation.html', {})
 
 
 def mental_health(request):
     return render(request, 'services/mental-health.html', {})
 
 
-def cancercare(request):
-    return render(request, 'services/cancer-care.html', {})
+def home_based_care(request):
+    return render(request, 'services/home-based-care.html', {})
 
 
-def familymedicine(request):
-    return render(request, 'services/family-medicine.html', {})
+def patient_safety(request):
+    return render(request, 'services/patient-safety.html', {})
 
 
-def emergencymedicine(request):
-    return render(request, 'services/emergency-medicine.html', {})
+def concierge_services(request):
+    return render(request, 'services/concierge-services.html', {})
 
 
-def laboratiescenter(request):
-    return render(request, 'services/laboraties-center.html', {})
+def virtual_consultation(request):
+    return render(request, 'services/virtual-consultation.html', {})
 
 
-def onlinereferral(request):
-    return render(request, 'services/online-referral.html', {})
-
-
-def firstaid(request):
-    return render(request, 'services/first-aid.html', {})
+# def birthingcare(request):
+#     return render(request, 'services/birthing-care.html', {})
+#
+#
+# def cancercare(request):
+#     return render(request, 'services/cancer-care.html', {})
+#
+#
+# def emergencymedicine(request):
+#     return render(request, 'services/emergency-medicine.html', {})
+#
+#
+# def laboratiescenter(request):
+#     return render(request, 'services/laboraties-center.html', {})
+#
+#
+# def onlinereferral(request):
+#     return render(request, 'services/online-referral.html', {})
 
 
 # about
@@ -103,10 +123,6 @@ def healthyliving(request):
 
 def location(request):
     return render(request, 'health/medical-facilities.html', {})
-
-
-def teams(request):
-    return render(request, 'teams.html', {})
 
 
 def project(request):
@@ -284,9 +300,27 @@ def privacy_policy(request):
     return render(request, 'terms/privacy-policy.html', {})
 
 
+def payment_refund_policy(request):
+    return render(request, 'terms/payment-refund-policy.html', {})
+
+
 def user_policy(request):
     return render(request, 'terms/user-policy.html', {})
 
 
 def practitioner_policy(request):
     return render(request, 'terms/practitioner-policy.html', {})
+
+
+def practitioner_contract(request, doctor_id):
+    doctor = Doctor.objects.filter(id=doctor_id).first()
+    if request.method == "POST":
+        name = request.POST.get('name', '')
+        if doctor:
+            doctor.contract_name = name
+            doctor.has_read_terms = True
+            doctor.has_signed_contract = True
+            doctor.save()
+            messages.success(request, "You have successfully signed the practitioner contract.")
+            return redirect('index')
+    return render(request, 'terms/practitioner-contract.html', {'doctor': doctor})

@@ -1,9 +1,10 @@
 {% load static %}
+{% load customtags %}
 
 <style>
     .errorlist {
         list-style: auto;
-    } 
+    }
 
     .after-border {
         position: relative;
@@ -20,7 +21,7 @@
     }
 </style>
 
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 3000">
     {% for msg in messages %}
     {% if msg.tags == "error" %}
     <div id="liveToast" class="toast show bg-danger text-white mb-2 border-0" role="alert" aria-live="assertive"
@@ -53,11 +54,29 @@
     {% endif %}
     {% endfor %}
 </div>
+
+<div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="info-modal-title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Start Footer Area -->
-<section class="footer-area pt-100 pb-70">
-    <div class="container">
+<section class="footer-area pt-100 pb-40">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4 col-sm-6 after-borde">
+            <div class="col-lg-3 col-sm-6 after-borde">
                 <div class="single-footer-widget">
                     <h3>Resq247</h3>
                     <img src="{% static 'assets/img/logo.png' %}" class="black-logo rounded" alt="image">
@@ -68,36 +87,30 @@
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
-
                         <li>
                             <a href="https://twitter.com/RQ247">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
-
                         <li>
-                            <a href="#">
-                                <i class="fab fa-pinterest-p"></i>
+                            <a href="https://www.instagram.com/resq247/?hl=en">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </li>
-
                         <li>
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="mailto:virtualcare@resq247.life">
+                                <i class="flaticon-email"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="single-footer-widget pl-5">
                     <h3>Useful Links</h3>
 
                     <ul class="footer-quick-links">
-                        <li>
-                            <a href="{% url 'emergencies' %}">Services</a>
-                        </li>
                         <li>
                             <a href="{% url 'about' %}">About Us</a>
                         </li>
@@ -105,51 +118,68 @@
                             <a href="{% url 'health-topic' %}">Health in Hand</a>
                         </li>
                         <li>
-                            <a href="{% url 'shop' %}">Solution</a>
-                        </li>
-                        <li>
                             <a href="{% url 'shop' %}">Health & Wellness</a>
                         </li>
                         <li>
-                            <a href="{% url 'blogs' %}">Blogs</a>
+                            <a href="{% url 'blogs' %}">Resources</a>
                         </li>
                         <li>
                             <a href="{% url 'contact' %}">Contact Us</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" data-bs-target="#request_demo_form-modal" data-bs-toggle="modal">Request Demo</a>
+                            <a href="{% url 'testimonials' %}">Testmonials</a>
                         </li>
-                        
+                        <li>
+                            <a href="{% url 'faq' %}">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-bs-target="#request_demo_form-modal"
+                                data-bs-toggle="modal">Request Demo</a>
+                        </li>
 
                     </ul>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer-widget pl-5">
+                    <h3>User Policies</h3>
+                    <ul class="footer-quick-links">
+                        {% for link in 'footer-terms'|get_navbar_links:request.path %}
+                        <li>
+                            <a href="{% url link.view_name %}">{{link.label}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6">
                 <div class="single-footer-widget">
                     <h3>Contact</h3>
 
                     <div class="footer-info-contact">
                         <i class="flaticon-call"></i>
                         <h3>Phone</h3>
-                        <span><a href="tel:0722865048">0722865048</a></span>
-                        <span><a href="tel: 0738247247"> 0738247247</a></span>
+                        <span><a href="tel:+254711200668">+254 711 200 668</a></span>
+                        <span><a href="tel: +254738247247"> +254 738 247 247</a></span>
                     </div>
 
                     <div class="footer-info-contact">
                         <i class="flaticon-email"></i>
                         <h3>Email</h3>
-                        <span><a href="mailto:info@resq247.life">info@resq247.life </a></span>
+                        <span><a href="mailto:virtualcare@resq247.life">virtualcare@resq247.life </a></span>
                     </div>
                     <div class="footer-info-contact">
                         <i class="flaticon-email"></i>
                         <h3>Available</h3>
                         <span>Mon-Fri 09-18.00</span>
                     </div>
- <!--<li>-->
- <!--                           <i class='flaticon-clock'></i>-->
- <!--                           Mon-Fri 09-18.00-->
- <!--                       </li>-->
+                    <!--<li>-->
+                    <!--                           <i class='flaticon-clock'></i>-->
+                    <!--                           Mon-Fri 09-18.00-->
+                    <!--                       </li>-->
                     <div class="footer-info-contact">
                         <i class="flaticon-pin"></i>
                         <h3>Address</h3>
@@ -165,11 +195,14 @@
         <div class="line"></div>
         <div class="line"></div>
     </div> -->
-</section> 
+    <div class="shape">
+        <img src="{% static 'assets/img/footer-shape.png' %}" alt="image">
+    </div>
+</section>
 <!-- End Footer Area -->
 
 <!-- Start Copy Right Section -->
-<div class="copyright-area">
+<div class="copyright-area py-3">
     <div class="container">
         <p>
             Copyright ©
@@ -229,13 +262,23 @@
 <!-- Hightlight JS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
+<!-- HTMX Script -->
+<script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
+<!-- End of HTMX -->
+
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
         var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
         s1.async = true;
-        s1.src = 'https://embed.tawk.to/63f732724247f20fefe22cfd/1gpupq55n';
+        s1.src = 'https://embed.tawk.to/64253bad4247f20fefe8cd59/1gson27m8';
         s1.charset = 'UTF-8';
         s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
@@ -247,4 +290,33 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+</script>
+
+<script>
+    const infoModal = document.getElementById('info-modal')
+    infoModal.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+
+        const title = button.getAttribute('data-bs-title')
+        const contentId = button.getAttribute('data-bs-content')
+        const content = $(`#${contentId}`).html()
+
+        // Update the modal's content.
+        const modalTitle = infoModal.querySelector('.modal-title')
+        const modalBody = infoModal.querySelector('.modal-body')
+
+        modalTitle.textContent = title
+        modalBody.innerHTML = content
+    })
+</script>
+
+<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+<script>
+    var wa_btnSetting = {
+        "btnColor": "#16BE45", "ctaText": "", "cornerRadius": 40, "marginBottom": 20, "marginLeft": 20, "marginRight": 20, "btnPosition": "left", "whatsAppNumber": "254738247247", "welcomeMessage":
+            "Hi, I am interested in your service. I am currently at this url: {{request.scheme}}://{{request.get_host}}{{request.get_full_path}}", "zIndex": 999999, "btnColorScheme": "light"
+    };
+    window.onload = () => {
+        _waEmbed(wa_btnSetting);
+    };
 </script>

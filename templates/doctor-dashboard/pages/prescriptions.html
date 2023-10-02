@@ -68,11 +68,11 @@
 						<tbody>
 							{% for prescription in prescriptions %}
 							<tr>
-								<td>Dr {{prescription.patient.user.first_name}} {{prescription.patient.user.last_name}}</td>
+								<td> {{prescription.appointment.patient.user.profile.salutation.title}} {{prescription.appointment.patient.user.get_full_name}}</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"
 										data-bs-target="#info-modal"
-										data-bs-title="{{prescription.patient.user.first_name}} {{prescription.patient.user.last_name}} - Prescription Note"
+										data-bs-title="{{prescription.appointment.patient.user.get_full_name}} - Prescription Note"
 										data-bs-content="{{prescription.prescription}}">
 										Read
 									</button>

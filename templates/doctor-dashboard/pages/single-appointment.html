@@ -14,58 +14,17 @@
                 <h3>Appointment with patient {{appointment.patient.user.get_full_name}}</h3>
             </div>
             <div class="card-body">
-                <h5>Patient Note</h5>
-                <p>
-                    {{appointment.note}}
-                </p>
-                <h5>Condition</h5>
-                <p>{{appointment.condition.name}}</p>
-                <h5>Any named condition</h5>
-                <p>{{appointment.other_condition}}</p>
-                <h5>Appointment Date</h5>
-                <p>{{appointment.date|get_date}}</p>
-                <h5>Appointment Time</h5>
-                <p>{{appointment.start_time}} - {{appointment.end_time}}</p>
-                <h5>Appointment Type</h5>
-                <p>{{appointment.consultation_type}}</p>
-                {% if appointment.consultation_type == 'text' %}
-                <h5>Chat</h5>
-                <div>
-                    A chat body will appear here
+                
+                {% include './../components/appointment-info-for-doctor.html' with include_chat=True %}
+                <div class="d-flex mt-3" style="gap: 10px;">
+                    <a target="_blank" href="{% url 'doctor:doctor-notes-form' appointment.id %}" class="btn btn-primary">Doctor Notes Form</a>
+                    {% if appointment.consultation_category == 'mental' %}
+                    <a target="_blank" href="{% url 'doctor:mental-form' appointment.id %}" class="btn btn-primary">Mental Health Form</a>
+                    {% endif %}
+                    {% if appointment.consultation_category == 'medical' %}
+                    <a target="_blank" href="{% url 'doctor:lab-form' appointment.id %}" class="btn btn-primary">Fill Lab Test Form</a>
+                    {% endif %}
                 </div>
-                {% elif appointment.consultation_type == 'video' %}
-                <form action="" class="form" method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="form-group" style="flex-grow: 1;">
-                                <label for="video_link">Video Link</label>
-                                <div class="input-group">
-                                    <div class="input-group-text">
-                                        <i class="lni lni-video"></i>
-                                    </div>
-                                    <input type="text" name="video_link" id="video_link"
-                                        class="form-control shadow-none" value="{{appointment.video_link}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 d-flex align-items-center">
-                            <button class="btn btn-primary" type="submit">Update</button>
-                        </div>
-                    </div>
-                </form>
-                {% if appointment.video_link %}
-                <div>
-                    <a href="{{appointment.video_link}}" target="_blank" class="btn btn-primary">
-                        Go to Video Consultation
-                    </a>
-                </div>
-                {% else %}
-                <p>
-                    No link has been provided yet. Kindly update the link using the form above.
-                </p>
-                {% endif %}
-                {% endif %}
             </div>
         </div>
     </div>

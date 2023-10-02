@@ -1,7 +1,6 @@
-import json
+import datetime
 import sys
 import traceback
-from datetime import datetime
 
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -9,11 +8,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import render, redirect, get_object_or_404
 
-from mailer.moreviews import send_contact_form_confirmation_email
 from mailer.utils import send_custom_email
 from .models import *
-from facilities.models import Doctor, Appointment
-from facilities.serializers import AppointmentSerializer
+from facilities.models import Doctor, Appointment, AppointmentDuration, AppointmentTime
 from django.shortcuts import reverse
 
 
@@ -70,6 +67,14 @@ def blog_reply(request, blog_id):
     return redirect(request.META['HTTP_REFERER'])
 
 
+def medical_practitioners(request):
+    doctors_ = Doctor.objects.filter(is_verified=True)
+    context = {
+        'doctors': doctors_
+    }
+    return render(request, template_name="doctors/all-doctors.html", context=context)
+
+
 def doctor_search(request):
     specialist = request.GET.get('specialist', 0)
     print(specialist)
@@ -104,34 +109,27 @@ def get_time_24(str_time):
 
 
 def single_doctor(request, doctor_id):
-    appointments = Appointment.objects.filter(doctor__id=doctor_id)
-    doctor_events = []
-    for appointment in appointments:
-        start_time = get_time_24(appointment.start_time)
-        end_time = get_time_24(appointment.end_time)
+    # appointment_durations = [
+    #     AppointmentDuration(minutes=minutes, order=0) for minutes in range(15, 70, 15)
+    # ]
+    #
+    # AppointmentDuration.objects.bulk_create(appointment_durations)
+    # times = ['00:00', '8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00',
+    #          '13:30', '14:00', '14:30', '15:00', '15:30']
+    # appointment_times = [
+    #     AppointmentTime(time=time) for time in times
+    # ]
+    # AppointmentTime.objects.bulk_create(appointment_times)
+    date_string = request.GET.get('date', None)
+    date_to_watch = datetime.date.today()
+    if date_string:
+        date_to_watch = datetime.datetime.strptime(date_string, '%Y-%m-%d').date()
 
-        event = {
-                    'id': "1",
-                    'title': appointment.condition.name if getattr(appointment, 'condition') else appointment.other_condition,
-                    'start': appointment.date.strftime('%Y-%m-%d') + 'T' + start_time,
-                    'end':  appointment.date.strftime('%Y-%m-%d') + 'T' + end_time,
-                    'url': '#',
-                    'customDate': appointment.date.strftime('%a %d, %b %Y'),
-                    'start_time': appointment.start_time,
-                    'end_time': appointment.end_time,
-                    'backgroundColor': 'blue',
-                    'description': "This is a cool event",
-                    'doctor': appointment.doctor.user.get_full_name(),
-                    'doctorID': appointment.doctor.id,
-                    'doctorURL': reverse('doctor:single-appointment',  kwargs={'appointment_id': appointment.id}),
-                    'patient': appointment.patient.user.get_full_name(),
-                    'patientID': appointment.patient.id,
-                    'patientURL': reverse('patient:single-appointment', kwargs={'appointment_id': appointment.id}),
-                }
-        doctor_events.append(event)
+    current_appointments_for_date = Appointment.objects.filter(doctor_id=doctor_id, date=date_to_watch)
+
     context = {
         'doctor': Doctor.objects.filter(id=doctor_id).first(),
-        'events': json.dumps(doctor_events)
+        'appointments': current_appointments_for_date
     }
     return render(request, template_name="doctors/single-doctor.html", context=context)
 
@@ -147,13 +145,14 @@ def internal_server_error(request):
     exc_type, exc_value, tb = sys.exc_info()
     traceback_data = traceback.format_tb(tb)
     error_message = ''
-    if len(traceback_data) > 0:
-        error_message = f'''
-            <h4>Error type </h4>
-            <p>{exc_value}</p>
-            <h4>Traceback</h4>
-            <p>{traceback_data[0]}</p>
-            <p>{traceback_data[1]}</p>
-        '''
+    # if len(traceback_data) > 0:
+    #     error_message = f'''
+    #         <h4>Error type </h4>
+    #         <p>{exc_value}</p>
+    #         <h4>Traceback</h4>
+    #         <p>{traceback_data[0]}</p>
+    #         <p>{traceback_data[1]}</p>
+    #     '''
 
     return render(request, template_name="errors/error-500.html", context={'error_message': error_message})
+

@@ -1,0 +1,62 @@
+{% load customtags %}
+<div>
+    <h5>Patient Note</h5>
+    <p>
+        {{appointment.note}}
+    </p>
+    <h5>Condition</h5>
+    <p>{{appointment.condition.name}}</p>
+    <h5>Any named condition</h5>
+    <p>{{appointment.other_condition}}</p>
+    <h5>Appointment Date</h5>
+    <p>{{appointment.date|get_date}}</p>
+    <h5>Appointment Time</h5>
+    <p>{{appointment.start_time.time}} - {{appointment.end_time}}</p>
+    <h5>Appointment Type</h5>
+    <p>{{appointment.consultation_type}}</p>
+    <h5>Appointment Category</h5>
+    <p>{{appointment.consultation_category}}</p>
+    {% if appointment.consultation_type == 'text' %}
+    {% if include_chat %}
+    <h5>Chat</h5>
+    <button class="btn btn-primary" onclick="showChat()">
+        Show Chat
+    </button>
+    <div>
+        {% include './../../consultation/consultation.html' %}
+    </div>
+    {% endif %}
+    {% elif appointment.consultation_type == 'video' %}
+    <form action="" class="form" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group" style="flex-grow: 1;">
+                    <label for="video_link">Video Link</label>
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <i class="lni lni-video"></i>
+                        </div>
+                        <input type="text" name="video_link" id="video_link" class="form-control shadow-none"
+                            value="{{appointment.video_link}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex align-items-center">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+    {% if appointment.video_link %}
+    <div>
+        <a href="{{appointment.video_link}}" target="_blank" class="btn btn-primary">
+            Go to Video Consultation
+        </a>
+    </div>
+    {% else %}
+    <p>
+        No link has been provided yet. Kindly update the link using the form above.
+    </p>
+    {% endif %}
+    {% endif %}
+</div>

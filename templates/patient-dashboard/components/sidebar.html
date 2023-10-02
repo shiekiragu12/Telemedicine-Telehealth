@@ -1,3 +1,4 @@
+{% load website_tags %}
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
@@ -13,6 +14,16 @@
                     <span class="nav-text">Preview Pharmacy <small>(Public view)</small> </span>
                 </a>
             </li> -->
+            <li>
+                <a href="{% url 'account_notifications' %}" class="ai-icon" aria-expanded="false">
+                    {% get_my_unread_notifications_count request.user.id as my_notifications %}
+                    <i class="lni lni-dashboard"></i>
+                    <span class="nav-text">
+                        Notifications
+                    </span>
+                    <span class="badge bg-danger ml-auto">{{my_notifications}}</span>
+                </a>
+            </li>
             <li>
                 <a href="{% url 'patient:dashboard' %}" class="ai-icon" aria-expanded="false">
                     <i class="lni lni-dashboard"></i>

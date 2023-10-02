@@ -1,0 +1,10 @@
+<button class="btn btn-primary" hx-get="{% url 'doctor:add-qualification' %}" hx-swap="afterbegin"
+    hx-target="#qualifications">
+    Add Qualification
+</button>
+ 
+<div id="qualifications" class="row py-3">
+    {% for qualification in request.user.doctor.qualifications.all %}
+    {% include './../../doctors/qualification-card.html' %}
+    {% endfor %}
+</div>

@@ -13,12 +13,13 @@
         </div>
     </div>
 
-    <div class="card border {% if doctor.is_verified %} border-success {% else %} border-danger {% endif %}" style="border-width: 2px !important;">
-        {% if doctor.is_verified %} 
+    <div class="card border {% if doctor.is_verified %} border-success {% else %} border-danger {% endif %}"
+        style="border-width: 2px !important;">
+        {% if doctor.is_verified %}
         <button class="btn btn-success rounded">Authorized</button>
         {% else %}
         <button class="btn btn-danger rounded">Not Authorized</button>
-          {% endif %}
+        {% endif %}
         <div class="card-body">
             <form method="post" id="doctor-form" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -252,11 +253,13 @@
                         <h4 class="mb-2">Facilities</h4>
                         <ul class="list-group">
                             {% if doctor.facility %}
-                            <a href="{% url 'super-admin-facilities-single' doctor.facility.id %}" target="_blank" referrerpolicy="noreferrer"
+                            <a href="{% url 'super-admin-facilities-single' doctor.facility.id %}" target="_blank"
+                                referrerpolicy="noreferrer"
                                 class="list-group-item list-group-item-action">{{doctor.facility.name}}</a>
                             {% endif %}
                             {% for facility in doctor.facilities.all %}
-                            <a href="{% url 'super-admin-facilities-single' facility.id %}" target="_blank" referrerpolicy="noreferrer"
+                            <a href="{% url 'super-admin-facilities-single' facility.id %}" target="_blank"
+                                referrerpolicy="noreferrer"
                                 class="list-group-item list-group-item-action">{{facility.name}}</a>
                             {% endfor %}
                         </ul>
@@ -351,5 +354,17 @@
         fileEmbed.src = `${loc.protocol}//${loc.host}${src}`
         console.log(`${loc.protocol}//${loc.host}${src}`)
     })
+
+
+    function redirectToNewPage() {
+        const dateInput = document.getElementById('date-input');
+        const selectedDate = dateInput.value;
+        const url = window.location.href.split('?')[0] + '?date=' + selectedDate;
+        window.location.href = url;
+    }
+    const dateInput = document.getElementById('date-input');
+    dateInput.addEventListener('change', redirectToNewPage);
+
+
 </script>
 {% endblock %}

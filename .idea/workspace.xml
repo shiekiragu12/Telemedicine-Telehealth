@@ -5,214 +5,281 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b05a8687-79a0-4c52-a2de-12940f2ee286" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account/endpoints.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/publicserializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/tokens.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/decorators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/facilities/publicserializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/facilities/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/facilities/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mailer/helperfuncs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainapp/extraclasses.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/superadmin/decorators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/superadmin/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/teleMedicine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/teleMedicine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interact/endpoints.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interact/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interact/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mainapp/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient/decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0002_profile_dob.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0003_remove_profile_postal_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0004_profile_country_code.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/publicserializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/publicserializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/tokens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/decorators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/migrations/0002_remove_prescriptionpatient_p_code_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/migrations/0003_delete_prescriptionpatient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/facilities/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facilities/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/decorators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/facilities/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0002_county_rename_disease_condition_facility_authorized_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0003_facility_cover_image_facility_icon_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0004_remove_facility_icon_facility_address_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0005_rename_reception_receptionist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0006_alter_patient_facility.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0007_facility_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0008_doctor_speciality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0009_staff_delete_receptionist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0010_rename_available_slot_appointment_date_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0011_rename_injury_appointment_condition.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0012_alter_appointment_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0013_facility_about_page_content_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0014_remove_condition_description_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0015_facilitytype_facility_owner_name_constituency_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0016_alter_facility_address_alter_facility_city_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0017_alter_facility_contact_no_alter_facility_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0018_rename_created_appointment_created_on_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0019_facilitytype_slug_alter_service_doctor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0020_facility_facility_kind_alter_medicalfile_appointment_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0021_alter_constituency_county.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0022_alter_constituency_county.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0023_facility_shared_encounters_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0024_rename_status_doctor_available.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0025_alter_facility_shared_encounters.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0026_rename_make_account_sharable_patient_account_sharable.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0027_alter_appointment_doctor_alter_appointment_facility_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0028_alter_encounter_doctor_alter_encounter_patient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0029_facilityspeciality_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0030_condition_slug_constituency_slug_county_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0031_service_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0032_service_long_description_service_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0033_service_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0034_alter_service_charges_alter_service_duration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0035_rename_description_doctor_about.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0036_alter_facility_facility_kind.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0037_remove_facility_shared_encounters_prescription_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0038_facility_facility_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0039_alter_facility_facility_kind.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0040_prescription_facility.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0041_alter_prescription_doctor_alter_prescription_patient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0042_sharedprescription.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0043_qualification_file.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0044_doctor_license_number.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0045_alter_patient_blood_group_alter_qualification_degree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0046_alter_facilityspeciality_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0047_doctor_is_verified.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0048_qualificationcourse_specialityfield_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0049_doctor_license_file_doctor_regulatory_body_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0050_alter_qualification_course_alter_qualification_file.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0051_alter_qualification_institution.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0052_alter_qualification_institution_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0053_patient_reson_for_signup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0054_rename_reson_for_signup_patient_reason_for_signup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0055_illness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0056_alter_servicecategory_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0057_alter_appointment_condition.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0058_appointment_other_condition.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0059_alter_appointment_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0060_alter_appointment_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/migrations/0061_appointment_consultation_type_appointment_video_link.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/facilities/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facilities/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/facilities/templatetags/customtags.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/templatetags/customtags.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facilities/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/facilities/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/facilities/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0002_email_identifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0003_alter_emailconfiguration_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0004_alter_emailconfiguration_color.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0005_alter_email_color_alter_email_identifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0006_sentemail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0007_rename_email_body_sentemail_body.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0008_sentemail_receiver.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mailer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/templates/password_reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/templates/email_template.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/templates/email_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/templates/email_template.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mailer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0002_appconfig_account_creation_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0003_blog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0004_blog_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0005_tag_remove_blog_tags_blog_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0006_blog_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0007_reply.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0008_reply_blog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0009_contact.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0010_appconfig_doctor_creation_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0011_appconfig_facility_authorized_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0012_appconfig_appointment_creation_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0013_reply_public.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0014_topic_blog_topic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0015_blog_is_public.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0016_remove_appconfig_listing_activated_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0017_appconfig_doctor_authorized_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/migrations/0018_appconfig_analytic_creation_email_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile/photos/WhatsApp_Image_2022-11-05_at_11.04.18_AM.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient/migrations/0002_delete_prescription.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/patient/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacetical/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0002_remove_pharmacy_applicant_name_pharmacy_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0003_remove_pharmacy_user_pharmacy_applicant_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0004_remove_pharmacy_applicant_name_pharmacy_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0005_remove_pharmacy_user_pharmacy_applicant_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0006_product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0007_rename_product_product_pharmacy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0008_rename_product_pharmacy_product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0009_remove_product_pharmacy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0010_pharmacy_verified_product_approved.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0011_rename_applicant_name_pharmacy_first_name_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0012_pharmacy_latitude_pharmacy_longitude.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0013_remove_pharmacy_latitude_remove_pharmacy_longitude.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0014_remove_product_doe_remove_product_serial_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0015_pharmacy_attach_product_code_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0016_product_approved_order.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0017_product_live_product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0018_product_unapproved.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0019_product_delivered_order.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/migrations/0020_delete_product.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharmacetical/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharmacetical/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0002_products_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0003_alter_products_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0004_cartitems.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0005_order_orderitem_payment_product_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0006_category_created_on_category_updated_on_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0007_product_approved.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0008_producttype_remove_product_category_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0009_product_tags.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0010_remove_product_approved_product_code_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0011_prescriptionorder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0012_prescriptionorder_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0013_alter_prescriptionorder_amount_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0014_alter_product_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0015_alter_prescriptionorder_amount.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0016_prescriptionorder_paid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0017_alter_producttype_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/migrations/0018_product_brand.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/css/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/css/dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/about-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/blog-details.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/blog-details.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/client/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/client/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/consult.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/doctor.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/doctor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/instagram/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/instagram/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/instagram/2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/instagram/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/instagram/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/instagram/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/logo-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/logo-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/page-title/bg-5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/page-title/bg-5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/shape/shape-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/shape/shape-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/shape/shape-5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-6.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/shape/shape-6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/shape/shape-7.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/shape/shape-7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/single-service.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/single-service.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/solution-details/image2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/img/solution-details/image5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/img/solution-details/image5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/dashboard/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard/js/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/dashboard/js/demo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard/js/deznav-init.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/dashboard/js/deznav-init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard/js/styleSwitcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/dashboard/js/styleSwitcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/css/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/css/dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/blog-details.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/blog-details.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/doctor.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/doctor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/instagram/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/instagram/2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/instagram/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/instagram/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/logo-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/logo-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/page-title/bg-5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/page-title/bg-5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-2.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-5.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-6.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-7.png" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/shape/shape-7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/single-service.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/single-service.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/img/solution-details/image5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/img/solution-details/image5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/dashboard/js/styleSwitcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/dashboard/js/styleSwitcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superadmin/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/superadmin/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superadmin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/superadmin/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superadmin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/superadmin/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teleMedicine/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/teleMedicine/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teleMedicine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/teleMedicine/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/account/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth/sign-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/sign-up.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/register/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/sign-in-component.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/sign-in-component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/sign-up-component.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/sign-up-component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/sign-up-patient-component.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/sign-up-patient-component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/sign-up-provider-component.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/sign-up-provider-component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/category-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/category-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/facilitycard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/facilitycard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blogs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/components/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/app-calender.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/app-profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-chartist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-chartjs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-flot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-morris.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-peity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/chart-sparkline.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/components/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/components/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/components/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/components/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/components/navheader.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/components/navheader.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/components/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/components/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-customers.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-invoice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-product-detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-product-grid.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-product-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ecom-product-order.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/email-compose.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/email-inbox.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/email-read.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/form-ckeditor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/form-element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/form-pickers.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/form-validation-jquery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/form-wizard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/index-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/map-jqvmap.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-error-400.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-error-403.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-error-500.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-error-503.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-lock-screen.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/page-review.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/appointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/appointment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/doctor-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/doctor-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/editfacility.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/editfacility.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/patient-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/patient-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/patient-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/patient-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/staff-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/staff-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/pages/staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/pages/staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/post-details.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/table-bootstrap-basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/table-datatable-basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-lightgallery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-nestable.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-noui-slider.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-select2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-sweetalert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/uc-toastr.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-accordion.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-alert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-badge.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-button-group.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-card.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-carousel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-dropdown.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-grid.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-list-group.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-media-object.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-modal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-pagination.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-popover.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-progressbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-tab.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/ui-typography.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/widget-basic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facilities/components/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facilities/components/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facilities/components/innernav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facilities/components/innernav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facilities/facility_services_treatments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facilities/facility_services_treatments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/appointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/appointment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/disease-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/disease-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/components/post_item.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/post_item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/components/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/components/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/components/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/components/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/appointments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/appointments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/lab-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/lab-orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/medical-reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/medical-reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/prescriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/prescriptions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/single-appointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/single-appointment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/text-consultation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/text-consultation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctor-dashboard/pages/video-consultation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctor-dashboard/pages/video-consultation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctors/doctor-search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctors/doctor-search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/doctors/single-doctor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctors/single-doctor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/health/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/faq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/health/health-topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/health-topic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/health.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/health.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/health/healthy-living.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/healthy-living.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/how-it-works.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/how-it-works.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/medical-facilities.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/medical-facilities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/privacy-policy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/project-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/project-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/health/terms-conditions.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/health/testimonials.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health/testimonials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/components/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/components/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/components/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/components/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/appointments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/appointments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/medical-reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/medical-reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/prescription-orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/prescription-orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/prescriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/prescriptions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/patient-dashboard/pages/single-appointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patient-dashboard/pages/single-appointment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pharmacy-dashboard/pages/upload-product.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pharmacy-dashboard/pages/upload-product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/birthing-care.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/birthing-care.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/cancer-care.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/cancer-care.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/emergencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/emergencies.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/emergency-medicine.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/emergency-medicine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/services/family-medicine.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/family-medicine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/services/first-aid.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/first-aid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/services/family-medicine.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/services/first-aid.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/laboraties-center.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/laboraties-center.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/services/mental-health.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/mental-health.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/online-referral.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/online-referral.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/services/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services/services.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/allergy-medicine.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/medical-devices.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/mobile-aid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/nutraceuticals.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/prescription-medication.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/refill-prescription.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/shop/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/shop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/solution.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/teams.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/teams.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/shop/types/single-type.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/types/single-type.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/analytic_service.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/analytic_service.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/emergency.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/emergency.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/healthcare_equip.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/healthcare_equip.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/healthcare_services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/healthcare_services.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/med_ecommerce.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/medicare.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/medicare.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/symptom-checker.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/symptom-checker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/solution/telehealth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/solution/telehealth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/super-admin-dashboard/components/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/super-admin-dashboard/components/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/super-admin-dashboard/pages/shop/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/super-admin-dashboard/pages/shop/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/super-admin-dashboard/pages/users/doctors/single-doctor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/super-admin-dashboard/pages/users/doctors/single-doctor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/swagger.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/swagger.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/teams.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/terms/practitioner-contract.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms/practitioner-contract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/terms/practitioner-policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms/practitioner-policy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/terms/privacy-policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms/privacy-policy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/terms/terms-conditions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms/terms-conditions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/terms/user-policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/terms/user-policy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0002_analytic_equip_telehealth_topbutton_typefacility_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0003_book_apply_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0004_equip_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0005_telehealth_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0006_firstaid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0007_analytic_read_apply_read_book_read_equip_read_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0008_analytic_created_on_apply_created_on_book_created_on_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0009_rename_name_firstaid_org_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0010_firstaid_no_of_employees_alter_firstaid_core.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0011_demorequest_delete_topbutton_alter_firstaid_f_name_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0012_rename_n_facility_apply_facility_phone_number_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/migrations/0013_remove_demorequest_date_hosipitalized_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
@@ -236,6 +303,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2KxSM2UdwROIWRB3FKUj85045jg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -267,5 +337,16 @@
       <updated>1674914688746</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/facilities/templatetags/customtags.py</url>
+          <line>507</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,0 +1,26 @@
+{% load humanize %}
+
+<div class="col-lg-3 col-md-3">
+    <div class="single-product">
+        <div class="product-image">
+            <a href="{% url 'single-product' product.id product.slug %}">
+                <img src="{% if product.image %}{{product.image.url}}{% endif %}" alt="{{product.name}}">
+            </a>
+            <button href="" class="btn add-to-cart-btn border-0" style="border-radius: 0;"
+                onclick="addToCart('{{product.id}}', '{{product.image.url}}', '{{product.name}}', '{{product.price}}')">
+                Add To Cart
+                <i class="flaticon-shopping-cart"></i>
+            </button>
+        </div>
+        <div class="product-content">
+            <h3 style="font-weight: 500; font-size: 14px;">
+                <a href="{% url 'single-product' product.id product.slug %}">
+                    {{product.name}}
+                </a>
+            </h3>
+            <div class="price">
+                <span class="new">KES {{product.price|intcomma}}</span>
+            </div>
+        </div>
+    </div>
+</div>

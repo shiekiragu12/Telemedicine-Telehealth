@@ -63,7 +63,7 @@
 						<tbody>
 							{% for prescription in prescriptions %}
 							<tr>
-								<td>Dr {{prescription.doctor.user.first_name}} {{prescription.doctor.user.last_name}}
+								<td>{{prescription.doctor.user.profile.salutation.title}} {{prescription.doctor.user.first_name}} {{prescription.doctor.user.last_name}}
 								</td>
 								<td>
 									<button class="btn btn-primary px-4" data-bs-toggle="modal"

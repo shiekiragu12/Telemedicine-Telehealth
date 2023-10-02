@@ -34,13 +34,13 @@ class EmailConfiguration(models.Model):
 
 
 class SentEmail(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     receiver = models.EmailField(blank=True, null=True)
     subject = models.CharField(max_length=255, blank=True, null=True)
     body = models.TextField()
+    sent = models.BooleanField(default=False)
 
     created_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name} - {self.subject}"
+        return f"{self.receiver}"
 

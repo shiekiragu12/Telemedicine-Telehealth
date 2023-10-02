@@ -20,7 +20,7 @@ class UserSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'username', 'email', 'profile', 'doctor', 'patient',
+        fields = ['id', 'first_name', 'last_name', 'username', 'password', 'email', 'profile', 'doctor', 'patient',
                   'staff', 'date_joined', 'last_login']
 
         extra_kwargs = {

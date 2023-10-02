@@ -1,0 +1,36 @@
+{% extends './../components/base.html' %}
+{% load static %}
+{% load customtags %}
+{% block title %} Mental Health Form {% endblock %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="card_" id="printarea">
+            {% include './../../patient-dashboard/pages/mental-form/mental-health.html' with doctor=True %}
+        </div>
+        <button class="btn btn-primary" onclick="printDiv('printarea')">Print</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+{% endblock %}

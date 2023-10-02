@@ -29,7 +29,7 @@
 							<table id="example5" class="table table-striped patient-list mb-4 dataTablesCard fs-14">
 								<thead>
 									<tr>
-										<th style="min-width: 150px;">Patient</th>
+										<th style="min-width: 150px;">Doctor</th>
 										<th class="c-header">Prescription</th>
 										<th class="c-header">Amount</th>
 										<th class="c-header">Notes</th>
@@ -43,6 +43,7 @@
 									{% for obj in prescriptions %}
 									<tr>
 										<td>
+											{{obj.prescription.doctor.user.profile.salutation.title}}
 											{{obj.prescription.doctor.user.first_name}}
 											{{obj.prescription.doctor.user.last_name}}
 										</td>
