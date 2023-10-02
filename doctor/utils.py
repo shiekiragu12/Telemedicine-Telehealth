@@ -4,9 +4,9 @@ import base64
 
 def get_authorization():
     # OAuth app credentials
-    CLIENT_ID = '6SpgCzxRROKtg_B6bmymEg'
-    CLIENT_SECRET = 'fGSjt5nWQ5YVG3YZ1MUd9veVf4fpK3V8'
-    ACCOUNT_ID = 'Hh4L_zmmTCyf-IKJa8L72g'
+    CLIENT_ID = ''
+    CLIENT_SECRET = ''
+    ACCOUNT_ID = ''
 
     # Base64 encode the client ID and client secret
     credentials = f"{CLIENT_ID}:{CLIENT_SECRET}"

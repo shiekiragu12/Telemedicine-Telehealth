@@ -96,9 +96,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'mysql.connector.django',
-            'NAME': 'resqhdub_new_main_db',  # resqhdub_resqlife # resqhdub_new_main_db # resqhdub_newtestdb
-            'USER': 'resqhdub_new_main_db',  # resqhdub_resqlife # resqhdub_new_main_db
-            'PASSWORD': '9bDG-RQHapV[',  # 9bDG-RQHapV[
+            'NAME': '',  #  # d # d
+            'USER': '',  #  # d
+            'PASSWORD': '[',  # d-dRdQHapV[
             'HOST': 'localhost',
             'PORT': '3306',
         }
@@ -183,16 +183,4 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# DPO SETTINGS
-DPO_COMPANY_TOKEN = "DB946F87-9CAC-4116-A351-E9C3353D37E2"
-DPO_PAYMENT_CURRENCY = "KES"
-DPO_COMPANY_REF = "MOSES"
-DPO_COMPANY_REF_UNIQUE = "MOSES"
-DPO_PTL = ""
-DPO_SERVICE_TYPE = 23954
-DPO_CONTENT_TYPE = "application/xml"
-DPO_LIVE_ENDPOINT = "https://secure.3gdirectpay.com/API/v6/"
-DPO_PAYMENT_URL = "https://secure.3gdirectpay.com/pay.asp?ID={}"
 
-DPO_REDIRECT_URL = "https://resq247.life/"
-DPO_CALLBACK_URL = "https://resq247.life/checkout/orders/payments/process/"
